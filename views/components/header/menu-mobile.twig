@@ -1,0 +1,69 @@
+{% set linkClass = 'block border-b border-line-2 px-1 py-4 font-display text-[22px] leading-[1.08] font-semibold tracking-[-0.02em] text-ink' %}
+
+{% for item in items %}
+	{% set childCurrent = item.children|filter(c => currentUrl and c.url == currentUrl)|length > 0 %}
+	{% set isCurrent = currentUrl and item.url == currentUrl %}
+
+	{% if item.children|length %}
+		<div class="border-b border-line-2">
+			<button type="button"
+				data-submenu-toggle
+				aria-expanded="{{ (isCurrent or childCurrent) ? 'true' : 'false' }}"
+				class="group/sub flex w-full items-center justify-between gap-3 px-1 py-4 text-left
+					font-display text-[22px] leading-[1.08] font-semibold tracking-[-0.02em]
+					{{ (isCurrent or childCurrent) ? 'text-accent-strong' : 'text-ink' }}
+					[&_svg]:size-6 [&_svg]:flex-none [&_svg]:text-ink-3 [&_svg]:transition-transform
+					aria-expanded:[&_svg]:rotate-180">
+				{{ item.title }}
+				{{ 'chevron-down'|svg }}
+			</button>
+
+			<div data-submenu {% if not (isCurrent or childCurrent) %}hidden{% endif %}
+				class="grid gap-0.5 pb-3 pl-1">
+				{% if item.url not in item.children|map(c => c.url) %}
+					<a href="{{ item.url }}"
+						target="{{ item.target ?: '_self' }}"
+						{% if isCurrent %}aria-current="page"{% endif %}
+						class="flex items-center gap-3 rounded-card px-2.5 py-3 text-[17px] font-semibold
+							{{ isCurrent ? 'bg-soft text-accent-strong' : 'text-ink' }}
+							[&_svg]:size-[18px] [&_svg]:flex-none [&_svg]:text-accent">
+						{{ 'arrow-right'|svg }}
+						{{ item.title }}
+					</a>
+				{% endif %}
+
+				{% for child in item.children %}
+					{% set childIsCurrent = currentUrl and child.url == currentUrl %}
+
+					<a href="{{ child.url }}"
+						target="{{ child.target ?: '_self' }}"
+						{% if child.target == '_blank' %}rel="noopener"{% endif %}
+						{% if childIsCurrent %}aria-current="page"{% endif %}
+						class="flex items-center gap-3 rounded-card px-2.5 py-3 text-[17px] font-semibold
+							{{ childIsCurrent ? 'bg-soft text-accent-strong' : 'text-ink' }}
+							[&_svg]:size-[18px] [&_svg]:flex-none [&_svg]:text-accent">
+						{% if child.icon %}{{ child.icon|svg }}{% endif %}
+						{{ child.title }}
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	{% else %}
+		<a href="{{ item.url }}"
+			target="{{ item.target ?: '_self' }}"
+			{% if item.target == '_blank' %}rel="noopener"{% endif %}
+			{% if isCurrent %}aria-current="page"{% endif %}
+			class="{{ linkClass }} {{ isCurrent ? 'text-accent-strong' : '' }}">
+			{{ item.title }}
+		</a>
+	{% endif %}
+{% endfor %}
+
+{% if contactLink.url %}
+	<a href="{{ contactLink.url }}"
+		target="{{ contactLink.target ?: '_self' }}"
+		class="{{ linkClass }} flex items-center gap-2.5 [&_svg]:size-[20px] [&_svg]:text-accent">
+		{{ 'phone'|svg }}
+		{{ contactLink.title ?: __('Kontakt', 'raks') }}
+	</a>
+{% endif %}

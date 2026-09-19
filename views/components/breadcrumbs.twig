@@ -1,0 +1,16 @@
+{% if breadcrumbs|length > 1 %}
+	<nav aria-label="{{ __('Okruszki', 'raks') }}"
+		class="mb-[22px] flex flex-wrap items-center gap-2 text-meta font-semibold [&_svg]:size-3.5 [&_svg]:opacity-60
+			{{ light
+				? 'text-white/60 [&_a:hover]:text-white [&_a]:text-white/80'
+				: 'text-ink-3 [&_a:hover]:text-accent [&_a]:text-ink-2' }}">
+		{% for crumb in breadcrumbs %}
+			{% if crumb.url %}
+				<a href="{{ crumb.url }}">{{ crumb.title }}</a>
+				{{ 'chevron-right'|svg }}
+			{% else %}
+				<span aria-current="page">{{ crumb.title }}</span>
+			{% endif %}
+		{% endfor %}
+	</nav>
+{% endif %}

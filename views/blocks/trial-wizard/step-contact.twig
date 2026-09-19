@@ -1,0 +1,110 @@
+<div data-wizard-panel="2" hidden>
+	{% if fields.step2_kicker %}
+		<span class="text-[13px] font-bold tracking-[0.06em] text-accent uppercase">{{ fields.step2_kicker }}</span>
+	{% endif %}
+
+	{% include 'components/title-with-select-tag.twig' with {
+		title: fields.step2_title,
+		defaultTag: 'h3',
+		titleClass: 'mt-2 font-display text-[clamp(22px,2.6vw,27px)] leading-[1.15] font-semibold
+			tracking-[-0.02em] text-ink'
+	} only %}
+
+	{% if fields.step2_text %}
+		<p class="mt-2.5 max-w-[48ch] text-[15.5px] leading-snug whitespace-pre-line text-ink-2">{{ fields.step2_text }}</p>
+	{% endif %}
+
+	<div class="mt-6 grid gap-4">
+		<div aria-hidden="true" class="absolute! -left-[9999px] size-px overflow-hidden">
+			<label>
+				{{ __('Nie wypełniaj tego pola', 'raks') }}
+				<input type="text" name="website" tabindex="-1" autocomplete="off">
+			</label>
+		</div>
+
+		{% include 'components/form-field.twig' with {
+			name: 'name',
+			label: __('Imię i nazwisko', 'raks'),
+			idPrefix: uid,
+			required: true,
+			autocomplete: 'name',
+			placeholder: 'Jan Kowalski'
+		} only %}
+
+		<div class="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+			{% include 'components/form-field.twig' with {
+				name: 'email',
+				label: __('E-mail służbowy', 'raks'),
+				type: 'email',
+				idPrefix: uid,
+				required: true,
+				autocomplete: 'email',
+				placeholder: 'jan@firma.pl'
+			} only %}
+
+			{% include 'components/form-field.twig' with {
+				name: 'phone',
+				label: __('Telefon', 'raks'),
+				type: 'tel',
+				idPrefix: uid,
+				required: true,
+				autocomplete: 'tel',
+				placeholder: '600 000 000'
+			} only %}
+		</div>
+
+		<div class="grid gap-[7px]">
+			<label class="flex items-start gap-[11px] text-sm leading-normal text-ink-2">
+				<input type="checkbox" name="consent" value="1" required
+					class="mt-[3px] size-[18px] flex-none accent-accent">
+				<span>
+					{{ fields.step2_consent ?: __('Zgadzam się na kontakt w celu przedstawienia oferty.', 'raks') }}
+					<span class="text-cta">*</span>
+				</span>
+			</label>
+
+			<span data-error-for="consent" class="text-[13px] font-semibold text-[#d64545] empty:hidden"></span>
+
+			{% if fields.step2_consent_more %}
+				<details class="group mt-1.5 rounded-card border border-line bg-soft px-[18px]">
+					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3
+						text-[13.5px] font-semibold text-ink-2 [&::-webkit-details-marker]:hidden
+						[&_svg]:size-4 [&_svg]:transition-transform group-open:[&_svg]:rotate-180">
+						{{ fields.step2_consent_more_label ?: __('Pełna treść zgody', 'raks') }}
+						{{ 'chevron-down'|svg }}
+					</summary>
+
+					<div class="pb-4 text-[13px] leading-relaxed text-ink-3 [&_a]:font-semibold [&_a]:text-accent
+						[&_a]:underline [&_p+p]:mt-2.5">
+						{{ fields.step2_consent_more }}
+					</div>
+				</details>
+			{% endif %}
+		</div>
+
+		{% include 'components/verify-box.twig' %}
+
+		<div data-wizard-status
+			class="rounded-btn px-[18px] py-3.5 text-[15px] font-semibold empty:hidden
+				data-[status=success]:border data-[status=success]:border-[#b7e2c8] data-[status=success]:bg-[#e9f7ef] data-[status=success]:text-[#1d6b3f]
+				data-[status=error]:border data-[status=error]:border-[#f3c4c4] data-[status=error]:bg-[#fdecec] data-[status=error]:text-[#a52c2c]"></div>
+	</div>
+
+	<div class="mt-[30px] flex items-center justify-between gap-3.5 max-sm:flex-col-reverse max-sm:items-stretch">
+		<button type="button" data-wizard-back="1"
+			class="inline-flex items-center justify-center gap-2 font-sans font-bold text-ink-2 transition
+				hover:text-accent [&_svg]:size-[18px]">
+			{{ 'arrow-left'|svg }}
+			{{ fields.step2_back_label ?: __('Wstecz', 'raks') }}
+		</button>
+
+		<button type="submit"
+			class="inline-flex items-center justify-center gap-2.5 rounded-btn bg-cta px-8 py-[17px]
+				font-sans text-lead font-bold text-white shadow-cta transition
+				hover:-translate-y-0.5 hover:bg-cta-strong
+				disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-5">
+			{{ 'download'|svg }}
+			<span data-wizard-submit-label>{{ fields.step2_submit_label ?: __('Pobierz bezpłatne demo', 'raks') }}</span>
+		</button>
+	</div>
+</div>

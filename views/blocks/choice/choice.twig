@@ -1,0 +1,121 @@
+{#
+	Title: Dwie drogi
+	Description: Zestawienie dwóch wariantów w kartach — ciemnej i jasnej z gradientową obwódką
+	Category: raks
+	Icon: columns
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+
+{% import 'components/section.twig' as section %}
+
+{% set onPhoto = fields.background_image is not empty %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="relative isolate {{ section.shell(fields, classes) }}">
+
+	{% if onPhoto %}
+		{% include 'components/image.twig' with {
+			id: fields.background_image.ID,
+			size: 'raks-wide-2x',
+			sizes: '100vw',
+			alt: '',
+			class: 'absolute inset-0 z-0 size-full overflow-hidden rounded-section object-cover object-[50%_40%] max-md:rounded-section-sm'
+		} only %}
+
+		<div aria-hidden="true"
+			class="pointer-events-none absolute inset-0 z-[1] rounded-section bg-[image:var(--gradient-shade-wide)] max-md:rounded-section-sm"></div>
+	{% endif %}
+
+	<div class="relative z-[2] {{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			wide: true,
+			onDark: onPhoto or section.isDark(fields)
+		} only %}
+
+		{% set cols = {
+			'2': 'grid-cols-2 max-xl:grid-cols-1',
+			'3': 'grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1',
+			'4': 'grid-cols-4 max-2xl:grid-cols-2 max-sm:grid-cols-1'
+		} %}
+
+		{% set paraZCiemna = fields.cards|length == 2 and fields.cards|filter(c => c.featured)|length == 1 %}
+
+		<div class="grid gap-[26px] {{ cols[fields.columns ?: '2'] }}">
+			{% for card in fields.cards %}
+				{% set isDark = card.featured %}
+
+				{% set isModule = not isDark and not paraZCiemna %}
+
+				<div class="reveal relative overflow-hidden rounded-panel transition {{ isModule ? 'px-[30px] py-8' : 'p-[38px]' }}
+					{{ isDark
+						? 'border border-transparent bg-[image:var(--gradient-deep)] text-white shadow-navy before:absolute before:inset-0 before:bg-[image:var(--gradient-glow-arcs)] before:content-[\'\'] before:pointer-events-none'
+						: (paraZCiemna
+							? 'gradient-frame hover:-translate-y-1'
+							: 'border border-line bg-white shadow-soft hover:-translate-y-1 hover:shadow-mid') }}">
+
+					{% if isModule and card.icon and not card.tag %}
+						<span class="relative z-[1] mb-[22px] grid size-13 place-items-center rounded-[14px] bg-accent-soft text-accent [&_svg]:size-[26px]">
+							{{ card.icon|svg }}
+						</span>
+					{% endif %}
+
+					{% if card.tag %}
+						<span class="relative z-[1] inline-flex items-center gap-2 text-[13px] font-bold
+							tracking-[0.06em] uppercase {{ isDark ? 'text-deep-tint' : 'text-accent' }} [&_svg]:size-4">
+							{% if card.icon %}{{ card.icon|svg }}{% endif %}
+							{{ card.tag }}
+						</span>
+					{% endif %}
+
+					{% include 'components/title-with-select-tag.twig' with {
+						title: card.title,
+						defaultTag: 'h3',
+						titleClass: 'relative z-[1] font-display leading-[1.08] font-semibold tracking-[-0.02em] '
+							~ (isModule ? 'mt-2 text-[22px] ' : 'mt-4 mb-3 text-[27px] ')
+							~ (isDark ? 'text-white' : 'text-ink')
+					} only %}
+
+					{% include 'components/title-with-select-tag.twig' with {
+						title: card.text,
+						defaultTag: 'p',
+						titleClass: 'relative z-[1] text-base leading-[1.6] ' ~ (isDark ? 'text-white/82' : 'text-ink-2')
+					} only %}
+
+					{% if card.items|length %}
+						<ul class="relative z-[1] grid gap-[13px] {{ isModule ? 'mt-[18px]' : 'mt-6' }}">
+							{% for item in card.items %}
+								<li class="flex items-start gap-3 text-body {{ isDark ? 'text-white' : 'text-ink' }}
+									[&_svg]:mt-0.5 [&_svg]:size-5 {{ isDark ? '[&_svg]:text-deep-tint-2' : '[&_svg]:text-accent' }}">
+									{{ 'check'|svg }}
+									{{ item.text }}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+
+					{% include 'components/button.twig' with {
+						button: card.button,
+						variant: isDark ? 'on-navy' : null,
+						class: 'relative z-[1] mt-7'
+					} only %}
+				</div>
+			{% endfor %}
+		</div>
+
+		{% if fields.footnote %}
+			<p class="reveal mx-auto mt-10 max-w-[720px] text-center text-base leading-[1.6]
+				{{ onPhoto
+					? 'text-white/82 [&_b]:text-white [&_strong]:text-white'
+					: 'text-ink-2 [&_b]:text-ink [&_strong]:text-ink' }}">
+				{{ fields.footnote }}
+			</p>
+		{% endif %}
+	</div>
+</section>

@@ -1,0 +1,73 @@
+{% set solidHeader = solidHeader ?? false %}
+
+<header id="site-header"
+	class="group sticky top-0 z-[100] transition
+		after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px
+		after:bg-transparent after:transition-colors after:content-['']
+		data-scrolled:after:bg-line
+		data-scrolled:bg-page/85 data-scrolled:shadow-header
+		data-scrolled:backdrop-blur-[14px] data-scrolled:backdrop-saturate-[180%]"
+	{% if solidHeader %}data-scrolled{% endif %}>
+
+	<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+		<nav class="flex h-header items-center gap-9" aria-label="{{ __('Nawigacja główna', 'raks') }}">
+			<a href="{{ site.url }}" aria-label="{{ site.name }}">
+				{% include 'components/logo.twig' %}
+			</a>
+
+			{{ headerMenuHtml|raw }}
+
+			<span class="flex-1"></span>
+
+			<div class="flex items-center gap-2.5">
+				{% if themeOptions.header_contact_link.url %}
+					<a href="{{ themeOptions.header_contact_link.url }}"
+						class="inline-flex items-center gap-2 rounded-[9px] px-3 py-[9px] text-[15px] font-bold text-white
+							transition hover:bg-white/14 max-[1180px]:hidden
+							group-data-scrolled:text-ink group-data-scrolled:hover:bg-soft
+							[&_svg]:size-4 group-data-scrolled:[&_svg]:text-accent">
+						{{ 'phone'|svg }}
+						{{ themeOptions.header_contact_link.title ?: __('Kontakt', 'raks') }}
+					</a>
+				{% endif %}
+
+				{% if themeOptions.header_cta.url %}
+					<a href="{{ themeOptions.header_cta.url }}"
+						target="{{ themeOptions.header_cta.target ?: '_self' }}"
+						class="inline-flex h-[46px] items-center justify-center rounded-btn bg-white px-[26px] font-sans text-base max-sm:hidden
+							leading-[1.6] font-bold text-accent-strong shadow-[0_8px_20px_-8px_rgb(21_32_44/0.3)]
+							transition hover:bg-[#eef3ff]
+							group-data-scrolled:bg-cta group-data-scrolled:text-white group-data-scrolled:shadow-cta
+							group-data-scrolled:hover:bg-cta-strong">
+						{{ themeOptions.header_cta.title }}
+					</a>
+				{% endif %}
+
+				<button type="button"
+					id="menu-toggle"
+					aria-expanded="false"
+					aria-controls="mobile-menu"
+					aria-label="{{ __('Menu', 'raks') }}"
+					class="group/burger hidden size-11 items-center justify-center rounded-[11px] border border-white/40
+						bg-white/14 text-white max-2xl:flex
+						group-data-scrolled:border-line group-data-scrolled:bg-white group-data-scrolled:text-ink
+						[&_svg]:size-[22px]">
+					<span class="group-data-open/burger:hidden">{{ 'menu'|svg }}</span>
+					<span class="hidden group-data-open/burger:block">{{ 'x'|svg }}</span>
+				</button>
+			</div>
+		</nav>
+	</div>
+</header>
+
+<div id="mobile-menu"
+	class="fixed inset-x-0 top-header bottom-0 z-[99] hidden overflow-y-auto bg-page px-7 py-6 data-open:block">
+	{{ mobileMenuHtml|raw }}
+
+	{% include 'components/button.twig' with {
+		button: themeOptions.header_cta,
+		variant: 'accent',
+		block: true,
+		class: 'mt-6'
+	} only %}
+</div>

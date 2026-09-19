@@ -1,0 +1,44 @@
+{
+    "key": "group_37a6e4fbd5f8b",
+    "title": "Nagłówek strony",
+    "fields": [
+        {
+            "key": "field_7005fa93a93c2",
+            "label": "Podtytuł",
+            "name": "subtitle",
+            "type": "textarea",
+            "instructions": "Widoczny w ciemnym nagłówku, gdy strona nie zaczyna się blokiem Hero.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1754524800
+}

@@ -1,0 +1,9 @@
+{% set titleTag = tag ?: 'h1' %}
+
+<{{ titleTag }} class="{{ class }}">
+	{%- for word in text|split(' ') -%}
+		<span style="--i: {{ loop.index0 }}"
+			class="inline-block will-change-[transform,filter,opacity]
+				motion-safe:animate-word-in motion-safe:[animation-delay:calc(var(--i)*90ms+120ms)]">{{ word }}</span>{{ not loop.last ? ' ' }}
+	{%- endfor -%}
+</{{ titleTag }}>

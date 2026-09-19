@@ -1,0 +1,98 @@
+{% extends "layouts/base.twig" %}
+
+{% set solidHeader = false %}
+
+{% block main %}
+	<section data-hero-bg="bands"
+		class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
+		pt-header max-md:rounded-b-section-sm">
+		<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
+			<div class="pt-16 pb-21">
+				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+
+				<span class="inline-flex items-center gap-2.5 rounded-full bg-white/10 py-1.5 pr-4 pl-1.5
+					text-meta font-bold whitespace-nowrap text-white">
+					<b class="rounded-full bg-white px-2.5 py-[3px] text-xs text-ink">{{ archiveEyebrow }}</b>
+					{{ site.name }}
+				</span>
+
+				<h1 class="mt-5 max-w-[20ch] font-display text-[clamp(33px,4.6vw,54px)] leading-[1.08]
+					font-semibold tracking-[-0.02em] text-balance text-white">
+					{{ archiveTitle }}
+				</h1>
+
+				{% if archiveDescription %}
+					<div class="mt-[22px] max-w-[600px] text-[clamp(17px,2vw,20px)] leading-relaxed text-white/78">
+						{{ archiveDescription }}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+
+	<section class="py-section max-sm:py-16">
+		<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+			{% if filterTerms|length > 1 %}
+				{% set pill = 'rounded-full border-[1.5px] border-line bg-white px-[18px] py-[9px] text-label font-semibold text-ink-2 transition hover:border-[color-mix(in_srgb,var(--color-accent)_40%,var(--color-line))] hover:text-ink data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-ink' %}
+
+				<div data-blog-filter
+					role="group"
+					aria-label="{{ __('Filtruj wpisy według kategorii', 'raks') }}"
+					class="mb-9 flex flex-wrap gap-2.5">
+
+					<a href="{{ blogUrl }}" data-category="all" data-active="{{ activeTerm ? 'false' : 'true' }}" class="{{ pill }}">
+						{{ __('Wszystkie', 'raks') }}
+					</a>
+
+					{% for term in filterTerms %}
+						<a href="{{ term.url }}"
+							data-category="{{ term.slug }}"
+							data-active="{{ activeTerm == term.id ? 'true' : 'false' }}"
+							class="{{ pill }}">
+							{{ term.name }}
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if featuredPost %}
+				<div data-blog-featured>
+					{% include 'components/post-featured.twig' with { post: featuredPost } only %}
+				</div>
+			{% endif %}
+
+			<div data-blog-results
+				data-max-pages="{{ maxPages }}"
+				class="relative transition-opacity data-loading:pointer-events-none data-loading:opacity-45">
+
+				<div data-blog-grid class="grid grid-cols-3 gap-[26px] max-xl:grid-cols-2 max-sm:grid-cols-1">
+					{% for post in posts %}
+						{% include 'components/post-card.twig' with {
+							post: post,
+							eagerFirst: loop.first and isPaged
+						} only %}
+					{% endfor %}
+				</div>
+
+				<p data-blog-empty
+					{% if posts|length %}hidden{% endif %}
+					class="py-10 text-center text-base text-ink-3">
+					{{ __('Nie znaleziono wpisów.', 'raks') }}
+				</p>
+			</div>
+
+			<div data-blog-load-more hidden class="mt-10 flex justify-center">
+				<button type="button"
+					class="inline-flex items-center justify-center rounded-btn border-[1.5px]
+						border-[color-mix(in_srgb,var(--color-accent)_42%,#fff)] bg-white px-[26px] py-3.5
+						font-sans text-base font-bold text-ink transition
+						hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong">
+					{{ __('Pokaż więcej', 'raks') }}
+				</button>
+			</div>
+
+			{% include 'components/pagination.twig' with { pagination: pagination } only %}
+		</div>
+	</section>
+
+{% endblock %}

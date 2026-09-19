@@ -1,0 +1,115 @@
+{% set wierszKontaktu = 'flex items-center gap-2.5 text-sm leading-[1.6] text-white/80
+	[&_svg]:mt-0.5 [&_svg]:size-4 [&_svg]:flex-none [&_svg]:self-start [&_svg]:text-white/92' %}
+
+{% set nazwySerwisow = { youtube: 'YouTube', facebook: 'Facebook', x: 'Twitter / X' } %}
+
+<footer id="site-footer" class="bg-navy pt-12 pb-[22px] text-white/70">
+	<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+		<div class="grid grid-cols-[1.5fr_repeat(4,1fr)] gap-x-9 gap-y-7 max-2xl:grid-cols-2 max-md:grid-cols-1">
+			<div class="max-2xl:col-span-full">
+				{% include 'components/logo.twig' with { white: true } %}
+
+				{% if themeOptions.footer_description %}
+					<p class="mt-3.5 max-w-[300px] text-sm leading-[1.55]">{{ themeOptions.footer_description }}</p>
+				{% endif %}
+
+				<div class="mt-4 grid gap-[7px]">
+					{% if themeOptions.phone_sales %}
+						<a href="tel:{{ themeOptions.phone_sales|replace({' ': '', '-': ''}) }}"
+							class="{{ wierszKontaktu }} hover:text-white">
+							{{ 'phone'|svg }}
+							<span>
+								{{ themeOptions.phone_sales_label ?: __('Dział sprzedaży', 'raks') }}: {{ themeOptions.phone_sales }}
+								{%- if themeOptions.phone_hours %}<br>{{ themeOptions.phone_hours }}{% endif %}
+							</span>
+						</a>
+					{% endif %}
+
+					{% if themeOptions.support_link.url %}
+						<a href="{{ themeOptions.support_link.url }}"
+							target="{{ themeOptions.support_link.target ?: '_self' }}"
+							class="{{ wierszKontaktu }} hover:text-white">
+							{{ 'life-buoy'|svg }}
+							<span>
+								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'raks') }}:<br>
+								{{ themeOptions.support_link.title ?: __('Formularz kontaktowy', 'raks') }}
+							</span>
+						</a>
+					{% elseif themeOptions.phone_support %}
+						<a href="tel:{{ themeOptions.phone_support|replace({' ': '', '-': ''}) }}"
+							class="{{ wierszKontaktu }} hover:text-white">
+							{{ 'life-buoy'|svg }}
+							<span>
+								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'raks') }}: {{ themeOptions.phone_support }}
+								{%- if themeOptions.phone_hours %}<br>{{ themeOptions.phone_hours }}{% endif %}
+							</span>
+						</a>
+					{% endif %}
+
+					{% if themeOptions.email %}
+						<a href="mailto:{{ themeOptions.email }}" class="{{ wierszKontaktu }} hover:text-white">
+							{{ 'mail'|svg }}
+							<span>{{ themeOptions.email }}</span>
+						</a>
+					{% endif %}
+
+					{% if themeOptions.address %}
+						<span class="{{ wierszKontaktu }}">
+							{{ 'map-pin'|svg }}
+							<span>{{ themeOptions.address|nl2br }}</span>
+						</span>
+					{% endif %}
+				</div>
+
+				{% if themeOptions.remote_help.url %}
+					<a href="{{ themeOptions.remote_help.url }}"
+						target="{{ themeOptions.remote_help.target ?: '_self' }}"
+						class="mt-[18px] inline-flex items-center gap-[9px] rounded-full border border-white/45
+							px-[18px] py-2.5 text-[14.5px] font-bold text-white transition
+							hover:-translate-y-px hover:border-white hover:bg-white/12
+							[&_svg]:size-[17px] [&_svg]:text-white">
+						{{ 'monitor-smartphone'|svg }}
+						{{ themeOptions.remote_help.title ?: __('Pomoc zdalna', 'raks') }}
+					</a>
+				{% endif %}
+
+				{% if themeOptions.social|length %}
+					<div class="mt-[18px] flex flex-wrap items-center gap-2.5">
+						{% if themeOptions.social_label %}
+							<span class="mr-0.5 text-[11.5px] font-bold tracking-[0.09em] text-white/55 uppercase">
+								{{ themeOptions.social_label }}
+							</span>
+						{% endif %}
+
+						{% for item in themeOptions.social %}
+							{% if item.url and nazwySerwisow[item.network] %}
+								<a href="{{ item.url }}" target="_blank" rel="noopener"
+									aria-label="{{ nazwySerwisow[item.network] }}"
+									title="{{ nazwySerwisow[item.network] }}"
+									class="grid size-[38px] place-items-center rounded-[10px] border border-white/18
+										bg-white/8 text-white transition
+										hover:-translate-y-0.5 hover:border-white/42 hover:bg-white/18
+										[&_svg]:size-[17px]">
+									{{ ('brand-' ~ item.network)|svg }}
+								</a>
+							{% endif %}
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+
+			{% for column in footerMenuColumns %}
+				<div>
+					<h4 class="mb-[11px] font-sans text-[13px] leading-[1.08] font-bold tracking-[0.04em] text-white uppercase">{{ column.title }}</h4>
+					{{ column.html|raw }}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="mt-8 flex flex-wrap justify-between gap-3.5 border-t border-white/12 pt-4 text-meta">
+			<span>{{ themeOptions.copyrights ?: '© ' ~ 'now'|date('Y') ~ ' ' ~ site.name }}</span>
+
+			{{ legalMenuHtml|raw }}
+		</div>
+	</div>
+</footer>

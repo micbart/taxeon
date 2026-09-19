@@ -1,0 +1,1007 @@
+{
+    "key": "group_4ccaf4e50bd45",
+    "title": "Opcje motywu",
+    "fields": [
+        {
+            "key": "field_33fdde09f6433",
+            "label": "Identyfikacja",
+            "name": "tab_brand",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_c75d433536cec",
+            "label": "Logo (ciemne)",
+            "name": "logo",
+            "type": "image",
+            "instructions": "Puste = wbudowany znak SVG, który sam dobiera kolor.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_78f342cbc2e29",
+            "label": "Logo (białe)",
+            "name": "logo_white",
+            "type": "image",
+            "instructions": "Potrzebne tylko, gdy podmieniasz logo na własny plik.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_ef6fbea448554",
+            "label": "Nagłówek",
+            "name": "tab_header",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_79532c79020f9",
+            "label": "Wideo w tle nagłówka",
+            "name": "hero_video",
+            "type": "text",
+            "instructions": "Adres strumienia (HLS albo MP4). Używają go szablony bez bloku Hero — strona szkolenia i archiwum kategorii. Puste = sam gradient.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_b445991647b38",
+            "label": "Menu główne (mega-menu)",
+            "name": "header_menu",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_23e4e660f8542",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj pozycję",
+            "sub_fields": [
+                {
+                    "key": "field_23e4e660f8542",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_aeabaf3702d4c",
+                    "label": "Szerokość panelu",
+                    "name": "submenu_width",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "wide": "Szeroki (640px)",
+                        "narrow": "Wąski (380px)"
+                    },
+                    "default_value": "wide",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_81325b04f3680",
+                    "label": "Pozycje w rozwijanym panelu",
+                    "name": "submenu",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "field_b0c4fe999ff91",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Dodaj pozycję",
+                    "sub_fields": [
+                        {
+                            "key": "field_b0c4fe999ff91",
+                            "label": "Link",
+                            "name": "link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_02668f6a03d91",
+                            "label": "Ikona",
+                            "name": "icon",
+                            "type": "select",
+                            "instructions": "Lista pochodzi z plików w src/svg.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": "",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6a1ed823d9331",
+                            "label": "Opis",
+                            "name": "description",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 2,
+                            "new_lines": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_c13173550938c",
+            "label": "Link kontaktowy",
+            "name": "header_contact_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_f77ec8d30df20",
+            "label": "Przycisk CTA",
+            "name": "header_cta",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_49ce98d1db02c",
+            "label": "Pasek aktualności",
+            "name": "tab_topbar",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_e32c73b014452",
+            "label": "Pokaż pasek nad nagłówkiem",
+            "name": "topbar_enabled",
+            "type": "true_false",
+            "instructions": "Wyłączony — pasek nie renderuje się w ogóle. Pasek nie jest przyklejony: przewija się razem z treścią, nagłówek zostaje u góry.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_b295da1c987d2",
+            "label": "Plakietka",
+            "name": "topbar_label",
+            "type": "text",
+            "instructions": "Podpis po lewej. Poniżej 860 px chowa się, żeby zostało miejsce na treść.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_e32c73b014452",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Aktualności",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_984cd51981143",
+            "label": "Wpisy",
+            "name": "topbar_items",
+            "type": "repeater",
+            "instructions": "Wpisy zmieniają się co 6 sekund, w kolejności ustawionej przeciąganiem. Jeden wpis = bez podmiany. Wpis bez treści jest pomijany.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_e32c73b014452",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_cdb1710c1d9ab",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj wpis",
+            "sub_fields": [
+                {
+                    "key": "field_e584317a33628",
+                    "label": "Data",
+                    "name": "date",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "j.m.Y",
+                    "return_format": "Y-m-d",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_cdb1710c1d9ab",
+                    "label": "Treść",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_4bfa3944021ee",
+                    "label": "Odnośnik",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
+            "key": "field_9eb0d57151e80",
+            "label": "Odnośnik „Wszystkie aktualności”",
+            "name": "topbar_all",
+            "type": "link",
+            "instructions": "Po prawej stronie paska. Puste — bez odnośnika.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_e32c73b014452",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_72e112a9f643e",
+            "label": "Stopka",
+            "name": "tab_footer",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_8df1cc583bd92",
+            "label": "Opis firmy",
+            "name": "footer_description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_e39f3e37a48d5",
+            "label": "Etykieta — sprzedaż",
+            "name": "phone_sales_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Dział sprzedaży",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_42afb5838aa28",
+            "label": "Telefon — sprzedaż",
+            "name": "phone_sales",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_a688850ec9f9e",
+            "label": "Etykieta — wsparcie",
+            "name": "phone_support_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Pomoc techniczna",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_3246fe6652cc3",
+            "label": "Telefon — wsparcie",
+            "name": "phone_support",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_4bdd2581aa828",
+            "label": "Wsparcie — odnośnik",
+            "name": "support_link",
+            "type": "link",
+            "instructions": "Makieta 1.1 kieruje wsparcie do formularza zamiast do numeru. Wypełniony zastępuje telefon w tym wierszu, pusty zostawia telefon powyżej.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_f9daa88f894b8",
+            "label": "Godziny pracy",
+            "name": "phone_hours",
+            "type": "text",
+            "instructions": "Dopisek po numerze w stopce, np. „pon–pt 9:00–17:00”. Puste = bez dopisku.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_e916684c436c3",
+            "label": "E-mail",
+            "name": "email",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_f0404678f3e1a",
+            "label": "Adres",
+            "name": "address",
+            "type": "textarea",
+            "instructions": "Każdy wiersz to osobna linia w stopce — makieta 1.1 łamie adres po ulicy.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_cc60e0ee28f64",
+            "label": "Przycisk „Pomoc zdalna”",
+            "name": "remote_help",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_cb60de732de4f",
+            "label": "Podpis nad ikonami",
+            "name": "social_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Obserwuj RAKS",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_e3a74e5c863e8",
+            "label": "Profile społecznościowe",
+            "name": "social",
+            "type": "repeater",
+            "instructions": "Kolejność ustawiasz przeciąganiem. Pusty adres pomija ikonę.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_48e90ecbeab98",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj profil",
+            "sub_fields": [
+                {
+                    "key": "field_48e90ecbeab98",
+                    "label": "Serwis",
+                    "name": "network",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "youtube": "YouTube",
+                        "facebook": "Facebook",
+                        "x": "Twitter / X"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_4ced576aab5a1",
+                    "label": "Adres profilu",
+                    "name": "url",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_aabcc400237aa",
+            "label": "Prawa autorskie",
+            "name": "copyrights",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_ab8e395b85a72",
+            "label": "Kolumny z linkami",
+            "name": "footer_menus",
+            "type": "repeater",
+            "instructions": "Nagłówek plus menu z Wygląd → Menu. Kolejność ustawiasz przeciąganiem.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_5946959c47597",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj kolumnę",
+            "sub_fields": [
+                {
+                    "key": "field_5946959c47597",
+                    "label": "Nagłówek kolumny",
+                    "name": "title_menu",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_51da29c252be5",
+                    "label": "Menu",
+                    "name": "select_menu",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_ce4d21b49a86f",
+            "label": "Formularze",
+            "name": "tab_forms",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_3731e4a9e7db7",
+            "label": "Adres do powiadomień",
+            "name": "contact_email",
+            "type": "text",
+            "instructions": "Puste = e-mail administratora.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_b752d56ace7c6",
+            "label": "Włącz reCAPTCHA v3",
+            "name": "recaptcha_enabled",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_ffd0fd5d08b7c",
+            "label": "Klucz witryny",
+            "name": "recaptcha_site_key",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_b752d56ace7c6",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_8b318acb3bef6",
+            "label": "Klucz tajny",
+            "name": "recaptcha_secret_key",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_b752d56ace7c6",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_396e4fcbd461c",
+            "label": "Próg akceptacji",
+            "name": "recaptcha_threshold",
+            "type": "number",
+            "instructions": "Zgłoszenia z niższym wynikiem są odrzucane.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_b752d56ace7c6",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "0.5",
+            "min": "0",
+            "max": "1",
+            "step": "0.1",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_d1dcaa439831c",
+            "label": "Skrypty",
+            "name": "tab_scripts",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_eb6eecde413f3",
+            "label": "Skrypty w <head>",
+            "name": "scripts_head",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 6,
+            "new_lines": ""
+        },
+        {
+            "key": "field_73156f3c0b374",
+            "label": "Skrypty po <body>",
+            "name": "scripts_body",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 6,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1754524800
+}

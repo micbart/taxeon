@@ -1,0 +1,155 @@
+{#
+	Title: Treść + media
+	Description: Dwie kolumny — tekst i zdjęcie, ze swobodnym wyborem strony
+	Category: raks
+	Icon: align-pull-left
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+
+{% import 'components/section.twig' as section %}
+
+{% set onDark = section.isDark(fields) %}
+{% set mediaFirst = fields.media_position == 'left' %}
+{% set alignTop = fields.align == 'start' %}
+{% set isEmbed = fields.media_type == 'embed' and fields.embed_url %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="{{ section.shell(fields, classes) }}">
+
+	<div class="{{ section.container(fields) }}">
+		<div class="grid {{ isEmbed
+			? 'grid-cols-[340px_1fr] items-start gap-11 max-[880px]:grid-cols-1 max-[880px]:gap-[30px]'
+			: 'grid-cols-2 gap-14 max-lg:grid-cols-1 max-lg:gap-9 ' ~ (alignTop ? 'items-start' : 'items-center') }}">
+
+			<div class="reveal {{ isEmbed ? 'sticky top-[100px] max-[880px]:static' : '' }} {{ mediaFirst ? 'max-lg:order-2' : '' }}">
+				{% include 'components/eyebrow.twig' with {
+					title: fields.eyebrow,
+					color: onDark ? 'text-deep-tint' : ''
+				} only %}
+
+				{% include 'components/title-with-select-tag.twig' with {
+					title: fields.title,
+					defaultTag: 'h2',
+					titleClass: 'font-display leading-[1.08] font-semibold tracking-[-0.02em] text-balance '
+						~ (isEmbed ? 'mb-2 text-[25px] ' : 'mt-3.5 text-[clamp(26px,3vw,34px)] ')
+						~ (onDark ? 'text-white' : 'text-ink')
+				} only %}
+
+				{% include 'components/title-with-select-tag.twig' with {
+					title: fields.text,
+					defaultTag: 'p',
+					titleClass: (isEmbed ? 'mb-[26px] text-base leading-[1.6] ' : 'mt-4 text-lead leading-relaxed ')
+						~ (onDark ? 'text-white/82' : 'text-ink-2')
+				} only %}
+
+				{% if fields.items|length %}
+					<ul class="grid {{ isEmbed ? 'gap-5' : 'mt-6 gap-[18px]' }}">
+						{% for item in fields.items %}
+							<li class="flex items-start {{ isEmbed ? 'gap-[15px]' : 'gap-3.5' }}">
+								<span class="grid flex-none place-items-center
+									{{ item.title.text
+										? (isEmbed ? 'size-11 rounded-[12px] [&_svg]:size-[21px] ' : 'size-[42px] rounded-[12px] [&_svg]:size-5 ')
+											~ (onDark ? 'bg-white/10 text-deep-tint-3' : 'bg-accent-soft text-accent')
+										: 'mt-0.5 size-5 [&_svg]:size-5 ' ~ (onDark ? 'text-deep-tint-2' : 'text-accent') }}">
+									{{ (item.icon ?: 'check')|svg }}
+								</span>
+
+								<div>
+									{% include 'components/title-with-select-tag.twig' with {
+										title: item.title,
+										defaultTag: 'h3',
+										titleClass: 'font-display leading-[1.08] font-semibold tracking-[-0.02em] '
+											~ (isEmbed ? 'text-[16.5px] ' : 'text-lg ')
+											~ (onDark ? 'text-white' : 'text-ink')
+									} only %}
+
+									<span class="block leading-[1.55] {{ isEmbed ? 'text-[14.5px]' : 'text-body' }}
+										{{ item.title.text
+											? (onDark ? 'text-white/82 ' : 'text-ink-2 ') ~ (isEmbed ? 'mt-1' : 'mt-1.5')
+											: (onDark ? 'text-white' : 'text-ink') }}">{{ item.text }}</span>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if fields.link.url %}
+					<a href="{{ fields.link.url }}"
+						target="{{ fields.link.target ?: '_self' }}"
+						class="group/link mt-5 inline-flex items-center gap-[7px] font-bold
+							{{ onDark ? 'text-deep-tint' : 'text-accent' }}
+							[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
+						{{ fields.link.title }}
+						{{ 'arrow-right'|svg }}
+					</a>
+				{% endif %}
+
+				{% include 'components/button.twig' with { button: fields.button, class: 'mt-7' } only %}
+
+				{% if fields.footnote_link.url %}
+					<div class="mt-[30px] border-t pt-[26px] {{ onDark ? 'border-white/16' : 'border-line' }}">
+						{% if fields.footnote_label %}
+							<span class="block text-meta {{ onDark ? 'text-white/70' : 'text-ink-3' }}">
+								{{ fields.footnote_label }}
+							</span>
+						{% endif %}
+
+						<a href="{{ fields.footnote_link.url }}"
+							target="{{ fields.footnote_link.target ?: '_self' }}"
+							class="mt-2.5 inline-flex items-center gap-[9px] text-base font-bold
+								{{ onDark ? 'text-deep-tint' : 'text-accent-strong' }} [&_svg]:size-[18px]">
+							{{ (fields.footnote_icon ?: 'phone')|svg }}
+							{{ fields.footnote_link.title }}
+						</a>
+					</div>
+				{% endif %}
+			</div>
+
+			{% if fields.image or isEmbed %}
+				<div class="reveal {{ mediaFirst ? 'order-first max-lg:order-1' : '' }}">
+					{% if isEmbed %}
+						<div class="overflow-hidden rounded-panel border border-line bg-white p-3 shadow-soft">
+							<iframe src="{{ fields.embed_url }}"
+								title="{{ fields.title.text ?: __('Osadzona treść', 'raks') }}"
+								loading="lazy"
+								style="min-height: {{ fields.embed_height ?: 1050 }}px"
+								class="block w-full rounded-2xl border-0"></iframe>
+						</div>
+					{% elseif fields.frame == 'window' %}
+						<div class="overflow-hidden rounded-panel border border-line bg-white shadow-deep">
+							<div class="flex h-[42px] items-center gap-[7px] border-b border-line bg-soft px-4">
+								<span class="size-[11px] rounded-full bg-[#ff5f57]"></span>
+								<span class="size-[11px] rounded-full bg-[#febc2e]"></span>
+								<span class="size-[11px] rounded-full bg-[#28c840]"></span>
+								{% if fields.frame_label %}
+									<span class="ml-3.5 rounded-[7px] border border-line bg-white px-3 py-1
+										font-mono text-xs text-ink-3">{{ fields.frame_label }}</span>
+								{% endif %}
+							</div>
+
+							{% include 'components/image.twig' with {
+								id: fields.image.ID,
+								size: 'raks-wide',
+								sizes: '(max-width: 820px) 100vw, 50vw',
+								altFrom: fields.title.text,
+								class: 'block aspect-16/11 w-full object-cover'
+							} only %}
+						</div>
+					{% else %}
+						{% include 'components/image.twig' with {
+							id: fields.image.ID,
+							size: 'raks-wide',
+							sizes: '(max-width: 820px) 100vw, 50vw',
+							altFrom: fields.title.text,
+							class: 'w-full rounded-panel object-cover shadow-mid'
+						} only %}
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

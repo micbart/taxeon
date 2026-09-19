@@ -1,0 +1,31 @@
+{% set link = button.link ?? button %}
+
+{% if link.url %}
+	{% set base = 'inline-flex items-center justify-center gap-[9px] rounded-btn border-[1.5px]
+		text-center font-sans leading-[1.6] font-bold transition [&_svg]:size-[18px] [&_svg]:shrink-0' %}
+
+	{% set sizes = {
+		'base': 'px-[26px] py-3.5 text-base',
+		'lg': 'px-8 py-[17px] text-lead'
+	} %}
+
+	{% set variants = {
+		'primary': 'border-transparent bg-cta text-white shadow-cta hover:-translate-y-0.5 hover:bg-cta-strong',
+		'accent': 'border-transparent bg-accent text-accent-ink shadow-[0_6px_18px_-6px_color-mix(in_srgb,var(--color-accent)_60%,transparent)] hover:-translate-y-0.5 hover:bg-accent-strong',
+		'ghost': 'border-[color-mix(in_srgb,var(--color-accent)_42%,#fff)] bg-white text-ink hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong',
+		'on-navy': 'border-transparent bg-white text-ink hover:-translate-y-0.5 hover:bg-[#eef3ff]',
+		'ghost-navy': 'border-white/28 bg-transparent text-white hover:border-white hover:bg-white/6'
+	} %}
+
+	{% set pickedVariant = variant ?: (button.variant ?: 'primary') %}
+	{% set pickedSize = size ?: (button.size ?: 'base') %}
+
+	<a href="{{ link.url }}"
+		target="{{ link.target ?: '_self' }}"
+		{% if link.target == '_blank' %}rel="noopener"{% endif %}
+		class="{{ base }} {{ sizes[pickedSize] }} {{ variants[pickedVariant] }} {{ block ? 'w-full' }} {{ class }}">
+		{% set pickedIcon = icon ?: button.icon %}
+		{% if pickedIcon %}{{ pickedIcon|svg }}{% endif %}
+		{{ link.title }}
+	</a>
+{% endif %}

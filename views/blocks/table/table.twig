@@ -1,0 +1,88 @@
+{#
+	Title: Tabela
+	Description: Tabela porównawcza, cennik modułów albo lista do pobrania — kolumny i komórki z pól
+	Category: raks
+	Icon: editor-table
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+
+{% import 'components/section.twig' as section %}
+
+{% set isTabs = fields.mode == 'tabs' and fields.tabs|length %}
+{% set variant = fields.variant ?: (isTabs ? 'downloads' : 'compare') %}
+{% set onDark = section.isDark(fields) %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="{{ section.shell(fields, classes) }}">
+
+	<div class="{{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			onDark: onDark,
+			center: variant in ['compare', 'pricing']
+		} only %}
+
+		{% if isTabs %}
+			<div class="reveal" data-tabs>
+				<div role="tablist" class="flex flex-wrap gap-2 border-b border-line">
+					{% for tab in fields.tabs %}
+						<button type="button"
+							role="tab"
+							data-tab="{{ loop.index }}"
+							data-active="{{ loop.first ? 'true' : 'false' }}"
+							class="-mb-px cursor-pointer border-b-[3px] border-transparent px-[22px] py-4 font-display
+								text-base font-semibold text-ink-3 transition hover:text-ink
+								data-[active=true]:border-accent data-[active=true]:text-accent">
+							{{ tab.label }}
+						</button>
+					{% endfor %}
+				</div>
+
+				{% for tab in fields.tabs %}
+					<div data-panel="{{ loop.index }}" role="tabpanel" {% if not loop.first %}hidden{% endif %}
+						class="overflow-x-auto rounded-b-panel border border-t-0 border-line bg-white">
+						<table class="w-full border-collapse">
+							{% include 'components/table-head.twig' with { head: fields.head, variant: variant } only %}
+							<tbody>
+								{% include 'components/table-rows.twig' with { rows: tab.rows, head: fields.head, variant: variant } only %}
+							</tbody>
+						</table>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="reveal overflow-x-auto rounded-panel border border-line bg-white">
+				<table class="w-full border-collapse">
+					{% include 'components/table-head.twig' with { head: fields.head, variant: variant } only %}
+					<tbody>
+						{% include 'components/table-rows.twig' with { rows: fields.rows, head: fields.head, variant: variant } only %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+
+		{% if fields.footnote or fields.footnote_link.url %}
+			<p class="reveal text-center {{ variant == 'pricing'
+				? 'mt-[18px] text-[13.5px]'
+				: 'mx-auto mt-[30px] max-w-[720px] text-base' }}
+				{{ onDark ? 'text-white/70' : (variant == 'pricing' ? 'text-ink-3' : 'text-ink-2') }}">
+				{{ fields.footnote }}
+				{% if fields.footnote_link.url %}
+					<a href="{{ fields.footnote_link.url }}"
+						target="{{ fields.footnote_link.target ?: '_self' }}"
+						class="group/link inline-flex items-center gap-[7px] font-bold {{ onDark ? 'text-deep-tint' : 'text-accent' }}
+							[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
+						{{ fields.footnote_link.title }}
+						{{ 'arrow-right'|svg }}
+					</a>
+				{% endif %}
+			</p>
+		{% endif %}
+	</div>
+</section>

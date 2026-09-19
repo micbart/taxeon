@@ -1,0 +1,32 @@
+{% if pagination.pages|length > 1 %}
+	{% set item = 'grid h-[42px] min-w-[42px] place-items-center rounded-[11px] border-[1.5px] border-line px-3 text-[15px] font-bold text-ink-2 transition hover:border-accent hover:text-accent' %}
+
+	<nav data-blog-pagination
+		aria-label="{{ __('Paginacja wpisów', 'raks') }}"
+		class="mt-12 flex items-center justify-center gap-2">
+
+		{% if pagination.prev %}
+			<a href="{{ pagination.prev.link }}" rel="prev" class="{{ item }} [&_svg]:size-[18px]"
+				aria-label="{{ __('Poprzednia strona', 'raks') }}">
+				{{ 'chevron-left'|svg }}
+			</a>
+		{% endif %}
+
+		{% for page in pagination.pages %}
+			{% if page.current %}
+				<span aria-current="page" class="{{ item }} pointer-events-none border-accent bg-accent text-accent-ink">{{ page.title }}</span>
+			{% elseif page.link %}
+				<a href="{{ page.link }}" class="{{ item }}">{{ page.title }}</a>
+			{% else %}
+				<span class="{{ item }} pointer-events-none border-transparent">{{ page.title }}</span>
+			{% endif %}
+		{% endfor %}
+
+		{% if pagination.next %}
+			<a href="{{ pagination.next.link }}" rel="next" class="{{ item }} [&_svg]:size-[18px] [&_svg]:rotate-180"
+				aria-label="{{ __('Następna strona', 'raks') }}">
+				{{ 'chevron-left'|svg }}
+			</a>
+		{% endif %}
+	</nav>
+{% endif %}

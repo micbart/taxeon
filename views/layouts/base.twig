@@ -1,0 +1,60 @@
+<!doctype html>
+<html {{ function('get_language_attributes', 'html') }} class="scroll-smooth scroll-pt-[98px]">
+	<head>
+		<meta charset="{{ site.charset }}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#15202c">
+
+		{% if not viteIsDev %}
+			<link rel="preload" href="{{ site.theme.uri }}/dist/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+			<link rel="preload" href="{{ site.theme.uri }}/dist/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+		{% endif %}
+
+		{% if themeOptions.scripts_head %}
+			{{ themeOptions.scripts_head }}
+		{% endif %}
+
+		{{ fn('wp_head') }}
+	</head>
+
+	<body class="{{ body_class }} relative overflow-x-hidden bg-page font-sans text-lead leading-[1.6] text-ink antialiased selection:bg-accent selection:text-accent-ink">
+		{% if themeOptions.scripts_body %}
+			{{ themeOptions.scripts_body }}
+		{% endif %}
+
+		<a class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[99999] focus:bg-page focus:px-8 focus:py-4 focus:text-ink"
+			href="#content">
+			{{ __('Przejdź do treści', 'raks') }}
+		</a>
+
+		{% include 'components/topbar.twig' %}
+
+		{% include 'components/header.twig' %}
+
+		<main id="content">
+			{% block main %}
+				<div class="py-section max-sm:py-16">
+					<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+						{% block content %}
+							<div class="prose mx-auto max-w-[760px]">{{ post.content }}</div>
+						{% endblock %}
+					</div>
+				</div>
+			{% endblock %}
+		</main>
+
+		{% include 'components/footer.twig' %}
+
+		<button type="button"
+			data-scroll-top
+			aria-label="{{ __('Wróć na górę', 'raks') }}"
+			class="fixed right-[22px] bottom-[22px] z-90 grid size-[46px] translate-y-2.5 place-items-center rounded-full
+				border border-line bg-page text-ink opacity-0 shadow-mid transition
+				invisible data-visible:visible data-visible:translate-y-0 data-visible:opacity-100
+				hover:bg-soft [&_svg]:size-5 [&_svg]:rotate-180">
+			{{ 'chevron-up'|svg }}
+		</button>
+
+		{{ fn('wp_footer') }}
+	</body>
+</html>

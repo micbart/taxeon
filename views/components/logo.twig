@@ -1,0 +1,31 @@
+{% set customDark = themeOptions.logo %}
+{% set customLight = themeOptions.logo_white %}
+
+{% if customDark or customLight %}
+	{% if white %}
+		<img src="{{ (customLight ?: customDark).url }}"
+			alt="{{ site.name }}"
+			width="{{ (customLight ?: customDark).width }}"
+			height="{{ (customLight ?: customDark).height }}"
+			class="h-[26px] w-auto {{ class }}">
+	{% else %}
+		<img src="{{ (customLight ?: customDark).url }}"
+			alt="{{ site.name }}"
+			width="{{ (customLight ?: customDark).width }}"
+			height="{{ (customLight ?: customDark).height }}"
+			class="h-[26px] w-auto group-data-scrolled:hidden {{ class }}">
+
+		<img src="{{ (customDark ?: customLight).url }}"
+			alt=""
+			aria-hidden="true"
+			width="{{ (customDark ?: customLight).width }}"
+			height="{{ (customDark ?: customLight).height }}"
+			class="hidden h-[26px] w-auto group-data-scrolled:block {{ class }}">
+	{% endif %}
+{% else %}
+	<span class="block h-[26px] w-[111px] text-white {{ white ? '' : 'group-data-scrolled:text-ink' }} {{ class }}"
+		role="img"
+		aria-label="{{ site.name }}">
+		{{ 'logo'|svg('size-full') }}
+	</span>
+{% endif %}

@@ -1,0 +1,278 @@
+{#
+	Title: Formularz kontaktowy
+	Description: Formularz wysyłany do REST API motywu, z reCAPTCHA v3 i zapisem zgłoszeń
+	Category: raks
+	Icon: email
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+
+{% import 'components/section.twig' as section %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="{{ section.shell(fields, classes) }}">
+
+	<div class="{{ section.container(fields) }}">
+		{% set hasAside = fields.info_cards|length or fields.registry|length or fields.map_embed %}
+		{% set isCard = fields.layout == 'card' and not hasAside %}
+		{% set titleInside = hasAside or isCard %}
+
+		<div class="grid max-xl:grid-cols-1 max-xl:gap-9
+			{{ hasAside ? 'items-stretch gap-[30px]' : 'items-start gap-14' }}
+			{{ isCard ? 'mx-auto max-w-[720px] grid-cols-1' : (hasAside ? 'grid-cols-[1.25fr_0.85fr]' : 'grid-cols-[1fr_1.15fr]') }}">
+			{% if not titleInside %}
+			<div class="reveal">
+					{% include 'components/eyebrow.twig' with { title: fields.eyebrow } only %}
+
+				{% include 'components/title-with-select-tag.twig' with {
+					title: fields.title,
+					defaultTag: 'h2',
+					titleClass: 'mt-3.5 font-display text-[clamp(28px,3.4vw,40px)] leading-[1.08] font-semibold
+						tracking-[-0.02em] text-balance text-ink'
+				} only %}
+
+				{% include 'components/title-with-select-tag.twig' with {
+					title: fields.text,
+					defaultTag: 'p',
+					titleClass: 'mt-4 text-lead leading-relaxed text-ink-2'
+				} only %}
+
+				{% if fields.details|length %}
+					<ul class="mt-8 grid gap-[18px]">
+						{% for detail in fields.details %}
+							<li class="flex items-start gap-3.5">
+								{% if detail.icon %}
+									<span class="grid size-[46px] flex-none place-items-center rounded-[13px]
+										bg-accent-soft text-accent [&_svg]:size-[22px]">
+										{{ detail.icon|svg }}
+									</span>
+								{% endif %}
+
+								<div>
+									<b class="block text-sm font-normal text-ink-3">{{ detail.label }}</b>
+									{% if detail.link.url %}
+										<a href="{{ detail.link.url }}" class="text-base font-semibold text-ink hover:text-accent">
+											{{ detail.link.title ?: detail.value }}
+										</a>
+									{% else %}
+										<span class="text-base font-semibold text-ink">{{ detail.value }}</span>
+									{% endif %}
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+			{% endif %}
+
+			<div class="reveal min-w-0 rounded-panel border border-line bg-white p-[38px] shadow-soft max-sm:px-5 max-sm:py-6">
+				{% if titleInside %}
+					{% include 'components/title-with-select-tag.twig' with {
+						title: fields.title,
+						defaultTag: 'h2',
+						titleClass: 'font-display text-[26px] leading-[1.08] font-semibold tracking-[-0.02em] text-ink'
+					} only %}
+
+					{% include 'components/title-with-select-tag.twig' with {
+						title: fields.text,
+						defaultTag: 'p',
+						titleClass: 'mt-3 mb-7 text-body text-ink-2'
+					} only %}
+				{% endif %}
+
+				<form data-contact-form="{{ fields.form_name ?: 'contact' }}" novalidate class="grid gap-[18px]">
+
+					<div aria-hidden="true" class="absolute! -left-[9999px] size-px overflow-hidden">
+						<label>
+							{{ __('Nie wypełniaj tego pola', 'raks') }}
+							<input type="text" name="website" tabindex="-1" autocomplete="off">
+						</label>
+					</div>
+
+					<div class="grid grid-cols-2 gap-[18px] max-md:grid-cols-1">
+						{% include 'components/form-field.twig' with {
+							name: 'name', label: __('Imię i nazwisko', 'raks'), required: true, autocomplete: 'name'
+						} only %}
+
+						{% include 'components/form-field.twig' with {
+							name: 'email', label: __('Adres e-mail', 'raks'), type: 'email', required: true, autocomplete: 'email'
+						} only %}
+					</div>
+
+					<div class="grid grid-cols-2 gap-[18px] max-md:grid-cols-1">
+						{% include 'components/form-field.twig' with {
+							name: 'phone',
+							label: __('Telefon', 'raks'),
+							hint: __('(opcjonalnie)', 'raks'),
+							type: 'tel',
+							autocomplete: 'tel'
+						} only %}
+
+						{% if fields.subjects|length %}
+							{% include 'components/form-field.twig' with {
+								name: 'subject',
+								label: fields.subject_label ?: __('Temat', 'raks'),
+								type: 'select',
+								options: fields.subjects
+							} only %}
+						{% else %}
+							{% include 'components/form-field.twig' with {
+								name: 'company', label: __('Firma', 'raks'), autocomplete: 'organization'
+							} only %}
+						{% endif %}
+					</div>
+
+					{% if not fields.hide_message %}
+						{% include 'components/form-field.twig' with {
+							name: 'message', label: __('Wiadomość', 'raks'), type: 'textarea', required: true
+						} only %}
+					{% endif %}
+
+					{% set consentName = fields.consent_optional ? 'marketing' : 'consent' %}
+
+					<div class="grid gap-[7px]">
+						<label class="flex items-start gap-[11px] text-sm leading-normal text-ink-2">
+							<input type="checkbox" name="{{ consentName }}" value="1"
+								{% if not fields.consent_optional %}required{% endif %}
+								class="mt-[3px] size-[18px] flex-none accent-accent">
+							<span>
+								{{ fields.consent_text ?: __('Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania.', 'raks') }}
+								{% if not fields.consent_optional %}<span class="text-cta">*</span>{% endif %}
+							</span>
+						</label>
+						<span data-error-for="{{ consentName }}" class="text-[13px] font-semibold text-[#d64545] empty:hidden"></span>
+
+						{% if fields.consent_rodo %}
+							<label class="mt-1.5 flex items-start gap-[11px] text-sm leading-normal text-ink-2">
+								<input type="checkbox" name="consent_rodo" value="1" required
+									class="mt-[3px] size-[18px] flex-none accent-accent">
+								<span class="[&_a]:font-semibold [&_a]:text-accent [&_a]:underline">
+									{{ fields.consent_rodo|inlineHtml }}
+									<span class="text-cta">*</span>
+								</span>
+							</label>
+
+							<span data-error-for="consent_rodo" class="text-[13px] font-semibold text-[#d64545] empty:hidden"></span>
+						{% endif %}
+					</div>
+
+					{% if not fields.hide_verify %}
+						{% include 'components/verify-box.twig' %}
+					{% endif %}
+
+					<div data-form-status
+						class="rounded-btn px-[18px] py-3.5 text-[15px] font-semibold empty:hidden
+							data-[status=success]:border data-[status=success]:border-[#b7e2c8] data-[status=success]:bg-[#e9f7ef] data-[status=success]:text-[#1d6b3f]
+							data-[status=error]:border data-[status=error]:border-[#f3c4c4] data-[status=error]:bg-[#fdecec] data-[status=error]:text-[#a52c2c]"></div>
+
+					<button type="submit"
+						class="inline-flex items-center justify-center gap-2.5 justify-self-start rounded-btn bg-cta px-8 py-[17px]
+							font-sans text-lead font-bold text-white shadow-cta transition
+							hover:-translate-y-0.5 hover:bg-cta-strong
+							disabled:pointer-events-none disabled:opacity-60 max-sm:w-full [&_svg]:size-[18px]">
+						<span data-submit-label>{{ fields.submit_label ?: __('Wyślij wiadomość', 'raks') }}</span>
+						{{ 'send'|svg }}
+					</button>
+
+					{% if fields.privacy_note %}
+						<p class="text-[12.5px] leading-normal text-ink-3">{{ fields.privacy_note }}</p>
+					{% endif %}
+				</form>
+			</div>
+
+			{% if hasAside %}
+				<aside class="reveal flex flex-col gap-[22px]">
+					{% for card in fields.info_cards %}
+						{% set onNavy = card.dark %}
+
+						<div class="rounded-panel {{ onNavy
+							? 'bg-navy px-9 py-[30px] text-white max-sm:px-6'
+							: 'border border-line bg-white px-[30px] py-[22px] shadow-soft' }}">
+
+							{% include 'components/title-with-select-tag.twig' with {
+								title: card.title,
+								defaultTag: 'h3',
+								titleClass: 'font-display text-[21px] leading-[1.08] font-semibold tracking-[-0.02em] '
+									~ (onNavy ? 'text-white' : 'text-ink')
+							} only %}
+
+							{% for item in card.items %}
+								<div class="flex gap-3.5
+									{{ onNavy ? 'items-center py-[15px] first:pt-[22px]' : 'items-start py-[11px] first:pt-3.5' }}
+									{{ not loop.last ? (onNavy ? 'border-b border-white/12' : 'border-b border-line') : '' }}">
+
+									{% if item.icon %}
+										<span class="grid flex-none place-items-center rounded-[12px]
+											{{ onNavy
+												? 'size-11 bg-white/10 text-deep-tint [&_svg]:size-[21px]'
+												: 'size-[38px] bg-accent-soft text-accent [&_svg]:size-[18px]' }}">
+											{{ item.icon|svg }}
+										</span>
+									{% endif %}
+
+									<div class="min-w-0">
+										{% if item.label %}
+											<b class="block font-display text-[15px] font-semibold {{ onNavy ? 'text-white' : 'text-ink' }}">{{ item.label }}</b>
+										{% endif %}
+
+									{% if item.link.url or item.text %}
+										<span class="mt-[3px] block text-sm leading-[1.5] whitespace-pre-line
+											{{ onNavy ? 'text-white/66' : 'text-ink-2' }}">
+											{%- if item.link.url -%}
+												<a href="{{ item.link.url }}"
+													target="{{ item.link.target ?: '_self' }}"
+													{% if item.link.target == '_blank' %}rel="noopener"{% endif %}
+													class="hover:underline {{ onNavy ? 'text-deep-tint' : 'text-accent' }}">{{ item.link.title }}</a>
+											{%- endif -%}
+											{{- item.text -}}
+										</span>
+									{% endif %}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					{% endfor %}
+
+					{% if fields.registry|length %}
+						<div class="rounded-panel border border-line bg-white px-7 py-[22px] shadow-soft">
+							{% if fields.registry_title %}
+								<h3 class="mb-1.5 font-display text-[21px] leading-[1.08] font-semibold tracking-[-0.02em] text-ink">
+									{{ fields.registry_title }}
+								</h3>
+							{% endif %}
+
+							<dl class="grid grid-cols-[auto_1fr] gap-x-[22px] max-[520px]:grid-cols-1 max-[520px]:gap-x-0">
+								{% for row in fields.registry %}
+									{% set kreska = loop.first ? '' : 'border-t border-line' %}
+
+									<dt class="py-[9px] text-[13px] font-semibold whitespace-nowrap text-ink
+										{{ kreska }} max-[520px]:pb-0">{{ row.label }}</dt>
+
+									<dd class="py-[9px] text-[13.5px] leading-[1.45] text-ink-2
+										{{ kreska }} max-[520px]:border-t-0 max-[520px]:pt-0.5">{{ row.value }}</dd>
+								{% endfor %}
+							</dl>
+						</div>
+					{% endif %}
+
+					{% if fields.map_embed %}
+						<div class="overflow-hidden rounded-panel border border-line bg-white shadow-soft">
+							<iframe src="{{ fields.map_embed }}"
+								title="{{ fields.map_caption ?: __('Mapa dojazdu', 'raks') }}"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+								class="block h-[260px] w-full border-0"></iframe>
+
+							{% if fields.map_caption %}
+								<p class="border-t border-line px-6 py-4 text-body text-ink-2">{{ fields.map_caption }}</p>
+							{% endif %}
+						</div>
+					{% endif %}
+				</aside>
+			{% endif %}
+		</div>
+	</div>
+</section>

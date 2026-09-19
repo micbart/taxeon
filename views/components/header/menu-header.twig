@@ -1,0 +1,55 @@
+<ul class="flex items-center gap-1 max-2xl:hidden">
+	{% for item in items %}
+		{% set childCurrent = item.children|filter(c => currentUrl and c.url == currentUrl)|length > 0 %}
+		{% set isCurrent = currentUrl and item.url == currentUrl %}
+		{% set inSection = isCurrent or childCurrent %}
+
+		<li class="relative {{ item.children|length ? 'group/mega' }}">
+			<a href="{{ item.url }}"
+				target="{{ item.target ?: '_self' }}"
+				{% if isCurrent and not childCurrent %}aria-current="page"{% endif %}
+				class="inline-flex items-center gap-[5px] rounded-[9px] px-3.5 py-[9px] text-[15.5px] font-semibold
+					transition hover:bg-white/14 hover:text-white
+					group-data-scrolled:hover:bg-soft group-data-scrolled:hover:text-ink
+					{{ inSection
+						? 'bg-white/16 text-white group-data-scrolled:bg-soft group-data-scrolled:text-accent-strong'
+						: 'text-white/90 group-data-scrolled:text-ink-2' }}
+					[&_svg]:size-[15px] [&_svg]:transition-transform group-hover/mega:[&_svg]:rotate-180">
+				{{ item.title }}
+				{% if item.children|length %}{{ 'chevron-down'|svg }}{% endif %}
+			</a>
+
+			{% if item.children|length %}
+				<div class="invisible absolute top-[calc(100%+10px)] left-1/2 z-[120] -translate-x-1/2 translate-y-2
+					rounded-panel border border-line bg-white p-3.5 opacity-0 shadow-deep transition
+					before:absolute before:inset-x-0 before:-top-4 before:h-[18px] before:content-['']
+					group-hover/mega:visible group-hover/mega:translate-y-0 group-hover/mega:opacity-100
+					group-focus-within/mega:visible group-focus-within/mega:translate-y-0 group-focus-within/mega:opacity-100
+					{{ item.width == 'narrow' ? 'w-[380px]' : 'w-[640px]' }}">
+					<div class="grid gap-1.5">
+						{% for child in item.children %}
+							<a href="{{ child.url }}"
+								target="{{ child.target ?: '_self' }}"
+								{% if currentUrl and child.url == currentUrl %}aria-current="page"{% endif %}
+								class="flex gap-3.5 rounded-card p-3.5 transition hover:bg-soft
+									{{ currentUrl and child.url == currentUrl ? 'bg-soft' : '' }}">
+								{% if child.icon %}
+									<span class="grid size-11 flex-none place-items-center rounded-[11px] bg-accent-soft text-accent [&_svg]:size-[22px]">
+										{{ child.icon|svg }}
+									</span>
+								{% endif %}
+
+								<div>
+									<h4 class="font-sans text-[15.5px] leading-[1.08] font-bold tracking-[-0.02em] text-ink">{{ child.title }}</h4>
+									{% if child.description %}
+										<p class="mt-[3px] text-[13.5px] leading-[1.45] text-ink-3">{{ child.description }}</p>
+									{% endif %}
+								</div>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+		</li>
+	{% endfor %}
+</ul>

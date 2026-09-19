@@ -1,0 +1,40 @@
+.support-list {
+	--support-open: 6.4;
+
+	@media (min-width: 921px) {
+		.support-item {
+			flex: 1 1 0;
+			transition: flex 0.55s cubic-bezier(0.5, 0.05, 0.2, 1);
+		}
+
+		.support-item.is-active,
+		.support-item:hover,
+		.support-item:focus-visible {
+			flex: var(--support-open) 1 0;
+		}
+
+		&:hover .support-item.is-active:not(:hover) {
+			flex: 1 1 0;
+		}
+
+		.support-item.is-active .support-rail,
+		.support-item:hover .support-rail,
+		.support-item:focus-visible .support-rail {
+			opacity: 0;
+		}
+
+		.support-item.is-active .support-panel,
+		.support-item:hover .support-panel,
+		.support-item:focus-visible .support-panel {
+			opacity: 1;
+		}
+
+		&:hover .support-item.is-active:not(:hover) .support-rail {
+			opacity: 1;
+		}
+
+		&:hover .support-item.is-active:not(:hover) .support-panel {
+			opacity: 0;
+		}
+	}
+}

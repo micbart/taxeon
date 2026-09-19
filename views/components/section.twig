@@ -1,0 +1,37 @@
+{% macro shell(fields, extra) %}
+	{%- set backgrounds = {
+		'page': 'bg-page',
+		'soft': 'bg-soft',
+		'navy': 'bg-navy text-white',
+		'gradient': 'bg-[image:var(--gradient-hero)] text-white'
+	} -%}
+
+	{%- set paddingTop = {
+		'default': 'pt-section max-sm:pt-16',
+		'small': 'pt-16',
+		'none': 'pt-0'
+	} -%}
+
+	{%- set paddingBottom = {
+		'default': 'pb-section max-sm:pb-16',
+		'small': 'pb-16',
+		'none': 'pb-0'
+	} -%}
+
+	{{- backgrounds[fields.background ?: 'page'] }} {{ paddingTop[fields.padding_top ?: 'default'] }} {{ paddingBottom[fields.padding_bottom ?: 'default'] }} {{ extra -}}
+{% endmacro %}
+
+{% macro container(fields) %}
+	{%- set widths = {
+		'page': 'max-w-page',
+		'narrow': 'max-w-[860px]',
+		'wide': 'max-w-[1440px]',
+		'full': 'max-w-none'
+	} -%}
+
+	{{- 'mx-auto w-full px-gutter max-sm:px-5 ' ~ widths[fields.container ?: 'page'] -}}
+{% endmacro %}
+
+{% macro isDark(fields) %}
+	{{- fields.background in ['navy', 'gradient'] ? '1' : '' -}}
+{% endmacro %}

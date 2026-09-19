@@ -1,0 +1,105 @@
+{#
+	Title: Hero
+	Description: Sekcja otwierająca z tłem wideo lub zdjęciem, tytułem i przyciskami
+	Category: raks
+	Icon: cover-image
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsMultiple: false
+	SupportsAnchor: true
+#}
+
+{% set media = fields.media_type ?: 'none' %}
+{% set isLeft = fields.layout == 'left' %}
+{% set isWide = fields.text_width == 'full' %}
+{% set videoSrc = fields.video_url ?: fields.video.url %}
+{% set hasMedia = (media == 'video' and videoSrc) or (media == 'image' and fields.poster) %}
+{% set animation = media == 'animation' ? (fields.animation ?: 'bands') : '' %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	{% if animation %}data-hero-bg="{{ animation }}"{% endif %}
+	class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
+		pt-header max-md:rounded-b-section-sm {{ classes }}">
+
+	{% if media == 'video' and videoSrc %}
+		{% include 'components/hero-video.twig' with {
+			url: videoSrc,
+			poster: fields.poster.sizes['raks-wide-2x'] ?: fields.poster.url
+		} only %}
+	{% elseif media == 'image' and fields.poster %}
+		<div class="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-b-[inherit]">
+			{% include 'components/image.twig' with {
+				id: fields.poster.ID,
+				size: 'raks-wide-2x',
+				sizes: '100vw',
+				alt: '',
+				eager: true,
+				class: 'size-full object-cover'
+			} only %}
+		</div>
+	{% endif %}
+
+	{% if media == 'image' and fields.poster %}
+		<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 bg-[image:var(--gradient-hero-shade)]"></div>
+	{% endif %}
+
+	<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
+		<div class="flex flex-col {{ isLeft
+			? 'items-start pt-16 pb-21 text-left'
+			: 'mx-auto max-w-[960px] items-center pt-[54px] pb-33 text-center max-xl:pt-10 max-xl:pb-24' }}">
+
+			{% if fields.show_breadcrumbs %}
+				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+			{% endif %}
+
+			{% if fields.badge_text %}
+				<span class="inline-flex items-center gap-2.5 rounded-full bg-white/12 py-1.5 pr-4 pl-1.5
+					text-meta font-bold whitespace-nowrap text-white">
+					{% if fields.badge_highlight %}
+						<b class="rounded-full bg-white px-2.5 py-[3px] text-xs text-ink">{{ fields.badge_highlight }}</b>
+					{% endif %}
+					{{ fields.badge_text }}
+				</span>
+			{% endif %}
+
+			{% if fields.title.text %}
+				{% include 'components/animated-title.twig' with {
+					text: fields.title.text,
+					tag: fields.title.tag ?: 'h1',
+					class: 'mt-6 ' ~ (isWide ? 'max-w-none' : (isLeft ? 'max-w-[24ch]' : 'max-w-[22ch]'))
+						~ ' font-display text-[clamp(36px,5vw,52px)] leading-[1.08] font-semibold
+						tracking-[-0.02em] text-balance text-[#ebeef0]'
+				} only %}
+			{% endif %}
+
+			{% include 'components/title-with-select-tag.twig' with {
+				title: fields.subtitle,
+				defaultTag: 'p',
+				titleClass: 'mt-6 text-[clamp(18px,2vw,20px)] leading-[1.6] '
+					~ (isLeft ? 'text-white/78 ' : 'text-white/76 ')
+					~ (isWide ? 'max-w-none' : 'max-w-[640px]')
+			} only %}
+
+			{% if fields.button_primary.link.url or fields.button_secondary.link.url %}
+				<div class="mt-10 flex flex-wrap gap-3.5 max-sm:w-full max-sm:flex-col max-sm:[&_a]:w-full {{ isLeft ? '' : 'justify-center' }}">
+					{% include 'components/button.twig' with { button: fields.button_primary } only %}
+
+					{% include 'components/button.twig' with { button: fields.button_secondary } only %}
+				</div>
+			{% endif %}
+
+			{% if fields.trust|length %}
+				<ul class="mt-7 flex flex-wrap gap-x-[26px] gap-y-[18px] {{ isLeft ? '' : 'justify-center' }}">
+					{% for item in fields.trust %}
+						<li class="inline-flex items-center gap-2 text-label font-semibold text-white/82 max-sm:text-left [&_svg]:size-[18px] [&_svg]:shrink-0 [&_svg]:text-white">
+							{{ 'circle-check-big'|svg }}
+							{{ item.text }}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+	</div>
+</section>

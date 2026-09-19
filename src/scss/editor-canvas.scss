@@ -1,0 +1,71 @@
+html :where(.editor-styles-wrapper) {
+	color: revert-layer;
+	font-family: revert-layer;
+	font-size: revert-layer;
+	line-height: revert-layer;
+}
+
+.editor-styles-wrapper a {
+	color: revert-layer;
+	transition-property: revert-layer;
+}
+
+:where(.editor-styles-wrapper) {
+	:is(h1, h2, h3, h4, h5, h6) {
+		color: revert-layer;
+		font-size: revert-layer;
+		font-weight: revert-layer;
+		line-height: revert-layer;
+		margin: revert-layer;
+	}
+
+	p {
+		font-size: revert-layer;
+		line-height: revert-layer;
+		margin: revert-layer;
+	}
+
+	:is(input, select, textarea, button) {
+		appearance: revert-layer;
+		background: revert-layer;
+		border: revert-layer;
+		border-radius: revert-layer;
+		box-shadow: revert-layer;
+		color: revert-layer;
+		font: revert-layer;
+		padding: revert-layer;
+	}
+}
+
+.reveal {
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+.block-hero,
+.block-trial-wizard {
+	margin-top: 0;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.support-list .support-item {
+	flex: 1 1 0 !important;
+
+	.support-rail {
+		opacity: 0;
+	}
+
+	.support-panel {
+		position: relative;
+		width: 100%;
+		max-width: 100%;
+		opacity: 1;
+	}
+}
+
+[data-hero-video] {
+	display: none;
+}

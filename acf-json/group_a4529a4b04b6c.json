@@ -1,0 +1,49 @@
+{
+    "key": "group_a4529a4b04b6c",
+    "title": "Ustawienia kategorii",
+    "fields": [
+        {
+            "key": "field_0b68386161104",
+            "label": "Kolor",
+            "name": "color",
+            "type": "color_picker",
+            "instructions": "Kolor plakietki na kartach wpisów i szkoleń. Puste = kolor akcentu.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "category"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "kategoria-produktu"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1754524800
+}

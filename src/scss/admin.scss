@@ -1,0 +1,22 @@
+.acf-field-repeater .acf-row-handle.order {
+	width: 40px;
+}
+
+.acf-field[data-name="icon"] select {
+	min-width: 220px;
+}
+
+.acf-field[data-name="description"] textarea {
+	min-height: 70px;
+}
+
+.toplevel_page_raks-leads {
+	.wp-list-table td {
+		vertical-align: top;
+	}
+
+	.wp-list-table small {
+		display: block;
+		margin-top: 6px;
+	}
+}

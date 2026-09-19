@@ -1,0 +1,25 @@
+{% if id %}
+	{% set image = get_image(id) %}
+
+	{% if image %}
+		{% set isSvg = image.post_mime_type == 'image/svg+xml' %}
+		{% set imageAlt = alt ?: (image.alt ?: (altFrom ? altFrom|striptags : '')) %}
+		{% set imageSize = size ?: 'raks-card' %}
+
+		<img
+			src="{{ isSvg ? image.src : image.src(imageSize) }}"
+			{% if not isSvg %}
+				srcset="{{ image.srcset(imageSize) }}"
+				sizes="{{ sizes ?: '100vw' }}"
+			{% endif %}
+			alt="{{ imageAlt }}"
+			{% if imageAlt is empty %}aria-hidden="true"{% endif %}
+			width="{{ image.width }}"
+			height="{{ image.height }}"
+			class="{{ class }}"
+			{% if objectPosition %}style="object-position: {{ objectPosition }}"{% endif %}
+			loading="{{ eager ? 'eager' : 'lazy' }}"
+			decoding="{{ eager ? 'sync' : 'async' }}"
+			{% if eager %}fetchpriority="high"{% endif %}>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,36 @@
+{
+	"name": "raks/raks-theme",
+	"description": "Motyw Raks 2.0 — Timber 2 + Vite + Tailwind 4",
+	"type": "wordpress-theme",
+	"license": "proprietary",
+	"minimum-stability": "stable",
+	"authors": [
+		{
+			"name": "Michał Bartczak"
+		}
+	],
+	"require": {
+		"php": "~8.1 || ~8.2 || ~8.3 || ~8.4",
+		"timber/timber": "2.*"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.10"
+	},
+	"config": {
+		"platform": {
+			"php": "8.1"
+		},
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf"
+	}
+}

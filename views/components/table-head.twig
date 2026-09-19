@@ -1,0 +1,22 @@
+{% if head|length %}
+	<thead>
+		<tr>
+			{% for col in head %}
+				{% if variant == 'downloads' %}
+					{% set cellClass = 'px-[22px] py-[15px] align-middle font-sans text-xs font-bold tracking-[0.05em] text-ink-3 uppercase max-md:px-3.5 max-md:py-[13px]' %}
+				{% elseif variant == 'pricing' %}
+					{% set cellClass = 'px-[26px] py-[18px] align-top font-sans text-[13px] font-bold tracking-[0.04em] text-ink-3 uppercase max-[620px]:px-3 max-[620px]:py-3 max-[620px]:text-[11px]' %}
+				{% else %}
+					{% set cellClass = 'px-6 py-[18px] align-top max-[620px]:px-3.5 max-[620px]:py-[13px] '
+						~ (loop.first
+							? 'font-sans text-[13px] font-bold tracking-[0.04em] text-ink-3 uppercase'
+							: 'font-display text-[17px] font-bold text-ink max-[620px]:text-sm') %}
+				{% endif %}
+
+				<th class="border-b border-line-2 bg-soft text-left {{ cellClass }} {{ col.hide_mobile ? (variant == 'downloads' ? 'max-md:hidden' : 'max-[620px]:hidden') }}">
+					{{ col.label }}
+				</th>
+			{% endfor %}
+		</tr>
+	</thead>
+{% endif %}

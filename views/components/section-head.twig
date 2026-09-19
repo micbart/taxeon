@@ -1,0 +1,32 @@
+{% if title.text or eyebrow.text %}
+	<div class="reveal mb-14 {{ wide ? 'max-w-[820px]' : 'max-w-[760px]' }}
+		{{ center ? 'mx-auto text-center' }}
+		{{ link.url ? 'flex max-w-none flex-wrap items-end justify-between gap-5' }}">
+		<div>
+			{% include 'components/eyebrow.twig' with { title: eyebrow, onDark: onDark } only %}
+
+			{% include 'components/title-with-select-tag.twig' with {
+				title: title,
+				defaultTag: titleTag ?: 'h2',
+				titleClass: 'mt-4 font-display text-[clamp(28px,3.4vw,40px)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance
+					' ~ (onDark ? 'text-white' : 'text-ink')
+			} only %}
+
+			{% include 'components/title-with-select-tag.twig' with {
+				title: text,
+				defaultTag: 'p',
+				titleClass: 'mt-[18px] text-[19px] text-pretty ' ~ (onDark ? 'text-white/80' : 'text-ink-2')
+			} only %}
+		</div>
+
+		{% if link.url %}
+			<a href="{{ link.url }}"
+				target="{{ link.target ?: '_self' }}"
+				class="group/link mb-1.5 inline-flex items-center gap-[7px] font-bold {{ onDark ? 'text-deep-tint' : 'text-accent' }}
+					[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
+				{{ link.title }}
+				{{ 'arrow-right'|svg }}
+			</a>
+		{% endif %}
+	</div>
+{% endif %}

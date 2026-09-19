@@ -1,0 +1,5 @@
+{% set titleTag = title.tag ?: defaultTag ?: 'h2' %}
+
+{% if title.text %}
+	<{{ titleTag }}{% if titleId %} id="{{ titleId }}"{% endif %} class="{{ titleClass }}">{{ title.text }}</{{ titleTag }}>
+{% endif %}

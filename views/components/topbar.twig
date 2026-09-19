@@ -1,0 +1,49 @@
+{% set wpisy = (themeOptions.topbar_items ?: [])|filter(wpis => wpis.text) %}
+
+{% if themeOptions.topbar_enabled and wpisy|length %}
+	<div class="relative z-[101] border-b border-white/15 bg-[#2B5CFF] text-meta text-white">
+		<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+			<div class="flex min-h-10 items-center gap-[18px]">
+				{% if themeOptions.topbar_label %}
+					<span class="flex-none text-[11.5px] font-bold tracking-[0.1em] text-white uppercase max-[860px]:hidden">
+						{{ themeOptions.topbar_label }}
+					</span>
+				{% endif %}
+
+				<div data-topbar-feed class="relative h-10 min-w-0 flex-1">
+					{% for wpis in wpisy %}
+						<a href="{{ wpis.link.url ?: '#' }}"
+							target="{{ wpis.link.target ?: '_self' }}"
+							{% if loop.first %}data-active{% endif %}
+							class="invisible absolute inset-0 flex min-w-0 translate-y-1.5 items-center gap-2.5
+								text-white opacity-0 transition-[opacity,transform,visibility] duration-400
+								data-active:visible data-active:translate-y-0 data-active:opacity-100
+								motion-reduce:translate-y-0 motion-reduce:transition-none
+								hover:text-white [&:hover_span]:underline [&:hover_span]:underline-offset-[3px]">
+							{% if wpis.date %}
+								<time datetime="{{ wpis.date|date('Y-m-d') }}"
+									class="flex-none font-bold text-white/75 tabular-nums">
+									{{ wpis.date|date('j.m.Y') }}
+								</time>
+							{% endif %}
+
+							<span class="truncate">{{ wpis.text }}</span>
+						</a>
+					{% endfor %}
+				</div>
+
+				{% if themeOptions.topbar_all.url %}
+					<a href="{{ themeOptions.topbar_all.url }}"
+						target="{{ themeOptions.topbar_all.target ?: '_self' }}"
+						class="inline-flex flex-none items-center gap-1.5 text-[13px] font-bold text-white
+							hover:underline hover:underline-offset-[3px] [&_svg]:size-3.5">
+						<span class="max-[860px]:hidden">
+							{{ themeOptions.topbar_all.title ?: __('Wszystkie aktualności', 'raks') }}
+						</span>
+						{{ 'arrow-right'|svg }}
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endif %}

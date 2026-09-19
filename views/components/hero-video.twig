@@ -1,0 +1,12 @@
+{% if url %}
+	<div class="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-b-[inherit]">
+		<video data-hero-video
+			data-src="{{ url }}"
+			{% if poster %}poster="{{ poster }}"{% endif %}
+			muted loop playsinline preload="none" aria-hidden="true"
+			class="size-full object-cover opacity-0 transition-opacity duration-600 data-ready:opacity-100"></video>
+	</div>
+
+	<div aria-hidden="true"
+		class="pointer-events-none absolute inset-0 z-0 bg-[image:var(--gradient-hero-shade)]"></div>
+{% endif %}

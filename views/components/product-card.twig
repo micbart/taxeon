@@ -1,0 +1,90 @@
+{% set areas = item.terms({ taxonomy: 'kategoria-produktu' }) %}
+{% set cena = item.meta('_shop_price') %}
+{% set jestDarmowe = cena is not empty and cena|number_format(2, '.', '') == '0.00' %}
+
+<article data-filter-item
+	data-categories="{{ areas|map(t => t.name)|join('|') }}"
+	class="reveal flex flex-col overflow-hidden rounded-panel border border-line bg-white shadow-soft
+		transition hover:-translate-y-1 hover:shadow-mid">
+
+	{% if showImage and item.thumbnail %}
+		<a href="{{ item.link }}" tabindex="-1" aria-hidden="true" class="block overflow-hidden">
+			{% include 'components/image.twig' with {
+				id: item.thumbnail.ID,
+				size: 'raks-card',
+				sizes: '(max-width: 820px) 100vw, 380px',
+				altFrom: item.title,
+				class: 'aspect-16/10 w-full object-cover transition duration-500 hover:scale-105'
+			} only %}
+		</a>
+	{% endif %}
+
+	<div class="flex flex-1 flex-col px-[30px] pb-7 max-sm:px-5 {{ showImage and item.thumbnail ? 'pt-[26px]' : 'pt-[30px]' }}">
+
+		{% if (showDate and item.meta('_shop_training_date')) or (showPrice and cena is not empty) %}
+			<div class="mb-4 flex items-center justify-between gap-3">
+				{% if showDate and item.meta('_shop_training_date') %}
+					<span class="inline-flex items-center gap-2 text-sm font-semibold text-accent-strong [&_svg]:size-4">
+						{{ 'calendar'|svg }}
+						<time datetime="{{ item.meta('_shop_training_date') }}">
+							{{ item.meta('_shop_training_date')|wpDate }}
+						</time>
+					</span>
+				{% else %}
+					<span></span>
+				{% endif %}
+
+				{% if showPrice and cena is not empty %}
+					<span class="flex-none rounded-[7px] px-[11px] py-[5px] text-xs font-bold tracking-[0.03em] uppercase
+						{{ jestDarmowe ? 'bg-[#e9f7ef] text-[#1e8449]' : 'bg-accent-soft text-accent-strong' }}">
+						{{ jestDarmowe ? __('Bezpłatne', 'raks') : cena|shopPrice }}
+					</span>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		<h3 class="mb-3.5 font-display text-xl leading-[1.32] font-semibold tracking-[-0.02em] text-ink">
+			<a href="{{ item.link }}" class="hover:text-accent">{{ item.title }}</a>
+		</h3>
+
+		{% set meta = [
+			{ icon: 'clock', text: item.meta('_shop_training_time') ? __('Godz.', 'raks') ~ ' ' ~ item.meta('_shop_training_time') },
+			{ icon: 'timer', text: item.meta('_shop_training_duration') ? item.meta('_shop_training_duration') ~ ' min' },
+			{ icon: 'monitor', text: item.meta('_shop_virtual') == 'yes' ? __('Online', 'raks') }
+		]|filter(f => f.text) %}
+
+		{% if showDate and meta|length %}
+			<div class="mb-[18px] flex flex-wrap gap-x-[18px] gap-y-2 text-sm text-ink-2">
+				{% for fact in meta %}
+					<span class="inline-flex items-center gap-[7px] [&_svg]:size-4 [&_svg]:text-ink-3">
+						{{ fact.icon|svg }}
+						{{ fact.text }}
+					</span>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{% if areas|length %}
+			<div class="mb-[22px] flex flex-wrap gap-2">
+				{% for area in areas %}
+					<span style="--term-color: {{ area|termColor ?: 'var(--color-accent)' }}"
+						class="rounded-full px-[11px] py-1 text-xs font-semibold
+							bg-[color-mix(in_srgb,var(--term-color)_12%,#fff)]
+							text-[color-mix(in_srgb,var(--term-color)_78%,#000)]">
+						{{ area.name }}
+					</span>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		<div class="mt-auto">
+			<a href="{{ item.link }}"
+				class="group/link inline-flex items-center gap-2 rounded-full border border-accent/28 px-[18px] py-2.5
+					font-semibold text-ink transition hover:border-accent hover:bg-accent-soft
+					[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
+				{{ buttonLabel ?: __('Zapisz się', 'raks') }}
+				{{ 'arrow-right'|svg }}
+			</a>
+		</div>
+	</div>
+</article>

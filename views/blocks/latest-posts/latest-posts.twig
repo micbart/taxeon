@@ -1,0 +1,65 @@
+{#
+	Title: Najnowsze wpisy
+	Description: Siatka kart z bloga — najnowsze albo ręcznie wybrane wpisy
+	Category: raks
+	Icon: excerpt-view
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+
+{% import 'components/section.twig' as section %}
+
+{% set count = fields.count ?: 3 %}
+
+{% if fields.source == 'manual' and fields.posts|length %}
+	{% set items = get_posts({
+		post_type: 'post',
+		post__in: fields.posts,
+		orderby: 'post__in',
+		posts_per_page: -1,
+		ignore_sticky_posts: true
+	}) %}
+{% elseif fields.source == 'category' and fields.category %}
+	{% set items = get_posts({
+		post_type: 'post',
+		posts_per_page: count,
+		cat: fields.category,
+		ignore_sticky_posts: true
+	}) %}
+{% else %}
+	{% set items = get_posts({
+		post_type: 'post',
+		posts_per_page: count,
+		ignore_sticky_posts: true
+	}) %}
+{% endif %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="{{ section.shell(fields, classes) }}">
+
+	<div class="{{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			link: fields.link
+		} only %}
+
+		{% if items|length %}
+			<div class="grid grid-cols-3 gap-[26px] max-xl:grid-cols-2 max-sm:grid-cols-1">
+				{% for post in items %}
+					{% include 'components/post-card.twig' with { post: post } only %}
+				{% endfor %}
+			</div>
+		{% elseif is_preview %}
+			<div class="grid place-items-center rounded-card border border-dashed border-line bg-soft
+				px-7 py-12 text-center font-mono text-[13px] text-ink-3">
+				<b class="mb-1 block text-[13px] tracking-[0.08em] text-ink-2 uppercase">{{ __('Najnowsze wpisy', 'raks') }}</b>
+				{{ __('Brak wpisów do wyświetlenia.', 'raks') }}
+			</div>
+		{% endif %}
+	</div>
+</section>

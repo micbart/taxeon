@@ -1,0 +1,136 @@
+{% extends "layouts/base.twig" %}
+
+{% set solidHeader = false %}
+{% set category = post.terms({ taxonomy: 'category' })|first %}
+
+{% block main %}
+	<div data-reading-progress
+		aria-hidden="true"
+		class="fixed top-0 left-0 z-[200] h-[3px] w-full origin-left scale-x-0 bg-cta will-change-transform"></div>
+
+	<article data-article-body>
+		<section data-hero-bg="bands"
+		class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
+			pt-header max-md:rounded-b-section-sm">
+			<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
+				<div class="pt-16 pb-21">
+					{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+
+					{% if category %}
+						<a href="{{ category.link }}"
+							style="--term-color: {{ category|termColor ?: 'var(--color-deep-500)' }}"
+							class="mb-[22px] inline-flex items-center rounded-full bg-(--term-color) px-3 py-[5px]
+								text-xs font-bold tracking-[0.03em] text-white uppercase">
+							{{ category.name }}
+						</a>
+					{% endif %}
+
+					{% set hasCover = post.thumbnail is not empty %}
+
+					<div class="{{ hasCover ? 'grid grid-cols-[1.05fr_0.95fr] items-stretch gap-14 max-lg:grid-cols-1 max-lg:gap-9' : '' }}">
+						<div>
+							<h1 class="font-display leading-[1.08] font-semibold tracking-[-0.02em] text-balance text-white
+								{{ hasCover
+									? 'text-[clamp(28px,3.6vw,40px)]'
+									: 'mt-5 max-w-[20ch] text-[clamp(33px,4.6vw,54px)]' }}">
+								{{ post.title }}
+							</h1>
+
+							{% if post.post_excerpt %}
+								<p class="mt-[22px] text-[clamp(17px,2vw,20px)] leading-[1.6] text-white/78
+									{{ hasCover ? '' : 'max-w-[600px]' }}">
+									{{ post.post_excerpt }}
+								</p>
+							{% endif %}
+						</div>
+
+						{% if hasCover %}
+							{% include 'components/image.twig' with {
+								id: post.thumbnail.ID,
+								size: 'raks-wide-2x',
+								sizes: '(max-width: 820px) 100vw, 480px',
+								altFrom: post.title,
+								eager: true,
+								class: 'h-full min-h-[280px] w-full rounded-[20px] object-cover shadow-deep max-lg:aspect-16/9'
+							} only %}
+						{% endif %}
+					</div>
+
+					<div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm font-semibold text-white/75
+						[&_svg]:size-[15px] [&_svg]:text-deep-tint">
+
+						<span class="inline-flex items-center gap-2">
+							{{ 'calendar'|svg }}
+							<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('j F Y') }}</time>
+						</span>
+
+						<span class="inline-flex items-center gap-2">
+							{{ 'clock'|svg }}
+							{{ post.content|readTime }} {{ __('min czytania', 'raks') }}
+						</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="pt-16 pb-section max-sm:py-16">
+			<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+				<div class="prose mx-auto max-w-[760px]">
+					{{ post.content }}
+				</div>
+
+				<div class="mx-auto mt-11 flex max-w-[760px] flex-wrap items-center justify-between gap-[18px]
+					border-t border-line pt-7">
+
+					{% if post.terms({ taxonomy: 'post_tag' })|length %}
+						<div class="flex flex-wrap gap-2.5">
+							{% for tag in post.terms({ taxonomy: 'post_tag' }) %}
+								<a href="{{ tag.link }}"
+									class="rounded-full border border-line bg-soft px-3 py-1.5 text-[13px] font-semibold text-ink-2 hover:text-accent">
+									{{ tag.name }}
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					<div class="flex items-center gap-2.5">
+						<span class="text-meta font-bold text-ink-3">{{ __('Udostępnij', 'raks') }}</span>
+
+						{% set shareLink = 'grid size-[38px] place-items-center rounded-[10px] border border-line text-ink-2 transition hover:border-accent hover:bg-accent-soft hover:text-accent [&_svg]:size-[18px]' %}
+
+						{% for link in shareLinks %}
+							<a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}" class="{{ shareLink }}">
+								{{ link.icon|svg }}
+							</a>
+						{% endfor %}
+
+						<a href="{{ post.link }}"
+							data-copy-link
+							data-copied-label="{{ __('Skopiowano link', 'raks') }}"
+							aria-label="{{ __('Kopiuj link', 'raks') }}"
+							class="{{ shareLink }} data-copied:border-[#b7e2c8] data-copied:bg-[#e9f7ef] data-copied:text-[#1d6b3f]">
+							{{ 'link'|svg }}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	{% if relatedPosts|length %}
+		<section class="bg-soft py-section max-sm:py-16">
+			<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+				{% include 'components/section-head.twig' with {
+					eyebrow: { text: __('Powiązane wpisy', 'raks') },
+					title: { text: __('Czytaj dalej', 'raks') }
+				} only %}
+
+				<div class="grid grid-cols-2 gap-[26px] max-md:grid-cols-1">
+					{% for post in relatedPosts %}
+						{% include 'components/post-card.twig' with { post: post } only %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

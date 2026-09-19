@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@source "../../views";
+@source "../../app";
+@source "../../*.php";
+
+@theme {
+	--font-display: "Outfit", system-ui, sans-serif;
+	--font-sans: "Manrope", system-ui, sans-serif;
+	--font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+	--text-meta: 13.5px;
+	--text-label: 14.5px;
+	--text-body: 15.5px;
+	--text-lead: 17px;
+
+	--color-ink: #15202c;
+	--color-ink-2: #44505f;
+	--color-ink-3: #7c8896;
+	--color-line: #e7ebf0;
+	--color-line-2: #f0f3f7;
+	--color-page: #ffffff;
+	--color-soft: #f5f7fa;
+	--color-navy: #15202c;
+
+	--color-accent: #00053d;
+	--color-accent-strong: #161c66;
+	--color-accent-soft: #eaebf4;
+	--color-accent-ink: #ffffff;
+
+	--color-cta: #e95420;
+	--color-cta-strong: #d2491a;
+
+	--color-deep-900: #091334;
+	--color-deep-850: #0c1a48;
+	--color-deep-800: #0b1c50;
+	--color-deep-700: #112a6f;
+	--color-deep-600: #142a6a;
+	--color-deep-500: #1d3b95;
+	--color-deep-400: #1f3f97;
+	--color-deep-300: #2b4dac;
+	--color-deep-200: #36529f;
+	--color-deep-100: #3d59b8;
+	--color-deep-tint: #a9bcff;
+	--color-deep-tint-2: #9db0ff;
+	--color-deep-tint-3: #bcccff;
+
+	--radius-card: 14px;
+	--radius-panel: 22px;
+	--radius-btn: 12px;
+	--radius-section: 48px;
+	--radius-section-sm: 28px;
+
+	--shadow-soft: 0 1px 2px rgb(21 32 44 / 0.05), 0 4px 14px rgb(21 32 44 / 0.05);
+	--shadow-mid: 0 8px 30px rgb(21 32 44 / 0.09), 0 2px 8px rgb(21 32 44 / 0.05);
+	--shadow-deep: 0 30px 70px -24px rgb(21 32 44 / 0.3), 0 8px 24px rgb(21 32 44 / 0.08);
+	--shadow-navy: 0 26px 55px -22px rgb(11 28 80 / 0.6);
+	--shadow-navy-lg: 0 30px 70px -30px rgb(11 28 80 / 0.6);
+	--shadow-tile: 0 18px 40px -26px rgb(11 28 80 / 0.55);
+	--shadow-gradient: 0 18px 44px -26px rgb(74 107 255 / 0.45);
+	--shadow-cta: 0 8px 20px -8px rgb(233 84 32 / 0.45);
+	--shadow-header: 0 4px 20px -12px rgb(21 32 44 / 0.25);
+
+	--container-page: 1200px;
+	--spacing-gutter: 28px;
+	--spacing-section: 96px;
+	--spacing-header: 74px;
+
+	--breakpoint-sm: 560px;
+	--breakpoint-md: 720px;
+	--breakpoint-lg: 820px;
+	--breakpoint-xl: 920px;
+	--breakpoint-2xl: 1080px;
+
+	--animate-word-in: raks-word-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+	--animate-fade-up: raks-fade-up 0.25s ease;
+
+	@keyframes raks-word-in {
+		from {
+			opacity: 0;
+			transform: translateY(0.5em);
+			filter: blur(10px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+			filter: blur(0);
+		}
+	}
+
+	@keyframes raks-fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+@theme {
+	--gradient-deep: radial-gradient(
+		135% 95% at 50% -12%,
+		var(--color-deep-200) 0%,
+		var(--color-deep-500) 32%,
+		var(--color-deep-700) 62%,
+		var(--color-deep-800) 100%
+	);
+
+	--gradient-hero: radial-gradient(125% 75% at 50% 108%, rgb(96 126 224 / 0.4) 0%, rgb(96 126 224 / 0) 55%),
+		linear-gradient(
+			180deg,
+			var(--color-deep-900) 0%,
+			var(--color-deep-850) 15%,
+			var(--color-deep-600) 38%,
+			var(--color-deep-400) 62%,
+			var(--color-deep-300) 84%,
+			var(--color-deep-100) 100%
+		);
+
+	--gradient-tile: linear-gradient(160deg, #16276b 0%, #0d1c4e 60%, var(--color-deep-900) 100%);
+
+	--gradient-border: linear-gradient(135deg, #3b5bff 0%, #6f7bff 48%, #b487ff 100%);
+
+	--gradient-shade: linear-gradient(
+		105deg,
+		rgb(8 16 40 / 0.93) 0%,
+		rgb(8 16 40 / 0.8) 34%,
+		rgb(8 16 40 / 0.35) 64%,
+		rgb(8 16 40 / 0.1) 100%
+	);
+
+	--gradient-shade-wide: linear-gradient(
+		105deg,
+		rgb(8 16 40 / 0.93) 0%,
+		rgb(8 16 40 / 0.86) 40%,
+		rgb(8 16 40 / 0.72) 70%,
+		rgb(8 16 40 / 0.55) 100%
+	);
+
+	--gradient-shade-bottom: linear-gradient(
+		180deg,
+		rgb(8 16 40 / 0) 0%,
+		rgb(8 16 40 / 0) 45%,
+		rgb(8 16 40 / 0.35) 74%,
+		rgb(8 16 40 / 0.82) 100%
+	);
+
+	--gradient-hero-shade: radial-gradient(125% 75% at 50% 108%, rgb(96 126 224 / 0.3), transparent 55%),
+		linear-gradient(180deg, rgb(9 19 52 / 0.86) 0%, rgb(16 33 82 / 0.78) 45%, rgb(31 63 151 / 0.62) 100%);
+
+	--gradient-glow-card: radial-gradient(80% 55% at 16% 8%, rgb(120 150 255 / 0.3), transparent 60%),
+		radial-gradient(70% 60% at 92% 88%, rgb(80 110 220 / 0.28), transparent 62%);
+
+	--gradient-glow-arcs: radial-gradient(closest-side at 12% 32%, rgb(255 255 255 / 0.1), transparent 70%),
+		radial-gradient(closest-side at 88% 32%, rgb(255 255 255 / 0.1), transparent 70%),
+		radial-gradient(120% 70% at 50% 0%, rgb(120 150 255 / 0.28), transparent 60%);
+}
+
+@utility hero-clip {
+	isolation: isolate;
+	clip-path: inset(0 round 0 0 var(--radius-section) var(--radius-section));
+
+	@media (width < 720px) {
+		clip-path: inset(0 round 0 0 var(--radius-section-sm) var(--radius-section-sm));
+	}
+}
+
+@utility gradient-frame {
+	border: 2px solid transparent;
+	background:
+		linear-gradient(#fff, #fff) padding-box,
+		var(--gradient-border) border-box;
+	box-shadow: var(--shadow-gradient);
+}
