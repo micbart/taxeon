@@ -179,5 +179,4 @@ return [
 			['question' => 'Trzecie pytanie?', 'answer' => 'Odpowiedź w jednym, dwóch zdaniach.'],
 		],
 	],
-
 ];
