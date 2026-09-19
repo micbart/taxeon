@@ -8,7 +8,7 @@
 			<a href="{{ post.link }}" tabindex="-1" aria-hidden="true">
 				{% include 'components/image.twig' with {
 					id: post.thumbnail.ID,
-					size: 'raks-wide',
+					size: 'taxeon-wide',
 					sizes: '(max-width: 820px) 100vw, 55vw',
 					altFrom: post.title,
 					eager: true,
@@ -32,7 +32,7 @@
 			{{ 'calendar'|svg }}
 			<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('F Y') }}</time>
 			<span aria-hidden="true">·</span>
-			{{ post.content|readTime }} {{ __('min czytania', 'raks') }}
+			{{ post.content|readTime }} {{ __('min czytania', 'taxeon') }}
 		</span>
 
 		<h2 class="my-3.5 font-display text-[clamp(24px,2.6vw,31px)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink">
@@ -46,7 +46,7 @@
 		<a href="{{ post.link }}"
 			class="group/link inline-flex items-center gap-[7px] self-start font-bold text-accent
 				[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
-			{{ __('Czytaj artykuł', 'raks') }}
+			{{ __('Czytaj artykuł', 'taxeon') }}
 			{{ 'arrow-right'|svg }}
 		</a>
 	</div>

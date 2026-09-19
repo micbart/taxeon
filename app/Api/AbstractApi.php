@@ -7,7 +7,7 @@ use WP_REST_Response;
 
 abstract class AbstractApi
 {
-	public const NAMESPACE = 'raks/v1';
+	public const NAMESPACE = 'taxeon/v1';
 
 	protected string $route = '';
 	protected string $methods = 'POST';
@@ -72,7 +72,7 @@ abstract class AbstractApi
 			return true;
 		}
 
-		$key = 'raks_rl_' . $bucket . '_' . md5($ip);
+		$key = 'taxeon_rl_' . $bucket . '_' . md5($ip);
 		$hits = (int) get_transient($key);
 
 		if ($hits >= $max) {

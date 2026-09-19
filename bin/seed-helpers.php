@@ -1,12 +1,7 @@
 <?php
 
-const RAKS_BAZA_WIEDZY = 'https://raks.pl/pomoc/';
-const RAKS_FORMULARZ = 'https://raks.pl/pomoc/formularz/';
-const RAKS_YOUTUBE = 'https://www.youtube.com/@RAKS-Programy';
-const RAKS_POLITYKA_PRYWATNOSCI = 'https://ftp.raks.pl/marketing/download/pdf/pdf_polityka_prywatnosci.pdf';
-
 /** @return array<string, array<int, array<string, mixed>>> */
-function raks_seed_groups(): array
+function taxeon_seed_groups(): array
 {
     static $groups = null;
 
@@ -32,7 +27,7 @@ function raks_seed_groups(): array
     return $groups;
 }
 
-function raks_seed_def(array $defs, string $name): array
+function taxeon_seed_def(array $defs, string $name): array
 {
     foreach ($defs as $def) {
         if ($def['name'] === $name) {
@@ -43,17 +38,17 @@ function raks_seed_def(array $defs, string $name): array
     WP_CLI::error("Brak pola „{$name}” w definicjach ACF. Uruchom bin/generate-acf-fields.php.");
 }
 
-function raks_seed_key(string $name, string $scope = 'options'): string
+function taxeon_seed_key(string $name, string $scope = 'options'): string
 {
-    return raks_seed_def(raks_seed_groups()[$scope] ?? [], $name)['key'];
+    return taxeon_seed_def(taxeon_seed_groups()[$scope] ?? [], $name)['key'];
 }
 
-function raks_seed_data(array $values, array $defs, string $prefix = ''): array
+function taxeon_seed_data(array $values, array $defs, string $prefix = ''): array
 {
     $data = [];
 
     foreach ($values as $name => $value) {
-        $def = raks_seed_def($defs, $name);
+        $def = taxeon_seed_def($defs, $name);
         $path = $prefix . $name;
 
         $data['_' . $path] = $def['key'];
@@ -62,14 +57,14 @@ function raks_seed_data(array $values, array $defs, string $prefix = ''): array
             $data[$path] = count($value);
 
             foreach ($value as $index => $row) {
-                $data += raks_seed_data($row, $def['sub_fields'], "{$path}_{$index}_");
+                $data += taxeon_seed_data($row, $def['sub_fields'], "{$path}_{$index}_");
             }
 
             continue;
         }
 
         if ($def['type'] === 'group' && is_array($value)) {
-            $data += raks_seed_data($value, $def['sub_fields'], $path . '_');
+            $data += taxeon_seed_data($value, $def['sub_fields'], $path . '_');
 
             continue;
         }
@@ -80,11 +75,11 @@ function raks_seed_data(array $values, array $defs, string $prefix = ''): array
     return $data;
 }
 
-function raks_seed_block(string $slug, array $fields): string
+function taxeon_seed_block(string $slug, array $fields): string
 {
     $attributes = [
         'name' => 'acf/' . $slug,
-        'data' => raks_seed_data($fields, raks_seed_groups()['acf/' . $slug] ?? []),
+        'data' => taxeon_seed_data($fields, taxeon_seed_groups()['acf/' . $slug] ?? []),
         'mode' => 'preview',
     ];
 
@@ -93,7 +88,7 @@ function raks_seed_block(string $slug, array $fields): string
         . ' /-->';
 }
 
-function raks_seed_image(string $relative, string $alt): int
+function taxeon_seed_image(string $relative, string $alt): int
 {
     static $cache = [];
 
@@ -108,7 +103,7 @@ function raks_seed_image(string $relative, string $alt): int
         'fields' => 'ids',
         'meta_query' => [
             [
-                'key' => '_raks_seed_source',
+                'key' => '_taxeon_seed_source',
                 'value' => $relative,
             ],
         ],
@@ -151,14 +146,14 @@ function raks_seed_image(string $relative, string $alt): int
 
     wp_update_attachment_metadata($attachmentId, wp_generate_attachment_metadata($attachmentId, $upload['file']));
     update_post_meta($attachmentId, '_wp_attachment_image_alt', $alt);
-    update_post_meta($attachmentId, '_raks_seed_source', $relative);
+    update_post_meta($attachmentId, '_taxeon_seed_source', $relative);
 
     WP_CLI::log("  media: {$filename} (ID {$attachmentId})");
 
     return $cache[$relative] = (int) $attachmentId;
 }
 
-function raks_seed_page(string $title, string $slug, string $subtitle = ''): int
+function taxeon_seed_page(string $title, string $slug, string $subtitle = ''): int
 {
     $existing = get_page_by_path($slug);
 
@@ -177,22 +172,14 @@ function raks_seed_page(string $title, string $slug, string $subtitle = ''): int
     }
 
     if ($subtitle) {
-        update_field(raks_seed_key('subtitle', 'page'), $subtitle, $id);
+        update_field(taxeon_seed_key('subtitle', 'page'), $subtitle, $id);
     }
 
     return $id;
 }
 
-function raks_seed_hero_video(): array
-{
-    return [
-        'media_type' => 'video',
-        'video_url' => 'https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8',
-    ];
-}
-
 /** @param array<int, array{title: string, url: string}> $items */
-function raks_seed_menu(string $name, string $location, array $items): int
+function taxeon_seed_menu(string $name, string $location, array $items): int
 {
     $menu = wp_get_nav_menu_object($name);
     $menuId = $menu ? (int) $menu->term_id : (int) wp_create_nav_menu($name);
@@ -262,7 +249,7 @@ function uwagi_edit_blocks(int $pageId, string $blockName, callable $mutate): in
                 return $match[0];
             }
 
-            $block['data'] = $data + uwagi_klucze(raks_seed_groups()['acf/' . $blockName] ?? [], $data);
+            $block['data'] = $data + uwagi_klucze(taxeon_seed_groups()['acf/' . $blockName] ?? [], $data);
             $changed++;
 
             $json = serialize_block_attributes($block);
@@ -286,8 +273,8 @@ function uwagi_edit_blocks(int $pageId, string $blockName, callable $mutate): in
  */
 function uwagi_repeater(string $block, string $field, array $rows): array
 {
-    $defs = raks_seed_groups()['acf/' . $block] ?? [];
-    $def = raks_seed_def($defs, $field);
+    $defs = taxeon_seed_groups()['acf/' . $block] ?? [];
+    $def = taxeon_seed_def($defs, $field);
 
     $data = [
         '_' . $field => $def['key'],
@@ -295,7 +282,7 @@ function uwagi_repeater(string $block, string $field, array $rows): array
     ];
 
     foreach ($rows as $i => $row) {
-        $data += raks_seed_data($row, $def['sub_fields'], "{$field}_{$i}_");
+        $data += taxeon_seed_data($row, $def['sub_fields'], "{$field}_{$i}_");
     }
 
     return $data;

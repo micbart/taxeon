@@ -37,11 +37,11 @@ class ApiContact extends AbstractApi
 		$ip = $this->recaptcha->clientIp();
 
 		if (!$this->rateLimit('contact', $ip)) {
-			return $this->error(__('Zbyt wiele zgłoszeń. Spróbuj ponownie za kilka minut.', 'raks'), 429);
+			return $this->error(__('Zbyt wiele zgłoszeń. Spróbuj ponownie za kilka minut.', 'taxeon'), 429);
 		}
 
 		if (trim((string) $request->get_param('website')) !== '') {
-			return $this->success(['message' => __('Dziękujemy, wiadomość została wysłana.', 'raks')]);
+			return $this->success(['message' => __('Dziękujemy, wiadomość została wysłana.', 'taxeon')]);
 		}
 
 		$name = sanitize_text_field((string) $request->get_param('name'));
@@ -55,27 +55,27 @@ class ApiContact extends AbstractApi
 		$errors = [];
 
 		if ($request->has_param('name') && $name === '') {
-			$errors['name'] = __('Podaj imię i nazwisko.', 'raks');
+			$errors['name'] = __('Podaj imię i nazwisko.', 'taxeon');
 		}
 
 		if ($email === '' || !is_email($email)) {
-			$errors['email'] = __('Podaj poprawny adres e-mail.', 'raks');
+			$errors['email'] = __('Podaj poprawny adres e-mail.', 'taxeon');
 		}
 
 		if ($request->has_param('message') && $message === '') {
-			$errors['message'] = __('Wpisz treść wiadomości.', 'raks');
+			$errors['message'] = __('Wpisz treść wiadomości.', 'taxeon');
 		}
 
 		if ($request->has_param('consent') && !$consent) {
-			$errors['consent'] = __('Zaznacz wymaganą zgodę.', 'raks');
+			$errors['consent'] = __('Zaznacz wymaganą zgodę.', 'taxeon');
 		}
 
 		if ($request->has_param('consent_rodo') && !$request->get_param('consent_rodo')) {
-			$errors['consent_rodo'] = __('Zaznacz wymaganą zgodę.', 'raks');
+			$errors['consent_rodo'] = __('Zaznacz wymaganą zgodę.', 'taxeon');
 		}
 
 		if ($errors) {
-			return $this->error(__('Popraw zaznaczone pola.', 'raks'), 422, ['errors' => $errors]);
+			return $this->error(__('Popraw zaznaczone pola.', 'taxeon'), 422, ['errors' => $errors]);
 		}
 
 		$verification = $this->recaptcha->verify((string) $request->get_param('token'), 'contact');
@@ -102,10 +102,10 @@ class ApiContact extends AbstractApi
 
 		$this->notify($leadId, compact('name', 'email', 'phone', 'company', 'subject', 'message', 'sourceUrl'));
 
-		do_action('raks_contact_submitted', $leadId, $request);
+		do_action('taxeon_contact_submitted', $leadId, $request);
 
 		return $this->success([
-			'message' => __('Dziękujemy, wiadomość została wysłana.', 'raks'),
+			'message' => __('Dziękujemy, wiadomość została wysłana.', 'taxeon'),
 			'leadId' => $leadId,
 		]);
 	}
@@ -137,22 +137,22 @@ class ApiContact extends AbstractApi
 		}
 
 		$subject = sprintf(
-			__('[%1$s] Nowe zgłoszenie: %2$s', 'raks'),
+			__('[%1$s] Nowe zgłoszenie: %2$s', 'taxeon'),
 			get_bloginfo('name'),
-			$lead['subject'] !== '' ? $lead['subject'] : __('formularz kontaktowy', 'raks')
+			$lead['subject'] !== '' ? $lead['subject'] : __('formularz kontaktowy', 'taxeon')
 		);
 
 		$body = implode("\n", array_filter([
-			sprintf(__('Imię i nazwisko: %s', 'raks'), $lead['name']),
-			sprintf(__('E-mail: %s', 'raks'), $lead['email']),
-			$lead['phone'] !== '' ? sprintf(__('Telefon: %s', 'raks'), $lead['phone']) : '',
-			$lead['company'] !== '' ? sprintf(__('Firma: %s', 'raks'), $lead['company']) : '',
+			sprintf(__('Imię i nazwisko: %s', 'taxeon'), $lead['name']),
+			sprintf(__('E-mail: %s', 'taxeon'), $lead['email']),
+			$lead['phone'] !== '' ? sprintf(__('Telefon: %s', 'taxeon'), $lead['phone']) : '',
+			$lead['company'] !== '' ? sprintf(__('Firma: %s', 'taxeon'), $lead['company']) : '',
 			'',
-			__('Wiadomość:', 'raks'),
+			__('Wiadomość:', 'taxeon'),
 			$lead['message'],
 			'',
-			sprintf(__('Wysłano ze strony: %s', 'raks'), $lead['sourceUrl']),
-			sprintf(__('Podgląd w panelu: %s', 'raks'), admin_url('admin.php?page=raks-leads')),
+			sprintf(__('Wysłano ze strony: %s', 'taxeon'), $lead['sourceUrl']),
+			sprintf(__('Podgląd w panelu: %s', 'taxeon'), admin_url('admin.php?page=taxeon-leads')),
 		]));
 
 		wp_mail(

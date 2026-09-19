@@ -1,9 +1,9 @@
 {
-    "key": "group_37a6e4fbd5f8b",
+    "key": "group_e7d38a9bbd5ed",
     "title": "Nagłówek strony",
     "fields": [
         {
-            "key": "field_7005fa93a93c2",
+            "key": "field_73946b2fdddf7",
             "label": "Podtytuł",
             "name": "subtitle",
             "type": "textarea",

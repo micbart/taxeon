@@ -102,7 +102,7 @@ export default defineConfig({
 		strictPort: false,
 		port: 5173,
 		origin: 'http://localhost:5173',
-		open: 'http://localhost:8888/raks/',
+		open: 'http://localhost:8888/taxeon/',
 	},
 	build: {
 		outDir: 'dist',

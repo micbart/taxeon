@@ -103,25 +103,25 @@ class BlogArchiveContext
 			$data['archiveTitle'] = single_cat_title('', false);
 			$data['archiveDescription'] = category_description();
 			$data['archiveType'] = 'category';
-			$data['archiveEyebrow'] = __('Kategoria', 'raks');
+			$data['archiveEyebrow'] = __('Kategoria', 'taxeon');
 			$data['activeTerm'] = get_queried_object_id();
 		} elseif (is_tag()) {
 			$data['archiveTitle'] = single_tag_title('', false);
 			$data['archiveDescription'] = tag_description();
 			$data['archiveType'] = 'tag';
-			$data['archiveEyebrow'] = __('Tag', 'raks');
+			$data['archiveEyebrow'] = __('Tag', 'taxeon');
 			$data['activeTerm'] = get_queried_object_id();
 		} elseif (is_author()) {
 			$author = get_queried_object();
 			$data['archiveTitle'] = $author ? $author->display_name : wp_strip_all_tags(get_the_archive_title());
 			$data['archiveDescription'] = $author ? get_the_author_meta('description', $author->ID) : '';
 			$data['archiveType'] = 'author';
-			$data['archiveEyebrow'] = __('Autor', 'raks');
+			$data['archiveEyebrow'] = __('Autor', 'taxeon');
 		} elseif (is_search()) {
-			$data['archiveTitle'] = sprintf(__('Wyniki wyszukiwania: %s', 'raks'), get_search_query());
+			$data['archiveTitle'] = sprintf(__('Wyniki wyszukiwania: %s', 'taxeon'), get_search_query());
 			$data['archiveDescription'] = '';
 			$data['archiveType'] = 'search';
-			$data['archiveEyebrow'] = __('Szukaj', 'raks');
+			$data['archiveEyebrow'] = __('Szukaj', 'taxeon');
 		} elseif (is_home()) {
 			$blogPageId = (int) get_option('page_for_posts');
 			$archiveTitle = $blogPageId && function_exists('get_field')
@@ -130,18 +130,18 @@ class BlogArchiveContext
 
 			$data['archiveTitle'] = $archiveTitle !== ''
 				? $archiveTitle
-				: ($blogPageId ? get_the_title($blogPageId) : __('Blog', 'raks'));
+				: ($blogPageId ? get_the_title($blogPageId) : __('Blog', 'taxeon'));
 			$data['archiveDescription'] = $blogPageId && function_exists('get_field')
 				? (string) get_field('archive_description', $blogPageId)
 				: '';
 			$data['archiveType'] = 'blog';
-			$data['archiveEyebrow'] = __('Blog', 'raks');
+			$data['archiveEyebrow'] = __('Blog', 'taxeon');
 			$data['isBlogHome'] = true;
 		} else {
 			$data['archiveTitle'] = wp_strip_all_tags(get_the_archive_title());
 			$data['archiveDescription'] = get_the_archive_description();
 			$data['archiveType'] = 'archive';
-			$data['archiveEyebrow'] = __('Blog', 'raks');
+			$data['archiveEyebrow'] = __('Blog', 'taxeon');
 		}
 
 		$posts = Timber::get_posts();

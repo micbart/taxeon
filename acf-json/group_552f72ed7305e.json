@@ -1,9 +1,9 @@
 {
-    "key": "group_08eb5e4384b42",
+    "key": "group_552f72ed7305e",
     "title": "Archiwum bloga",
     "fields": [
         {
-            "key": "field_016ea002f2538",
+            "key": "field_a4ac0db640dba",
             "label": "Nagłówek archiwum",
             "name": "archive_title",
             "type": "text",
@@ -22,7 +22,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_7792a02a31200",
+            "key": "field_5fdb5de88e4d9",
             "label": "Opis archiwum",
             "name": "archive_description",
             "type": "wysiwyg",

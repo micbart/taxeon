@@ -1,20 +1,8 @@
-# Motyw RAKS — blokada bezpośredniego pobierania plików motywu.
-#
-# Szablony Twig, definicje pól ACF i klasy PHP są czytane przez serwer,
-# nigdy przez przeglądarkę. Bez tej blokady dało się je pobrać wprost pod
-# adresem, co ujawniało logikę szablonów, strukturę pól i wersje bibliotek
-# — a to ułatwia dobranie gotowego exploita do konkretnej wersji.
-#
-# Przeglądarka nadal pobiera to, co ma pobierać: dist/ (CSS, JS, ikony),
-# style.css i screenshot.png.
-
-# 1. Całe katalogi, do których ruch z zewnątrz nie ma po co zaglądać.
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteRule ^(app|bin|views|vendor|acf-json|src|tests|node_modules)/ - [F,L]
 </IfModule>
 
-# 2. Zapasowo po rozszerzeniu — gdyby mod_rewrite był wyłączony.
 <FilesMatch "\.(twig|json|lock|md|neon|dist|log|sh|yml|yaml|sql|bak|orig|save)$">
 	<IfModule mod_authz_core.c>
 		Require all denied
@@ -25,7 +13,6 @@
 	</IfModule>
 </FilesMatch>
 
-# 3. Pliki konfiguracyjne narzędzi deweloperskich.
 <FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|phpcs\.xml|phpunit\.xml(\.dist)?|vite\.config\.js|tailwind\.config\.js|\.env.*|\.gitignore|\.editorconfig)$">
 	<IfModule mod_authz_core.c>
 		Require all denied

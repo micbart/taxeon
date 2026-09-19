@@ -1,9 +1,9 @@
 {
-    "key": "group_51a1a9a3130cf",
-    "title": "Blok: Najnowsze wpisy",
+    "key": "group_80f9beff7d1b4",
+    "title": "Blok: Liczby",
     "fields": [
         {
-            "key": "field_9bccb213f05da",
+            "key": "field_3445dca27c280",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_3d26ec57fb8b0",
+            "key": "field_ae8f945d42951",
             "label": "Nadkreślenie",
             "name": "eyebrow",
             "type": "group",
@@ -34,7 +34,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_b4647a382dd8e",
+                    "key": "field_2fe5a391ee91a",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -53,7 +53,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_3a6fba1b35028",
+                    "key": "field_a8e26a94120aa",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "key": "field_2ad474d0666af",
+            "key": "field_06afcecd3575d",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -96,7 +96,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_a32ed018f3159",
+                    "key": "field_640abe0d95a05",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -115,7 +115,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_5bcc26b495484",
+                    "key": "field_eb1594a385f44",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "key": "field_14f2dac102db2",
+            "key": "field_c86a6b80e8d62",
             "label": "Opis",
             "name": "text",
             "type": "group",
@@ -162,7 +162,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_94dccb850de9e",
+                    "key": "field_7fd1e7e5ea05a",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -181,7 +181,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_521e5f5a00596",
+                    "key": "field_ff54a5f81b71b",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -209,24 +209,9 @@
             ]
         },
         {
-            "key": "field_58f160be9db81",
-            "label": "Link „zobacz wszystkie”",
-            "name": "link",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_b3f6f4b808a47",
-            "label": "Źródło wpisów",
-            "name": "source",
+            "key": "field_1f1c42dfa03d8",
+            "label": "Kolumny",
+            "name": "columns",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -237,11 +222,11 @@
                 "id": ""
             },
             "choices": {
-                "latest": "Najnowsze",
-                "category": "Z kategorii",
-                "manual": "Wybrane ręcznie"
+                "2": "2",
+                "3": "3",
+                "4": "4"
             },
-            "default_value": "latest",
+            "default_value": "4",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -250,101 +235,88 @@
             "placeholder": ""
         },
         {
-            "key": "field_ead028aa5fee2",
-            "label": "Kategoria",
-            "name": "category",
-            "type": "taxonomy",
+            "key": "field_945cfff5eefa3",
+            "label": "Liczby",
+            "name": "items",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_b3f6f4b808a47",
-                        "operator": "==",
-                        "value": "category"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "taxonomy": "category",
-            "field_type": "select",
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0,
-            "allow_null": 1
-        },
-        {
-            "key": "field_3091c599e83ec",
-            "label": "Wpisy",
-            "name": "posts",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_b3f6f4b808a47",
-                        "operator": "==",
-                        "value": "manual"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "post"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "return_format": "id",
-            "min": "",
-            "max": "",
-            "elements": [
-                "featured_image"
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Dodaj liczbę",
+            "sub_fields": [
+                {
+                    "key": "field_dd9fada227617",
+                    "label": "Ikona",
+                    "name": "icon",
+                    "type": "select",
+                    "instructions": "Lista pochodzi z plików w src/svg.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_c335f7f741ab2",
+                    "label": "Wartość",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_c6542508db2b1",
+                    "label": "Opis",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
             ]
         },
         {
-            "key": "field_d9d10a452a863",
-            "label": "Liczba wpisów",
-            "name": "count",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_b3f6f4b808a47",
-                        "operator": "!=",
-                        "value": "manual"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 3,
-            "min": 1,
-            "max": 12,
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_29b6cf231378a",
+            "key": "field_bacefab7c2f86",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -360,7 +332,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_545f0a433158a",
+            "key": "field_b1c64f3ca20be",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -387,7 +359,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_36beb85bd13b2",
+            "key": "field_41d71e8f31159",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -414,7 +386,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_80b4b91462fd6",
+            "key": "field_5a9c32af50985",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -440,7 +412,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_8645bf0156372",
+            "key": "field_352e3f6e20dd7",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",
@@ -471,7 +443,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/latest-posts"
+                "value": "acf/stats"
             }
         ]
     ],

@@ -1,7 +1,7 @@
 {#
 	Title: Treść + media
 	Description: Dwie kolumny — tekst i zdjęcie, ze swobodnym wyborem strony
-	Category: raks
+	Category: taxeon
 	Icon: align-pull-left
 	HideFieldsInSidebar: true
 	ExpandedEditorButtons: true
@@ -114,7 +114,7 @@
 					{% if isEmbed %}
 						<div class="overflow-hidden rounded-panel border border-line bg-white p-3 shadow-soft">
 							<iframe src="{{ fields.embed_url }}"
-								title="{{ fields.title.text ?: __('Osadzona treść', 'raks') }}"
+								title="{{ fields.title.text ?: __('Osadzona treść', 'taxeon') }}"
 								loading="lazy"
 								style="min-height: {{ fields.embed_height ?: 1050 }}px"
 								class="block w-full rounded-2xl border-0"></iframe>
@@ -133,7 +133,7 @@
 
 							{% include 'components/image.twig' with {
 								id: fields.image.ID,
-								size: 'raks-wide',
+								size: 'taxeon-wide',
 								sizes: '(max-width: 820px) 100vw, 50vw',
 								altFrom: fields.title.text,
 								class: 'block aspect-16/11 w-full object-cover'
@@ -142,7 +142,7 @@
 					{% else %}
 						{% include 'components/image.twig' with {
 							id: fields.image.ID,
-							size: 'raks-wide',
+							size: 'taxeon-wide',
 							sizes: '(max-width: 820px) 100vw, 50vw',
 							altFrom: fields.title.text,
 							class: 'w-full rounded-panel object-cover shadow-mid'

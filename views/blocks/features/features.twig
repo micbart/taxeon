@@ -1,7 +1,7 @@
 {#
 	Title: Wyróżniki
 	Description: Siatka kafli z ikoną, opcjonalnie na zdjęciu w tle — sekcja „Dlaczego"
-	Category: raks
+	Category: taxeon
 	Icon: awards
 	HideFieldsInSidebar: true
 	ExpandedEditorButtons: true
@@ -28,7 +28,7 @@
 	{% if fields.background_image %}
 		{% include 'components/image.twig' with {
 			id: fields.background_image.ID,
-			size: 'raks-wide-2x',
+			size: 'taxeon-wide-2x',
 			sizes: '100vw',
 			alt: '',
 			class: 'absolute inset-0 z-0 size-full overflow-hidden rounded-section object-cover object-[50%_40%] max-md:rounded-section-sm'

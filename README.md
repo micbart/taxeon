@@ -1,6 +1,6 @@
-# Raks 2.0
+# Taxeon
 
-Motyw WordPress dla RAKS. Timber 2 (Twig) + Vite 6 + Tailwind CSS 4 + SCSS.
+Motyw WordPress dla TAXEON. Timber 2 (Twig) + Vite 6 + Tailwind CSS 4 + SCSS.
 Bez WooCommerce.
 
 Autor: Michał Bartczak
@@ -28,78 +28,11 @@ po ubiciu `npm run dev` strona sama wraca na zbudowane pliki.
 
 Zmiana pliku `.twig` lub `.php` wymusza pełne przeładowanie przeglądarki.
 
-## Treść demonstracyjna
-
-```bash
-wp eval-file wp-content/themes/raks/bin/seed-front-page.php
-wp eval-file wp-content/themes/raks/bin/seed-blog.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-produkty.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-modele.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-firma.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-wsparcie.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-wyprobuj.php
-wp eval-file wp-content/themes/raks/bin/seed-pages-sklep.php
-```
-
-### Uwagi klienta
-
-Poprawki treści z kolejnych rund uwag mają własne skrypty. W odróżnieniu od
-seederów są punktowe — zmieniają wskazane pola i nie nadpisują reszty, więc
-można je puścić na instalacji, w której redakcja już coś edytowała:
-
-```bash
-wp eval-file wp-content/themes/raks/bin/uwagi-1.php
-```
-
-Runda 1 ustawia m.in. animacje w nagłówkach podstron, kadry zdjęć w sekcji
-„Wsparcie", adresy serwisów RAKS, style komórek w tabelach i dane rejestrowe
-na Kontakcie.
-
-Skrypty zmieniające treść stron zapisują ją przez `wp_slash()`.
-`wp_insert_post()` zdejmuje jeden poziom ukośników, więc bez tego `\uXXXX`
-w JSON-ie bloku traci backslash — `<b>` zamienia się w widoczne `u003cbu003e`,
-a przy `\"` cały blok przestaje się parsować. Atrybuty składa
-`serialize_block_attributes()`, nie `wp_json_encode`: rdzeń dodatkowo maskuje
-`<`, `>`, `&` i `--`, żeby treść nie rozbiła komentarza HTML.
-
-### Tło nagłówka
-
-Adres strumienia wideo w hero jest jeden dla wszystkich stron —
-`raks_seed_hero_video()` w `bin/seed-helpers.php`. Odtwarzaniem steruje
-`src/js/app/heroVideo.js`, który poniżej 920 px, przy `prefers-reduced-motion`
-i przy oszczędzaniu danych zostawia sam gradient.
-
-Podstrony mają zamiast wideo animację liczoną w przeglądarce — pole „Rodzaj
-tła → Animacja" w bloku Hero, obsługa w `src/js/app/heroBackground.js`.
-`bands` to własny shader bez zależności; `fog`, `clouds`, `cells`, `net`
-i `birds` to Vanta na three.js, doładowywane dynamicznym `import()`, więc
-strony bez animacji nie pobierają tych paczek. Warunki wstrzymania są te same
-co przy wideo. Szablony bez bloku Hero (blog, wpis, listing i strona
-szkolenia) ustawiają `data-hero-bg` wprost.
-
-Uwaga na `canPlayType('application/vnd.apple.mpegurl')`: Chrome odpowiada
-**„maybe"**, choć HLS-a nie odtworzy. Sprawdzanie tego przed `Hls.isSupported()`
-ustawia mu adres `.m3u8` w `src` i kończy się `networkState 3` — wideo nie
-ładuje się w ogóle, a że plakat i tak zostaje, awaria jest cicha. Kolejność
-w `attachHls()` jest więc odwrotna: najpierw hls.js, natywne odtwarzanie
-zostaje dla Safari.
-
-Wspólne funkcje seederów siedzą w `bin/seed-helpers.php` — dołącza je każdy
-z nich, żeby logika spłaszczania pól nie rozjechała się między kopiami.
-
-Pierwszy skrypt buduje stronę główną z ośmiu bloków, wgrywa zdjęcia
-z `projekt/assets`, tworzy strony docelowe linków, wypełnia Opcje motywu
-i zakłada menu. Drugi dodaje kategorie z kolorami i dziesięć wpisów.
-
-Oba są idempotentne: obrazki rozpoznają po metadanej `_raks_seed_source`,
-strony i wpisy po slugu. Klucze pól ACF czytają z `acf-json/`, więc zmiana
-definicji pola nie rozjedzie się z seederem.
-
 ## Kontrola
 
 ```bash
-php wp-content/themes/raks/bin/lint-templates.php
-wp eval-file wp-content/themes/raks/bin/check-icons.php
+php wp-content/themes/taxeon/bin/lint-templates.php
+wp eval-file wp-content/themes/taxeon/bin/check-icons.php
 ```
 
 Zrzuty mobilne robimy przez `<iframe style="width:390px">` na tej samej domenie —
@@ -130,7 +63,7 @@ app/                 PHP, PSR-4 pod App\
   Providers/         ACF, blog, typy treści
   PostTypes/         AbstractPostType — baza pod CPT (na razie żadnego nie rejestrujemy)
   Services/          cache, media, logowanie, okruszki, konteksty, reCAPTCHA + leady
-  Api/               REST: /raks/v1/contact, /raks/v1/posts
+  Api/               REST: /taxeon/v1/contact, /taxeon/v1/posts
 views/               Twig
   layouts/base.twig  szkielet dokumentu
   templates/         front-page, page, archive, post, search, 404
@@ -179,7 +112,6 @@ Uwaga na dwie rzeczy:
 | `base/_base.scss` | globalne `:focus-visible`, klasa `.screen-reader-text` wypisywana przez WordPressa |
 | `base/_prose.scss` | treść z edytora — nie dopniemy klas do `<h2>`, `<li>`, `<blockquote>` |
 | `base/_animations.scss` | `.reveal` — klasę `in` dokłada IntersectionObserver |
-| `blocks/support/support.scss` | rozsuwanie kafli wymaga `:hover .is-active:not(:hover)` |
 | `admin.scss` | panel WordPressa, poza zasięgiem Tailwinda |
 
 `main.scss` ładuje je przez `meta.load-css()` wewnątrz `@layer base` /
@@ -228,14 +160,13 @@ nagłówek i przyciski dobierają wariant.
 Uwaga przy dodawaniu pól: nazwa `background` jest zajęta przez ustawienia
 sekcji. Zdjęcie tła w bloku „Wyróżniki” nazywa się dlatego `background_image`.
 
-
 Blok = katalog `views/blocks/<nazwa>/<nazwa>.twig` z nagłówkiem w komentarzu Twiga:
 
 ```twig
 {#
 	Title: Hero
 	Description: Sekcja otwierająca
-	Category: raks
+	Category: taxeon
 	Icon: cover-image
 	Mode: preview
 	EnqueueStyle: src/blocks/hero/hero.scss
@@ -306,11 +237,10 @@ Rejestracja jest automatyczna (`AcfTimberBlocks`), a `EnqueueStyle` dociąga
 style tylko wtedy, gdy blok faktycznie jest na stronie. Vite sam wykrywa nowe
 wejścia w `src/blocks/*` — po dodaniu katalogu wystarczy restart `npm run dev`.
 
-Gotowe bloki: `hero`, `choice`, `programs`, `features`, `support`, `advisor`,
-`latest-posts`, `cta`, `contact`, `pricing`, `table`, `content-media`,
-`timeline`, `stats`, `faq`, `trial-wizard`.
+Gotowe bloki: `hero`, `features`, `latest-posts`, `cta`, `contact`, `pricing`,
+`table`, `content-media`, `timeline`, `stats`, `faq`.
 
-Partiale bloku (np. kroki kreatora) mogą leżeć w jego katalogu — rejestracja
+Partiale bloku (np. powtarzalny element) mogą leżeć w jego katalogu — rejestracja
 pomija pliki `.twig` bez nagłówków `Title` i `Category`.
 
 ### Przełączniki opisują odstępstwo, nie stan domyślny
@@ -322,212 +252,16 @@ wiadomości wszystkim formularzom złożonym przed jego dodaniem — bez błędu
 bez śladu w logach. Dlatego nowe przełączniki pytają o odstępstwo:
 `hide_message`, `consent_optional`. Brak wartości znaczy „jak dotąd”.
 
-## Zgodność z projektem
-
-Statyczny projekt w `projekt/` jest **w połowie przerobiony**: cztery główne
-strony (`index`, `ksiegowy`, `kadrowy`, `sprzedaz`) mają nadpisania inline,
-których nie ma na pozostałych. Dwie decyzje podjęte na tej podstawie:
-
-| element | projekt | motyw | dlaczego |
-|---|---|---|---|
-| nadkreślenie sekcji | `--accent` w CSS, ale 3 z 6 nadpisane na `#161c66` | `--accent-strong` (#161c66) | edycje idą tylko w jedną stronę; jaśniejszy granat czyta się jako akcent, a nie jako kolejny nagłówek |
-| `h2` nagłówka sekcji | CSS `clamp(30,4vw,46)`, ale 11 z 17 nadpisane na 40px | 40px | większość nadpisań i wszystkie na najświeższych stronach |
-
-Obie zmienia się w jednym miejscu: kolor w `components/eyebrow.twig`, rozmiar
-w `components/section-head.twig`.
-
-Pozostałe nagłówki mają w projekcie własne rozmiary per komponent i motyw je
-odwzorowuje: `.split h2` → 34, `.form-card h2` → 26, `.cta-band h2` → 48,
-`.advisor__intro h2` → 32, `.tl-item h3` → 19.
-
-**Uwaga na interlinię.** Wbudowane rozmiary Tailwinda (`text-base`, `text-xl`,
-`text-sm`) niosą własną, ciaśniejszą interlinię, a projekt dziedziczy 1.6
-z `body`. Tam, gdzie ma być jak w projekcie, trzeba dopisać `leading-[1.6]` —
-własne tokeny (`text-body`, `text-lead`…) są celowo bez interlinii i dziedziczą.
-
-Mobile projektu jest niedokładne i **nie jest wzorcem**: `.btn` ma tam
-`white-space: nowrap`, przez co długie etykiety wychodzą poza tło przycisku.
-Motyw pozwala im się zawinąć.
-
-## Produkty ze sklepu
-
-Szkolenia i pozostałe produkty żyją w **sklepie** (raks-szkolenia /
-sklep.raks.pl). Ta witryna trzyma ich kopię jako typ treści `produkt`
-z taksonomią `kategoria-produktu` (odwzorowanie `product_cat`), żeby dało się
-je linkować, wyszukiwać i indeksować.
-
-Ścieżka użytkownika ma dwa kroki: **listing prowadzi na naszą stronę
-szkolenia**, i dopiero stamtąd przycisk „Zapisz się” wychodzi do sklepu.
-Czytelnik najpierw widzi opis, termin i program, a wychodzi na zewnątrz
-dopiero wtedy, gdy chce się zapisać — koszyk i sesja żyją w sklepie.
-
-Nazwa typu jest ogólna, nie „Szkolenie”: jadą tu **wszystkie** produkty, także
-aktualizacje i licencje. Podział robi kategoria, gdzie „Szkolenia” to jedna
-z nich.
-
-### Jak to płynie
-
-```
-sklep: zapis produktu
-   └─ App\Sync\ProductPusher (motyw raks-szkolenia)
-        └─ POST /wp-json/raks/v1/sklep/produkt   ← podpis HMAC
-             └─ App\Api\ApiShopProduct
-                  └─ App\Services\Shop\ProductSync → wpis `produkt`
-```
-
-Pełny import (nowa witryna, odtworzenie po awarii), po stronie sklepu:
-
-```bash
-wp raks sync-products            # wszystko
-wp raks sync-products --dry-run  # tylko podgląd, nic nie wysyła
-wp raks sync-products --id=83    # jeden produkt
-```
-
-Jest idempotentny: wpisy rozpoznajemy po `_shop_id`, więc powtórzenie niczego
-nie dubluje. Slug ani tytuł by się do tego nie nadały — jedno i drugie da się
-zmienić w sklepie, a produkty o nazwie „Szkolenie” są tam dwa.
-
-### Zakres i dostępność
-
-Do raks jadą **tylko szkolenia** — produkty z kategorii `szkolenia`. Nie flaga
-`_is_training`: w sklepie bywa nieustawiona nawet przy produktach ewidentnie
-będących szkoleniami („Szkolenie z KSeF” ma ją na `no`), a kategoria jest tym,
-co redakcja widzi i czym steruje. Zakres zmienia filtr `raks_sync_categories`
-po stronie sklepu.
-
-Produkt, który **wypada z zakresu** (np. przeniesiony do innej kategorii),
-sklep wysyła z `listed = no`. Wtedy:
-
-* jeśli strona już u nas istnieje — **zostaje pod swoim adresem**, znika tylko
-  z list. Kasowanie dałoby 404 pod adresem, który mógł już gdzieś trafić,
-  a zmiana kategorii to nie to samo co usunięcie;
-* jeśli nigdy jej nie było — nie zakładamy jej.
-
-Kosz po naszej stronie robi dopiero **skasowanie produktu w sklepie** (wtedy
-`status` przychodzi jako `trash`).
-
-**Slug ustawiamy tylko przy zakładaniu wpisu.** Zmiana adresu produktu
-w sklepie nie przenosi naszej strony pod nowy adres — inaczej stary zacząłby
-dawać 404, czyli dokładnie to, przed czym broni `listed`.
-
-Listy pokazują domyślnie **tylko dostępne**: szkolenie po terminie i produkt
-niedostępny znikają. Regułę trzyma `App\Services\Shop\ProductQuery` i używają
-jej oba widoki — blok przez funkcję Twiga, archiwum kategorii przez
-`pre_get_posts` (tam filtrujemy w zapytaniu, żeby stronicowanie nie liczyło
-pozycji, których nikt nie zobaczy). Produkt bez terminu nie ma czemu wygasnąć,
-więc zostaje.
-
-### Konfiguracja
-
-Po obu stronach ten sam sekret; stała w `wp-config.php` ma pierwszeństwo nad
-opcją w bazie (na produkcji lepiej trzymać go poza bazą, żeby nie wyszedł
-z kopią zapasową):
-
-| gdzie | stała | opcja |
-|---|---|---|
-| sklep | `RAKS_SYNC_URL`, `RAKS_SYNC_SECRET` | `raks_sync_url`, `raks_sync_secret` |
-| raks | `RAKS_SYNC_SECRET` | `raks_sync_secret` |
-
-Bez sekretu endpoint odrzuca **wszystko** — nie ma trybu otwartego, bo ten
-punkt zapisuje do bazy.
-
-### Wdrożenie na produkcję
-
-Na hostingu **nie ma konsoli ani WP-CLI**, więc wszystko robi się przez panel
-i FTP. Kolejność ma znaczenie: sklep zacznie wypychać produkty od razu po
-wgraniu plików, więc druga strona musi być gotowa pierwsza.
-
-**1. Wspólny sekret.** Wygeneruj jeden ciąg (np. 64 znaki szesnastkowe)
-i użyj tej samej wartości po obu stronach.
-
-**2. `wp-config.php` na witrynie raks** — przez FTP, nad linią
-`/* That's all, stop editing! */`:
-
-```php
-define('RAKS_SYNC_SECRET', 'tutaj-wygenerowany-sekret');
-```
-
-**3. Wgraj motyw raks**, aktywuj go, a potem wejdź w
-**Ustawienia → Bezpośrednie odnośniki** i kliknij **Zapisz**. Typ treści
-`produkt` i taksonomia `kategoria-produktu` są nowe — bez tego ich adresy
-i endpoint synchronizacji dadzą 404.
-
-**4. Wgraj na sklep** katalog `app/Sync/` i zmiany w `functions.php`.
-
-**5. Przebuduj autoloader sklepu.** Motyw ładuje klasy przez `classmap`, więc
-`App\Sync\*` nie istnieje, dopóki nie odświeży się `vendor/composer/`.
-Bez konsoli są dwie drogi:
-
-  * uruchom lokalnie `composer dump-autoload` i wgraj przez FTP cały katalog
-    `vendor/composer/` (to tylko kilka plików z listą klas), **albo**
-  * wgraj `vendor/` w całości razem z motywem.
-
-To najczęstsza przyczyna „wgrałem i nic się nie dzieje”: WordPress milczy,
-dopóki ktoś nie zapisze produktu.
-
-**6. W panelu sklepu: Narzędzia → Synchronizacja z raks.**
-
-  1. wpisz adres witryny raks (z podkatalogiem, bez ukośnika na końcu)
-     i sekret, zapisz — albo ustaw stałe `RAKS_SYNC_URL` i `RAKS_SYNC_SECRET`
-     w `wp-config.php` sklepu, wtedy pola są zablokowane i wygrywają stałe;
-  2. **Sprawdź połączenie** — wysyła podpisane żądanie próbne, niczego nie
-     zapisuje;
-  3. **Wyślij wszystkie** — import leci partiami z podglądem postępu.
-
-Od tej chwili każdy zapis produktu w sklepie jedzie do raks sam.
-
-#### Co potrafi pójść nie tak
-
-| komunikat | przyczyna |
-|---|---|
-| Podpis odrzucony | inny sekret po obu stronach albo zegary serwerów rozjechane o ponad 5 minut |
-| Witryna raks jest zabezpieczona hasłem serwera | Basic Auth na środowisku przedprodukcyjnym — zdejmij je albo dopuść adres IP sklepu |
-| Nie znaleziono endpointu | motyw raks niewgrany/nieaktywny albo nieodświeżone bezpośrednie odnośniki |
-| Nie udało się połączyć | sklep nie dosięga raks — firewall, DNS, blokada połączeń wychodzących |
-| cisza po zapisie produktu, ale „Wyślij wszystkie” działa | nieprzebudowany autoloader sklepu (punkt 5) |
-
-Dla środowisk z konsolą te same czynności robią `wp raks sync-check`
-i `wp raks sync-products` (`--dry-run`, `--id=`).
-
-### Bezpieczeństwo
-
-Podpisujemy treść razem ze znacznikiem czasu:
-
-```
-X-Raks-Timestamp: <czas uniksowy>
-X-Raks-Signature: sha256=HMAC(sekret, "<timestamp>.<treść>")
-```
-
-Znacznik starszy niż pięć minut odrzucamy: sam podpis treści dałoby się
-powtórzyć w nieskończoność i odtworzyć starą cenę.
-
-Wszystko, co przychodzi, jest traktowane jak dane z zewnątrz — teksty przez
-sanitizery, opis przez `wp_kses_post`, a obrazek pobieramy dopiero po
-sprawdzeniu, że adres należy do domeny sklepu (`media_sideload_image` ściągnie
-wszystko, co dostanie).
-
-**Uwaga na kosz.** `post_status => 'any'` w WP_Query **nie obejmuje** kosza,
-więc wyszukiwanie po `_shop_id` musi wypisywać statusy wprost. Bez tego produkt
-przywrócony w sklepie zakładał tutaj drugi wpis obok pierwszego.
-
 ## Formularze
 
-Wszystkie zgłoszenia idą jedną drogą: `POST /raks/v1/contact` → reCAPTCHA v3
-→ tabela leadów. Formularz rozpoznajemy po polu `form` (`contact`, `demo`,
-`trial`), a pola spoza standardowego zestawu lądują w kolumnie `payload`
-jako JSON — stamtąd czytamy NIP zebrany przez kreator.
+Wszystkie zgłoszenia idą jedną drogą: `POST /taxeon/v1/contact` → reCAPTCHA v3
+→ tabela leadów. Formularz rozpoznajemy po polu `form`, a pola spoza standardowego zestawu
+lądują w kolumnie `payload` jako JSON.
 
 Wiadomość i zgoda są wymagane **warunkowo** — sprawdzamy je tylko wtedy, gdy
 formularz w ogóle je przysłał. Zapis na demo nie ma pola wiadomości, a zapis
 na test zbiera dobrowolną zgodę marketingową pod nazwą `marketing`; `consent`
 znaczy zgodę wymaganą i nic innego.
-
-`GET /raks/v1/nip` uzupełnia dane firmy w kreatorze z wykazu podatników VAT
-Ministerstwa Finansów (publiczny, bez klucza — `raks_nip_lookup_url` pozwala
-podmienić dostawcę). Sumę kontrolną NIP-u liczymy u siebie, żeby literówka
-nie wychodziła poza serwer; odpowiedzi trzymamy dobę w transiencie. Awaria
-rejestru nie blokuje formularza — odsłania pole nazwy firmy do wpisania
-ręcznie.
 
 Poza ustawieniami sekcji bloki mają własne przełączniki układu — po to, żeby
 jeden blok obsłużył kilka miejsc w serwisie:
@@ -538,7 +272,7 @@ jeden blok obsłużył kilka miejsc w serwisie:
 | `hero` | `show_breadcrumbs` | okruszki w nagłówku podstrony |
 | `hero` | `media_type`: gradient / wideo / zdjęcie | przyciemnienie dokładane tylko pod medium |
 | `hero` | `text_width`: ograniczona / pełna | krótki tytuł wyśrodkowany vs długi na podstronie |
-| `features` | `layout`: kafle / lista | „Dlaczego RAKS" vs „Kluczowe funkcje" |
+| `features` | `layout`: kafle / lista | „Dlaczego my" vs „Kluczowe funkcje" |
 | `features` | `columns`: 1–4 | gęstość siatki |
 | `choice` | `columns`: 2–4, `featured` na karcie | „Chmura vs lokalnie" (2, jedna ciemna) vs „Elementy systemu" (3 jasne) |
 | `pricing` | `columns`, `featured` na karcie | warianty abonamentu |
@@ -549,17 +283,7 @@ jeden blok obsłużył kilka miejsc w serwisie:
 | `contact` | `info_cards`, `map_embed` | z kolumną boczną formularz przechodzi na lewo i przejmuje tytuł |
 | `cta` | `variant`: jasny / ciemny | pas rozbijający sekcje |
 
-Trzy strony produktowe (Księgowy, Kadrowo-Płacowy, Sprzedaż i Magazyn) mają
-identyczną strukturę siedmiu sekcji, z czego **sześć to bloki użyte już na
-stronie głównej** — różnią się wyłącznie ustawieniami. Blok „Wyróżniki"
-występuje na nich trzy razy z rzędu w trzech różnych konfiguracjach: lista
-w dwóch kolumnach, kafle na zdjęciu w trzech, kafle na szarym w czterech.
-
-Dlatego jest jeden `bin/seed-pages-produkty.php` i jeden plik danych
-`bin/pages-produkty-dane.php` wygenerowany z `projekt/*.html` — treść nie
-była przepisywana ręcznie.
-
-Bloki nie mają własnych plików SCSS (poza `support`) — ich wygląd to utility
+Bloki nie mają własnych plików SCSS — ich wygląd to utility
 w `.twig`, więc `EnqueueStyle` pojawia się tylko tam, gdzie faktycznie jest
 arkusz.
 
@@ -622,16 +346,16 @@ Ustawienia → Bezpośrednie odnośniki.
 ## Blog
 
 - Archiwum: wyróżniony wpis (najnowszy, wycięty z siatki) + siatka 9 kart.
-- Filtr kategorii działa przez AJAX (`/wp-json/raks/v1/posts`), karty renderuje
+- Filtr kategorii działa przez AJAX (`/wp-json/taxeon/v1/posts`), karty renderuje
   serwer z `components/post-card.twig`, stan trafia do URL-a (`?kategoria=…`).
 - Kolor kategorii: pole ACF `color` na taksonomii `category`, wstawiane jako
   `--term-color`. Bez pola badge używa koloru akcentu.
 
 ## Formularze
 
-Blok `contact` wysyła dane do `POST /wp-json/raks/v1/contact`. Endpoint
+Blok `contact` wysyła dane do `POST /wp-json/taxeon/v1/contact`. Endpoint
 weryfikuje reCAPTCHA v3, ma honeypot i limit żądań na IP, zapisuje zgłoszenie
-do tabeli `{prefix}_raks_leads` i wysyła powiadomienie e-mail.
+do tabeli `{prefix}_taxeon_leads` i wysyła powiadomienie e-mail.
 
 Zgłoszenia: panel → **Zgłoszenia** (filtrowanie, statusy, eksport CSV).
 
@@ -698,28 +422,14 @@ plik; wtedy renderujemy `<img>` i potrzebne są obie wersje kolorystyczne.
 `images/logo.png` zostaje wyłącznie dla ekranu logowania, gdzie logo jest
 tłem CSS i `currentColor` nie zadziała.
 
-## Zgodność z layoutem
+## Zgodność z projektem
 
-Wartości pochodzą z `projekt/styles.css` **oraz z nadpisań inline
-w `projekt/index.html`** — autor layoutu wymusił tam rozmiary inne niż
-domyślne z arkusza i to one są docelowe:
+Projekt w `projekt/` to eksport z Claude Design: style w całości inline,
+progi mobilne w `projekt/css/*.css`. Wartości przenosimy dokładnie z niego,
+dwie pułapki:
 
-| element | wartość | skąd |
-|---|---|---|
-| tytuł hero | 52 px, `#ebeef0` | inline w index.html |
-| podtytuł hero | 20 px | inline |
-| odstępy hero | 54 px / 132 px | inline |
-| nagłówki sekcji | 40 px | inline, 4 wystąpienia |
-
-W motywie są zapisane jako `clamp()` z maksimum równym wartości z projektu,
-żeby nie rozsypały się na wąskich ekranach.
-
-Dwie pułapki, o które łatwo się potknąć przy edycji:
-
-- **Tokeny rozmiaru tekstu nie niosą interlinii.** W layoucie ten sam rozmiar
-  bywa łamany różnie (15,5 px raz z 1,6, raz z 1,55), więc interlinia
-  dziedziczy się z `body` (`leading-[1.6]` ustawione jawnie w `base.twig` —
-  Preflight dałby 1.5), a odstępstwa zapisujemy jako `leading-[1.55]`.
-- **Krycia bieli to dokładne wartości z projektu**, nie skala Tailwinda:
-  `/6`, `/7`, `/12`, `/14`, `/16`, `/22`, `/28`, `/75`, `/76`, `/78`, `/82`,
-  `/92`. Zaokrąglenie do `/5`, `/10`, `/15`, `/20` widać na ciemnych tłach.
+- **Tokeny rozmiaru tekstu nie niosą interlinii.** Ten sam rozmiar bywa w projekcie
+  łamany różnie, więc interlinia dziedziczy się z `body` (`leading-[1.6]` ustawione
+  jawnie w `base.twig` — Preflight dałby 1.5), a odstępstwa zapisujemy w szablonie.
+- **Krycia to dokładne wartości z projektu**, nie skala Tailwinda — zaokrąglenie
+  do `/5`, `/10`, `/15` widać na ciemnych tłach.

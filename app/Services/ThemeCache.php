@@ -44,9 +44,7 @@ class ThemeCache
 		update_option(self::versionKey($group), self::version($group) + 1, true);
 	}
 
-	private const DEFAULTS = [
-		'hero_video' => 'https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8',
-	];
+	private const DEFAULTS = [];
 
 	public static function options(): array
 	{
@@ -69,11 +67,11 @@ class ThemeCache
 
 	private static function versionKey(string $group): string
 	{
-		return "raks_cache_ver_{$group}";
+		return "taxeon_cache_ver_{$group}";
 	}
 
 	private static function transientKey(string $group, string $key): string
 	{
-		return 'raks_' . $group . '_' . self::version($group) . '_' . $key;
+		return 'taxeon_' . $group . '_' . self::version($group) . '_' . $key;
 	}
 }

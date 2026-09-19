@@ -1,9 +1,9 @@
 {
-    "key": "group_d26df506b8d70",
-    "title": "Blok: Oś czasu",
+    "key": "group_a92bc9ded2f0c",
+    "title": "Blok: Pytania i odpowiedzi",
     "fields": [
         {
-            "key": "field_77f3fc220b768",
+            "key": "field_3ca42c507274a",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_de5f105b733f9",
+            "key": "field_175f18e3d71e4",
             "label": "Nadkreślenie",
             "name": "eyebrow",
             "type": "group",
@@ -34,7 +34,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_83c39e425757c",
+                    "key": "field_b7ad0fc401599",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -53,7 +53,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_0aa4b90fa20dc",
+                    "key": "field_98b20b24651aa",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "key": "field_d8f7c013c9d04",
+            "key": "field_a51438bdace31",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -96,7 +96,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_9bc629e4c587a",
+                    "key": "field_2d3d2c2b215ed",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -115,7 +115,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_917520df5a73a",
+                    "key": "field_2a51c3324bfe1",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "key": "field_a4bf87c98174d",
+            "key": "field_3878a022cc559",
             "label": "Opis",
             "name": "text",
             "type": "group",
@@ -162,7 +162,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_9a2b3a69014bf",
+                    "key": "field_313df75d3765f",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -181,7 +181,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_93a0ce632ee3e",
+                    "key": "field_18dd7846fd916",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -209,8 +209,99 @@
             ]
         },
         {
-            "key": "field_164fbe3c2e015",
-            "label": "Wydarzenia",
+            "key": "field_c89e4700d3a10",
+            "label": "Nagłówek sekcji",
+            "name": "align",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Do lewej",
+                "center": "Wyśrodkowany"
+            },
+            "default_value": "left",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_f2c483fbe519a",
+            "label": "Kolumny",
+            "name": "columns",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "1",
+                "2": "2"
+            },
+            "default_value": "1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_90c862dd5cbed",
+            "label": "Tylko jedna odpowiedź naraz",
+            "name": "single",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_3bcd91ab20085",
+            "label": "Ikona przy pytaniu",
+            "name": "icon",
+            "type": "select",
+            "instructions": "Puste = „plus”. Ikona obraca się o 45° po rozwinięciu.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_017d999e5bf96",
+            "label": "Pytania",
             "name": "items",
             "type": "repeater",
             "instructions": "",
@@ -221,16 +312,16 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_6d52abc1694b8",
+            "collapsed": "field_d1fbcafcf93da",
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "Dodaj wydarzenie",
+            "button_label": "Dodaj pytanie",
             "sub_fields": [
                 {
-                    "key": "field_6d52abc1694b8",
-                    "label": "Rok / okres",
-                    "name": "year",
+                    "key": "field_d1fbcafcf93da",
+                    "label": "Pytanie",
+                    "name": "question",
                     "type": "text",
                     "instructions": "",
                     "required": 1,
@@ -247,10 +338,10 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_c1967c6827186",
-                    "label": "Tytuł",
-                    "name": "title",
-                    "type": "group",
+                    "key": "field_e1c8c00f86e2c",
+                    "label": "Odpowiedź",
+                    "name": "answer",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -259,125 +350,16 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_0b842da5f89c7",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_f9c6ab6e801e9",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "h1": "h1",
-                                "h2": "h2",
-                                "h3": "h3",
-                                "h4": "h4",
-                                "p": "p",
-                                "span": "span",
-                                "div": "div"
-                            },
-                            "default_value": "h3",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
-                },
-                {
-                    "key": "field_e1b8a918cef1a",
-                    "label": "Opis",
-                    "name": "text",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_310acec46fbb2",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 3,
-                            "new_lines": ""
-                        },
-                        {
-                            "key": "field_4c094fd958711",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "p": "p",
-                                "div": "div",
-                                "span": "span"
-                            },
-                            "default_value": "p",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
                 }
             ]
         },
         {
-            "key": "field_daa54b854964f",
+            "key": "field_dc8bddf2cbfa4",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -393,7 +375,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_547c6210a1f44",
+            "key": "field_62bff1cabdd20",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -420,7 +402,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_614086d909c82",
+            "key": "field_c78f435f7a838",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -447,7 +429,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_bfbdea10a41f1",
+            "key": "field_02f3fadf0a7fa",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -473,7 +455,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_8f6916c600072",
+            "key": "field_03a66dcd769b3",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",
@@ -504,7 +486,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/timeline"
+                "value": "acf/faq"
             }
         ]
     ],

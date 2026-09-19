@@ -1,6 +1,6 @@
 {
-	"name": "raks/raks-theme",
-	"description": "Motyw Raks 2.0 — Timber 2 + Vite + Tailwind 4",
+	"name": "taxeon/taxeon-theme",
+	"description": "Motyw Taxeon — Timber 2 + Vite + Tailwind 4",
 	"type": "wordpress-theme",
 	"license": "proprietary",
 	"minimum-stability": "stable",

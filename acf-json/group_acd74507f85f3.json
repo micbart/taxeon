@@ -1,9 +1,9 @@
 {
-    "key": "group_037b23881351e",
+    "key": "group_acd74507f85f3",
     "title": "Blok: Treść + media",
     "fields": [
         {
-            "key": "field_833dc3f80e7b2",
+            "key": "field_febce89fd9d09",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_83407ce7f979f",
+            "key": "field_38d1b8a5796d1",
             "label": "Nadkreślenie",
             "name": "eyebrow",
             "type": "group",
@@ -34,7 +34,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_ebb3c934e59a4",
+                    "key": "field_ec07cfe57cf80",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -53,7 +53,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_331ea1adb74b2",
+                    "key": "field_6b07498b87c4a",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "key": "field_07ad2aa16c871",
+            "key": "field_b18fe1971f940",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -96,7 +96,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_728456727c696",
+                    "key": "field_e62f09185b2b2",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -115,7 +115,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_e6f9676cca52d",
+                    "key": "field_d85e2651857f7",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "key": "field_3a4fa09e9f290",
+            "key": "field_797b8db1aa7d1",
             "label": "Opis",
             "name": "text",
             "type": "group",
@@ -162,7 +162,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_c3e5cf9d5d05b",
+                    "key": "field_a5041db540bf9",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -181,7 +181,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_4ee759482adc7",
+                    "key": "field_9816cbd1a33b4",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -209,7 +209,7 @@
             ]
         },
         {
-            "key": "field_b1b707bfb7671",
+            "key": "field_0cac1c0349fd9",
             "label": "Media po stronie",
             "name": "media_position",
             "type": "select",
@@ -234,7 +234,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_a97be8dcfde03",
+            "key": "field_268d1293df1f8",
             "label": "Ramka",
             "name": "frame",
             "type": "select",
@@ -259,7 +259,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_ceb59d8be8017",
+            "key": "field_74639cf02f256",
             "label": "Podpis w pasku okna",
             "name": "frame_label",
             "type": "text",
@@ -268,7 +268,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_a97be8dcfde03",
+                        "field": "field_268d1293df1f8",
                         "operator": "==",
                         "value": "window"
                     }
@@ -286,7 +286,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_62d6df868ce0c",
+            "key": "field_b787a3c749151",
             "label": "Rodzaj mediów",
             "name": "media_type",
             "type": "select",
@@ -311,7 +311,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_6b6336b030b8a",
+            "key": "field_9843149affaad",
             "label": "Zdjęcie",
             "name": "image",
             "type": "image",
@@ -320,7 +320,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_62d6df868ce0c",
+                        "field": "field_b787a3c749151",
                         "operator": "==",
                         "value": "image"
                     }
@@ -343,7 +343,7 @@
             "mime_types": ""
         },
         {
-            "key": "field_47b2dcd9014e0",
+            "key": "field_8b82f5aaa7daf",
             "label": "Adres osadzenia",
             "name": "embed_url",
             "type": "text",
@@ -352,7 +352,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_62d6df868ce0c",
+                        "field": "field_b787a3c749151",
                         "operator": "==",
                         "value": "embed"
                     }
@@ -370,7 +370,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_cf7e6e95437dd",
+            "key": "field_a58cde4e157a1",
             "label": "Wysokość osadzenia (px)",
             "name": "embed_height",
             "type": "number",
@@ -379,7 +379,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_62d6df868ce0c",
+                        "field": "field_b787a3c749151",
                         "operator": "==",
                         "value": "embed"
                     }
@@ -399,7 +399,7 @@
             "append": ""
         },
         {
-            "key": "field_46a66be2311c5",
+            "key": "field_cf897f989520f",
             "label": "Lista punktów",
             "name": "items",
             "type": "repeater",
@@ -411,14 +411,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_b4206e4f93b52",
+            "collapsed": "field_757ef87fedb6a",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj punkt",
             "sub_fields": [
                 {
-                    "key": "field_db34752e80ac7",
+                    "key": "field_fa5219086e5b9",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -440,7 +440,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_bd69a6763ceeb",
+                    "key": "field_3c3c849e789a5",
                     "label": "Tytuł",
                     "name": "title",
                     "type": "group",
@@ -455,7 +455,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_8e0b96882db76",
+                            "key": "field_2bc8697aefe35",
                             "label": "Treść",
                             "name": "text",
                             "type": "text",
@@ -474,7 +474,7 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_aa055d92339bb",
+                            "key": "field_dd77c07e7554c",
                             "label": "Znacznik",
                             "name": "tag",
                             "type": "select",
@@ -506,7 +506,7 @@
                     ]
                 },
                 {
-                    "key": "field_b4206e4f93b52",
+                    "key": "field_757ef87fedb6a",
                     "label": "Tekst",
                     "name": "text",
                     "type": "text",
@@ -527,7 +527,7 @@
             ]
         },
         {
-            "key": "field_8317f409893c9",
+            "key": "field_97442329769a0",
             "label": "Wyrównanie kolumn",
             "name": "align",
             "type": "select",
@@ -552,7 +552,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_08fae7f54663f",
+            "key": "field_32424b0f87c02",
             "label": "Link tekstowy",
             "name": "link",
             "type": "link",
@@ -567,7 +567,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_65571a0bc3d72",
+            "key": "field_a2c6ad1d69949",
             "label": "Przycisk",
             "name": "button",
             "type": "group",
@@ -582,7 +582,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_675c146bb3ef7",
+                    "key": "field_f283384feabd6",
                     "label": "Link",
                     "name": "link",
                     "type": "link",
@@ -597,7 +597,7 @@
                     "return_format": "array"
                 },
                 {
-                    "key": "field_4ce956abc723a",
+                    "key": "field_a5fdb70e45a60",
                     "label": "Styl",
                     "name": "variant",
                     "type": "select",
@@ -625,7 +625,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6314f32d4a799",
+                    "key": "field_96fc2980de4cc",
                     "label": "Rozmiar",
                     "name": "size",
                     "type": "select",
@@ -650,7 +650,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_22e4dd395eb36",
+                    "key": "field_23133b32d1c4d",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -674,7 +674,7 @@
             ]
         },
         {
-            "key": "field_a3e2cf3b294d2",
+            "key": "field_8e12d2164a6fe",
             "label": "Dopisek",
             "name": "tab_footnote",
             "type": "tab",
@@ -690,7 +690,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_b5a4ef10902cc",
+            "key": "field_94884d6f48c43",
             "label": "Dopisek — wstęp",
             "name": "footnote_label",
             "type": "text",
@@ -709,7 +709,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_542f88c5361ff",
+            "key": "field_da324feb38408",
             "label": "Dopisek — ikona",
             "name": "footnote_icon",
             "type": "select",
@@ -731,7 +731,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_74882ba6cb740",
+            "key": "field_cae929e42f11a",
             "label": "Dopisek — odnośnik",
             "name": "footnote_link",
             "type": "link",
@@ -746,7 +746,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_b927492d2e74a",
+            "key": "field_e1423268eb961",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -762,7 +762,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_b5dc0e1b1059a",
+            "key": "field_b67c3228aa724",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -789,7 +789,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_b0325f5960ccf",
+            "key": "field_b6bb0ca034396",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -816,7 +816,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_d6b726a4e36dd",
+            "key": "field_e7850f974e548",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -842,7 +842,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_8266c8c09fda8",
+            "key": "field_e209c6e04bc5b",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",

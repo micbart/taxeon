@@ -55,7 +55,7 @@ function setupForm(form) {
 
 			form.reset();
 			setStatus(status, data.message || i18n('form.sent', 'Dziękujemy!'), 'success');
-			form.dispatchEvent(new CustomEvent('raks:contact-sent', { bubbles: true, detail: data }));
+			form.dispatchEvent(new CustomEvent('taxeon:contact-sent', { bubbles: true, detail: data }));
 		} catch {
 			setStatus(status, i18n('error', 'Coś poszło nie tak.'), 'error');
 		} finally {

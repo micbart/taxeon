@@ -21,7 +21,7 @@ class Hardening
 			return;
 		}
 
-		$headers = apply_filters('raks_security_headers', [
+		$headers = apply_filters('taxeon_security_headers', [
 			'X-Content-Type-Options' => 'nosniff',
 			'Referrer-Policy' => 'strict-origin-when-cross-origin',
 			'X-Frame-Options' => 'SAMEORIGIN',
@@ -37,7 +37,7 @@ class Hardening
 
 	public function xmlrpcEnabled(bool $enabled): bool
 	{
-		return (bool) apply_filters('raks_xmlrpc_enabled', false);
+		return (bool) apply_filters('taxeon_xmlrpc_enabled', false);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Hardening
 			return;
 		}
 
-		if (!apply_filters('raks_block_author_enumeration', true)) {
+		if (!apply_filters('taxeon_block_author_enumeration', true)) {
 			return;
 		}
 
@@ -75,7 +75,7 @@ class Hardening
 	 */
 	public function restrictUserEndpoints(array $endpoints): array
 	{
-		if (is_user_logged_in() || !apply_filters('raks_block_author_enumeration', true)) {
+		if (is_user_logged_in() || !apply_filters('taxeon_block_author_enumeration', true)) {
 			return $endpoints;
 		}
 

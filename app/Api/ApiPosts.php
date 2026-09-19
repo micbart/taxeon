@@ -60,7 +60,7 @@ class ApiPosts extends AbstractApi
 			'found' => (int) $query->found_posts,
 			'page' => $page,
 			'maxPages' => (int) $query->max_num_pages,
-			'emptyMessage' => __('Nie znaleziono wpisów w tej kategorii.', 'raks'),
+			'emptyMessage' => __('Nie znaleziono wpisów w tej kategorii.', 'taxeon'),
 		]);
 	}
 }

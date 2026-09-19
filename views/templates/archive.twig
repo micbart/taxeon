@@ -37,11 +37,11 @@
 
 				<div data-blog-filter
 					role="group"
-					aria-label="{{ __('Filtruj wpisy według kategorii', 'raks') }}"
+					aria-label="{{ __('Filtruj wpisy według kategorii', 'taxeon') }}"
 					class="mb-9 flex flex-wrap gap-2.5">
 
 					<a href="{{ blogUrl }}" data-category="all" data-active="{{ activeTerm ? 'false' : 'true' }}" class="{{ pill }}">
-						{{ __('Wszystkie', 'raks') }}
+						{{ __('Wszystkie', 'taxeon') }}
 					</a>
 
 					{% for term in filterTerms %}
@@ -77,7 +77,7 @@
 				<p data-blog-empty
 					{% if posts|length %}hidden{% endif %}
 					class="py-10 text-center text-base text-ink-3">
-					{{ __('Nie znaleziono wpisów.', 'raks') }}
+					{{ __('Nie znaleziono wpisów.', 'taxeon') }}
 				</p>
 			</div>
 
@@ -87,7 +87,7 @@
 						border-[color-mix(in_srgb,var(--color-accent)_42%,#fff)] bg-white px-[26px] py-3.5
 						font-sans text-base font-bold text-ink transition
 						hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong">
-					{{ __('Pokaż więcej', 'raks') }}
+					{{ __('Pokaż więcej', 'taxeon') }}
 				</button>
 			</div>
 

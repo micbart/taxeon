@@ -141,8 +141,8 @@ class Vite
 		}
 
 		self::$clientEnqueued = true;
-		wp_enqueue_script('raks-vite-client', self::devServerUrl() . '/@vite/client', [], null, false);
-		self::markAsModule('raks-vite-client');
+		wp_enqueue_script('taxeon-vite-client', self::devServerUrl() . '/@vite/client', [], null, false);
+		self::markAsModule('taxeon-vite-client');
 	}
 
 	private static function distUrl(string $file): string

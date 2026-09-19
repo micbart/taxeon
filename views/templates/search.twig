@@ -15,16 +15,16 @@
 				</h1>
 
 				<p class="mt-[22px] text-[clamp(17px,2vw,20px)] leading-relaxed text-white/78">
-					{{ __('Znaleziono wyników:', 'raks') }} {{ posts.found_posts ?? posts|length }}
+					{{ __('Znaleziono wyników:', 'taxeon') }} {{ posts.found_posts ?? posts|length }}
 				</p>
 
 				<form role="search" method="get" action="{{ site.url }}"
 					class="mt-7 flex max-w-[520px] gap-3 max-sm:flex-col">
-					<label class="sr-only" for="search-field">{{ __('Szukaj', 'raks') }}</label>
+					<label class="sr-only" for="search-field">{{ __('Szukaj', 'taxeon') }}</label>
 
 					<input id="search-field" type="search" name="s"
 						value="{{ fn('get_search_query') }}"
-						placeholder="{{ __('Czego szukasz?', 'raks') }}"
+						placeholder="{{ __('Czego szukasz?', 'taxeon') }}"
 						class="w-full flex-1 rounded-btn border-[1.5px] border-line bg-white px-4 py-3.5 text-[15px]
 							text-ink transition placeholder:text-ink-3
 							focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--color-accent)_16%,transparent)] focus:outline-none">
@@ -33,7 +33,7 @@
 						class="inline-flex items-center justify-center rounded-btn bg-cta px-[26px] py-3.5
 							font-sans text-base font-bold text-white shadow-cta transition
 							hover:-translate-y-0.5 hover:bg-cta-strong max-sm:w-full">
-						{{ __('Szukaj', 'raks') }}
+						{{ __('Szukaj', 'taxeon') }}
 					</button>
 				</form>
 			</div>
@@ -51,7 +51,7 @@
 
 				{% include 'components/pagination.twig' with { pagination: pagination } only %}
 			{% else %}
-				<p class="py-10 text-center text-base text-ink-3">{{ __('Brak wyników. Spróbuj innej frazy.', 'raks') }}</p>
+				<p class="py-10 text-center text-base text-ink-3">{{ __('Brak wyników. Spróbuj innej frazy.', 'taxeon') }}</p>
 			{% endif %}
 		</div>
 	</div>

@@ -5,7 +5,7 @@ namespace App\Services\Recaptcha;
 class LeadsRepository
 {
 	public const DB_VERSION = '1.0.0';
-	private const OPTION_VERSION = 'raks_leads_db_version';
+	private const OPTION_VERSION = 'taxeon_leads_db_version';
 
 	public function __construct()
 	{
@@ -17,7 +17,7 @@ class LeadsRepository
 	{
 		global $wpdb;
 
-		return $wpdb->prefix . 'raks_leads';
+		return $wpdb->prefix . 'taxeon_leads';
 	}
 
 	public function maybeUpgrade(): void

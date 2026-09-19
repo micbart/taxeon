@@ -8,7 +8,7 @@
 			<a href="{{ post.link }}" tabindex="-1" aria-hidden="true">
 				{% include 'components/image.twig' with {
 					id: post.thumbnail.ID,
-					size: 'raks-card',
+					size: 'taxeon-card',
 					sizes: '(max-width: 560px) 100vw, (max-width: 920px) 50vw, 33vw',
 					altFrom: post.title,
 					eager: eagerFirst ?? false,
@@ -44,7 +44,7 @@
 		<a href="{{ post.link }}"
 			class="group/link mt-[18px] inline-flex items-center gap-[7px] font-bold text-accent
 				[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
-			{{ __('Czytaj artykuł', 'raks') }}
+			{{ __('Czytaj artykuł', 'taxeon') }}
 			{{ 'arrow-right'|svg }}
 		</a>
 	</div>

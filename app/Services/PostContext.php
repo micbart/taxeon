@@ -42,17 +42,17 @@ class PostContext
 		return [
 			[
 				'icon' => 'facebook',
-				'label' => __('Udostępnij na Facebooku', 'raks'),
+				'label' => __('Udostępnij na Facebooku', 'taxeon'),
 				'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}",
 			],
 			[
 				'icon' => 'linkedin',
-				'label' => __('Udostępnij na LinkedIn', 'raks'),
+				'label' => __('Udostępnij na LinkedIn', 'taxeon'),
 				'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}",
 			],
 			[
 				'icon' => 'mail',
-				'label' => __('Wyślij e-mailem', 'raks'),
+				'label' => __('Wyślij e-mailem', 'taxeon'),
 				'url' => "mailto:?subject={$title}&body={$url}",
 			],
 		];

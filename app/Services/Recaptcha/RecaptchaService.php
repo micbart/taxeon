@@ -62,7 +62,7 @@ class RecaptchaService
 		}
 
 		if ($token === '') {
-			return ['success' => false, 'score' => 0.0, 'message' => __('Brak tokenu weryfikacji.', 'raks')];
+			return ['success' => false, 'score' => 0.0, 'message' => __('Brak tokenu weryfikacji.', 'taxeon')];
 		}
 
 		$response = wp_remote_post(self::ENDPOINT, [
@@ -78,7 +78,7 @@ class RecaptchaService
 			return [
 				'success' => false,
 				'score' => 0.0,
-				'message' => __('Nie udało się połączyć z usługą weryfikacji.', 'raks'),
+				'message' => __('Nie udało się połączyć z usługą weryfikacji.', 'taxeon'),
 			];
 		}
 
@@ -86,18 +86,18 @@ class RecaptchaService
 		$score = (float) ($body['score'] ?? 0);
 
 		if (empty($body['success'])) {
-			return ['success' => false, 'score' => $score, 'message' => __('Weryfikacja nie powiodła się.', 'raks')];
+			return ['success' => false, 'score' => $score, 'message' => __('Weryfikacja nie powiodła się.', 'taxeon')];
 		}
 
 		if ($expectedAction !== '' && ($body['action'] ?? '') !== $expectedAction) {
-			return ['success' => false, 'score' => $score, 'message' => __('Nieprawidłowa akcja weryfikacji.', 'raks')];
+			return ['success' => false, 'score' => $score, 'message' => __('Nieprawidłowa akcja weryfikacji.', 'taxeon')];
 		}
 
 		if ($score < $this->threshold()) {
 			return [
 				'success' => false,
 				'score' => $score,
-				'message' => __('Zgłoszenie zostało uznane za automatyczne.', 'raks'),
+				'message' => __('Zgłoszenie zostało uznane za automatyczne.', 'taxeon'),
 			];
 		}
 

@@ -18,12 +18,12 @@ const BUTTON_SIZES = ['base' => 'Zwykły', 'lg' => 'Duży'];
 
 function key_for(string $path): string
 {
-    return 'field_' . substr(md5('raks:' . $path), 0, 13);
+    return 'field_' . substr(md5('taxeon:' . $path), 0, 13);
 }
 
 function group_key(string $name): string
 {
-    return 'group_' . substr(md5('raks-group:' . $name), 0, 13);
+    return 'group_' . substr(md5('taxeon-group:' . $name), 0, 13);
 }
 
 function f(string $path, string $label, string $type, array $extra = []): array
@@ -259,7 +259,7 @@ $groups['options'] = [
             'instructions' => 'Każdy wiersz to osobna linia w stopce — makieta 1.1 łamie adres po ulicy.',
         ]),
         f('opt.remote_help', 'Przycisk „Pomoc zdalna”', 'link'),
-        f('opt.social_label', 'Podpis nad ikonami', 'text', ['default_value' => 'Obserwuj RAKS']),
+        f('opt.social_label', 'Podpis nad ikonami', 'text', ['default_value' => 'Obserwuj nas']),
         f('opt.social', 'Profile społecznościowe', 'repeater', [
             'button_label' => 'Dodaj profil',
             'instructions' => 'Kolejność ustawiasz przeciąganiem. Pusty adres pomija ikonę.',

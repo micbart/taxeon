@@ -73,8 +73,8 @@ class AcfSupports
 		}
 
 		acf_add_options_page([
-			'page_title' => __('Opcje motywu', 'raks'),
-			'menu_title' => __('Opcje motywu', 'raks'),
+			'page_title' => __('Opcje motywu', 'taxeon'),
+			'menu_title' => __('Opcje motywu', 'taxeon'),
 			'menu_slug' => 'theme-options',
 			'capability' => 'manage_options',
 			'redirect' => false,
@@ -106,7 +106,7 @@ class AcfSupports
 			$dir = get_template_directory() . '/src/svg';
 		}
 
-		$choices = ['' => __('— brak —', 'raks')];
+		$choices = ['' => __('— brak —', 'taxeon')];
 
 		foreach (glob($dir . '/*.svg') ?: [] as $file) {
 			$name = basename($file, '.svg');

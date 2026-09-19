@@ -1,9 +1,9 @@
 {
-    "key": "group_a4529a4b04b6c",
+    "key": "group_eb88dae047e07",
     "title": "Ustawienia kategorii",
     "fields": [
         {
-            "key": "field_0b68386161104",
+            "key": "field_c98ebdd6921e1",
             "label": "Kolor",
             "name": "color",
             "type": "color_picker",

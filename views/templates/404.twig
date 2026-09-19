@@ -8,7 +8,7 @@
 		<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
 			<div class="flex flex-col items-center pt-16 pb-21 text-center">
 				{% include 'components/eyebrow.twig' with {
-					text: __('Błąd 404', 'raks'),
+					text: __('Błąd 404', 'taxeon'),
 					color: 'text-deep-tint'
 				} only %}
 
@@ -20,23 +20,23 @@
 
 				<h1 class="max-w-[18ch] font-display text-[clamp(33px,4.6vw,54px)] leading-[1.08]
 					font-semibold tracking-[-0.02em] text-balance text-white">
-					{{ __('Nie znaleźliśmy tej strony', 'raks') }}
+					{{ __('Nie znaleźliśmy tej strony', 'taxeon') }}
 				</h1>
 
 				<p class="mt-[22px] max-w-[600px] text-[clamp(17px,2vw,20px)] leading-relaxed text-white/78">
-					{{ __('Strona mogła zostać przeniesiona lub usunięta. Sprawdź adres albo wróć na stronę główną.', 'raks') }}
+					{{ __('Strona mogła zostać przeniesiona lub usunięta. Sprawdź adres albo wróć na stronę główną.', 'taxeon') }}
 				</p>
 
 				<div class="mt-[34px] flex flex-wrap justify-center gap-3.5 max-sm:w-full max-sm:[&_a]:w-full">
 					{% include 'components/button.twig' with {
-						button: { url: site.url, title: __('Wróć na stronę główną', 'raks') },
+						button: { url: site.url, title: __('Wróć na stronę główną', 'taxeon') },
 						variant: 'on-navy',
 						size: 'lg'
 					} only %}
 
 					{% if getOption('page_for_posts') %}
 						{% include 'components/button.twig' with {
-							button: { url: getOption('page_for_posts')|getPermalink, title: __('Przejdź na bloga', 'raks') },
+							button: { url: getOption('page_for_posts')|getPermalink, title: __('Przejdź na bloga', 'taxeon') },
 							variant: 'ghost-navy',
 							size: 'lg'
 						} only %}

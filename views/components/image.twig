@@ -4,7 +4,7 @@
 	{% if image %}
 		{% set isSvg = image.post_mime_type == 'image/svg+xml' %}
 		{% set imageAlt = alt ?: (image.alt ?: (altFrom ? altFrom|striptags : '')) %}
-		{% set imageSize = size ?: 'raks-card' %}
+		{% set imageSize = size ?: 'taxeon-card' %}
 
 		<img
 			src="{{ isSvg ? image.src : image.src(imageSize) }}"

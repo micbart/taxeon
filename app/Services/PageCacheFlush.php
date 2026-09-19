@@ -4,7 +4,7 @@ namespace App\Services;
 
 class PageCacheFlush
 {
-	public const HOOK = 'raks_flush_page_cache';
+	public const HOOK = 'taxeon_flush_page_cache';
 
 	public function __construct()
 	{
@@ -34,7 +34,7 @@ class PageCacheFlush
 		$this->purgeW3TotalCache();
 		$this->purgeLiteSpeed();
 
-		do_action('raks_page_cache_flushed');
+		do_action('taxeon_page_cache_flushed');
 	}
 
 	private function purgeW3TotalCache(): void

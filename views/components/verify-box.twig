@@ -2,7 +2,7 @@
 	role="checkbox"
 	tabindex="0"
 	aria-checked="false"
-	aria-label="{{ __('Weryfikacja — nie jestem robotem', 'raks') }}"
+	aria-label="{{ __('Weryfikacja — nie jestem robotem', 'taxeon') }}"
 	class="group/verify flex cursor-pointer flex-wrap items-center gap-3.5 rounded-card border-[1.5px] border-line max-sm:gap-y-1.5
 		bg-white px-[18px] py-3.5 transition
 		hover:border-[color-mix(in_srgb,var(--color-accent)_40%,var(--color-line))]
@@ -25,11 +25,11 @@
 	</span>
 
 	<span data-verify-label
-		data-checking-label="{{ __('Weryfikacja…', 'raks') }}"
-		data-done-label="{{ __('Zweryfikowano', 'raks') }}"
+		data-checking-label="{{ __('Weryfikacja…', 'taxeon') }}"
+		data-done-label="{{ __('Zweryfikowano', 'taxeon') }}"
 		class="flex-1 text-[15px] font-semibold whitespace-nowrap text-ink
 			group-data-checking/verify:text-ink-3 group-data-verified/verify:text-[#1e8449]">
-		{{ __('Nie jestem robotem', 'raks') }}
+		{{ __('Nie jestem robotem', 'taxeon') }}
 	</span>
 
 	<span aria-hidden="true"
@@ -37,8 +37,8 @@
 			whitespace-nowrap text-ink-3 [&_svg]:size-[18px] [&_svg]:flex-none [&_svg]:text-accent
 			max-sm:ml-9 max-sm:basis-full max-sm:flex-wrap max-sm:gap-x-1.5 max-sm:gap-y-0 max-sm:whitespace-normal max-sm:[&_svg]:size-4">
 		{{ 'shield-check'|svg }}
-		RAKS Verify
-		<small class="text-[11px] font-medium text-ink-3 before:content-['·_']">{{ __('Prywatność · Regulamin', 'raks') }}</small>
+		TAXEON Verify
+		<small class="text-[11px] font-medium text-ink-3 before:content-['·_']">{{ __('Prywatność · Regulamin', 'taxeon') }}</small>
 	</span>
 
 	<input type="hidden" name="verified" value="">

@@ -1,9 +1,9 @@
 {
-    "key": "group_4ccaf4e50bd45",
+    "key": "group_819bea663b9da",
     "title": "Opcje motywu",
     "fields": [
         {
-            "key": "field_33fdde09f6433",
+            "key": "field_dba7e34af5d49",
             "label": "Identyfikacja",
             "name": "tab_brand",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_c75d433536cec",
+            "key": "field_97a37577baefc",
             "label": "Logo (ciemne)",
             "name": "logo",
             "type": "image",
@@ -43,7 +43,7 @@
             "mime_types": ""
         },
         {
-            "key": "field_78f342cbc2e29",
+            "key": "field_aef887e687a45",
             "label": "Logo (białe)",
             "name": "logo_white",
             "type": "image",
@@ -67,7 +67,7 @@
             "mime_types": ""
         },
         {
-            "key": "field_ef6fbea448554",
+            "key": "field_b8af2d517de9a",
             "label": "Nagłówek",
             "name": "tab_header",
             "type": "tab",
@@ -83,7 +83,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_79532c79020f9",
+            "key": "field_33518ec3160bb",
             "label": "Wideo w tle nagłówka",
             "name": "hero_video",
             "type": "text",
@@ -102,7 +102,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_b445991647b38",
+            "key": "field_b2755665f2cb5",
             "label": "Menu główne (mega-menu)",
             "name": "header_menu",
             "type": "repeater",
@@ -114,14 +114,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_23e4e660f8542",
+            "collapsed": "field_e96809ef8c471",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj pozycję",
             "sub_fields": [
                 {
-                    "key": "field_23e4e660f8542",
+                    "key": "field_e96809ef8c471",
                     "label": "Link",
                     "name": "link",
                     "type": "link",
@@ -136,7 +136,7 @@
                     "return_format": "array"
                 },
                 {
-                    "key": "field_aeabaf3702d4c",
+                    "key": "field_11959f01791b0",
                     "label": "Szerokość panelu",
                     "name": "submenu_width",
                     "type": "select",
@@ -161,7 +161,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_81325b04f3680",
+                    "key": "field_fc343bc0c3f14",
                     "label": "Pozycje w rozwijanym panelu",
                     "name": "submenu",
                     "type": "repeater",
@@ -173,14 +173,14 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "field_b0c4fe999ff91",
+                    "collapsed": "field_0f68b17a0cf21",
                     "min": 0,
                     "max": 0,
                     "layout": "block",
                     "button_label": "Dodaj pozycję",
                     "sub_fields": [
                         {
-                            "key": "field_b0c4fe999ff91",
+                            "key": "field_0f68b17a0cf21",
                             "label": "Link",
                             "name": "link",
                             "type": "link",
@@ -195,7 +195,7 @@
                             "return_format": "array"
                         },
                         {
-                            "key": "field_02668f6a03d91",
+                            "key": "field_e9687379c5068",
                             "label": "Ikona",
                             "name": "icon",
                             "type": "select",
@@ -217,7 +217,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_6a1ed823d9331",
+                            "key": "field_2d65cd4867189",
                             "label": "Opis",
                             "name": "description",
                             "type": "textarea",
@@ -240,7 +240,7 @@
             ]
         },
         {
-            "key": "field_c13173550938c",
+            "key": "field_9247a30ef0ed5",
             "label": "Link kontaktowy",
             "name": "header_contact_link",
             "type": "link",
@@ -255,7 +255,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_f77ec8d30df20",
+            "key": "field_5ba5f1036f4e0",
             "label": "Przycisk CTA",
             "name": "header_cta",
             "type": "link",
@@ -270,7 +270,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_49ce98d1db02c",
+            "key": "field_9d5e19256045b",
             "label": "Pasek aktualności",
             "name": "tab_topbar",
             "type": "tab",
@@ -286,7 +286,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_e32c73b014452",
+            "key": "field_b17ef1d88afd1",
             "label": "Pokaż pasek nad nagłówkiem",
             "name": "topbar_enabled",
             "type": "true_false",
@@ -305,7 +305,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_b295da1c987d2",
+            "key": "field_f1a0bd1762b9a",
             "label": "Plakietka",
             "name": "topbar_label",
             "type": "text",
@@ -314,7 +314,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_e32c73b014452",
+                        "field": "field_b17ef1d88afd1",
                         "operator": "==",
                         "value": "1"
                     }
@@ -332,7 +332,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_984cd51981143",
+            "key": "field_1293ee8b31ee2",
             "label": "Wpisy",
             "name": "topbar_items",
             "type": "repeater",
@@ -341,7 +341,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_e32c73b014452",
+                        "field": "field_b17ef1d88afd1",
                         "operator": "==",
                         "value": "1"
                     }
@@ -352,14 +352,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_cdb1710c1d9ab",
+            "collapsed": "field_8a5fbf346f8c0",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj wpis",
             "sub_fields": [
                 {
-                    "key": "field_e584317a33628",
+                    "key": "field_d6d4bafcd7350",
                     "label": "Data",
                     "name": "date",
                     "type": "date_picker",
@@ -376,7 +376,7 @@
                     "first_day": 1
                 },
                 {
-                    "key": "field_cdb1710c1d9ab",
+                    "key": "field_8a5fbf346f8c0",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -395,7 +395,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_4bfa3944021ee",
+                    "key": "field_f764f979c46db",
                     "label": "Odnośnik",
                     "name": "link",
                     "type": "link",
@@ -412,7 +412,7 @@
             ]
         },
         {
-            "key": "field_9eb0d57151e80",
+            "key": "field_741f9f9644505",
             "label": "Odnośnik „Wszystkie aktualności”",
             "name": "topbar_all",
             "type": "link",
@@ -421,7 +421,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_e32c73b014452",
+                        "field": "field_b17ef1d88afd1",
                         "operator": "==",
                         "value": "1"
                     }
@@ -435,7 +435,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_72e112a9f643e",
+            "key": "field_de615abb8f2cf",
             "label": "Stopka",
             "name": "tab_footer",
             "type": "tab",
@@ -451,7 +451,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_8df1cc583bd92",
+            "key": "field_886c51e86e2b7",
             "label": "Opis firmy",
             "name": "footer_description",
             "type": "textarea",
@@ -470,7 +470,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_e39f3e37a48d5",
+            "key": "field_ca9027a7f0527",
             "label": "Etykieta — sprzedaż",
             "name": "phone_sales_label",
             "type": "text",
@@ -489,7 +489,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_42afb5838aa28",
+            "key": "field_ea87bd0fc6807",
             "label": "Telefon — sprzedaż",
             "name": "phone_sales",
             "type": "text",
@@ -508,7 +508,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_a688850ec9f9e",
+            "key": "field_b5e3a7a068f01",
             "label": "Etykieta — wsparcie",
             "name": "phone_support_label",
             "type": "text",
@@ -527,7 +527,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_3246fe6652cc3",
+            "key": "field_ffa6272395b12",
             "label": "Telefon — wsparcie",
             "name": "phone_support",
             "type": "text",
@@ -546,7 +546,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_4bdd2581aa828",
+            "key": "field_874b0a4fe6959",
             "label": "Wsparcie — odnośnik",
             "name": "support_link",
             "type": "link",
@@ -561,7 +561,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_f9daa88f894b8",
+            "key": "field_e037e1c99e2b5",
             "label": "Godziny pracy",
             "name": "phone_hours",
             "type": "text",
@@ -580,7 +580,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_e916684c436c3",
+            "key": "field_96dfa0ed16708",
             "label": "E-mail",
             "name": "email",
             "type": "text",
@@ -599,7 +599,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_f0404678f3e1a",
+            "key": "field_82f14c2f92f18",
             "label": "Adres",
             "name": "address",
             "type": "textarea",
@@ -618,7 +618,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_cc60e0ee28f64",
+            "key": "field_9827db3b51de5",
             "label": "Przycisk „Pomoc zdalna”",
             "name": "remote_help",
             "type": "link",
@@ -633,7 +633,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_cb60de732de4f",
+            "key": "field_5752608b7c80d",
             "label": "Podpis nad ikonami",
             "name": "social_label",
             "type": "text",
@@ -645,14 +645,14 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Obserwuj RAKS",
+            "default_value": "Obserwuj nas",
             "placeholder": "",
             "prepend": "",
             "append": "",
             "maxlength": ""
         },
         {
-            "key": "field_e3a74e5c863e8",
+            "key": "field_5f16911f12e70",
             "label": "Profile społecznościowe",
             "name": "social",
             "type": "repeater",
@@ -664,14 +664,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_48e90ecbeab98",
+            "collapsed": "field_64b0f57c48c8f",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj profil",
             "sub_fields": [
                 {
-                    "key": "field_48e90ecbeab98",
+                    "key": "field_64b0f57c48c8f",
                     "label": "Serwis",
                     "name": "network",
                     "type": "select",
@@ -697,7 +697,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_4ced576aab5a1",
+                    "key": "field_da7e51bdda55d",
                     "label": "Adres profilu",
                     "name": "url",
                     "type": "url",
@@ -713,7 +713,7 @@
             ]
         },
         {
-            "key": "field_aabcc400237aa",
+            "key": "field_221ad4a51d449",
             "label": "Prawa autorskie",
             "name": "copyrights",
             "type": "text",
@@ -732,7 +732,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_ab8e395b85a72",
+            "key": "field_c920c551678b5",
             "label": "Kolumny z linkami",
             "name": "footer_menus",
             "type": "repeater",
@@ -744,14 +744,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_5946959c47597",
+            "collapsed": "field_633c58c8c5595",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj kolumnę",
             "sub_fields": [
                 {
-                    "key": "field_5946959c47597",
+                    "key": "field_633c58c8c5595",
                     "label": "Nagłówek kolumny",
                     "name": "title_menu",
                     "type": "text",
@@ -770,7 +770,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_51da29c252be5",
+                    "key": "field_924349b3463f3",
                     "label": "Menu",
                     "name": "select_menu",
                     "type": "select",
@@ -794,7 +794,7 @@
             ]
         },
         {
-            "key": "field_ce4d21b49a86f",
+            "key": "field_73cb3cbd509ba",
             "label": "Formularze",
             "name": "tab_forms",
             "type": "tab",
@@ -810,7 +810,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_3731e4a9e7db7",
+            "key": "field_b0494c11ee2cb",
             "label": "Adres do powiadomień",
             "name": "contact_email",
             "type": "text",
@@ -829,7 +829,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_b752d56ace7c6",
+            "key": "field_0587c97347419",
             "label": "Włącz reCAPTCHA v3",
             "name": "recaptcha_enabled",
             "type": "true_false",
@@ -848,7 +848,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_ffd0fd5d08b7c",
+            "key": "field_9732410f2335b",
             "label": "Klucz witryny",
             "name": "recaptcha_site_key",
             "type": "text",
@@ -857,7 +857,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_b752d56ace7c6",
+                        "field": "field_0587c97347419",
                         "operator": "==",
                         "value": "1"
                     }
@@ -875,7 +875,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_8b318acb3bef6",
+            "key": "field_e0eae0b9b5d4a",
             "label": "Klucz tajny",
             "name": "recaptcha_secret_key",
             "type": "text",
@@ -884,7 +884,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_b752d56ace7c6",
+                        "field": "field_0587c97347419",
                         "operator": "==",
                         "value": "1"
                     }
@@ -902,7 +902,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_396e4fcbd461c",
+            "key": "field_7a8442805216e",
             "label": "Próg akceptacji",
             "name": "recaptcha_threshold",
             "type": "number",
@@ -911,7 +911,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_b752d56ace7c6",
+                        "field": "field_0587c97347419",
                         "operator": "==",
                         "value": "1"
                     }
@@ -931,7 +931,7 @@
             "append": ""
         },
         {
-            "key": "field_d1dcaa439831c",
+            "key": "field_ed9f59d18eb0a",
             "label": "Skrypty",
             "name": "tab_scripts",
             "type": "tab",
@@ -947,7 +947,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_eb6eecde413f3",
+            "key": "field_f4e6fc8e8d1be",
             "label": "Skrypty w <head>",
             "name": "scripts_head",
             "type": "textarea",
@@ -966,7 +966,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_73156f3c0b374",
+            "key": "field_8d1bc7cdf08af",
             "label": "Skrypty po <body>",
             "name": "scripts_body",
             "type": "textarea",

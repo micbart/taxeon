@@ -5,12 +5,12 @@ namespace App\Services;
 class Media
 {
 	private const SIZES = [
-		'raks-card' => [640, 400, true],
-		'raks-card-2x' => [1280, 800, true],
-		'raks-wide' => [1120, 560, true],
-		'raks-wide-2x' => [1920, 960, true],
-		'raks-tile' => [760, 333, true],
-		'raks-cover' => [1400, 1400, false],
+		'taxeon-card' => [640, 400, true],
+		'taxeon-card-2x' => [1280, 800, true],
+		'taxeon-wide' => [1120, 560, true],
+		'taxeon-wide-2x' => [1920, 960, true],
+		'taxeon-tile' => [760, 333, true],
+		'taxeon-cover' => [1400, 1400, false],
 	];
 
 	public function __construct()
@@ -35,9 +35,9 @@ class Media
 	public function labelImageSizes(array $sizes): array
 	{
 		return $sizes + [
-			'raks-card' => __('Karta (16:10)', 'raks'),
-			'raks-wide' => __('Szeroki (16:8)', 'raks'),
-			'raks-tile' => __('Kafel (16:7)', 'raks'),
+			'taxeon-card' => __('Karta (16:10)', 'taxeon'),
+			'taxeon-wide' => __('Szeroki (16:8)', 'taxeon'),
+			'taxeon-tile' => __('Kafel (16:7)', 'taxeon'),
 		];
 	}
 
@@ -74,7 +74,7 @@ class Media
 
 			if (file_exists($fullFilePath) && !@unlink($fullFilePath)) {
 				if (defined('WP_DEBUG') && WP_DEBUG) {
-					error_log("[raks] Nie udało się usunąć pliku: $fullFilePath");
+					error_log("[taxeon] Nie udało się usunąć pliku: $fullFilePath");
 				}
 			}
 		}

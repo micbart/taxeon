@@ -5,7 +5,7 @@ namespace App\Services\Recaptcha;
 class LeadsAdmin
 {
 	private const CAPABILITY = 'manage_options';
-	private const SLUG = 'raks-leads';
+	private const SLUG = 'taxeon-leads';
 	private const PER_PAGE = 25;
 
 	private LeadsRepository $repository;
@@ -15,15 +15,15 @@ class LeadsAdmin
 		$this->repository = $repository;
 
 		add_action('admin_menu', [$this, 'registerMenu']);
-		add_action('admin_post_raks_lead_action', [$this, 'handleAction']);
-		add_action('admin_post_raks_leads_export', [$this, 'exportCsv']);
+		add_action('admin_post_taxeon_lead_action', [$this, 'handleAction']);
+		add_action('admin_post_taxeon_leads_export', [$this, 'exportCsv']);
 	}
 
 	public function registerMenu(): void
 	{
 		add_menu_page(
-			__('Zgłoszenia', 'raks'),
-			__('Zgłoszenia', 'raks'),
+			__('Zgłoszenia', 'taxeon'),
+			__('Zgłoszenia', 'taxeon'),
 			self::CAPABILITY,
 			self::SLUG,
 			[$this, 'renderPage'],
@@ -35,13 +35,13 @@ class LeadsAdmin
 	public function handleAction(): void
 	{
 		if (!current_user_can(self::CAPABILITY)) {
-			wp_die(esc_html__('Brak uprawnień.', 'raks'));
+			wp_die(esc_html__('Brak uprawnień.', 'taxeon'));
 		}
 
 		$id = isset($_POST['lead_id']) ? (int) $_POST['lead_id'] : 0;
 		$action = isset($_POST['lead_action']) ? sanitize_key((string) $_POST['lead_action']) : '';
 
-		check_admin_referer('raks_lead_' . $id);
+		check_admin_referer('taxeon_lead_' . $id);
 
 		if ($id > 0) {
 			if ($action === 'delete') {
@@ -58,10 +58,10 @@ class LeadsAdmin
 	public function exportCsv(): void
 	{
 		if (!current_user_can(self::CAPABILITY)) {
-			wp_die(esc_html__('Brak uprawnień.', 'raks'));
+			wp_die(esc_html__('Brak uprawnień.', 'taxeon'));
 		}
 
-		check_admin_referer('raks_leads_export');
+		check_admin_referer('taxeon_leads_export');
 
 		$form = isset($_GET['form']) ? sanitize_text_field((string) $_GET['form']) : '';
 		$result = $this->repository->paginate(1, 10000, $form);
@@ -166,25 +166,25 @@ class LeadsAdmin
 		$totalPages = (int) ceil($result['total'] / self::PER_PAGE);
 
 		$statuses = [
-			'' => __('Wszystkie statusy', 'raks'),
-			'new' => __('Nowe', 'raks'),
-			'handled' => __('Obsłużone', 'raks'),
-			'spam' => __('Spam', 'raks'),
+			'' => __('Wszystkie statusy', 'taxeon'),
+			'new' => __('Nowe', 'taxeon'),
+			'handled' => __('Obsłużone', 'taxeon'),
+			'spam' => __('Spam', 'taxeon'),
 		];
 
 		echo '<div class="wrap">';
-		echo '<h1 class="wp-heading-inline">' . esc_html__('Zgłoszenia', 'raks') . '</h1>';
+		echo '<h1 class="wp-heading-inline">' . esc_html__('Zgłoszenia', 'taxeon') . '</h1>';
 
 		$exportUrl = wp_nonce_url(
-			admin_url('admin-post.php?action=raks_leads_export&form=' . rawurlencode($form)),
-			'raks_leads_export'
+			admin_url('admin-post.php?action=taxeon_leads_export&form=' . rawurlencode($form)),
+			'taxeon_leads_export'
 		);
-		echo ' <a href="' . esc_url($exportUrl) . '" class="page-title-action">' . esc_html__('Eksport CSV', 'raks') . '</a>';
+		echo ' <a href="' . esc_url($exportUrl) . '" class="page-title-action">' . esc_html__('Eksport CSV', 'taxeon') . '</a>';
 
 		echo '<form method="get" style="margin:16px 0;display:flex;gap:8px;align-items:center;">';
 		echo '<input type="hidden" name="page" value="' . esc_attr(self::SLUG) . '">';
 
-		echo '<select name="form"><option value="">' . esc_html__('Wszystkie formularze', 'raks') . '</option>';
+		echo '<select name="form"><option value="">' . esc_html__('Wszystkie formularze', 'taxeon') . '</option>';
 		foreach ($this->repository->forms() as $formName) {
 			printf(
 				'<option value="%1$s"%2$s>%1$s</option>',
@@ -205,21 +205,21 @@ class LeadsAdmin
 		}
 		echo '</select>';
 
-		submit_button(__('Filtruj', 'raks'), 'secondary', '', false);
+		submit_button(__('Filtruj', 'taxeon'), 'secondary', '', false);
 		echo '</form>';
 
 		echo '<table class="wp-list-table widefat fixed striped">';
 		echo '<thead><tr>';
-		echo '<th style="width:140px">' . esc_html__('Data', 'raks') . '</th>';
-		echo '<th style="width:110px">' . esc_html__('Formularz', 'raks') . '</th>';
-		echo '<th style="width:170px">' . esc_html__('Kontakt', 'raks') . '</th>';
-		echo '<th>' . esc_html__('Wiadomość', 'raks') . '</th>';
-		echo '<th style="width:90px">' . esc_html__('Status', 'raks') . '</th>';
-		echo '<th style="width:220px">' . esc_html__('Akcje', 'raks') . '</th>';
+		echo '<th style="width:140px">' . esc_html__('Data', 'taxeon') . '</th>';
+		echo '<th style="width:110px">' . esc_html__('Formularz', 'taxeon') . '</th>';
+		echo '<th style="width:170px">' . esc_html__('Kontakt', 'taxeon') . '</th>';
+		echo '<th>' . esc_html__('Wiadomość', 'taxeon') . '</th>';
+		echo '<th style="width:90px">' . esc_html__('Status', 'taxeon') . '</th>';
+		echo '<th style="width:220px">' . esc_html__('Akcje', 'taxeon') . '</th>';
 		echo '</tr></thead><tbody>';
 
 		if (empty($result['items'])) {
-			echo '<tr><td colspan="6">' . esc_html__('Brak zgłoszeń.', 'raks') . '</td></tr>';
+			echo '<tr><td colspan="6">' . esc_html__('Brak zgłoszeń.', 'taxeon') . '</td></tr>';
 		}
 
 		foreach ($result['items'] as $row) {
@@ -265,12 +265,12 @@ class LeadsAdmin
 			echo '<td>' . esc_html($statuses[$row['status']] ?? (string) $row['status']) . '</td>';
 
 			echo '<td>';
-			foreach (['handled' => __('Obsłużone', 'raks'), 'spam' => __('Spam', 'raks'), 'delete' => __('Usuń', 'raks')] as $value => $label) {
+			foreach (['handled' => __('Obsłużone', 'taxeon'), 'spam' => __('Spam', 'taxeon'), 'delete' => __('Usuń', 'taxeon')] as $value => $label) {
 				echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" style="display:inline-block;margin-right:4px">';
-				echo '<input type="hidden" name="action" value="raks_lead_action">';
+				echo '<input type="hidden" name="action" value="taxeon_lead_action">';
 				echo '<input type="hidden" name="lead_id" value="' . esc_attr((string) $id) . '">';
 				echo '<input type="hidden" name="lead_action" value="' . esc_attr($value) . '">';
-				wp_nonce_field('raks_lead_' . $id);
+				wp_nonce_field('taxeon_lead_' . $id);
 				$class = $value === 'delete' ? 'button button-small button-link-delete' : 'button button-small';
 				echo '<button type="submit" class="' . esc_attr($class) . '">' . esc_html($label) . '</button>';
 				echo '</form>';

@@ -26,8 +26,8 @@ class AcfTimberBlocks
 	public static function registerBlockCategory(array $categories): array
 	{
 		array_unshift($categories, [
-			'slug' => 'raks',
-			'title' => __('RAKS', 'raks'),
+			'slug' => 'taxeon',
+			'title' => __('Taxeon', 'taxeon'),
 		]);
 
 		return $categories;
@@ -46,20 +46,20 @@ class AcfTimberBlocks
 			return;
 		}
 
-		Vite::enqueueEntryCss('src/js/main.js', 'raks-canvas-main');
-		Vite::enqueueStyle('src/scss/editor-canvas.scss', 'raks-editor-canvas');
+		Vite::enqueueEntryCss('src/js/main.js', 'taxeon-canvas-main');
+		Vite::enqueueStyle('src/scss/editor-canvas.scss', 'taxeon-editor-canvas');
 
 		foreach (self::$blockAssets as $slug => $assets) {
 			$editorEntry = "src/blocks/{$slug}/{$slug}-editor.scss";
 
 			if (file_exists(get_template_directory() . '/' . $editorEntry)) {
-				Vite::enqueueStyle($editorEntry, "raks-block-editor-{$slug}");
+				Vite::enqueueStyle($editorEntry, "taxeon-block-editor-{$slug}");
 			}
 
 			if ($assets['style'] && str_starts_with($assets['style'], 'src/')) {
-				Vite::enqueueStyle($assets['style'], 'raks-block-' . $slug);
+				Vite::enqueueStyle($assets['style'], 'taxeon-block-' . $slug);
 			} elseif ($assets['style']) {
-				wp_enqueue_style('raks-block-' . $slug, $assets['style'], [], null);
+				wp_enqueue_style('taxeon-block-' . $slug, $assets['style'], [], null);
 			}
 		}
 	}
@@ -225,17 +225,17 @@ class AcfTimberBlocks
 					$data['enqueue_assets'] = static function () use ($slug, $blockStyle, $blockScript, $blockScriptDeps): void {
 						if ($blockStyle) {
 							if (str_starts_with($blockStyle, 'src/')) {
-								Vite::enqueueStyle($blockStyle, 'raks-block-' . $slug);
+								Vite::enqueueStyle($blockStyle, 'taxeon-block-' . $slug);
 							} else {
-								wp_enqueue_style('raks-block-' . $slug, $blockStyle, [], null);
+								wp_enqueue_style('taxeon-block-' . $slug, $blockStyle, [], null);
 							}
 						}
 
 						if ($blockScript) {
 							if (str_starts_with($blockScript, 'src/')) {
-								Vite::enqueue($blockScript, 'raks-block-js-' . $slug, $blockScriptDeps);
+								Vite::enqueue($blockScript, 'taxeon-block-js-' . $slug, $blockScriptDeps);
 							} else {
-								wp_enqueue_script('raks-block-js-' . $slug, $blockScript, $blockScriptDeps, null, true);
+								wp_enqueue_script('taxeon-block-js-' . $slug, $blockScript, $blockScriptDeps, null, true);
 							}
 						}
 					};

@@ -11,7 +11,7 @@ class Breadcrumbs
 		}
 
 		$crumbs = [
-			['url' => home_url('/'), 'title' => __('Strona główna', 'raks')],
+			['url' => home_url('/'), 'title' => __('Strona główna', 'taxeon')],
 		];
 
 		$blogPageId = (int) get_option('page_for_posts');
@@ -50,7 +50,7 @@ class Breadcrumbs
 		if (is_home()) {
 			$crumbs[] = [
 				'url' => '',
-				'title' => $blogPageId ? get_the_title($blogPageId) : __('Blog', 'raks'),
+				'title' => $blogPageId ? get_the_title($blogPageId) : __('Blog', 'taxeon'),
 			];
 
 			return $crumbs;
@@ -69,14 +69,14 @@ class Breadcrumbs
 		if (is_search()) {
 			$crumbs[] = [
 				'url' => '',
-				'title' => sprintf(__('Wyniki wyszukiwania: %s', 'raks'), get_search_query()),
+				'title' => sprintf(__('Wyniki wyszukiwania: %s', 'taxeon'), get_search_query()),
 			];
 
 			return $crumbs;
 		}
 
 		if (is_404()) {
-			$crumbs[] = ['url' => '', 'title' => __('Nie znaleziono strony', 'raks')];
+			$crumbs[] = ['url' => '', 'title' => __('Nie znaleziono strony', 'taxeon')];
 
 			return $crumbs;
 		}

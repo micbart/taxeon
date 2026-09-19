@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('WP_CLI') || !WP_CLI) {
-    exit("Uruchom przez: wp eval-file wp-content/themes/raks/bin/check-icons.php\n");
+    exit("Uruchom przez: wp eval-file wp-content/themes/taxeon/bin/check-icons.php\n");
 }
 
 $dir = get_template_directory() . '/src/svg/';

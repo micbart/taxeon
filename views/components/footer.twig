@@ -19,7 +19,7 @@
 							class="{{ wierszKontaktu }} hover:text-white">
 							{{ 'phone'|svg }}
 							<span>
-								{{ themeOptions.phone_sales_label ?: __('Dział sprzedaży', 'raks') }}: {{ themeOptions.phone_sales }}
+								{{ themeOptions.phone_sales_label ?: __('Dział sprzedaży', 'taxeon') }}: {{ themeOptions.phone_sales }}
 								{%- if themeOptions.phone_hours %}<br>{{ themeOptions.phone_hours }}{% endif %}
 							</span>
 						</a>
@@ -31,8 +31,8 @@
 							class="{{ wierszKontaktu }} hover:text-white">
 							{{ 'life-buoy'|svg }}
 							<span>
-								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'raks') }}:<br>
-								{{ themeOptions.support_link.title ?: __('Formularz kontaktowy', 'raks') }}
+								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'taxeon') }}:<br>
+								{{ themeOptions.support_link.title ?: __('Formularz kontaktowy', 'taxeon') }}
 							</span>
 						</a>
 					{% elseif themeOptions.phone_support %}
@@ -40,7 +40,7 @@
 							class="{{ wierszKontaktu }} hover:text-white">
 							{{ 'life-buoy'|svg }}
 							<span>
-								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'raks') }}: {{ themeOptions.phone_support }}
+								{{ themeOptions.phone_support_label ?: __('Pomoc techniczna', 'taxeon') }}: {{ themeOptions.phone_support }}
 								{%- if themeOptions.phone_hours %}<br>{{ themeOptions.phone_hours }}{% endif %}
 							</span>
 						</a>
@@ -69,7 +69,7 @@
 							hover:-translate-y-px hover:border-white hover:bg-white/12
 							[&_svg]:size-[17px] [&_svg]:text-white">
 						{{ 'monitor-smartphone'|svg }}
-						{{ themeOptions.remote_help.title ?: __('Pomoc zdalna', 'raks') }}
+						{{ themeOptions.remote_help.title ?: __('Pomoc zdalna', 'taxeon') }}
 					</a>
 				{% endif %}
 

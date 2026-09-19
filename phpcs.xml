@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Raks 2.0">
-	<description>Standard kodowania motywu Raks 2.0.</description>
+<ruleset name="Taxeon">
+	<description>Standard kodowania motywu Taxeon.</description>
 
 	<file>app</file>
 	<file>functions.php</file>

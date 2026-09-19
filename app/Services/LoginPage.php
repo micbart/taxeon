@@ -18,11 +18,11 @@ class LoginPage
 		?>
 		<style>
 			:root {
-				--raks-accent: #00053d;
-				--raks-accent-strong: #161c66;
-				--raks-cta: #e95420;
-				--raks-ink: #15202c;
-				--raks-line: #e7ebf0;
+				--taxeon-accent: #00053d;
+				--taxeon-accent-strong: #161c66;
+				--taxeon-cta: #e95420;
+				--taxeon-ink: #15202c;
+				--taxeon-line: #e7ebf0;
 			}
 
 			body.login {
@@ -39,7 +39,7 @@ class LoginPage
 			}
 
 			.login form {
-				border: 1px solid var(--raks-line);
+				border: 1px solid var(--taxeon-line);
 				border-radius: 18px;
 				box-shadow: 0 8px 30px rgba(21, 32, 44, .08);
 				padding: 28px 24px;
@@ -48,19 +48,19 @@ class LoginPage
 			.login input[type="text"],
 			.login input[type="password"] {
 				border-radius: 10px;
-				border: 1.5px solid var(--raks-line);
+				border: 1.5px solid var(--taxeon-line);
 				padding: 10px 12px;
 			}
 
 			.login input[type="text"]:focus,
 			.login input[type="password"]:focus {
-				border-color: var(--raks-accent);
+				border-color: var(--taxeon-accent);
 				box-shadow: 0 0 0 3px rgba(0, 5, 61, .12);
 			}
 
 			.wp-core-ui .button-primary {
-				background: var(--raks-cta);
-				border-color: var(--raks-cta);
+				background: var(--taxeon-cta);
+				border-color: var(--taxeon-cta);
 				border-radius: 10px;
 				text-shadow: none;
 				box-shadow: none;
@@ -75,12 +75,12 @@ class LoginPage
 
 			.login #nav a,
 			.login #backtoblog a {
-				color: var(--raks-ink);
+				color: var(--taxeon-ink);
 			}
 
 			.login #nav a:hover,
 			.login #backtoblog a:hover {
-				color: var(--raks-accent);
+				color: var(--taxeon-accent);
 			}
 		</style>
 		<?php
@@ -88,6 +88,6 @@ class LoginPage
 
 	public function genericError(): string
 	{
-		return __('Nieprawidłowe dane logowania.', 'raks');
+		return __('Nieprawidłowe dane logowania.', 'taxeon');
 	}
 }

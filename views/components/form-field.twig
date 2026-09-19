@@ -16,7 +16,7 @@
 			class="{{ control }} min-h-[150px] resize-y"></textarea>
 	{% elseif type == 'select' %}
 		<select id="{{ id }}" name="{{ name }}" {% if required %}required{% endif %} class="{{ control }}">
-			<option value="">{{ __('— wybierz —', 'raks') }}</option>
+			<option value="">{{ __('— wybierz —', 'taxeon') }}</option>
 			{% for option in options %}
 				<option value="{{ option.label }}">{{ option.label }}</option>
 			{% endfor %}

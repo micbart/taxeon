@@ -2,12 +2,12 @@
 	{% set item = 'grid h-[42px] min-w-[42px] place-items-center rounded-[11px] border-[1.5px] border-line px-3 text-[15px] font-bold text-ink-2 transition hover:border-accent hover:text-accent' %}
 
 	<nav data-blog-pagination
-		aria-label="{{ __('Paginacja wpisów', 'raks') }}"
+		aria-label="{{ __('Paginacja wpisów', 'taxeon') }}"
 		class="mt-12 flex items-center justify-center gap-2">
 
 		{% if pagination.prev %}
 			<a href="{{ pagination.prev.link }}" rel="prev" class="{{ item }} [&_svg]:size-[18px]"
-				aria-label="{{ __('Poprzednia strona', 'raks') }}">
+				aria-label="{{ __('Poprzednia strona', 'taxeon') }}">
 				{{ 'chevron-left'|svg }}
 			</a>
 		{% endif %}
@@ -24,7 +24,7 @@
 
 		{% if pagination.next %}
 			<a href="{{ pagination.next.link }}" rel="next" class="{{ item }} [&_svg]:size-[18px] [&_svg]:rotate-180"
-				aria-label="{{ __('Następna strona', 'raks') }}">
+				aria-label="{{ __('Następna strona', 'taxeon') }}">
 				{{ 'chevron-left'|svg }}
 			</a>
 		{% endif %}

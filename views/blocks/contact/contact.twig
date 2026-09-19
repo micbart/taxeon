@@ -1,7 +1,7 @@
 {#
 	Title: Formularz kontaktowy
 	Description: Formularz wysyłany do REST API motywu, z reCAPTCHA v3 i zapisem zgłoszeń
-	Category: raks
+	Category: taxeon
 	Icon: email
 	HideFieldsInSidebar: true
 	ExpandedEditorButtons: true
@@ -87,26 +87,26 @@
 
 					<div aria-hidden="true" class="absolute! -left-[9999px] size-px overflow-hidden">
 						<label>
-							{{ __('Nie wypełniaj tego pola', 'raks') }}
+							{{ __('Nie wypełniaj tego pola', 'taxeon') }}
 							<input type="text" name="website" tabindex="-1" autocomplete="off">
 						</label>
 					</div>
 
 					<div class="grid grid-cols-2 gap-[18px] max-md:grid-cols-1">
 						{% include 'components/form-field.twig' with {
-							name: 'name', label: __('Imię i nazwisko', 'raks'), required: true, autocomplete: 'name'
+							name: 'name', label: __('Imię i nazwisko', 'taxeon'), required: true, autocomplete: 'name'
 						} only %}
 
 						{% include 'components/form-field.twig' with {
-							name: 'email', label: __('Adres e-mail', 'raks'), type: 'email', required: true, autocomplete: 'email'
+							name: 'email', label: __('Adres e-mail', 'taxeon'), type: 'email', required: true, autocomplete: 'email'
 						} only %}
 					</div>
 
 					<div class="grid grid-cols-2 gap-[18px] max-md:grid-cols-1">
 						{% include 'components/form-field.twig' with {
 							name: 'phone',
-							label: __('Telefon', 'raks'),
-							hint: __('(opcjonalnie)', 'raks'),
+							label: __('Telefon', 'taxeon'),
+							hint: __('(opcjonalnie)', 'taxeon'),
 							type: 'tel',
 							autocomplete: 'tel'
 						} only %}
@@ -114,20 +114,20 @@
 						{% if fields.subjects|length %}
 							{% include 'components/form-field.twig' with {
 								name: 'subject',
-								label: fields.subject_label ?: __('Temat', 'raks'),
+								label: fields.subject_label ?: __('Temat', 'taxeon'),
 								type: 'select',
 								options: fields.subjects
 							} only %}
 						{% else %}
 							{% include 'components/form-field.twig' with {
-								name: 'company', label: __('Firma', 'raks'), autocomplete: 'organization'
+								name: 'company', label: __('Firma', 'taxeon'), autocomplete: 'organization'
 							} only %}
 						{% endif %}
 					</div>
 
 					{% if not fields.hide_message %}
 						{% include 'components/form-field.twig' with {
-							name: 'message', label: __('Wiadomość', 'raks'), type: 'textarea', required: true
+							name: 'message', label: __('Wiadomość', 'taxeon'), type: 'textarea', required: true
 						} only %}
 					{% endif %}
 
@@ -139,7 +139,7 @@
 								{% if not fields.consent_optional %}required{% endif %}
 								class="mt-[3px] size-[18px] flex-none accent-accent">
 							<span>
-								{{ fields.consent_text ?: __('Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania.', 'raks') }}
+								{{ fields.consent_text ?: __('Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania.', 'taxeon') }}
 								{% if not fields.consent_optional %}<span class="text-cta">*</span>{% endif %}
 							</span>
 						</label>
@@ -173,7 +173,7 @@
 							font-sans text-lead font-bold text-white shadow-cta transition
 							hover:-translate-y-0.5 hover:bg-cta-strong
 							disabled:pointer-events-none disabled:opacity-60 max-sm:w-full [&_svg]:size-[18px]">
-						<span data-submit-label>{{ fields.submit_label ?: __('Wyślij wiadomość', 'raks') }}</span>
+						<span data-submit-label>{{ fields.submit_label ?: __('Wyślij wiadomość', 'taxeon') }}</span>
 						{{ 'send'|svg }}
 					</button>
 
@@ -261,7 +261,7 @@
 					{% if fields.map_embed %}
 						<div class="overflow-hidden rounded-panel border border-line bg-white shadow-soft">
 							<iframe src="{{ fields.map_embed }}"
-								title="{{ fields.map_caption ?: __('Mapa dojazdu', 'raks') }}"
+								title="{{ fields.map_caption ?: __('Mapa dojazdu', 'taxeon') }}"
 								loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade"
 								class="block h-[260px] w-full border-0"></iframe>

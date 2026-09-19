@@ -1,7 +1,7 @@
 {#
 	Title: Hero
 	Description: Sekcja otwierająca z tłem wideo lub zdjęciem, tytułem i przyciskami
-	Category: raks
+	Category: taxeon
 	Icon: cover-image
 	HideFieldsInSidebar: true
 	ExpandedEditorButtons: true
@@ -26,13 +26,13 @@
 	{% if media == 'video' and videoSrc %}
 		{% include 'components/hero-video.twig' with {
 			url: videoSrc,
-			poster: fields.poster.sizes['raks-wide-2x'] ?: fields.poster.url
+			poster: fields.poster.sizes['taxeon-wide-2x'] ?: fields.poster.url
 		} only %}
 	{% elseif media == 'image' and fields.poster %}
 		<div class="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-b-[inherit]">
 			{% include 'components/image.twig' with {
 				id: fields.poster.ID,
-				size: 'raks-wide-2x',
+				size: 'taxeon-wide-2x',
 				sizes: '100vw',
 				alt: '',
 				eager: true,

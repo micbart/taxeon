@@ -1,9 +1,9 @@
 {
-    "key": "group_aa0abe7642a0e",
+    "key": "group_ea3ebb185bfc8",
     "title": "Blok: Formularz kontaktowy",
     "fields": [
         {
-            "key": "field_be0b2bb878e79",
+            "key": "field_b5366f1d842b3",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_56fc2cf6f866a",
+            "key": "field_0caa4d665802d",
             "label": "Nadkreślenie",
             "name": "eyebrow",
             "type": "group",
@@ -34,7 +34,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_f0d116e998fd9",
+                    "key": "field_150131e753999",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -53,7 +53,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_fa2b4ccc5fb87",
+                    "key": "field_6f9f0322079fc",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "key": "field_8dc8f8711d3ce",
+            "key": "field_a575e7705d641",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -96,7 +96,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_ef611e189eb32",
+                    "key": "field_6c05dacd9ca6e",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -115,7 +115,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_6c588957d948d",
+                    "key": "field_1a730848d169f",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "key": "field_aeacd2886020c",
+            "key": "field_19f6011d52986",
             "label": "Opis",
             "name": "text",
             "type": "group",
@@ -162,7 +162,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_a23b1a5f316e2",
+                    "key": "field_759d2e26c0c51",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -181,7 +181,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_e2c28678862c8",
+                    "key": "field_9381199b7620b",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -209,7 +209,7 @@
             ]
         },
         {
-            "key": "field_5ffb3b84d4b6f",
+            "key": "field_72c2e4bce597b",
             "label": "Układ",
             "name": "layout",
             "type": "select",
@@ -234,7 +234,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_97b9325cdc7c9",
+            "key": "field_d2228b1df77ae",
             "label": "Zgoda jest dobrowolna",
             "name": "consent_optional",
             "type": "true_false",
@@ -253,7 +253,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_b5fd5e3d5e3e1",
+            "key": "field_d81d49344e056",
             "label": "Druga zgoda (RODO)",
             "name": "consent_rodo",
             "type": "textarea",
@@ -272,7 +272,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_46a51ee4ff8d0",
+            "key": "field_93e64d41fea77",
             "label": "Etykieta listy tematów",
             "name": "subject_label",
             "type": "text",
@@ -291,7 +291,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_397197d4a892c",
+            "key": "field_2054c1d406c33",
             "label": "Ukryj pole „Wiadomość”",
             "name": "hide_message",
             "type": "true_false",
@@ -310,7 +310,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_2f472c665f826",
+            "key": "field_547dc956c50ec",
             "label": "Dane kontaktowe",
             "name": "details",
             "type": "repeater",
@@ -322,14 +322,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_4cbadc27391b1",
+            "collapsed": "field_d14e9d10dd043",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj pozycję",
             "sub_fields": [
                 {
-                    "key": "field_30a4f81920d08",
+                    "key": "field_06510cc548063",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -351,7 +351,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_4cbadc27391b1",
+                    "key": "field_d14e9d10dd043",
                     "label": "Etykieta",
                     "name": "label",
                     "type": "text",
@@ -370,7 +370,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_e24ad6def1606",
+                    "key": "field_d44927d8fc09b",
                     "label": "Wartość",
                     "name": "value",
                     "type": "text",
@@ -389,7 +389,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_f50a8edd0d7ce",
+                    "key": "field_e34a152eb3993",
                     "label": "Link (opcjonalnie)",
                     "name": "link",
                     "type": "link",
@@ -406,7 +406,7 @@
             ]
         },
         {
-            "key": "field_188f69c440ac5",
+            "key": "field_25af38dc4e4e3",
             "label": "Formularz",
             "name": "tab_form",
             "type": "tab",
@@ -422,7 +422,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_76c08cd9526d2",
+            "key": "field_58b5bca0a9600",
             "label": "Nazwa formularza",
             "name": "form_name",
             "type": "text",
@@ -441,7 +441,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_049fbf6de2553",
+            "key": "field_42fa39b4c0300",
             "label": "Tematy do wyboru",
             "name": "subjects",
             "type": "repeater",
@@ -460,7 +460,7 @@
             "button_label": "Dodaj temat",
             "sub_fields": [
                 {
-                    "key": "field_930a190691490",
+                    "key": "field_120f284d99e0b",
                     "label": "Temat",
                     "name": "label",
                     "type": "text",
@@ -481,7 +481,7 @@
             ]
         },
         {
-            "key": "field_743770e59bfc0",
+            "key": "field_5aa6f6ef64309",
             "label": "Treść zgody",
             "name": "consent_text",
             "type": "textarea",
@@ -500,7 +500,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_9cc278695cda4",
+            "key": "field_f896ca58609bb",
             "label": "Etykieta przycisku",
             "name": "submit_label",
             "type": "text",
@@ -519,7 +519,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_9fd2087641d3f",
+            "key": "field_6a239e542f73e",
             "label": "Nota pod formularzem",
             "name": "privacy_note",
             "type": "textarea",
@@ -538,7 +538,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_ba46a042bd9ab",
+            "key": "field_507007bae28db",
             "label": "Ukryj kafelek „Nie jestem robotem”",
             "name": "hide_verify",
             "type": "true_false",
@@ -557,7 +557,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_7577ea484f9ce",
+            "key": "field_c0b55353c02a8",
             "label": "Kolumna boczna",
             "name": "tab_aside",
             "type": "tab",
@@ -573,7 +573,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_686b8712ade0e",
+            "key": "field_92c0a5fb0a14c",
             "label": "Karty informacyjne",
             "name": "info_cards",
             "type": "repeater",
@@ -585,14 +585,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_c791e1cbda7a1",
+            "collapsed": "field_8b886ce9202d3",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj kartę",
             "sub_fields": [
                 {
-                    "key": "field_c791e1cbda7a1",
+                    "key": "field_8b886ce9202d3",
                     "label": "Tytuł",
                     "name": "title",
                     "type": "group",
@@ -607,7 +607,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_b30b794370bd0",
+                            "key": "field_1ea39632053f4",
                             "label": "Treść",
                             "name": "text",
                             "type": "text",
@@ -626,7 +626,7 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_b5ee1264b72a5",
+                            "key": "field_405758830b62e",
                             "label": "Znacznik",
                             "name": "tag",
                             "type": "select",
@@ -658,7 +658,7 @@
                     ]
                 },
                 {
-                    "key": "field_914ca938a6bce",
+                    "key": "field_f265daa644a5b",
                     "label": "Ciemna karta",
                     "name": "dark",
                     "type": "true_false",
@@ -677,7 +677,7 @@
                     "ui_off_text": ""
                 },
                 {
-                    "key": "field_e10ef797f553c",
+                    "key": "field_4c7ea7a3c8f78",
                     "label": "Pozycje",
                     "name": "items",
                     "type": "repeater",
@@ -689,14 +689,14 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "field_a474e0f06c7ad",
+                    "collapsed": "field_446aef42108d2",
                     "min": 0,
                     "max": 0,
                     "layout": "block",
                     "button_label": "Dodaj pozycję",
                     "sub_fields": [
                         {
-                            "key": "field_8ae73c5ea149b",
+                            "key": "field_1ed0b75112191",
                             "label": "Ikona",
                             "name": "icon",
                             "type": "select",
@@ -718,7 +718,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_a474e0f06c7ad",
+                            "key": "field_446aef42108d2",
                             "label": "Etykieta",
                             "name": "label",
                             "type": "text",
@@ -737,7 +737,7 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_4ae84b73e8bdd",
+                            "key": "field_d3a2849c61317",
                             "label": "Treść",
                             "name": "text",
                             "type": "textarea",
@@ -756,7 +756,7 @@
                             "new_lines": ""
                         },
                         {
-                            "key": "field_469bf883e2926",
+                            "key": "field_f507f869faff3",
                             "label": "Link",
                             "name": "link",
                             "type": "link",
@@ -775,7 +775,7 @@
             ]
         },
         {
-            "key": "field_45ed97bcc7125",
+            "key": "field_2e93e41aec76b",
             "label": "Dane rejestrowe — tytuł",
             "name": "registry_title",
             "type": "text",
@@ -794,7 +794,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_5bd79f1c8aeef",
+            "key": "field_5692564e710e7",
             "label": "Dane rejestrowe",
             "name": "registry",
             "type": "repeater",
@@ -813,7 +813,7 @@
             "button_label": "Dodaj wiersz",
             "sub_fields": [
                 {
-                    "key": "field_9f389126d553a",
+                    "key": "field_8f96cbc661ef5",
                     "label": "Etykieta",
                     "name": "label",
                     "type": "text",
@@ -832,7 +832,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_15c055830ead7",
+                    "key": "field_ab23f2586b2ec",
                     "label": "Wartość",
                     "name": "value",
                     "type": "textarea",
@@ -853,7 +853,7 @@
             ]
         },
         {
-            "key": "field_db7bdbbfc0389",
+            "key": "field_800f7f0022c5c",
             "label": "Mapa — kod osadzenia",
             "name": "map_embed",
             "type": "textarea",
@@ -872,7 +872,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_a574ab82974fb",
+            "key": "field_a46b1d8534964",
             "label": "Podpis pod mapą",
             "name": "map_caption",
             "type": "text",
@@ -891,7 +891,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_1dc38892939ee",
+            "key": "field_6e8d8f6108b4f",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -907,7 +907,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_dc60346b884c8",
+            "key": "field_2273511d9c93b",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -934,7 +934,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_a25b95b4e2d3a",
+            "key": "field_b72c3df84df2c",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -961,7 +961,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_3a7d0c1b62184",
+            "key": "field_7aa3562392be2",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -987,7 +987,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_231a3a69e5dc1",
+            "key": "field_5bc0155b00f16",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",

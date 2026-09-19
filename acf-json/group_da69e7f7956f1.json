@@ -1,9 +1,9 @@
 {
-    "key": "group_8a361d452ec68",
+    "key": "group_da69e7f7956f1",
     "title": "Blok: Cennik (karty)",
     "fields": [
         {
-            "key": "field_d7d3d3d467bde",
+            "key": "field_d7d63d21027f3",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_65f32fe463a5a",
+            "key": "field_e503dc6f2263f",
             "label": "Nadkreślenie",
             "name": "eyebrow",
             "type": "group",
@@ -34,7 +34,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_f1e51a0500add",
+                    "key": "field_3ceea7f04749c",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -53,7 +53,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_e2ac2702fd9ee",
+                    "key": "field_f109eab2e0127",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "key": "field_11ef6a28a9e09",
+            "key": "field_06387771304ea",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -96,7 +96,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_e6530aa0a6a99",
+                    "key": "field_33d3c55fe8226",
                     "label": "Treść",
                     "name": "text",
                     "type": "text",
@@ -115,7 +115,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_472361c4b7ce6",
+                    "key": "field_55d1e337d1ef2",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "key": "field_347be105f87b4",
+            "key": "field_16f5786a15d37",
             "label": "Opis",
             "name": "text",
             "type": "group",
@@ -162,7 +162,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_25ecb8f1c2bf6",
+                    "key": "field_beabf758afa7b",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -181,7 +181,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_194420c69bbe9",
+                    "key": "field_3b737343745c9",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -209,7 +209,7 @@
             ]
         },
         {
-            "key": "field_8d5f9064a7557",
+            "key": "field_43761fb6ad269",
             "label": "Odmiana",
             "name": "variant",
             "type": "select",
@@ -234,7 +234,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_56c14ed752ee6",
+            "key": "field_fec82bfc00d98",
             "label": "Kolumny",
             "name": "columns",
             "type": "select",
@@ -260,7 +260,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_b51af7dec1021",
+            "key": "field_153e2769b849d",
             "label": "Karty",
             "name": "cards",
             "type": "repeater",
@@ -272,14 +272,14 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_f46a803cf6600",
+            "collapsed": "field_a041b81fcb30f",
             "min": 0,
             "max": 0,
             "layout": "block",
             "button_label": "Dodaj kartę",
             "sub_fields": [
                 {
-                    "key": "field_fa6da25421068",
+                    "key": "field_df70f9ca976c4",
                     "label": "Wyróżniona (ciemna)",
                     "name": "featured",
                     "type": "true_false",
@@ -298,7 +298,7 @@
                     "ui_off_text": ""
                 },
                 {
-                    "key": "field_2c3699a8a82ef",
+                    "key": "field_6e9008c490166",
                     "label": "Wstążka",
                     "name": "flag",
                     "type": "text",
@@ -317,7 +317,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_97e0c77c72ee7",
+                    "key": "field_3ada6243e7444",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -339,7 +339,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_85e9d8bcfd1ac",
+                    "key": "field_e5206f99b2b8f",
                     "label": "Etykieta",
                     "name": "tag",
                     "type": "text",
@@ -358,7 +358,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_f46a803cf6600",
+                    "key": "field_a041b81fcb30f",
                     "label": "Tytuł",
                     "name": "title",
                     "type": "group",
@@ -373,7 +373,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_e9b0647f09cfb",
+                            "key": "field_75b82cc2c2089",
                             "label": "Treść",
                             "name": "text",
                             "type": "text",
@@ -392,7 +392,7 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_8e050353f80a2",
+                            "key": "field_5567e7776c467",
                             "label": "Znacznik",
                             "name": "tag",
                             "type": "select",
@@ -424,7 +424,7 @@
                     ]
                 },
                 {
-                    "key": "field_bcf007a279551",
+                    "key": "field_bd14e2a15da5b",
                     "label": "Opis",
                     "name": "text",
                     "type": "group",
@@ -439,7 +439,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_f0670a02f3a63",
+                            "key": "field_50c07c5299a71",
                             "label": "Treść",
                             "name": "text",
                             "type": "textarea",
@@ -458,7 +458,7 @@
                             "new_lines": ""
                         },
                         {
-                            "key": "field_9c26728abe895",
+                            "key": "field_3efbbca5fcbd3",
                             "label": "Znacznik",
                             "name": "tag",
                             "type": "select",
@@ -486,7 +486,7 @@
                     ]
                 },
                 {
-                    "key": "field_f2de81ecb200c",
+                    "key": "field_7d41bc195f0d6",
                     "label": "Cena",
                     "name": "price",
                     "type": "text",
@@ -505,7 +505,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_3e498d84202cf",
+                    "key": "field_0cb05b0ab6166",
                     "label": "Dopisek przy cenie",
                     "name": "price_suffix",
                     "type": "text",
@@ -524,7 +524,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_c9f0f31f1eb2a",
+                    "key": "field_be6c0ca3ed806",
                     "label": "Nota pod ceną",
                     "name": "note",
                     "type": "text",
@@ -543,7 +543,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_c0efea9d03d6b",
+                    "key": "field_583ec90f5ac24",
                     "label": "Lista",
                     "name": "items",
                     "type": "repeater",
@@ -562,7 +562,7 @@
                     "button_label": "Dodaj punkt",
                     "sub_fields": [
                         {
-                            "key": "field_bde7f5bf216bd",
+                            "key": "field_d7aa59d7efffd",
                             "label": "Tekst",
                             "name": "text",
                             "type": "text",
@@ -583,7 +583,7 @@
                     ]
                 },
                 {
-                    "key": "field_daf856ebfe14d",
+                    "key": "field_5e7a813d07b5e",
                     "label": "Przycisk",
                     "name": "button",
                     "type": "group",
@@ -598,7 +598,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_96369bd70803c",
+                            "key": "field_c285064114a2e",
                             "label": "Link",
                             "name": "link",
                             "type": "link",
@@ -613,7 +613,7 @@
                             "return_format": "array"
                         },
                         {
-                            "key": "field_1855396b656e1",
+                            "key": "field_db0645080dd0c",
                             "label": "Styl",
                             "name": "variant",
                             "type": "select",
@@ -641,7 +641,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_844b86f4e40ef",
+                            "key": "field_f60a922baa087",
                             "label": "Rozmiar",
                             "name": "size",
                             "type": "select",
@@ -666,7 +666,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5b0ca66e96ef6",
+                            "key": "field_77d663f0b6f6f",
                             "label": "Ikona",
                             "name": "icon",
                             "type": "select",
@@ -690,7 +690,7 @@
                     ]
                 },
                 {
-                    "key": "field_3f0d1c885c57e",
+                    "key": "field_0392f07f74e59",
                     "label": "Przycisk drugi",
                     "name": "button_secondary",
                     "type": "group",
@@ -705,7 +705,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_0efc4fdc51b28",
+                            "key": "field_d2536335b9e75",
                             "label": "Link",
                             "name": "link",
                             "type": "link",
@@ -720,7 +720,7 @@
                             "return_format": "array"
                         },
                         {
-                            "key": "field_27f64194b27cb",
+                            "key": "field_9e36e1c191b41",
                             "label": "Styl",
                             "name": "variant",
                             "type": "select",
@@ -748,7 +748,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_9d359b4dac18f",
+                            "key": "field_482e54502cf0a",
                             "label": "Rozmiar",
                             "name": "size",
                             "type": "select",
@@ -773,7 +773,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_e5837e70e6f59",
+                            "key": "field_d514e66a32ce3",
                             "label": "Ikona",
                             "name": "icon",
                             "type": "select",
@@ -797,7 +797,7 @@
                     ]
                 },
                 {
-                    "key": "field_0d24975d3babf",
+                    "key": "field_4efe467f7e0be",
                     "label": "Linki dodatkowe",
                     "name": "links",
                     "type": "repeater",
@@ -816,7 +816,7 @@
                     "button_label": "Dodaj link",
                     "sub_fields": [
                         {
-                            "key": "field_7bb742850bb2b",
+                            "key": "field_2608a46521bbf",
                             "label": "Ikona",
                             "name": "icon",
                             "type": "select",
@@ -838,7 +838,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_81f1b31023b81",
+                            "key": "field_f092e637361ab",
                             "label": "Link",
                             "name": "link",
                             "type": "link",
@@ -857,7 +857,7 @@
             ]
         },
         {
-            "key": "field_ac19b82818ec6",
+            "key": "field_af54127bc765b",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -873,7 +873,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_c7c0a4ff0ad56",
+            "key": "field_b7f245c361f77",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -900,7 +900,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_7d792664e6df2",
+            "key": "field_12bd5eede485a",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -927,7 +927,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_651d676a07386",
+            "key": "field_bf6149dfa899b",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -953,7 +953,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_0e6101482424c",
+            "key": "field_a3b3c63b2a73e",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",

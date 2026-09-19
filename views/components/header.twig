@@ -10,7 +10,7 @@
 	{% if solidHeader %}data-scrolled{% endif %}>
 
 	<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
-		<nav class="flex h-header items-center gap-9" aria-label="{{ __('Nawigacja główna', 'raks') }}">
+		<nav class="flex h-header items-center gap-9" aria-label="{{ __('Nawigacja główna', 'taxeon') }}">
 			<a href="{{ site.url }}" aria-label="{{ site.name }}">
 				{% include 'components/logo.twig' %}
 			</a>
@@ -27,7 +27,7 @@
 							group-data-scrolled:text-ink group-data-scrolled:hover:bg-soft
 							[&_svg]:size-4 group-data-scrolled:[&_svg]:text-accent">
 						{{ 'phone'|svg }}
-						{{ themeOptions.header_contact_link.title ?: __('Kontakt', 'raks') }}
+						{{ themeOptions.header_contact_link.title ?: __('Kontakt', 'taxeon') }}
 					</a>
 				{% endif %}
 
@@ -47,7 +47,7 @@
 					id="menu-toggle"
 					aria-expanded="false"
 					aria-controls="mobile-menu"
-					aria-label="{{ __('Menu', 'raks') }}"
+					aria-label="{{ __('Menu', 'taxeon') }}"
 					class="group/burger hidden size-11 items-center justify-center rounded-[11px] border border-white/40
 						bg-white/14 text-white max-2xl:flex
 						group-data-scrolled:border-line group-data-scrolled:bg-white group-data-scrolled:text-ink

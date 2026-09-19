@@ -72,10 +72,10 @@
 	--breakpoint-xl: 920px;
 	--breakpoint-2xl: 1080px;
 
-	--animate-word-in: raks-word-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-	--animate-fade-up: raks-fade-up 0.25s ease;
+	--animate-word-in: taxeon-word-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+	--animate-fade-up: taxeon-fade-up 0.25s ease;
 
-	@keyframes raks-word-in {
+	@keyframes taxeon-word-in {
 		from {
 			opacity: 0;
 			transform: translateY(0.5em);
@@ -89,7 +89,7 @@
 		}
 	}
 
-	@keyframes raks-fade-up {
+	@keyframes taxeon-fade-up {
 		from {
 			opacity: 0;
 			transform: translateY(6px);

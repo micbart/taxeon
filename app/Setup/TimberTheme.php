@@ -26,26 +26,26 @@ class TimberTheme extends TimberSite
 
 	public function enqueueAssets(): void
 	{
-		Vite::enqueue('src/js/main.js', 'raks-main');
+		Vite::enqueue('src/js/main.js', 'taxeon-main');
 
 		if (is_home() || is_category() || is_tag() || is_author() || is_date() || is_search()) {
-			Vite::enqueue('src/js/blog.js', 'raks-blog', ['raks-main']);
+			Vite::enqueue('src/js/blog.js', 'taxeon-blog', ['taxeon-main']);
 		}
 
 		if (is_singular('post')) {
-			Vite::enqueue('src/js/single-post.js', 'raks-single-post', ['raks-main']);
+			Vite::enqueue('src/js/single-post.js', 'taxeon-single-post', ['taxeon-main']);
 		}
 
 		wp_dequeue_style('wp-block-library');
 		wp_dequeue_style('wp-block-library-theme');
 
 		wp_localize_script(
-			'raks-main',
+			'taxeon-main',
 			'dataTheme',
 			[
 				'ajaxUrl' => admin_url('admin-ajax.php'),
 				'homeUrl' => home_url('/'),
-				'restUrl' => rest_url('raks/v1/'),
+				'restUrl' => rest_url('taxeon/v1/'),
 				'restNonce' => wp_create_nonce('wp_rest'),
 				'recaptcha' => [
 					'enabled' => function_exists('get_field')
@@ -54,16 +54,16 @@ class TimberTheme extends TimberSite
 					'siteKey' => function_exists('get_field') ? trim((string) get_field('recaptcha_site_key', 'option')) : '',
 				],
 				'i18n' => [
-					'noPosts' => __('Nie znaleziono wpisów.', 'raks'),
-					'loading' => __('Ładowanie…', 'raks'),
-					'error' => __('Coś poszło nie tak. Spróbuj ponownie.', 'raks'),
+					'noPosts' => __('Nie znaleziono wpisów.', 'taxeon'),
+					'loading' => __('Ładowanie…', 'taxeon'),
+					'error' => __('Coś poszło nie tak. Spróbuj ponownie.', 'taxeon'),
 					'form' => [
-						'required' => __('To pole jest wymagane.', 'raks'),
-						'invalid' => __('Popraw zaznaczone pola.', 'raks'),
-						'invalidEmail' => __('Podaj poprawny adres e-mail.', 'raks'),
-						'consent' => __('Zaznacz wymaganą zgodę.', 'raks'),
-						'sending' => __('Wysyłanie…', 'raks'),
-						'sent' => __('Dziękujemy, wiadomość została wysłana.', 'raks'),
+						'required' => __('To pole jest wymagane.', 'taxeon'),
+						'invalid' => __('Popraw zaznaczone pola.', 'taxeon'),
+						'invalidEmail' => __('Podaj poprawny adres e-mail.', 'taxeon'),
+						'consent' => __('Zaznacz wymaganą zgodę.', 'taxeon'),
+						'sending' => __('Wysyłanie…', 'taxeon'),
+						'sent' => __('Dziękujemy, wiadomość została wysłana.', 'taxeon'),
 					],
 				],
 			]
@@ -72,7 +72,7 @@ class TimberTheme extends TimberSite
 
 	public function enqueueAdminAssets(): void
 	{
-		Vite::enqueue('src/js/admin.js', 'raks-admin');
+		Vite::enqueue('src/js/admin.js', 'taxeon-admin');
 	}
 
 	public function initDisableFeed(): void
@@ -90,7 +90,7 @@ class TimberTheme extends TimberSite
 
 	public function disableFeed(): void
 	{
-		wp_die(esc_html__('Kanał RSS jest wyłączony.', 'raks'));
+		wp_die(esc_html__('Kanał RSS jest wyłączony.', 'taxeon'));
 	}
 
 	public function addToContext($context): array
@@ -260,13 +260,13 @@ class TimberTheme extends TimberSite
 		add_theme_support('responsive-embeds');
 		add_theme_support('editor-styles');
 
-		load_theme_textdomain('raks', get_template_directory() . '/languages');
+		load_theme_textdomain('taxeon', get_template_directory() . '/languages');
 	}
 
 	public function registerMenu(): void
 	{
 		register_nav_menus([
-			'legalMenu' => __('Stopka — dół (regulaminy)', 'raks'),
+			'legalMenu' => __('Stopka — dół (regulaminy)', 'taxeon'),
 		]);
 	}
 

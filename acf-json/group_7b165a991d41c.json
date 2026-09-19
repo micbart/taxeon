@@ -1,9 +1,9 @@
 {
-    "key": "group_20f24813b9dfb",
-    "title": "Blok: Hero",
+    "key": "group_7b165a991d41c",
+    "title": "Blok: Pas CTA",
     "fields": [
         {
-            "key": "field_171bae810563e",
+            "key": "field_eb122498e9df3",
             "label": "Treść",
             "name": "tab_content",
             "type": "tab",
@@ -19,23 +19,23 @@
             "endpoint": 0
         },
         {
-            "key": "field_a36d89a60be2c",
-            "label": "Układ",
-            "name": "layout",
+            "key": "field_8745f962125f9",
+            "label": "Wariant",
+            "name": "variant",
             "type": "select",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "60",
+                "width": "",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "center": "Wyśrodkowany (strona główna)",
-                "left": "Do lewej (podstrony)"
+                "light": "Jasny",
+                "dark": "Ciemny"
             },
-            "default_value": "center",
+            "default_value": "light",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -44,64 +44,29 @@
             "placeholder": ""
         },
         {
-            "key": "field_d0af145d0a287",
-            "label": "Pokaż okruszki",
-            "name": "show_breadcrumbs",
-            "type": "true_false",
-            "instructions": "",
+            "key": "field_62dd4ddb3b616",
+            "label": "Ikona (wariant jasny)",
+            "name": "icon",
+            "type": "select",
+            "instructions": "Lista pochodzi z plików w src/svg.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "40",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_53bf44d2e7a64",
-            "label": "Plakietka — wyróżnienie",
-            "name": "badge_highlight",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "30",
-                "class": "",
-                "id": ""
-            },
+            "choices": [],
             "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
-            "key": "field_e2c2c54755302",
-            "label": "Plakietka — tekst",
-            "name": "badge_text",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "70",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_995181481d7b4",
+            "key": "field_586b5cbfbc4bc",
             "label": "Tytuł",
             "name": "title",
             "type": "group",
@@ -116,10 +81,10 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_68b2851966b3a",
+                    "key": "field_79887360ee4e8",
                     "label": "Treść",
                     "name": "text",
-                    "type": "textarea",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -130,12 +95,12 @@
                     },
                     "default_value": "",
                     "placeholder": "",
-                    "maxlength": "",
-                    "rows": 3,
-                    "new_lines": ""
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
-                    "key": "field_1cdffd7a464f1",
+                    "key": "field_d039149cef8e0",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -156,7 +121,7 @@
                         "span": "span",
                         "div": "div"
                     },
-                    "default_value": "h1",
+                    "default_value": "h2",
                     "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
@@ -167,9 +132,9 @@
             ]
         },
         {
-            "key": "field_e89e4f7f68e15",
-            "label": "Podtytuł",
-            "name": "subtitle",
+            "key": "field_2eabb9317a8f8",
+            "label": "Opis",
+            "name": "text",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -182,7 +147,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_cb2ef9c1dfe19",
+                    "key": "field_4ae9dc4d2a4e2",
                     "label": "Treść",
                     "name": "text",
                     "type": "textarea",
@@ -201,7 +166,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_072fda498e7f2",
+                    "key": "field_a724b5d55c4bd",
                     "label": "Znacznik",
                     "name": "tag",
                     "type": "select",
@@ -229,190 +194,7 @@
             ]
         },
         {
-            "key": "field_f33e69dc05fda",
-            "label": "Szerokość tekstu",
-            "name": "text_width",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "narrow": "Ograniczona (wyśrodkowany hero)",
-                "full": "Pełna szerokość kolumny"
-            },
-            "default_value": "narrow",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_d8f03c7e996a0",
-            "label": "Tło",
-            "name": "tab_media",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_1ad00133daaba",
-            "label": "Rodzaj tła",
-            "name": "media_type",
-            "type": "select",
-            "instructions": "Wideo i zdjęcie dostają przyciemnienie, żeby tekst był czytelny. Gradient i animacja go nie potrzebują.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "Sam gradient",
-                "video": "Wideo",
-                "image": "Zdjęcie",
-                "animation": "Animacja"
-            },
-            "default_value": "none",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_c8ff06e3b29ae",
-            "label": "Rodzaj animacji",
-            "name": "animation",
-            "type": "select",
-            "instructions": "Liczona w przeglądarce. Na wąskich ekranach, przy oszczędzaniu danych i wyłączonych animacjach zostaje sam gradient.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_1ad00133daaba",
-                        "operator": "==",
-                        "value": "animation"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "bands": "Pasma światła",
-                "fog": "Mgła",
-                "clouds": "Chmury",
-                "cells": "Komórki",
-                "net": "Siatka punktów",
-                "birds": "Ptaki"
-            },
-            "default_value": "bands",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_b0facad9d710e",
-            "label": "Wideo — plik",
-            "name": "video",
-            "type": "file",
-            "instructions": "MP4 lub WebM. Na mobile nie jest pobierane.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_1ad00133daaba",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": "mp4,webm"
-        },
-        {
-            "key": "field_8773e58ff4480",
-            "label": "Wideo — adres zewnętrzny",
-            "name": "video_url",
-            "type": "text",
-            "instructions": "Adres MP4/WebM albo strumienia HLS (.m3u8). Ma pierwszeństwo przed plikiem.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_1ad00133daaba",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_fe12e755bcfe7",
-            "label": "Plakat / zdjęcie tła",
-            "name": "poster",
-            "type": "image",
-            "instructions": "Widoczny zanim wczyta się wideo oraz na urządzeniach mobilnych.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_77f282deed682",
+            "key": "field_489d9990c365e",
             "label": "Przycisk główny",
             "name": "button_primary",
             "type": "group",
@@ -427,7 +209,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_151276ec7648b",
+                    "key": "field_6e7b2704d2a45",
                     "label": "Link",
                     "name": "link",
                     "type": "link",
@@ -442,7 +224,7 @@
                     "return_format": "array"
                 },
                 {
-                    "key": "field_94d15da568648",
+                    "key": "field_210ee6fd6c1b1",
                     "label": "Styl",
                     "name": "variant",
                     "type": "select",
@@ -461,7 +243,7 @@
                         "on-navy": "Biały na ciemnym",
                         "ghost-navy": "Obrys na ciemnym"
                     },
-                    "default_value": "on-navy",
+                    "default_value": "primary",
                     "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
@@ -470,7 +252,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_ff698833f7745",
+                    "key": "field_6ea30459e7510",
                     "label": "Rozmiar",
                     "name": "size",
                     "type": "select",
@@ -495,7 +277,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_fc9ce3546317c",
+                    "key": "field_311d41751b53f",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -519,7 +301,7 @@
             ]
         },
         {
-            "key": "field_8651b8affae84",
+            "key": "field_6c41b9df665f9",
             "label": "Przycisk drugi",
             "name": "button_secondary",
             "type": "group",
@@ -534,7 +316,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_1d3f20c1ef20b",
+                    "key": "field_da70db4251700",
                     "label": "Link",
                     "name": "link",
                     "type": "link",
@@ -549,7 +331,7 @@
                     "return_format": "array"
                 },
                 {
-                    "key": "field_4a7db05ea1b58",
+                    "key": "field_47e1ec57af58c",
                     "label": "Styl",
                     "name": "variant",
                     "type": "select",
@@ -568,7 +350,7 @@
                         "on-navy": "Biały na ciemnym",
                         "ghost-navy": "Obrys na ciemnym"
                     },
-                    "default_value": "ghost-navy",
+                    "default_value": "ghost",
                     "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
@@ -577,7 +359,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_79197ea022cc7",
+                    "key": "field_4dcda08c57ac7",
                     "label": "Rozmiar",
                     "name": "size",
                     "type": "select",
@@ -602,7 +384,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5f3500c929877",
+                    "key": "field_a1b6a1f746bcb",
                     "label": "Ikona",
                     "name": "icon",
                     "type": "select",
@@ -626,47 +408,7 @@
             ]
         },
         {
-            "key": "field_a14546a64968e",
-            "label": "Pasek zaufania",
-            "name": "trust",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Dodaj punkt",
-            "sub_fields": [
-                {
-                    "key": "field_5ebb7a89721b8",
-                    "label": "Tekst",
-                    "name": "text",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                }
-            ]
-        },
-        {
-            "key": "field_21776ed0ea1bc",
+            "key": "field_a8ac696ae884e",
             "label": "Sekcja",
             "name": "tab_section",
             "type": "tab",
@@ -682,7 +424,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_dcd6085320608",
+            "key": "field_1807ac2e3dd9a",
             "label": "Tło",
             "name": "background",
             "type": "select",
@@ -709,7 +451,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_61fa33ac43126",
+            "key": "field_099823aeb9fdf",
             "label": "Szerokość",
             "name": "container",
             "type": "select",
@@ -736,7 +478,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_8c6715f7bb817",
+            "key": "field_468fca136f99a",
             "label": "Odstęp u góry",
             "name": "padding_top",
             "type": "select",
@@ -762,7 +504,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_3c51b1f1b5488",
+            "key": "field_0dc83c03565fd",
             "label": "Odstęp u dołu",
             "name": "padding_bottom",
             "type": "select",
@@ -793,7 +535,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/hero"
+                "value": "acf/cta"
             }
         ]
     ],
