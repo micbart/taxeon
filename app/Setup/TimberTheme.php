@@ -446,15 +446,6 @@ class TimberTheme extends TimberSite
 
 		$twig->addFunction(
 			new TwigFunction(
-				'shopAvailableMetaQuery',
-				static function (): array {
-					return \App\Services\Shop\ProductQuery::availableMetaQuery();
-				}
-			)
-		);
-
-		$twig->addFunction(
-			new TwigFunction(
 				'getOption',
 				function (string $option) {
 					return get_option($option);

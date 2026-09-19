@@ -5,14 +5,10 @@ namespace App\Providers;
 class PostTypeSupports
 {
 	/** @var array<int, class-string<\App\PostTypes\AbstractTaxonomy>> */
-	private const TAXONOMIES = [
-		\App\PostTypes\KategoriaProduktu::class,
-	];
+	private const TAXONOMIES = [];
 
 	/** @var array<int, class-string<\App\PostTypes\AbstractPostType>> */
-	private const POST_TYPES = [
-		\App\PostTypes\Produkt::class,
-	];
+	private const POST_TYPES = [];
 
 	public function __construct()
 	{

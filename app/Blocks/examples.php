@@ -23,58 +23,6 @@ return [
 		'trust' => $items(['Bezpłatne wsparcie', 'Chmura lub instalacja lokalna']),
 	],
 
-	'choice' => [
-		'eyebrow' => $t('Nadkreślenie', 'span'),
-		'title' => $t('Dwie drogi do wyboru', 'h2'),
-		'text' => $t('Krótkie zdanie wprowadzające do porównania.'),
-		'columns' => '2',
-		'cards' => [
-			[
-				'featured' => true,
-				'icon' => 'cloud',
-				'tag' => 'Wariant pierwszy',
-				'title' => $t('Karta wyróżniona', 'h3'),
-				'text' => $t('Opis wariantu w dwóch, trzech zdaniach.'),
-				'items' => $items(['Pierwsza korzyść', 'Druga korzyść', 'Trzecia korzyść']),
-			],
-			[
-				'featured' => false,
-				'icon' => 'hard-drive',
-				'tag' => 'Wariant drugi',
-				'title' => $t('Karta zwykła', 'h3'),
-				'text' => $t('Opis drugiego wariantu.'),
-				'items' => $items(['Pierwsza korzyść', 'Druga korzyść']),
-			],
-		],
-		'footnote' => 'Zdanie domykające sekcję pod kartami.',
-	],
-
-	'programs' => [
-		'eyebrow' => $t('Nadkreślenie', 'span'),
-		'title' => $t('Trzy karty produktów', 'h2'),
-		'text' => $t('Zdanie wprowadzające do listy.'),
-		'programs' => [
-			[
-				'title' => $t('Pierwszy produkt', 'h3'),
-				'text' => $t('Do czego służy i komu się przyda.'),
-				'tags' => [['label' => 'Etykieta'], ['label' => 'Etykieta']],
-				'link' => ['title' => 'Dowiedz się więcej', 'url' => '#', 'target' => ''],
-			],
-			[
-				'title' => $t('Drugi produkt', 'h3'),
-				'text' => $t('Do czego służy i komu się przyda.'),
-				'tags' => [['label' => 'Etykieta'], ['label' => 'Etykieta']],
-				'link' => ['title' => 'Dowiedz się więcej', 'url' => '#', 'target' => ''],
-			],
-			[
-				'title' => $t('Trzeci produkt', 'h3'),
-				'text' => $t('Do czego służy i komu się przyda.'),
-				'tags' => [['label' => 'Etykieta']],
-				'link' => ['title' => 'Dowiedz się więcej', 'url' => '#', 'target' => ''],
-			],
-		],
-	],
-
 	'features' => [
 		'eyebrow' => $t('Nadkreślenie', 'span'),
 		'title' => $t('Cztery wyróżniki', 'h2'),
@@ -86,31 +34,6 @@ return [
 			['icon' => 'tag', 'title' => $t('Drugi', 'h3'), 'text' => $t('Krótkie wyjaśnienie.')],
 			['icon' => 'sparkles', 'title' => $t('Trzeci', 'h3'), 'text' => $t('Krótkie wyjaśnienie.')],
 			['icon' => 'landmark', 'title' => $t('Czwarty', 'h3'), 'text' => $t('Krótkie wyjaśnienie.')],
-		],
-	],
-
-	'support' => [
-		'eyebrow' => $t('Nadkreślenie', 'span'),
-		'title' => $t('Rozsuwane kafle', 'h2'),
-		'text' => $t('Zdanie wprowadzające do harmonijki.'),
-		'items' => [
-			['icon' => 'headset', 'title' => $t('Pierwszy kafel', 'h3'), 'text' => $t('Opis widoczny po rozwinięciu.')],
-			['icon' => 'file-check', 'title' => $t('Drugi kafel', 'h3'), 'text' => $t('Opis widoczny po rozwinięciu.')],
-			['icon' => 'graduation-cap', 'title' => $t('Trzeci kafel', 'h3'), 'text' => $t('Opis widoczny po rozwinięciu.')],
-		],
-	],
-
-	'advisor' => [
-		'eyebrow' => $t('Nadkreślenie', 'span'),
-		'title' => $t('Wezwanie do rozmowy', 'h2'),
-		'text' => $t('Zdanie zachęcające do kontaktu z doradcą.'),
-		'icon' => 'user-round',
-		'benefits' => $items(['Pierwsza korzyść', 'Druga korzyść', 'Trzecia korzyść']),
-		'button_primary' => $btn('Umów prezentację', 'on-navy'),
-		'button_secondary' => $btn('Pobierz demo', 'ghost-navy'),
-		'stats' => [
-			['icon' => 'award', 'value' => '35 lat', 'label' => 'na rynku'],
-			['icon' => 'building-2', 'value' => '16 000', 'label' => 'firm i biur rachunkowych'],
 		],
 	],
 
@@ -257,27 +180,4 @@ return [
 		],
 	],
 
-	'trial-wizard' => [
-		'show_rail' => true,
-		'rail_position' => 'left',
-		'eyebrow' => $t('Nadkreślenie', 'span'),
-		'title' => $t('Kolumna zaufania', 'h2'),
-		'text' => $t('Zdanie, które przekonuje do wypełnienia kreatora.'),
-		'stats' => [
-			['icon' => 'award', 'value' => '35', 'unit' => 'lat', 'label' => 'na rynku'],
-			['icon' => 'building-2', 'value' => '16 000', 'label' => 'firm'],
-		],
-		'points' => $items(['Pierwsza korzyść', 'Druga korzyść']),
-		'secure_icon' => 'shield-check',
-		'secure_text' => 'Twoje dane są bezpieczne.',
-		'step1_kicker' => 'Krok 1 z 3',
-		'step1_title' => $t('Podaj numer NIP', 'h3'),
-		'step1_text' => 'Dane firmy uzupełnimy z rejestru.',
-		'step2_label' => 'Dane kontaktowe',
-		'step3_label' => 'Pobranie',
-		'foot' => [
-			['icon' => 'lock', 'text' => 'Połączenie szyfrowane'],
-			['icon' => 'credit-card', 'text' => 'Bez karty'],
-		],
-	],
 ];

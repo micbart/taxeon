@@ -11,8 +11,6 @@ import { initAccordion } from './app/accordion.js';
 import { initTabs } from './app/tabs.js';
 import { initContactForm } from './app/contactForm.js';
 import { initVerifyBox } from './app/verifyBox.js';
-import { initTrialWizard } from './app/trialWizard.js';
-import { initFilterPills } from './app/filterPills.js';
 import { initTopbar } from './app/topbar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initTabs();
 	initVerifyBox();
 	initContactForm();
-	initTrialWizard();
-	initFilterPills();
 	initTopbar();
 });

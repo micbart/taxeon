@@ -16,7 +16,6 @@ function init(): void
 	new Services\Media();
 	new Services\LoginPage();
 	new Services\ThemeEditorLock();
-	new Services\Shop\ProductQuery();
 	new Services\Hardening();
 
 	new Providers\AcfSupports();
@@ -31,8 +30,6 @@ function init(): void
 
 	new Api\ApiContact($recaptcha, $leads);
 	new Api\ApiPosts();
-	new Api\ApiNip();
-	new Api\ApiShopProduct(new Services\Shop\ProductSync());
 }
 
 init();
