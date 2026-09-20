@@ -1,0 +1,57 @@
+{#
+	Title: Opinie
+	Description: Karty opinii z Google z odnośnikiem do wizytówki
+	Category: taxeon
+	Icon: star-filled
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+{% import 'components/section.twig' as section %}
+
+<section class="{{ section.shell(fields) }}">
+	<div class="{{ section.container(fields) }}">
+		<div class="flex flex-wrap items-end justify-between gap-8">
+			{% include 'components/section-head.twig' with {
+				eyebrow: fields.eyebrow,
+				title: fields.title,
+				text: fields.text
+			} only %}
+
+			{% if fields.link.url %}
+				<a href="{{ fields.link.url }}" target="_blank" rel="noopener"
+					class="inline-flex items-center gap-2.5 rounded-pill border border-[#c6d4ea] bg-page
+						px-[22px] py-[13px] text-[15px] font-semibold whitespace-nowrap text-ink
+						transition hover:border-accent hover:bg-soft">
+					{{ fields.link.title }} →
+				</a>
+			{% endif %}
+		</div>
+
+		{% if fields.items|length %}
+			<div class="mt-11 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+				{% for item in fields.items %}
+					<a href="{{ fields.link.url ?: '#' }}" target="_blank" rel="noopener"
+						class="flex min-h-[210px] flex-col gap-3.5 rounded-card border border-line bg-page p-[26px]
+							text-ink transition hover:border-accent hover:shadow-[0_18px_40px_-26px_rgb(11_99_246/0.4)]">
+						<div class="flex gap-1 text-[15px] tracking-[0.1em] text-accent">
+							{% for gwiazdka in 1..5 %}{{ gwiazdka <= (item.rating ?: 5) ? '★' : '☆' }}{% endfor %}
+						</div>
+
+						<p class="flex-1 text-[15px] leading-[1.6] text-ink-2">{{ item.text }}</p>
+
+						<div class="flex items-center gap-2.5">
+							<span class="block size-[34px] rounded-full bg-line"></span>
+							<span class="flex flex-col">
+								<span class="text-[14px] font-semibold">{{ item.author }}</span>
+								<span class="text-[13px] text-[#6c7c96]">{{ item.when }}</span>
+							</span>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</section>

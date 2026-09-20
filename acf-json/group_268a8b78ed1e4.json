@@ -1,6 +1,6 @@
 {
     "key": "group_268a8b78ed1e4",
-    "title": "Blok: Oś czasu",
+    "title": "Blok: Kroki",
     "fields": [
         {
             "key": "field_640e4c7777c4a",
@@ -210,7 +210,7 @@
         },
         {
             "key": "field_5ccca3aac922b",
-            "label": "Wydarzenia",
+            "label": "Kroki",
             "name": "items",
             "type": "repeater",
             "instructions": "",
@@ -221,22 +221,22 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_1f236091fe5ab",
+            "collapsed": "field_d891f00514b17",
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "Dodaj wydarzenie",
+            "button_label": "Dodaj krok",
             "sub_fields": [
                 {
-                    "key": "field_1f236091fe5ab",
-                    "label": "Rok / okres",
-                    "name": "year",
+                    "key": "field_1524475428d8b",
+                    "label": "Numer",
+                    "name": "number",
                     "type": "text",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "20",
                         "class": "",
                         "id": ""
                     },
@@ -250,73 +250,45 @@
                     "key": "field_d891f00514b17",
                     "label": "Tytuł",
                     "name": "title",
-                    "type": "group",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_6871e148b32cb",
+                    "label": "Wyróżniony",
+                    "name": "featured",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "20",
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_4ef85cdd28e7b",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_a487bf67a6017",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "h1": "h1",
-                                "h2": "h2",
-                                "h3": "h3",
-                                "h4": "h4",
-                                "p": "p",
-                                "span": "span",
-                                "div": "div"
-                            },
-                            "default_value": "h3",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_038f2fe3a942f",
                     "label": "Opis",
                     "name": "text",
-                    "type": "group",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -325,56 +297,82 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_b9790eb64e613",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 3,
-                            "new_lines": ""
-                        },
-                        {
-                            "key": "field_d486f38bfa06b",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "p": "p",
-                                "div": "div",
-                                "span": "span"
-                            },
-                            "default_value": "p",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
                 }
             ]
+        },
+        {
+            "key": "field_b05ba73220ec0",
+            "label": "Pasek na dole",
+            "name": "tab_cta",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_2a5b557f68f0a",
+            "label": "Tytuł",
+            "name": "cta_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_e364a55535f94",
+            "label": "Opis",
+            "name": "cta_text",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_53bb5a3ad3a09",
+            "label": "Przycisk",
+            "name": "cta_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         },
         {
             "key": "field_b0f1867707391",
@@ -408,8 +406,9 @@
             "choices": {
                 "page": "Białe",
                 "soft": "Jasnoszare",
+                "soft-2": "Jasnoszare chłodne",
                 "navy": "Granatowe",
-                "gradient": "Gradient (jak hero)"
+                "gradient": "Gradient niebieski"
             },
             "default_value": "page",
             "return_format": "value",
@@ -460,8 +459,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",
@@ -486,8 +486,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",

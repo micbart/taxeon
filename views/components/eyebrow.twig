@@ -1,8 +1,5 @@
-{% set eyebrowColor = color ?: (onDark ? 'text-[#f3f4f8]/98' : 'text-accent-strong') %}
-{% set eyebrowClass = 'inline-flex items-center gap-2 font-sans text-[13px] font-bold tracking-[0.12em] uppercase
-	' ~ eyebrowColor ~ '
-	before:h-0.5 before:w-[22px] before:rounded-sm before:bg-current before:content-[\'\']
-	' ~ (class ?: '') %}
+{% set eyebrowClass = 'font-display text-[13px] font-semibold tracking-[0.14em] uppercase
+	' ~ (color ?: (onDark ? 'text-accent-tint-2' : 'text-accent')) ~ ' ' ~ (class ?: '') %}
 
 {% if title is defined and title %}
 	{% include 'components/title-with-select-tag.twig' with {

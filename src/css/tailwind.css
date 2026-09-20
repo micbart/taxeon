@@ -22,6 +22,7 @@
 	--color-line-2: #e8f0fe;
 	--color-page: #ffffff;
 	--color-soft: #f7faff;
+	--color-soft-2: #f4f7fc;
 
 	--color-deep: #030b1c;
 	--color-deep-2: #061024;
@@ -54,7 +55,9 @@
 
 	--container-page: 1240px;
 	--spacing-gutter: 32px;
-	--spacing-section: 96px;
+	--spacing-section: 112px;
+	--spacing-section-md: 104px;
+	--spacing-section-sm: 72px;
 	--spacing-header: 100px;
 
 	--breakpoint-sm: 520px;
@@ -107,4 +110,9 @@
 	--gradient-dark: linear-gradient(160deg, var(--color-deep-2) 0%, var(--color-deep) 100%);
 
 	--gradient-soft: linear-gradient(180deg, #ffffff 0%, var(--color-soft) 100%);
+
+	--gradient-blue: linear-gradient(135deg, #0a7bee 0%, #0b4fd6 34%, #10289b 68%, #170a63 100%);
+
+	--gradient-blue-glow: linear-gradient(120deg, rgb(255 255 255 / 0.1), transparent 45%),
+		radial-gradient(70% 60% at 100% 100%, rgb(10 5 60 / 0.45), transparent 70%);
 }

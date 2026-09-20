@@ -1,6 +1,6 @@
 {
     "key": "group_c93a093237af9",
-    "title": "Blok: Tabela",
+    "title": "Blok: Porównanie",
     "fields": [
         {
             "key": "field_eef82eb1a5aaf",
@@ -209,11 +209,11 @@
             ]
         },
         {
-            "key": "field_4233b9c6dbd6c",
-            "label": "Nagłówki kolumn",
-            "name": "head",
-            "type": "repeater",
-            "instructions": "Kolejność i liczba kolumn muszą zgadzać się z komórkami w wierszach.",
+            "key": "field_20c3539fea64d",
+            "label": "Ramka z uwagą",
+            "name": "note",
+            "type": "wysiwyg",
+            "instructions": "Pod opisem, z pionową kreską z lewej. Puste = bez ramki.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -221,22 +221,76 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_e05793e1a08f3",
+            "label": "Tabela",
+            "name": "tab_table",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_da3db143115a6",
+            "label": "Nagłówek kolumny opisów",
+            "name": "head_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Co dostajesz",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_e456c36549343",
+            "label": "Kolumny",
+            "name": "columns",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_c23324dc4ab8d",
             "min": 0,
-            "max": 0,
-            "layout": "table",
+            "max": 3,
+            "layout": "block",
             "button_label": "Dodaj kolumnę",
             "sub_fields": [
                 {
-                    "key": "field_8f4f964bca112",
-                    "label": "Nagłówek",
+                    "key": "field_c23324dc4ab8d",
+                    "label": "Nazwa",
                     "name": "label",
                     "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "60",
+                        "width": "40",
                         "class": "",
                         "id": ""
                     },
@@ -247,15 +301,34 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_67eaac6b1090a",
-                    "label": "Ukryj na mobile",
-                    "name": "hide_mobile",
-                    "type": "true_false",
+                    "key": "field_d8c1364a2d913",
+                    "label": "Dopisek",
+                    "name": "note",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_0f1f8605591a4",
+                    "label": "Wyróżniona",
+                    "name": "highlight",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
                         "class": "",
                         "id": ""
                     },
@@ -268,86 +341,27 @@
             ]
         },
         {
-            "key": "field_e202187f7fefb",
-            "label": "Odmiana",
-            "name": "variant",
-            "type": "select",
-            "instructions": "Każda odmiana ma własną typografię i odstępy z projektu.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "compare": "Porównanie (nagłówek na środku)",
-                "pricing": "Cennik modułów",
-                "downloads": "Lista do pobrania"
-            },
-            "default_value": "compare",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_c0e6c5e2fccf4",
-            "label": "Tryb",
-            "name": "mode",
-            "type": "select",
-            "instructions": "W trybie zakładek nagłówki kolumn są wspólne, a każda zakładka ma własne wiersze.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "single": "Jedna tabela",
-                "tabs": "Zakładki"
-            },
-            "default_value": "single",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_c4fa3573cd076",
-            "label": "Zakładki",
-            "name": "tabs",
+            "key": "field_8f9a2305064e5",
+            "label": "Wiersze",
+            "name": "rows",
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_c0e6c5e2fccf4",
-                        "operator": "==",
-                        "value": "tabs"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_0273315977975",
+            "collapsed": "field_409d440454c45",
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "Dodaj zakładkę",
+            "button_label": "Dodaj wiersz",
             "sub_fields": [
                 {
-                    "key": "field_0273315977975",
-                    "label": "Etykieta",
+                    "key": "field_409d440454c45",
+                    "label": "Opis",
                     "name": "label",
                     "type": "text",
                     "instructions": "",
@@ -365,185 +379,11 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_748cc9cf9840f",
-                    "label": "Wiersze",
-                    "name": "rows",
+                    "key": "field_eb82e0a58803d",
+                    "label": "Wartości",
+                    "name": "values",
                     "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "collapsed": "field_6897cf9dec628",
-                    "min": 0,
-                    "max": 0,
-                    "layout": "block",
-                    "button_label": "Dodaj wiersz",
-                    "sub_fields": [
-                        {
-                            "key": "field_6897cf9dec628",
-                            "label": "Komórki",
-                            "name": "cells",
-                            "type": "repeater",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "collapsed": "",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "block",
-                            "button_label": "Dodaj komórkę",
-                            "sub_fields": [
-                                {
-                                    "key": "field_d7453d519fd29",
-                                    "label": "Treść",
-                                    "name": "text",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "45",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_157beac1903e8",
-                                    "label": "Ikona",
-                                    "name": "icon",
-                                    "type": "select",
-                                    "instructions": "Lista pochodzi z plików w src/svg.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "25",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": [],
-                                    "default_value": "",
-                                    "return_format": "value",
-                                    "multiple": 0,
-                                    "allow_null": 1,
-                                    "ui": 0,
-                                    "ajax": 0,
-                                    "placeholder": ""
-                                },
-                                {
-                                    "key": "field_235192fb38163",
-                                    "label": "Styl",
-                                    "name": "style",
-                                    "type": "select",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "30",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "normal": "Zwykły",
-                                        "plain": "Zwykły, bez pogrubienia",
-                                        "strong": "Wyróżniony",
-                                        "muted": "Wyszarzony",
-                                        "price": "Cena"
-                                    },
-                                    "default_value": "normal",
-                                    "return_format": "value",
-                                    "multiple": 0,
-                                    "allow_null": 0,
-                                    "ui": 0,
-                                    "ajax": 0,
-                                    "placeholder": ""
-                                },
-                                {
-                                    "key": "field_74efa32820adf",
-                                    "label": "Dopisek",
-                                    "name": "suffix",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_3b08126947031",
-                                    "label": "Link",
-                                    "name": "link",
-                                    "type": "link",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "array"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "field_8f9a2305064e5",
-            "label": "Wiersze",
-            "name": "rows",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_c0e6c5e2fccf4",
-                        "operator": "==",
-                        "value": "single"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_1ac9278da614b",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj wiersz",
-            "sub_fields": [
-                {
-                    "key": "field_1ac9278da614b",
-                    "label": "Komórki",
-                    "name": "cells",
-                    "type": "repeater",
-                    "instructions": "",
+                    "instructions": "Po jednej na kolumnę, w tej samej kolejności.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -553,150 +393,32 @@
                     },
                     "collapsed": "",
                     "min": 0,
-                    "max": 0,
+                    "max": 3,
                     "layout": "block",
-                    "button_label": "Dodaj komórkę",
+                    "button_label": "Dodaj wartość",
                     "sub_fields": [
                         {
-                            "key": "field_0e7d61cf44acf",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "text",
+                            "key": "field_c4c04850064f9",
+                            "label": "W cenie",
+                            "name": "on",
+                            "type": "true_false",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "45",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_42c24b08d5a03",
-                            "label": "Ikona",
-                            "name": "icon",
-                            "type": "select",
-                            "instructions": "Lista pochodzi z plików w src/svg.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": [],
-                            "default_value": "",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 1,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_32e1721fbac62",
-                            "label": "Styl",
-                            "name": "style",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "normal": "Zwykły",
-                                "plain": "Zwykły, bez pogrubienia",
-                                "strong": "Wyróżniony",
-                                "muted": "Wyszarzony",
-                                "price": "Cena"
-                            },
-                            "default_value": "normal",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_9c5aec1a6047c",
-                            "label": "Dopisek",
-                            "name": "suffix",
-                            "type": "text",
-                            "instructions": "Mniejszy tekst obok treści, np. „/ mies.”.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_9d25a827f3767",
-                            "label": "Link",
-                            "name": "link",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array"
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ]
                 }
             ]
-        },
-        {
-            "key": "field_b6dd5dae92837",
-            "label": "Dopisek pod tabelą",
-            "name": "footnote",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_bf5a422a61f7a",
-            "label": "Link w dopisku",
-            "name": "footnote_link",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
         },
         {
             "key": "field_7477011c3dd57",
@@ -730,8 +452,9 @@
             "choices": {
                 "page": "Białe",
                 "soft": "Jasnoszare",
+                "soft-2": "Jasnoszare chłodne",
                 "navy": "Granatowe",
-                "gradient": "Gradient (jak hero)"
+                "gradient": "Gradient niebieski"
             },
             "default_value": "page",
             "return_format": "value",
@@ -782,8 +505,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",
@@ -808,8 +532,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",

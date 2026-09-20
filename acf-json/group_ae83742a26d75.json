@@ -1,6 +1,6 @@
 {
     "key": "group_ae83742a26d75",
-    "title": "Blok: Wyróżniki",
+    "title": "Blok: Karty",
     "fields": [
         {
             "key": "field_4f5460393cf17",
@@ -209,32 +209,6 @@
             ]
         },
         {
-            "key": "field_8f6a6f526ea60",
-            "label": "Układ",
-            "name": "layout",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "cards": "Kafle w ramkach",
-                "cards-inline": "Kafle w ramkach, ikona obok tekstu",
-                "list": "Lista z ikonami"
-            },
-            "default_value": "cards",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_f044a2df85840",
             "label": "Kolumny",
             "name": "columns",
@@ -243,17 +217,16 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "1": "1",
-                "2": "2",
-                "3": "3",
-                "4": "4"
+                "2": "Dwie",
+                "3": "Trzy",
+                "4": "Cztery"
             },
-            "default_value": "4",
+            "default_value": "2",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -262,32 +235,8 @@
             "placeholder": ""
         },
         {
-            "key": "field_1f2c5006db6da",
-            "label": "Zdjęcie tła",
-            "name": "background_image",
-            "type": "image",
-            "instructions": "Opcjonalne. Gdy ustawione, nagłówek sekcji przechodzi na jasny.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_8ba11e162c402",
-            "label": "Kafle",
+            "label": "Karty",
             "name": "items",
             "type": "repeater",
             "instructions": "",
@@ -302,101 +251,51 @@
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "Dodaj kafel",
+            "button_label": "Dodaj kartę",
             "sub_fields": [
                 {
-                    "key": "field_7f4154de9181d",
-                    "label": "Ikona",
-                    "name": "icon",
-                    "type": "select",
-                    "instructions": "Lista pochodzi z plików w src/svg.",
+                    "key": "field_2cb0eb0934196",
+                    "label": "Nadkreślenie",
+                    "name": "kicker",
+                    "type": "text",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "40",
                         "class": "",
                         "id": ""
                     },
-                    "choices": [],
                     "default_value": "",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 1,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_38cf68ae7f666",
                     "label": "Tytuł",
                     "name": "title",
-                    "type": "group",
+                    "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "60",
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_aed44c06c51d3",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_b66ebf609ec7d",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "h1": "h1",
-                                "h2": "h2",
-                                "h3": "h3",
-                                "h4": "h4",
-                                "p": "p",
-                                "span": "span",
-                                "div": "div"
-                            },
-                            "default_value": "h3",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_55b86e28240bd",
                     "label": "Opis",
                     "name": "text",
-                    "type": "group",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -405,54 +304,26 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_f3225a440568d",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 3,
-                            "new_lines": ""
-                        },
-                        {
-                            "key": "field_a90de1cd2a83c",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "p": "p",
-                                "div": "div",
-                                "span": "span"
-                            },
-                            "default_value": "p",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_70792a03325e5",
+                    "label": "Odnośnik",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 }
             ]
         },
@@ -488,8 +359,9 @@
             "choices": {
                 "page": "Białe",
                 "soft": "Jasnoszare",
+                "soft-2": "Jasnoszare chłodne",
                 "navy": "Granatowe",
-                "gradient": "Gradient (jak hero)"
+                "gradient": "Gradient niebieski"
             },
             "default_value": "page",
             "return_format": "value",
@@ -540,8 +412,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",
@@ -566,8 +439,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",

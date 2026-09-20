@@ -1,6 +1,6 @@
 {
     "key": "group_a92bc9ded2f0c",
-    "title": "Blok: Pytania i odpowiedzi",
+    "title": "Blok: FAQ",
     "fields": [
         {
             "key": "field_3ca42c507274a",
@@ -209,80 +209,11 @@
             ]
         },
         {
-            "key": "field_c89e4700d3a10",
-            "label": "Nagłówek sekcji",
-            "name": "align",
-            "type": "select",
+            "key": "field_2e28f4bf186b2",
+            "label": "Odnośnik pod opisem",
+            "name": "link",
+            "type": "link",
             "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "34",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "left": "Do lewej",
-                "center": "Wyśrodkowany"
-            },
-            "default_value": "left",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_f2c483fbe519a",
-            "label": "Kolumny",
-            "name": "columns",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "1": "1",
-                "2": "2"
-            },
-            "default_value": "1",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_90c862dd5cbed",
-            "label": "Tylko jedna odpowiedź naraz",
-            "name": "single",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_3bcd91ab20085",
-            "label": "Ikona przy pytaniu",
-            "name": "icon",
-            "type": "select",
-            "instructions": "Puste = „plus”. Ikona obraca się o 45° po rozwinięciu.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -290,14 +221,26 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 1,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
+            "return_format": "array"
+        },
+        {
+            "key": "field_7d62538fad2af",
+            "label": "Rozwiń pierwsze pytanie",
+            "name": "open_first",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_017d999e5bf96",
@@ -341,9 +284,9 @@
                     "key": "field_e1c8c00f86e2c",
                     "label": "Odpowiedź",
                     "name": "answer",
-                    "type": "textarea",
+                    "type": "wysiwyg",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -351,10 +294,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 3,
-                    "new_lines": ""
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0
                 }
             ]
         },
@@ -390,8 +333,9 @@
             "choices": {
                 "page": "Białe",
                 "soft": "Jasnoszare",
+                "soft-2": "Jasnoszare chłodne",
                 "navy": "Granatowe",
-                "gradient": "Gradient (jak hero)"
+                "gradient": "Gradient niebieski"
             },
             "default_value": "page",
             "return_format": "value",
@@ -442,8 +386,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",
@@ -468,8 +413,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standardowy",
-                "small": "Mały",
+                "default": "Standardowy (112)",
+                "medium": "Średni (104)",
+                "small": "Mały (72)",
                 "none": "Brak"
             },
             "default_value": "default",

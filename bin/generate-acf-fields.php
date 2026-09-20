@@ -125,8 +125,9 @@ function sectionSettings(string $prefix): array
             'choices' => [
                 'page' => 'Białe',
                 'soft' => 'Jasnoszare',
+                'soft-2' => 'Jasnoszare chłodne',
                 'navy' => 'Granatowe',
-                'gradient' => 'Gradient (jak hero)',
+                'gradient' => 'Gradient niebieski',
             ],
             'default_value' => 'page',
             'allow_null' => 0,
@@ -144,13 +145,13 @@ function sectionSettings(string $prefix): array
             'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
         ]),
         f($prefix . '.padding_top', 'Odstęp u góry', 'select', [
-            'choices' => ['default' => 'Standardowy', 'small' => 'Mały', 'none' => 'Brak'],
+            'choices' => ['default' => 'Standardowy (112)', 'medium' => 'Średni (104)', 'small' => 'Mały (72)', 'none' => 'Brak'],
             'default_value' => 'default',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f($prefix . '.padding_bottom', 'Odstęp u dołu', 'select', [
-            'choices' => ['default' => 'Standardowy', 'small' => 'Mały', 'none' => 'Brak'],
+            'choices' => ['default' => 'Standardowy (112)', 'medium' => 'Średni (104)', 'small' => 'Mały (72)', 'none' => 'Brak'],
             'default_value' => 'default',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
@@ -209,43 +210,7 @@ $groups['options'] = [
         f('opt.header_cta', 'Przycisk CTA', 'link'),
 
         f('opt.tab_footer', 'Stopka', 'tab'),
-        f('opt.footer_description', 'Opis firmy', 'textarea', ['rows' => 4]),
-        f('opt.phone_sales_label', 'Etykieta — sprzedaż', 'text', ['default_value' => 'Dział sprzedaży']),
-        f('opt.phone_sales', 'Telefon — sprzedaż', 'text'),
-        f('opt.phone_support_label', 'Etykieta — wsparcie', 'text', ['default_value' => 'Pomoc techniczna']),
-        f('opt.phone_support', 'Telefon — wsparcie', 'text'),
-        f('opt.support_link', 'Wsparcie — odnośnik', 'link', [
-            'instructions' => 'Makieta 1.1 kieruje wsparcie do formularza zamiast do numeru. '
-                . 'Wypełniony zastępuje telefon w tym wierszu, pusty zostawia telefon powyżej.',
-        ]),
-        f('opt.phone_hours', 'Godziny pracy', 'text', [
-            'instructions' => 'Dopisek po numerze w stopce, np. „pon–pt 9:00–17:00”. Puste = bez dopisku.',
-        ]),
-        f('opt.email', 'E-mail', 'text'),
-        f('opt.address', 'Adres', 'textarea', [
-            'rows' => 2,
-            'instructions' => 'Każdy wiersz to osobna linia w stopce — makieta 1.1 łamie adres po ulicy.',
-        ]),
-        f('opt.remote_help', 'Przycisk „Pomoc zdalna”', 'link'),
-        f('opt.social_label', 'Podpis nad ikonami', 'text', ['default_value' => 'Obserwuj nas']),
-        f('opt.social', 'Profile społecznościowe', 'repeater', [
-            'button_label' => 'Dodaj profil',
-            'instructions' => 'Kolejność ustawiasz przeciąganiem. Pusty adres pomija ikonę.',
-            'collapsed' => key_for('opt.social.network'),
-            'sub_fields' => [
-                f('opt.social.network', 'Serwis', 'select', [
-                    'required' => 1,
-                    'allow_null' => 0,
-                    'choices' => ['youtube' => 'YouTube', 'facebook' => 'Facebook', 'x' => 'Twitter / X'],
-                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
-                ]),
-                f('opt.social.url', 'Adres profilu', 'url', [
-                    'required' => 1,
-                    'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
-                ]),
-            ],
-        ]),
-        f('opt.copyrights', 'Prawa autorskie', 'text'),
+        f('opt.footer_description', 'Opis pod logo', 'textarea', ['rows' => 3]),
         f('opt.footer_menus', 'Kolumny z linkami', 'repeater', [
             'button_label' => 'Dodaj kolumnę',
             'instructions' => 'Nagłówek plus menu z Wygląd → Menu. Kolejność ustawiasz przeciąganiem.',
@@ -262,6 +227,12 @@ $groups['options'] = [
                 ]),
             ],
         ]),
+        f('opt.footer_contact_title', 'Kolumna kontaktu — nagłówek', 'text', ['default_value' => 'Kontakt']),
+        f('opt.footer_company', 'Nazwa firmy', 'text'),
+        f('opt.email', 'E-mail', 'text'),
+        f('opt.footer_hours', 'Godziny pracy', 'text'),
+        f('opt.footer_contact_link', 'Odnośnik pod kontaktem', 'link'),
+        f('opt.copyrights', 'Prawa autorskie', 'text'),
 
         f('opt.tab_forms', 'Formularze', 'tab'),
         f('opt.contact_email', 'Adres do powiadomień', 'text', [
@@ -340,6 +311,27 @@ $blocks['hero'] = [
             'instructions' => 'Pierwsza klatka, widoczna zanim wideo się wczyta.',
         ]),
 
+        f('hero.tab_note', 'Ramka pod kartami', 'tab'),
+        f('hero.note_title', 'Tytuł', 'text'),
+        f('hero.note_text', 'Opis', 'text'),
+        f('hero.note_link', 'Odnośnik', 'link'),
+
+        f('hero.tab_stats', 'Pasek liczb', 'tab'),
+        f('hero.stats', 'Liczby', 'repeater', [
+            'button_label' => 'Dodaj pozycję',
+            'collapsed' => key_for('hero.stats.value'),
+            'sub_fields' => [
+                f('hero.stats.value', 'Wartość', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.stats.label', 'Podpis', 'text', [
+                    'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.stats.url', 'Adres', 'url'),
+            ],
+        ]),
+
         f('hero.tab_cards', 'Karty cennika', 'tab'),
         f('hero.cards', 'Karty', 'repeater', [
             'button_label' => 'Dodaj kartę',
@@ -381,57 +373,64 @@ $blocks['hero'] = [
 ];
 
 $blocks['features'] = [
-    'title' => 'Blok: Wyróżniki',
+    'title' => 'Blok: Karty',
     'fields' => array_merge(sectionHead('features'), [
-        f('features.layout', 'Układ', 'select', [
-            'choices' => [
-                'cards' => 'Kafle w ramkach',
-                'cards-inline' => 'Kafle w ramkach, ikona obok tekstu',
-                'list' => 'Lista z ikonami',
-            ],
-            'default_value' => 'cards',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
         f('features.columns', 'Kolumny', 'select', [
-            'choices' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4'],
-            'default_value' => '4',
+            'choices' => ['2' => 'Dwie', '3' => 'Trzy', '4' => 'Cztery'],
+            'default_value' => '2',
             'allow_null' => 0,
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
-        f('features.background_image', 'Zdjęcie tła', 'image', [
-            'instructions' => 'Opcjonalne. Gdy ustawione, nagłówek sekcji przechodzi na jasny.',
-        ]),
-        f('features.items', 'Kafle', 'repeater', [
-            'button_label' => 'Dodaj kafel',
+        f('features.items', 'Karty', 'repeater', [
+            'button_label' => 'Dodaj kartę',
             'collapsed' => key_for('features.items.title'),
             'sub_fields' => [
-                icon('features.items.icon'),
-                textGroup('features.items.title', 'Tytuł', TAGS_HEADING, 'h3'),
-                textGroup('features.items.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
+                f('features.items.kicker', 'Nadkreślenie', 'text', [
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('features.items.title', 'Tytuł', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
+                ]),
+                f('features.items.text', 'Opis', 'textarea', ['rows' => 3]),
+                f('features.items.link', 'Odnośnik', 'link'),
             ],
         ]),
     ]),
 ];
 
 $blocks['latest-posts'] = [
-    'title' => 'Blok: Najnowsze wpisy',
-    'fields' => array_merge(sectionHead('latest'), [
-        f('latest.link', 'Link „zobacz wszystkie”', 'link'),
-        f('latest.source', 'Źródło wpisów', 'select', [
-            'choices' => ['latest' => 'Najnowsze', 'category' => 'Z kategorii', 'manual' => 'Wybrane ręcznie'],
-            'default_value' => 'latest',
-            'allow_null' => 0,
-        ]),
-        f('latest.category', 'Kategoria', 'taxonomy', [
-            'conditional_logic' => [[['field' => key_for('latest.source'), 'operator' => '==', 'value' => 'category']]],
-        ]),
-        f('latest.posts', 'Wpisy', 'relationship', [
-            'conditional_logic' => [[['field' => key_for('latest.source'), 'operator' => '==', 'value' => 'manual']]],
-        ]),
-        f('latest.count', 'Liczba wpisów', 'number', [
-            'default_value' => 3, 'min' => 1, 'max' => 12,
-            'conditional_logic' => [[['field' => key_for('latest.source'), 'operator' => '!=', 'value' => 'manual']]],
+    'title' => 'Blok: Baza wiedzy',
+    'fields' => array_merge(sectionHead('latest_posts'), [
+        f('latest_posts.count', 'Ile wpisów', 'number', ['default_value' => 6, 'min' => 1, 'max' => 12]),
+
+        f('latest_posts.tab_banner', 'Baner', 'tab'),
+        f('latest_posts.banner_title', 'Tytuł', 'text'),
+        f('latest_posts.banner_text', 'Opis', 'textarea', ['rows' => 2]),
+        f('latest_posts.banner_link', 'Przycisk', 'link'),
+    ]),
+];
+
+$blocks['reviews'] = [
+    'title' => 'Blok: Opinie',
+    'fields' => array_merge(sectionHead('reviews'), [
+        f('reviews.link', 'Odnośnik do wizytówki', 'link'),
+        f('reviews.items', 'Opinie', 'repeater', [
+            'button_label' => 'Dodaj opinię',
+            'collapsed' => key_for('reviews.items.author'),
+            'sub_fields' => [
+                f('reviews.items.author', 'Autor', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('reviews.items.when', 'Kiedy', 'text', [
+                    'wrapper' => ['width' => '35', 'class' => '', 'id' => ''],
+                ]),
+                f('reviews.items.rating', 'Ocena', 'number', [
+                    'default_value' => 5, 'min' => 1, 'max' => 5,
+                    'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+                ]),
+                f('reviews.items.text', 'Treść', 'textarea', ['required' => 1, 'rows' => 3]),
+            ],
         ]),
     ]),
 ];
@@ -439,16 +438,10 @@ $blocks['latest-posts'] = [
 $blocks['cta'] = [
     'title' => 'Blok: Pas CTA',
     'fields' => [
-        f('cta.variant', 'Wariant', 'select', [
-            'choices' => ['light' => 'Jasny', 'dark' => 'Ciemny'],
-            'default_value' => 'light',
-            'allow_null' => 0,
-        ]),
-        icon('cta.icon', 'Ikona (wariant jasny)'),
-        textGroup('cta.title', 'Tytuł', TAGS_HEADING, 'h2'),
-        textGroup('cta.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
-        buttonGroup('cta.button_primary', 'Przycisk główny', 'primary', 'lg'),
-        buttonGroup('cta.button_secondary', 'Przycisk drugi', 'ghost', 'lg'),
+        textGroup('cta.title', 'Tytuł', TAGS_HEADING, 'h2', 'textarea'),
+        f('cta.text', 'Opis', 'textarea', ['rows' => 2]),
+        f('cta.button_primary', 'Przycisk główny', 'link'),
+        f('cta.button_secondary', 'Przycisk dodatkowy', 'link'),
     ],
 ];
 
@@ -515,17 +508,30 @@ $blocks['content-media'] = [
 ];
 
 $blocks['timeline'] = [
-    'title' => 'Blok: Oś czasu',
+    'title' => 'Blok: Kroki',
     'fields' => array_merge(sectionHead('timeline'), [
-        f('timeline.items', 'Wydarzenia', 'repeater', [
-            'button_label' => 'Dodaj wydarzenie',
-            'collapsed' => key_for('timeline.items.year'),
+        f('timeline.items', 'Kroki', 'repeater', [
+            'button_label' => 'Dodaj krok',
+            'collapsed' => key_for('timeline.items.title'),
             'sub_fields' => [
-                f('timeline.items.year', 'Rok / okres', 'text', ['required' => 1]),
-                textGroup('timeline.items.title', 'Tytuł', TAGS_HEADING, 'h3'),
-                textGroup('timeline.items.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
+                f('timeline.items.number', 'Numer', 'text', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
+                ]),
+                f('timeline.items.title', 'Tytuł', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
+                ]),
+                f('timeline.items.featured', 'Wyróżniony', 'true_false', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
+                ]),
+                f('timeline.items.text', 'Opis', 'textarea', ['rows' => 3]),
             ],
         ]),
+
+        f('timeline.tab_cta', 'Pasek na dole', 'tab'),
+        f('timeline.cta_title', 'Tytuł', 'text'),
+        f('timeline.cta_text', 'Opis', 'text'),
+        f('timeline.cta_link', 'Przycisk', 'link'),
     ]),
 ];
 
@@ -610,104 +616,48 @@ $blocks['pricing'] = [
 ];
 
 $blocks['table'] = [
-    'title' => 'Blok: Tabela',
+    'title' => 'Blok: Porównanie',
     'fields' => array_merge(sectionHead('table'), [
-        f('table.head', 'Nagłówki kolumn', 'repeater', [
+        f('table.note', 'Ramka z uwagą', 'wysiwyg', [
+            'instructions' => 'Pod opisem, z pionową kreską z lewej. Puste = bez ramki.',
+        ]),
+
+        f('table.tab_table', 'Tabela', 'tab'),
+        f('table.head_label', 'Nagłówek kolumny opisów', 'text', [
+            'default_value' => 'Co dostajesz',
+            'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
+        ]),
+        f('table.columns', 'Kolumny', 'repeater', [
             'button_label' => 'Dodaj kolumnę',
-            'layout' => 'table',
-            'instructions' => 'Kolejność i liczba kolumn muszą zgadzać się z komórkami w wierszach.',
+            'max' => 3,
+            'collapsed' => key_for('table.columns.label'),
             'sub_fields' => [
-                f('table.head.label', 'Nagłówek', 'text', ['wrapper' => ['width' => '60', 'class' => '', 'id' => '']]),
-                f('table.head.hide_mobile', 'Ukryj na mobile', 'true_false', ['wrapper' => ['width' => '40', 'class' => '', 'id' => '']]),
-            ],
-        ]),
-        f('table.variant', 'Odmiana', 'select', [
-            'choices' => [
-                'compare' => 'Porównanie (nagłówek na środku)',
-                'pricing' => 'Cennik modułów',
-                'downloads' => 'Lista do pobrania',
-            ],
-            'default_value' => 'compare',
-            'allow_null' => 0,
-            'instructions' => 'Każda odmiana ma własną typografię i odstępy z projektu.',
-        ]),
-        f('table.mode', 'Tryb', 'select', [
-            'choices' => ['single' => 'Jedna tabela', 'tabs' => 'Zakładki'],
-            'default_value' => 'single',
-            'allow_null' => 0,
-            'instructions' => 'W trybie zakładek nagłówki kolumn są wspólne, a każda zakładka ma własne wiersze.',
-        ]),
-        f('table.tabs', 'Zakładki', 'repeater', [
-            'button_label' => 'Dodaj zakładkę',
-            'collapsed' => key_for('table.tabs.label'),
-            'conditional_logic' => [[['field' => key_for('table.mode'), 'operator' => '==', 'value' => 'tabs']]],
-            'sub_fields' => [
-                f('table.tabs.label', 'Etykieta', 'text', ['required' => 1]),
-                f('table.tabs.rows', 'Wiersze', 'repeater', [
-                    'button_label' => 'Dodaj wiersz',
-                    'collapsed' => key_for('table.tabs.rows.cells'),
-                    'sub_fields' => [
-                        f('table.tabs.rows.cells', 'Komórki', 'repeater', [
-                            'button_label' => 'Dodaj komórkę',
-                            'sub_fields' => [
-                                f('table.tabs.rows.cells.text', 'Treść', 'text', ['wrapper' => ['width' => '45', 'class' => '', 'id' => '']]),
-                                icon('table.tabs.rows.cells.icon', 'Ikona', ['wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
-                                f('table.tabs.rows.cells.style', 'Styl', 'select', [
-                                    'choices' => ['normal' => 'Zwykły', 'plain' => 'Zwykły, bez pogrubienia', 'strong' => 'Wyróżniony', 'muted' => 'Wyszarzony', 'price' => 'Cena'],
-                                    'default_value' => 'normal', 'allow_null' => 0,
-                                    'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
-                                ]),
-                                f('table.tabs.rows.cells.suffix', 'Dopisek', 'text', ['wrapper' => ['width' => '50', 'class' => '', 'id' => '']]),
-                                f('table.tabs.rows.cells.link', 'Link', 'link', ['wrapper' => ['width' => '50', 'class' => '', 'id' => '']]),
-                            ],
-                        ]),
-                    ],
+                f('table.columns.label', 'Nazwa', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('table.columns.note', 'Dopisek', 'text', [
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('table.columns.highlight', 'Wyróżniona', 'true_false', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
                 ]),
             ],
         ]),
         f('table.rows', 'Wiersze', 'repeater', [
-            'conditional_logic' => [[['field' => key_for('table.mode'), 'operator' => '==', 'value' => 'single']]],
             'button_label' => 'Dodaj wiersz',
-            'collapsed' => key_for('table.rows.cells'),
+            'collapsed' => key_for('table.rows.label'),
             'sub_fields' => [
-                f('table.rows.cells', 'Komórki', 'repeater', [
-                    'button_label' => 'Dodaj komórkę',
-                    'layout' => 'block',
+                f('table.rows.label', 'Opis', 'text', ['required' => 1]),
+                f('table.rows.values', 'Wartości', 'repeater', [
+                    'button_label' => 'Dodaj wartość',
+                    'max' => 3,
+                    'instructions' => 'Po jednej na kolumnę, w tej samej kolejności.',
                     'sub_fields' => [
-                        f('table.rows.cells.text', 'Treść', 'text', [
-                            'wrapper' => ['width' => '45', 'class' => '', 'id' => ''],
-                        ]),
-                        icon('table.rows.cells.icon', 'Ikona', [
-                            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
-                        ]),
-                        f('table.rows.cells.style', 'Styl', 'select', [
-                            'choices' => [
-                                'normal' => 'Zwykły',
-                                'plain' => 'Zwykły, bez pogrubienia',
-                                'strong' => 'Wyróżniony',
-                                'muted' => 'Wyszarzony',
-                                'price' => 'Cena',
-                            ],
-                            'default_value' => 'normal',
-                            'allow_null' => 0,
-                            'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
-                        ]),
-                        f('table.rows.cells.suffix', 'Dopisek', 'text', [
-                            'instructions' => 'Mniejszy tekst obok treści, np. „/ mies.”.',
-                            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-                        ]),
-                        f('table.rows.cells.link', 'Link', 'link', [
-                            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-                        ]),
+                        f('table.rows.values.on', 'W cenie', 'true_false'),
                     ],
                 ]),
             ],
-        ]),
-        f('table.footnote', 'Dopisek pod tabelą', 'text', [
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
-        f('table.footnote_link', 'Link w dopisku', 'link', [
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
     ]),
 ];
@@ -802,31 +752,16 @@ $blocks['contact'] = [
 ];
 
 $blocks['faq'] = [
-    'title' => 'Blok: Pytania i odpowiedzi',
+    'title' => 'Blok: FAQ',
     'fields' => array_merge(sectionHead('faq'), [
-        f('faq.align', 'Nagłówek sekcji', 'select', [
-            'choices' => ['left' => 'Do lewej', 'center' => 'Wyśrodkowany'],
-            'default_value' => 'left',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
-        ]),
-        f('faq.columns', 'Kolumny', 'select', [
-            'choices' => ['1' => '1', '2' => '2'],
-            'default_value' => '1',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
-        ]),
-        f('faq.single', 'Tylko jedna odpowiedź naraz', 'true_false', [
-            'default_value' => 1,
-            'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
-        ]),
-        icon('faq.icon', 'Ikona przy pytaniu', ['instructions' => 'Puste = „plus”. Ikona obraca się o 45° po rozwinięciu.']),
+        f('faq.link', 'Odnośnik pod opisem', 'link'),
+        f('faq.open_first', 'Rozwiń pierwsze pytanie', 'true_false'),
         f('faq.items', 'Pytania', 'repeater', [
             'button_label' => 'Dodaj pytanie',
             'collapsed' => key_for('faq.items.question'),
             'sub_fields' => [
                 f('faq.items.question', 'Pytanie', 'text', ['required' => 1]),
-                f('faq.items.answer', 'Odpowiedź', 'textarea', ['rows' => 3]),
+                f('faq.items.answer', 'Odpowiedź', 'wysiwyg', ['required' => 1]),
             ],
         ]),
     ]),

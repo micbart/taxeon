@@ -1,5 +1,5 @@
 {% if title.text or eyebrow.text %}
-	<div class="mb-14 {{ wide ? 'max-w-[820px]' : 'max-w-[760px]' }}
+	<div class="{{ wide ? 'max-w-[72ch]' : 'max-w-[62ch]' }}
 		{{ center ? 'mx-auto text-center' }}
 		{{ link.url ? 'flex max-w-none flex-wrap items-end justify-between gap-5' }}">
 		<div>
@@ -8,24 +8,23 @@
 			{% include 'components/title-with-select-tag.twig' with {
 				title: title,
 				defaultTag: titleTag ?: 'h2',
-				titleClass: 'mt-4 font-display text-[clamp(28px,3.4vw,40px)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance
-					' ~ (onDark ? 'text-white' : 'text-ink')
+				titleClass: 'mt-4 font-display text-[clamp(32px,3.4vw,50px)] leading-[1.08] font-bold
+					tracking-[-0.03em] text-balance ' ~ (onDark ? 'text-white' : 'text-ink')
 			} only %}
 
 			{% include 'components/title-with-select-tag.twig' with {
 				title: text,
 				defaultTag: 'p',
-				titleClass: 'mt-[18px] text-[19px] text-pretty ' ~ (onDark ? 'text-white/80' : 'text-ink-2')
+				titleClass: 'mt-[18px] text-[18px] leading-[1.6] text-pretty ' ~ (onDark ? 'text-white/82' : 'text-ink-3')
 			} only %}
 		</div>
 
 		{% if link.url %}
 			<a href="{{ link.url }}"
 				target="{{ link.target ?: '_self' }}"
-				class="group/link mb-1.5 inline-flex items-center gap-[7px] font-bold {{ onDark ? 'text-deep-tint' : 'text-accent' }}
-					[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
-				{{ link.title }}
-				{{ 'arrow-right'|svg }}
+				class="mb-1.5 inline-flex items-center gap-[7px] text-[16px] font-semibold
+					{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
+				{{ link.title }} →
 			</a>
 		{% endif %}
 	</div>

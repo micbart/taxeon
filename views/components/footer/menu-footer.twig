@@ -1,11 +1,7 @@
-<ul class="grid gap-[7px]">
-	{% for item in menu.items %}
-		<li>
-			<a href="{{ item.link }}"
-				target="{{ item.target ?: '_self' }}"
-				class="text-sm text-white/70 transition-colors hover:text-white">
-				{{ item.title }}
-			</a>
-		</li>
-	{% endfor %}
-</ul>
+{% for item in menu.items %}
+	<a href="{{ item.link }}"
+		target="{{ item.target ?: '_self' }}"
+		class="text-[15px] transition hover:text-white">
+		{{ item.title }}
+	</a>
+{% endfor %}

@@ -1,6 +1,6 @@
 {#
-	Title: Tabela
-	Description: Tabela porównawcza, cennik modułów albo lista do pobrania — kolumny i komórki z pól
+	Title: Porównanie
+	Description: Tabela porównawcza wariantów z opisem po lewej
 	Category: taxeon
 	Icon: editor-table
 	HideFieldsInSidebar: true
@@ -9,80 +9,73 @@
 	SupportsAlign: false
 	SupportsAnchor: true
 #}
-
 {% import 'components/section.twig' as section %}
 
-{% set isTabs = fields.mode == 'tabs' and fields.tabs|length %}
-{% set variant = fields.variant ?: (isTabs ? 'downloads' : 'compare') %}
-{% set onDark = section.isDark(fields) %}
+{% set kolumny = fields.columns|default([]) %}
+{% set siatki = {
+	1: 'grid-cols-[1fr_118px] max-sm:grid-cols-[1fr_72px]',
+	2: 'grid-cols-[1fr_118px_118px] max-sm:grid-cols-[1fr_72px_72px]',
+	3: 'grid-cols-[1fr_118px_118px_118px] max-sm:grid-cols-[1fr_72px_72px_72px]'
+} %}
+{% set siatka = siatki[kolumny|length] ?: siatki[2] %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
-	class="{{ section.shell(fields, classes) }}">
+<section class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
+	<div aria-hidden="true"
+		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
 
-	<div class="{{ section.container(fields) }}">
-		{% include 'components/section-head.twig' with {
-			eyebrow: fields.eyebrow,
-			title: fields.title,
-			text: fields.text,
-			onDark: onDark,
-			center: variant in ['compare', 'pricing']
-		} only %}
+	<div aria-hidden="true"
+		class="absolute inset-0 [mask-image:linear-gradient(180deg,transparent,#000_55%)]
+			bg-[repeating-linear-gradient(45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px),repeating-linear-gradient(-45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px)]"></div>
 
-		{% if isTabs %}
-			<div class="" data-tabs>
-				<div role="tablist" class="flex flex-wrap gap-2 border-b border-line">
-					{% for tab in fields.tabs %}
-						<button type="button"
-							role="tab"
-							data-tab="{{ loop.index }}"
-							data-active="{{ loop.first ? 'true' : 'false' }}"
-							class="-mb-px cursor-pointer border-b-[3px] border-transparent px-[22px] py-4 font-display
-								text-base font-semibold text-ink-3 transition hover:text-ink
-								data-[active=true]:border-accent data-[active=true]:text-accent">
-							{{ tab.label }}
-						</button>
+	<div class="relative {{ section.container(fields) }}">
+		<div class="grid grid-cols-[minmax(280px,0.85fr)_minmax(420px,1.3fr)] items-start gap-16
+			max-xl:grid-cols-1 max-xl:gap-10">
+			<div>
+				{% include 'components/section-head.twig' with {
+					eyebrow: fields.eyebrow,
+					title: fields.title,
+					text: fields.text
+				} only %}
+
+				{% if fields.note %}
+					<div class="mt-7 border-l-[3px] border-accent py-1 pl-[18px]
+						[&_p]:text-[15px] [&_p]:leading-[1.65] [&_p]:text-ink">
+						{{ fields.note }}
+					</div>
+				{% endif %}
+			</div>
+
+			<div class="overflow-hidden rounded-card border border-line bg-white/90 shadow-[0_24px_60px_-40px_rgb(6_26_80/0.35)] backdrop-blur-[8px]">
+				<div class="grid {{ siatka }} items-end border-b border-line bg-[#f4f7fc]">
+					<div class="px-[22px] py-[18px] font-display text-[14px] font-semibold tracking-[0.02em] text-ink">
+						{{ fields.head_label }}
+					</div>
+
+					{% for kolumna in kolumny %}
+						<div class="px-2.5 py-3.5 text-center font-display text-[14px] leading-[1.35] font-semibold
+							{{ kolumna.highlight ? 'bg-accent/6 text-accent' : 'text-ink' }}">
+							{{ kolumna.label }}
+							{% if kolumna.note %}<br><span class="font-normal text-ink-3">{{ kolumna.note }}</span>{% endif %}
+						</div>
 					{% endfor %}
 				</div>
 
-				{% for tab in fields.tabs %}
-					<div data-panel="{{ loop.index }}" role="tabpanel" {% if not loop.first %}hidden{% endif %}
-						class="overflow-x-auto rounded-b-panel border border-t-0 border-line bg-white">
-						<table class="w-full border-collapse">
-							{% include 'components/table-head.twig' with { head: fields.head, variant: variant } only %}
-							<tbody>
-								{% include 'components/table-rows.twig' with { rows: tab.rows, head: fields.head, variant: variant } only %}
-							</tbody>
-						</table>
+				{% for wiersz in fields.rows %}
+					<div class="grid {{ siatka }} items-stretch border-b border-[#eef2f8] last:border-b-0">
+						<div class="flex items-center px-[22px] py-[15px] text-[15px] leading-[1.45] text-ink-2">
+							{{ wiersz.label }}
+						</div>
+
+						{% for indeks, wartosc in wiersz.values %}
+							{% set wyrozniona = kolumny[indeks].highlight %}
+							<div class="flex items-center justify-center px-2.5 py-[15px] text-center text-[17px]
+								{{ wyrozniona ? 'bg-accent/[0.035] text-accent' : (wartosc.on ? 'text-[#1d2b45]' : 'text-ink-4') }}">
+								{{ wartosc.on ? '✓' : '—' }}
+							</div>
+						{% endfor %}
 					</div>
 				{% endfor %}
 			</div>
-		{% else %}
-			<div class="overflow-x-auto rounded-panel border border-line bg-white">
-				<table class="w-full border-collapse">
-					{% include 'components/table-head.twig' with { head: fields.head, variant: variant } only %}
-					<tbody>
-						{% include 'components/table-rows.twig' with { rows: fields.rows, head: fields.head, variant: variant } only %}
-					</tbody>
-				</table>
-			</div>
-		{% endif %}
-
-		{% if fields.footnote or fields.footnote_link.url %}
-			<p class="text-center {{ variant == 'pricing'
-				? 'mt-[18px] text-[13.5px]'
-				: 'mx-auto mt-[30px] max-w-[720px] text-base' }}
-				{{ onDark ? 'text-white/70' : (variant == 'pricing' ? 'text-ink-3' : 'text-ink-2') }}">
-				{{ fields.footnote }}
-				{% if fields.footnote_link.url %}
-					<a href="{{ fields.footnote_link.url }}"
-						target="{{ fields.footnote_link.target ?: '_self' }}"
-						class="group/link inline-flex items-center gap-[7px] font-bold {{ onDark ? 'text-deep-tint' : 'text-accent' }}
-							[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
-						{{ fields.footnote_link.title }}
-						{{ 'arrow-right'|svg }}
-					</a>
-				{% endif %}
-			</p>
-		{% endif %}
+		</div>
 	</div>
 </section>

@@ -1,51 +1,87 @@
 {#
-	Title: Oś czasu
-	Description: Chronologia z rokiem, tytułem i opisem
+	Title: Kroki
+	Description: Ponumerowane kroki współpracy w jednym rzędzie
 	Category: taxeon
-	Icon: clock
+	Icon: editor-ol
 	HideFieldsInSidebar: true
 	ExpandedEditorButtons: true
 	ExpandedEditorButtonText: Edytuj zawartość
 	SupportsAlign: false
 	SupportsAnchor: true
 #}
-
 {% import 'components/section.twig' as section %}
 
 {% set onDark = section.isDark(fields) %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
-	class="{{ section.shell(fields, classes) }}">
+<section class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% if onDark %}
+		<div aria-hidden="true"
+			class="absolute inset-0 bg-[radial-gradient(90%_60%_at_100%_0%,rgb(11_99_246/0.35),transparent_62%)]"></div>
+	{% endif %}
 
-	<div class="{{ section.container(fields) }}">
+	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
-			eyebrow: fields.eyebrow, title: fields.title, text: fields.text, onDark: onDark
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			onDark: onDark
 		} only %}
 
-		<ol class="ml-3 grid gap-9 border-l-2 pl-9 {{ onDark ? 'border-white/15' : 'border-line' }}">
-			{% for item in fields.items %}
-				<li class="relative
-					before:absolute before:top-1.5 before:-left-[43px] before:size-3.5 before:rounded-full
-					before:border-2 before:content-['']
-					{{ onDark ? 'before:border-deep-tint before:bg-navy' : 'before:border-accent before:bg-page' }}">
+		{% if fields.items|length %}
+			<div class="mt-[52px] grid grid-cols-4 gap-px overflow-hidden rounded-card border
+				max-xl:grid-cols-2 max-md:grid-cols-1
+				{{ onDark ? 'border-white/14 bg-white/14' : 'border-line bg-line' }}">
+				{% for item in fields.items %}
+					<div class="flex flex-col gap-3 px-[26px] py-8
+						{{ item.featured
+							? 'bg-[linear-gradient(160deg,rgb(11_99_246/0.9),rgb(10_52_168/0.9))]'
+							: (onDark ? 'bg-deep' : 'bg-page') }}">
+						{% if item.number %}
+							<span class="font-display text-[40px] leading-none font-bold tracking-[-0.04em]
+								{{ item.featured ? 'text-white/50' : (onDark ? 'text-sky-2/35' : 'text-accent/35') }}">
+								{{ item.number }}
+							</span>
+						{% endif %}
 
-					<div class="font-display text-lead font-bold tracking-[-0.01em]
-						{{ onDark ? 'text-deep-tint' : 'text-accent' }}">{{ item.year }}</div>
+						<h3 class="font-display text-[25px] leading-[1.2] font-semibold tracking-[-0.025em]
+							{{ onDark or item.featured ? 'text-white' : 'text-ink' }}">
+							{{ item.title }}
+						</h3>
 
-					{% include 'components/title-with-select-tag.twig' with {
-						title: item.title,
-						defaultTag: 'h3',
-						titleClass: 'mt-1.5 font-display text-[19px] leading-[1.08] font-semibold tracking-[-0.02em] '
-							~ (onDark ? 'text-white' : 'text-ink')
-					} only %}
+						{% if item.text %}
+							<p class="text-[15px] leading-[1.6]
+								{{ item.featured ? 'text-white/86' : (onDark ? 'text-white/72' : 'text-ink-3') }}">
+								{{ item.text }}
+							</p>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
 
-					{% include 'components/title-with-select-tag.twig' with {
-						title: item.text,
-						defaultTag: 'p',
-						titleClass: 'mt-2 max-w-[68ch] text-body leading-[1.6] ' ~ (onDark ? 'text-white/82' : 'text-ink-2')
-					} only %}
-				</li>
-			{% endfor %}
-		</ol>
+		{% if fields.cta_title or fields.cta_link.url %}
+			<div class="mt-8 flex flex-wrap items-center gap-6 rounded-card border px-[30px] py-[26px]
+				backdrop-blur-[12px] {{ onDark ? 'border-white/16 bg-white/6' : 'border-line bg-soft' }}">
+				<div>
+					<div class="font-display text-[22px] font-semibold tracking-[-0.02em] {{ onDark ? 'text-white' : 'text-ink' }}">
+						{{ fields.cta_title }}
+					</div>
+
+					{% if fields.cta_text %}
+						<div class="mt-1 text-[16px] {{ onDark ? 'text-white/72' : 'text-ink-3' }}">{{ fields.cta_text }}</div>
+					{% endif %}
+				</div>
+
+				{% if fields.cta_link.url %}
+					<a href="{{ fields.cta_link.url }}"
+						target="{{ fields.cta_link.target ?: '_self' }}"
+						class="ml-auto rounded-pill px-[30px] py-4 text-[16px] font-semibold whitespace-nowrap transition
+							{{ onDark ? 'bg-white text-ink hover:bg-accent-tint' : 'bg-accent text-white hover:bg-accent-strong' }}
+							max-sm:ml-0">
+						{{ fields.cta_link.title }}
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
 	</div>
 </section>

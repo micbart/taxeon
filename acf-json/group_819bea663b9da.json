@@ -287,7 +287,7 @@
         },
         {
             "key": "field_886c51e86e2b7",
-            "label": "Opis firmy",
+            "label": "Opis pod logo",
             "name": "footer_description",
             "type": "textarea",
             "instructions": "",
@@ -301,270 +301,8 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": 4,
+            "rows": 3,
             "new_lines": ""
-        },
-        {
-            "key": "field_ca9027a7f0527",
-            "label": "Etykieta — sprzedaż",
-            "name": "phone_sales_label",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "Dział sprzedaży",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_ea87bd0fc6807",
-            "label": "Telefon — sprzedaż",
-            "name": "phone_sales",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_b5e3a7a068f01",
-            "label": "Etykieta — wsparcie",
-            "name": "phone_support_label",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "Pomoc techniczna",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_ffa6272395b12",
-            "label": "Telefon — wsparcie",
-            "name": "phone_support",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_874b0a4fe6959",
-            "label": "Wsparcie — odnośnik",
-            "name": "support_link",
-            "type": "link",
-            "instructions": "Makieta 1.1 kieruje wsparcie do formularza zamiast do numeru. Wypełniony zastępuje telefon w tym wierszu, pusty zostawia telefon powyżej.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_e037e1c99e2b5",
-            "label": "Godziny pracy",
-            "name": "phone_hours",
-            "type": "text",
-            "instructions": "Dopisek po numerze w stopce, np. „pon–pt 9:00–17:00”. Puste = bez dopisku.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_96dfa0ed16708",
-            "label": "E-mail",
-            "name": "email",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_82f14c2f92f18",
-            "label": "Adres",
-            "name": "address",
-            "type": "textarea",
-            "instructions": "Każdy wiersz to osobna linia w stopce — makieta 1.1 łamie adres po ulicy.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 2,
-            "new_lines": ""
-        },
-        {
-            "key": "field_9827db3b51de5",
-            "label": "Przycisk „Pomoc zdalna”",
-            "name": "remote_help",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_5752608b7c80d",
-            "label": "Podpis nad ikonami",
-            "name": "social_label",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "Obserwuj nas",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f16911f12e70",
-            "label": "Profile społecznościowe",
-            "name": "social",
-            "type": "repeater",
-            "instructions": "Kolejność ustawiasz przeciąganiem. Pusty adres pomija ikonę.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_64b0f57c48c8f",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj profil",
-            "sub_fields": [
-                {
-                    "key": "field_64b0f57c48c8f",
-                    "label": "Serwis",
-                    "name": "network",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "40",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "youtube": "YouTube",
-                        "facebook": "Facebook",
-                        "x": "Twitter / X"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_da7e51bdda55d",
-                    "label": "Adres profilu",
-                    "name": "url",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "60",
-                        "class": "",
-                        "id": ""
-                    }
-                }
-            ]
-        },
-        {
-            "key": "field_221ad4a51d449",
-            "label": "Prawa autorskie",
-            "name": "copyrights",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         },
         {
             "key": "field_c920c551678b5",
@@ -627,6 +365,116 @@
                     "placeholder": ""
                 }
             ]
+        },
+        {
+            "key": "field_e22e0fd741286",
+            "label": "Kolumna kontaktu — nagłówek",
+            "name": "footer_contact_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Kontakt",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_aa8ed3fcaa1ed",
+            "label": "Nazwa firmy",
+            "name": "footer_company",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_96dfa0ed16708",
+            "label": "E-mail",
+            "name": "email",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_c00341e145792",
+            "label": "Godziny pracy",
+            "name": "footer_hours",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_7b8cd3f9358d1",
+            "label": "Odnośnik pod kontaktem",
+            "name": "footer_contact_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_221ad4a51d449",
+            "label": "Prawa autorskie",
+            "name": "copyrights",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_73cb3cbd509ba",

@@ -1,6 +1,6 @@
 {#
-	Title: Pytania i odpowiedzi
-	Description: Rozwijana lista pytań na znacznikach <details>
+	Title: FAQ
+	Description: Pytania i odpowiedzi z opisem po lewej
 	Category: taxeon
 	Icon: editor-help
 	HideFieldsInSidebar: true
@@ -9,54 +9,44 @@
 	SupportsAlign: false
 	SupportsAnchor: true
 #}
-
 {% import 'components/section.twig' as section %}
 
-{% set onDark = section.isDark(fields) %}
-{% set isCenter = fields.align == 'center' %}
-{% set groupName = fields.single ? 'faq-' ~ block_index('faq') : '' %}
-
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
-	class="{{ section.shell(fields, classes) }}">
-
+<section class="{{ section.shell(fields) }}">
 	<div class="{{ section.container(fields) }}">
-		{% include 'components/section-head.twig' with {
-			eyebrow: fields.eyebrow,
-			title: fields.title,
-			text: fields.text,
-			center: isCenter,
-			onDark: onDark
-		} only %}
+		<div class="grid grid-cols-[minmax(260px,0.7fr)_minmax(420px,1.3fr)] items-start gap-16
+			max-xl:grid-cols-1 max-xl:gap-10">
+			<div>
+				{% include 'components/section-head.twig' with {
+					eyebrow: fields.eyebrow,
+					title: fields.title,
+					text: fields.text,
+					link: fields.link
+				} only %}
+			</div>
 
-		<div class="grid gap-3.5 {{ fields.columns == '2'
-			? 'grid-cols-2 items-start max-lg:grid-cols-1'
-			: 'mx-auto max-w-[860px]' }}">
+			<div class="flex flex-col gap-3">
+				{% for item in fields.items %}
+					<details class="group overflow-hidden rounded-sm border border-line bg-page"
+						{% if loop.first and fields.open_first %}open{% endif %}>
+						<summary class="flex cursor-pointer list-none items-center gap-[18px] px-6 py-5
+							font-display text-[18px] font-medium tracking-[-0.015em] text-ink
+							transition hover:bg-soft [&::-webkit-details-marker]:hidden">
+							<span class="flex-1">{{ item.question }}</span>
 
-			{% for item in fields.items %}
-				<details {% if groupName %}name="{{ groupName }}"{% endif %}
-					class="group rounded-card border px-[26px] transition
-						{{ onDark
-							? 'border-white/15 bg-white/[0.06] open:border-white/35'
-							: 'border-line bg-white open:border-accent/35 open:shadow-soft' }}">
+							<span class="grid size-7 flex-none place-items-center rounded-full bg-[#eef3fb]
+								text-[17px] text-accent">
+								<span class="group-open:hidden">+</span>
+								<span class="hidden group-open:block">−</span>
+							</span>
+						</summary>
 
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-[22px]
-						font-display text-[18.5px] font-semibold [&::-webkit-details-marker]:hidden
-						{{ onDark ? 'text-white' : 'text-ink' }}">
-						{{ item.question }}
-
-						<span class="grid size-[30px] flex-none place-items-center rounded-[9px] transition-transform
-							duration-200 group-open:rotate-45 [&_svg]:size-[18px]
-							{{ onDark ? 'bg-white/15 text-white' : 'bg-accent-soft text-accent' }}">
-							{{ (fields.icon ?: 'plus')|svg }}
-						</span>
-					</summary>
-
-					<p class="-mt-1 pr-[50px] pb-6 text-[15.5px] leading-relaxed whitespace-pre-line max-sm:pr-0
-						{{ onDark ? 'text-white/80' : 'text-ink-2' }}">
-						{{ item.answer }}
-					</p>
-				</details>
-			{% endfor %}
+						<div class="px-6 pb-5 text-[15px] leading-[1.65] text-ink-3
+							[&_a]:font-semibold [&_a]:text-accent">
+							{{ item.answer }}
+						</div>
+					</details>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </section>

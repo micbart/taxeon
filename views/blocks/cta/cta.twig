@@ -1,6 +1,6 @@
 {#
 	Title: Pas CTA
-	Description: Wezwanie do działania — wariant jasny lub ciemny na całą szerokość
+	Description: Wyśrodkowany pas z tytułem i przyciskami
 	Category: taxeon
 	Icon: megaphone
 	HideFieldsInSidebar: true
@@ -9,48 +9,48 @@
 	SupportsAlign: false
 	SupportsAnchor: true
 #}
+{% import 'components/section.twig' as section %}
 
-{% set isDark = fields.variant == 'dark' %}
+{% set onDark = section.isDark(fields) %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
-	class="relative overflow-hidden py-section max-sm:py-16
-		{{ isDark ? 'bg-[image:var(--gradient-hero)] text-white' : 'border-y border-line-2 bg-soft' }} {{ classes }}">
+<section class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% if onDark %}
+		<div aria-hidden="true"
+			class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
+	{% endif %}
 
-	<div class="relative z-[1] mx-auto w-full max-w-[760px] px-gutter text-center max-sm:px-5">
-		{% if isDark %}
-			<div class="mb-7 flex justify-center">
-				{% include 'components/logo.twig' with { white: true, width: 190, height: 38, class: 'h-[38px] opacity-95' } %}
-			</div>
-		{% elseif fields.icon %}
-			<span class="mx-auto mb-[22px] grid size-14 place-items-center rounded-[15px] bg-accent
-				text-accent-ink [&_svg]:size-7">
-				{{ fields.icon|svg }}
-			</span>
+	<div class="relative mx-auto w-full max-w-[900px] px-gutter text-center max-sm:px-5">
+		{% if fields.title.text %}
+			<{{ fields.title.tag ?: 'h2' }} class="font-display text-[clamp(34px,4.2vw,62px)] leading-[1.04]
+				font-bold tracking-[-0.035em] text-balance {{ onDark ? 'text-white' : 'text-ink' }}">
+				{{ fields.title.text|nl2br }}
+			</{{ fields.title.tag ?: 'h2' }}>
 		{% endif %}
 
-		{% include 'components/title-with-select-tag.twig' with {
-			title: fields.title,
-			defaultTag: 'h2',
-			titleClass: 'font-display text-[clamp(30px,4vw,48px)] leading-[1.08] font-semibold tracking-[-0.02em]
-				text-balance ' ~ (isDark ? 'text-white' : 'text-ink')
-		} only %}
+		{% if fields.text %}
+			<p class="mt-5 text-[19px] {{ onDark ? 'text-white/76' : 'text-ink-3' }}">{{ fields.text }}</p>
+		{% endif %}
 
-		{% include 'components/title-with-select-tag.twig' with {
-			title: fields.text,
-			defaultTag: 'p',
-			titleClass: 'mx-auto mt-4 max-w-[580px] text-lg leading-relaxed ' ~ (isDark ? 'text-white/70' : 'text-ink-2')
-		} only %}
+		{% if fields.button_primary.url or fields.button_secondary.url %}
+			<div class="mt-9 flex flex-wrap justify-center gap-3.5">
+				{% if fields.button_primary.url %}
+					<a href="{{ fields.button_primary.url }}"
+						target="{{ fields.button_primary.target ?: '_self' }}"
+						class="rounded-pill px-8 py-[17px] text-[16px] font-semibold transition
+							{{ onDark ? 'bg-white text-ink hover:bg-accent-tint' : 'bg-accent text-white hover:bg-accent-strong' }}">
+						{{ fields.button_primary.title }}
+					</a>
+				{% endif %}
 
-		<div class="mt-8 flex flex-wrap justify-center gap-3.5 max-sm:[&_a]:w-full">
-			{% include 'components/button.twig' with {
-				button: fields.button_primary,
-				variant: isDark ? 'on-navy' : null
-			} only %}
-
-			{% include 'components/button.twig' with {
-				button: fields.button_secondary,
-				variant: isDark ? 'ghost-navy' : null
-			} only %}
-		</div>
+				{% if fields.button_secondary.url %}
+					<a href="{{ fields.button_secondary.url }}"
+						target="{{ fields.button_secondary.target ?: '_self' }}"
+						class="rounded-pill border px-8 py-[17px] text-[16px] font-semibold transition
+							{{ onDark ? 'border-white/30 text-white hover:bg-white hover:text-ink' : 'border-line text-ink hover:bg-soft' }}">
+						{{ fields.button_secondary.title }}
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
 	</div>
 </section>
