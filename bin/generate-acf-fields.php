@@ -208,38 +208,6 @@ $groups['options'] = [
         f('opt.header_contact_link', 'Link kontaktowy', 'link'),
         f('opt.header_cta', 'Przycisk CTA', 'link'),
 
-        f('opt.tab_topbar', 'Pasek aktualności', 'tab'),
-        f('opt.topbar_enabled', 'Pokaż pasek nad nagłówkiem', 'true_false', [
-            'instructions' => 'Wyłączony — pasek nie renderuje się w ogóle. Pasek nie jest przyklejony: '
-                . 'przewija się razem z treścią, nagłówek zostaje u góry.',
-        ]),
-        f('opt.topbar_label', 'Plakietka', 'text', [
-            'default_value' => 'Aktualności',
-            'instructions' => 'Podpis po lewej. Poniżej 860 px chowa się, żeby zostało miejsce na treść.',
-            'conditional_logic' => [[['field' => key_for('opt.topbar_enabled'), 'operator' => '==', 'value' => '1']]],
-        ]),
-        f('opt.topbar_items', 'Wpisy', 'repeater', [
-            'button_label' => 'Dodaj wpis',
-            'instructions' => 'Wpisy zmieniają się co 6 sekund, w kolejności ustawionej przeciąganiem. '
-                . 'Jeden wpis = bez podmiany. Wpis bez treści jest pomijany.',
-            'collapsed' => key_for('opt.topbar_items.text'),
-            'conditional_logic' => [[['field' => key_for('opt.topbar_enabled'), 'operator' => '==', 'value' => '1']]],
-            'sub_fields' => [
-                f('opt.topbar_items.date', 'Data', 'date_picker', [
-                    'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
-                ]),
-                f('opt.topbar_items.text', 'Treść', 'text', [
-                    'required' => 1,
-                    'wrapper' => ['width' => '75', 'class' => '', 'id' => ''],
-                ]),
-                f('opt.topbar_items.link', 'Odnośnik', 'link'),
-            ],
-        ]),
-        f('opt.topbar_all', 'Odnośnik „Wszystkie aktualności”', 'link', [
-            'instructions' => 'Po prawej stronie paska. Puste — bez odnośnika.',
-            'conditional_logic' => [[['field' => key_for('opt.topbar_enabled'), 'operator' => '==', 'value' => '1']]],
-        ]),
-
         f('opt.tab_footer', 'Stopka', 'tab'),
         f('opt.footer_description', 'Opis firmy', 'textarea', ['rows' => 4]),
         f('opt.phone_sales_label', 'Etykieta — sprzedaż', 'text', ['default_value' => 'Dział sprzedaży']),

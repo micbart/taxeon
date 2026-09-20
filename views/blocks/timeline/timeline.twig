@@ -22,7 +22,7 @@
 			eyebrow: fields.eyebrow, title: fields.title, text: fields.text, onDark: onDark
 		} only %}
 
-		<ol class="reveal ml-3 grid gap-9 border-l-2 pl-9 {{ onDark ? 'border-white/15' : 'border-line' }}">
+		<ol class="ml-3 grid gap-9 border-l-2 pl-9 {{ onDark ? 'border-white/15' : 'border-line' }}">
 			{% for item in fields.items %}
 				<li class="relative
 					before:absolute before:top-1.5 before:-left-[43px] before:size-3.5 before:rounded-full

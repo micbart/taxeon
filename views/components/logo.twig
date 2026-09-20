@@ -1,31 +1,15 @@
-{% set customDark = themeOptions.logo %}
-{% set customLight = themeOptions.logo_white %}
+{% set wlasne = themeOptions.logo_white ?: themeOptions.logo %}
 
-{% if customDark or customLight %}
-	{% if white %}
-		<img src="{{ (customLight ?: customDark).url }}"
-			alt="{{ site.name }}"
-			width="{{ (customLight ?: customDark).width }}"
-			height="{{ (customLight ?: customDark).height }}"
-			class="h-[26px] w-auto {{ class }}">
-	{% else %}
-		<img src="{{ (customLight ?: customDark).url }}"
-			alt="{{ site.name }}"
-			width="{{ (customLight ?: customDark).width }}"
-			height="{{ (customLight ?: customDark).height }}"
-			class="h-[26px] w-auto group-data-scrolled:hidden {{ class }}">
-
-		<img src="{{ (customDark ?: customLight).url }}"
-			alt=""
-			aria-hidden="true"
-			width="{{ (customDark ?: customLight).width }}"
-			height="{{ (customDark ?: customLight).height }}"
-			class="hidden h-[26px] w-auto group-data-scrolled:block {{ class }}">
-	{% endif %}
+{% if wlasne %}
+	<img src="{{ wlasne.url }}"
+		alt="{{ site.name }}"
+		width="{{ wlasne.width }}"
+		height="{{ wlasne.height }}"
+		class="h-6 w-auto {{ class }}">
 {% else %}
-	<span class="block h-[26px] w-[111px] text-white {{ white ? '' : 'group-data-scrolled:text-ink' }} {{ class }}"
-		role="img"
-		aria-label="{{ site.name }}">
-		{{ 'logo'|svg('size-full') }}
-	</span>
+	<img src="{{ site.theme.uri }}/images/logo-white.png"
+		alt="{{ site.name }}"
+		width="624"
+		height="96"
+		class="h-6 w-[156px] {{ class }}">
 {% endif %}

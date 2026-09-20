@@ -25,7 +25,7 @@
 			? 'grid-cols-[340px_1fr] items-start gap-11 max-[880px]:grid-cols-1 max-[880px]:gap-[30px]'
 			: 'grid-cols-2 gap-14 max-lg:grid-cols-1 max-lg:gap-9 ' ~ (alignTop ? 'items-start' : 'items-center') }}">
 
-			<div class="reveal {{ isEmbed ? 'sticky top-[100px] max-[880px]:static' : '' }} {{ mediaFirst ? 'max-lg:order-2' : '' }}">
+			<div class="{{ isEmbed ? 'sticky top-[100px] max-[880px]:static' : '' }} {{ mediaFirst ? 'max-lg:order-2' : '' }}">
 				{% include 'components/eyebrow.twig' with {
 					title: fields.eyebrow,
 					color: onDark ? 'text-deep-tint' : ''
@@ -110,7 +110,7 @@
 			</div>
 
 			{% if fields.image or isEmbed %}
-				<div class="reveal {{ mediaFirst ? 'order-first max-lg:order-1' : '' }}">
+				<div class="{{ mediaFirst ? 'order-first max-lg:order-1' : '' }}">
 					{% if isEmbed %}
 						<div class="overflow-hidden rounded-panel border border-line bg-white p-3 shadow-soft">
 							<iframe src="{{ fields.embed_url }}"

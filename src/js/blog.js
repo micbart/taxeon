@@ -1,5 +1,4 @@
 import { apiGet } from './app/api.js';
-import { initReveal } from './app/reveal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const filter = document.querySelector('[data-blog-filter]');
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				updateUrl(category);
 			}
 
-			initReveal(grid);
 		} finally {
 			if (ticket === request) {
 				delete results.dataset.loading;

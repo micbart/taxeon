@@ -35,7 +35,7 @@
 		<div class="grid items-stretch gap-6 {{ isDownload ? 'grid-cols-2 max-[860px]:grid-cols-1' : cols[fields.columns ?: '3'] }}">
 			{% for card in fields.cards %}
 				{% if isDownload %}
-				<div class="reveal relative flex flex-col rounded-panel p-8 max-sm:px-6 max-sm:py-7
+				<div class="relative flex flex-col rounded-panel p-8 max-sm:px-6 max-sm:py-7
 					{{ card.featured
 						? 'border border-transparent bg-[image:var(--gradient-deep)] text-white shadow-navy'
 						: (paraZWyroznieniem ? 'gradient-frame' : 'border border-line bg-white shadow-soft') }}">
@@ -102,7 +102,7 @@
 					{% endif %}
 				</div>
 				{% else %}
-				<div class="reveal relative flex flex-col overflow-hidden rounded-panel p-[34px] transition
+				<div class="relative flex flex-col overflow-hidden rounded-panel p-[34px] transition
 					{{ card.featured
 						? 'border border-transparent bg-[image:var(--gradient-deep)] text-white shadow-navy'
 						: (paraZWyroznieniem

@@ -27,7 +27,7 @@
 			eyebrow: fields.eyebrow, title: fields.title, text: fields.text, onDark: onDark
 		} only %}
 
-		<div class="reveal grid gap-10 {{ cols[fields.columns ?: '4'] }}">
+		<div class="grid gap-10 {{ cols[fields.columns ?: '4'] }}">
 			{% for item in fields.items %}
 				<div>
 					{% if item.icon %}

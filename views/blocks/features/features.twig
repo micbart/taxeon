@@ -48,7 +48,7 @@
 
 		<div class="grid auto-rows-fr {{ cols[fields.columns ?: '4'] }} {{ isList ? 'gap-x-10 gap-y-[18px]' : 'gap-[22px]' }}">
 			{% for item in fields.items %}
-				<div class="reveal {{ isList
+				<div class="{{ isList
 					? 'flex items-start gap-4 py-1'
 					: (isInline
 						? 'flex items-start gap-[18px] rounded-panel border border-line bg-white p-7 transition hover:-translate-y-1 hover:border-transparent hover:shadow-mid'

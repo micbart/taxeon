@@ -29,7 +29,7 @@
 		} only %}
 
 		{% if isTabs %}
-			<div class="reveal" data-tabs>
+			<div class="" data-tabs>
 				<div role="tablist" class="flex flex-wrap gap-2 border-b border-line">
 					{% for tab in fields.tabs %}
 						<button type="button"
@@ -57,7 +57,7 @@
 				{% endfor %}
 			</div>
 		{% else %}
-			<div class="reveal overflow-x-auto rounded-panel border border-line bg-white">
+			<div class="overflow-x-auto rounded-panel border border-line bg-white">
 				<table class="w-full border-collapse">
 					{% include 'components/table-head.twig' with { head: fields.head, variant: variant } only %}
 					<tbody>
@@ -68,7 +68,7 @@
 		{% endif %}
 
 		{% if fields.footnote or fields.footnote_link.url %}
-			<p class="reveal text-center {{ variant == 'pricing'
+			<p class="text-center {{ variant == 'pricing'
 				? 'mt-[18px] text-[13.5px]'
 				: 'mx-auto mt-[30px] max-w-[720px] text-base' }}
 				{{ onDark ? 'text-white/70' : (variant == 'pricing' ? 'text-ink-3' : 'text-ink-2') }}">

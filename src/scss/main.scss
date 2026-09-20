@@ -7,5 +7,4 @@
 
 @layer components {
 	@include meta.load-css("base/prose");
-	@include meta.load-css("base/animations");
 }
