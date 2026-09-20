@@ -17,7 +17,7 @@ $twig = new \Twig\Environment($loader, ['cache' => false]);
 
 foreach (
     [
-        'svg', 'svgUrl', 'termLink', 'termColor', 'readTime', 'inlineHtml', 'wpDate', 'shopPrice', 'arrayToJson',
+        'svg', 'svgUrl', 'youtubeId', 'termLink', 'termColor', 'readTime', 'inlineHtml', 'wpDate', 'shopPrice', 'arrayToJson',
         'jsonToArray', 'getPermalink', 'excerpt', 'wpautop', 'shortcodes',
     ] as $filter
 ) {

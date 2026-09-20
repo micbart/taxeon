@@ -328,6 +328,19 @@ class TimberTheme extends TimberSite
 
 		$twig->addFilter(
 			new TwigFilter(
+				'youtubeId',
+				static function (string $url): string {
+					if (preg_match('~(?:youtu\\.be/|youtube(?:-nocookie)?\\.com/(?:embed/|shorts/|live/|watch\\?v=|.*[?&]v=))([A-Za-z0-9_-]{11})~', $url, $trafienie)) {
+						return $trafienie[1];
+					}
+
+					return '';
+				}
+			)
+		);
+
+		$twig->addFilter(
+			new TwigFilter(
 				'svgUrl',
 				function (string $icon): string {
 					return get_template_directory_uri() . $this->svgRelativePath($icon);

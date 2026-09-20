@@ -326,75 +326,56 @@ $blocks = [];
 $blocks['hero'] = [
     'title' => 'Blok: Hero',
     'fields' => [
-        f('hero.layout', 'Układ', 'select', [
-            'choices' => [
-                'center' => 'Wyśrodkowany (strona główna)',
-                'left' => 'Do lewej (podstrony)',
-            ],
-            'default_value' => 'center',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
-        ]),
-        f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false', [
-            'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
-        ]),
-        f('hero.badge_highlight', 'Plakietka — wyróżnienie', 'text', ['wrapper' => ['width' => '30', 'class' => '', 'id' => '']]),
-        f('hero.badge_text', 'Plakietka — tekst', 'text', ['wrapper' => ['width' => '70', 'class' => '', 'id' => '']]),
+        f('hero.badge', 'Plakietka nad tytułem', 'text'),
         textGroup('hero.title', 'Tytuł', TAGS_HEADING, 'h1', 'textarea'),
-        textGroup('hero.subtitle', 'Podtytuł', TAGS_TEXT, 'p', 'textarea'),
-        f('hero.text_width', 'Szerokość tekstu', 'select', [
-            'choices' => [
-                'narrow' => 'Ograniczona (wyśrodkowany hero)',
-                'full' => 'Pełna szerokość kolumny',
-            ],
-            'default_value' => 'narrow',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
+        f('hero.subtitle', 'Podtytuł', 'text'),
+        f('hero.text', 'Opis', 'textarea', ['rows' => 3]),
+        f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false'),
+
         f('hero.tab_media', 'Tło', 'tab'),
-        f('hero.media_type', 'Rodzaj tła', 'select', [
-            'choices' => [
-                'none' => 'Sam gradient',
-                'video' => 'Wideo',
-                'image' => 'Zdjęcie',
-                'animation' => 'Animacja',
+        f('hero.video', 'Wideo w tle', 'text', [
+            'instructions' => 'Adres pliku MP4 albo filmu na YouTube. Puste = sam granat.',
+        ]),
+        f('hero.poster', 'Plakat wideo', 'image', [
+            'instructions' => 'Pierwsza klatka, widoczna zanim wideo się wczyta.',
+        ]),
+
+        f('hero.tab_cards', 'Karty cennika', 'tab'),
+        f('hero.cards', 'Karty', 'repeater', [
+            'button_label' => 'Dodaj kartę',
+            'collapsed' => key_for('hero.cards.label'),
+            'sub_fields' => [
+                f('hero.cards.label', 'Nazwa', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.badge', 'Plakietka', 'text', [
+                    'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.featured', 'Wyróżniona', 'true_false', [
+                    'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.badge_style', 'Styl plakietki', 'select', [
+                    'choices' => ['filled' => 'Wypełniona', 'outline' => 'Sama obwódka'],
+                    'default_value' => 'filled',
+                    'allow_null' => 0,
+                    'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.price', 'Cena', 'text', [
+                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.period', 'Okres', 'text', [
+                    'default_value' => '/ mies.',
+                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.cards.text', 'Opis', 'textarea', ['rows' => 2]),
+                f('hero.cards.items', 'Punkty', 'repeater', [
+                    'button_label' => 'Dodaj punkt',
+                    'collapsed' => key_for('hero.cards.items.text'),
+                    'sub_fields' => [f('hero.cards.items.text', 'Treść', 'text', ['required' => 1])],
+                ]),
+                f('hero.cards.link', 'Przycisk', 'link'),
             ],
-            'default_value' => 'none',
-            'allow_null' => 0,
-            'instructions' => 'Wideo i zdjęcie dostają przyciemnienie, żeby tekst był czytelny. Gradient i animacja go nie potrzebują.',
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
-        f('hero.animation', 'Rodzaj animacji', 'select', [
-            'choices' => [
-                'bands' => 'Pasma światła',
-                'fog' => 'Mgła',
-                'clouds' => 'Chmury',
-                'cells' => 'Komórki',
-                'net' => 'Siatka punktów',
-                'birds' => 'Ptaki',
-            ],
-            'default_value' => 'bands',
-            'allow_null' => 0,
-            'instructions' => 'Liczona w przeglądarce. Na wąskich ekranach, przy oszczędzaniu danych i wyłączonych animacjach zostaje sam gradient.',
-            'conditional_logic' => [[['field' => key_for('hero.media_type'), 'operator' => '==', 'value' => 'animation']]],
-        ]),
-        f('hero.video', 'Wideo — plik', 'file', [
-            'instructions' => 'MP4 lub WebM. Na mobile nie jest pobierane.',
-            'conditional_logic' => [[['field' => key_for('hero.media_type'), 'operator' => '==', 'value' => 'video']]],
-        ]),
-        f('hero.video_url', 'Wideo — adres zewnętrzny', 'text', [
-            'instructions' => 'Adres MP4/WebM albo strumienia HLS (.m3u8). Ma pierwszeństwo przed plikiem.',
-            'conditional_logic' => [[['field' => key_for('hero.media_type'), 'operator' => '==', 'value' => 'video']]],
-        ]),
-        f('hero.poster', 'Plakat / zdjęcie tła', 'image', [
-            'instructions' => 'Widoczny zanim wczyta się wideo oraz na urządzeniach mobilnych.',
-        ]),
-        buttonGroup('hero.button_primary', 'Przycisk główny', 'on-navy', 'lg'),
-        buttonGroup('hero.button_secondary', 'Przycisk drugi', 'ghost-navy', 'lg'),
-        f('hero.trust', 'Pasek zaufania', 'repeater', [
-            'button_label' => 'Dodaj punkt',
-            'layout' => 'table',
-            'sub_fields' => [f('hero.trust.text', 'Tekst', 'text', ['required' => 1])],
         ]),
     ],
 ];

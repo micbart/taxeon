@@ -1,65 +1,39 @@
+const MARGINES = '150px';
+
 export function initHeroVideo() {
 	const video = document.querySelector('[data-hero-video]');
 
-	if (!video) {
+	if (!video || !video.dataset.src) {
 		return;
 	}
 
-	const source = video.dataset.src;
+	const polaczenie = navigator.connection || {};
+	const oszczedza = polaczenie.saveData === true || /(^|-)2g$/.test(polaczenie.effectiveType || '');
+	const mniejRuchu = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	if (!source) {
+	if (oszczedza || mniejRuchu) {
 		return;
 	}
 
-	const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	const savesData = navigator.connection?.saveData === true;
+	const odtworz = () => {
+		if (!video.getAttribute('src')) {
+			video.setAttribute('src', video.dataset.src);
+			video.load();
+		}
 
-	if (prefersReduced || savesData) {
-		return;
-	}
+		const obietnica = video.play();
 
-	const play = () => {
-		const promise = video.play();
-
-		if (promise?.catch) {
-			promise.catch(() => {});
+		if (obietnica?.catch) {
+			obietnica.catch(() => {});
 		}
 	};
 
-	video.addEventListener('loadeddata', () => {
-		video.dataset.ready = '';
-		play();
-	});
+	const obserwator = new IntersectionObserver(
+		(wpisy) => {
+			wpisy.forEach((wpis) => (wpis.isIntersecting ? odtworz() : video.pause()));
+		},
+		{ rootMargin: MARGINES }
+	);
 
-	if (source.includes('.m3u8')) {
-		attachHls(video, source, play);
-		return;
-	}
-
-	video.src = source;
-	video.load();
-	play();
-}
-
-async function attachHls(video, source, play) {
-	try {
-		const { default: Hls } = await import('hls.js');
-
-		if (Hls.isSupported()) {
-			const hls = new Hls({ capLevelToPlayerSize: true });
-
-			hls.loadSource(source);
-			hls.attachMedia(video);
-			hls.on(Hls.Events.MANIFEST_PARSED, play);
-
-			return;
-		}
-	} catch {
-	}
-
-	if (video.canPlayType('application/vnd.apple.mpegurl')) {
-		video.src = source;
-		video.load();
-		play();
-	}
+	obserwator.observe(video);
 }
