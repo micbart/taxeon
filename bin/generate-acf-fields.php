@@ -470,10 +470,24 @@ $blocks['panels'] = [
                     'required' => 1,
                     'wrapper' => ['width' => '75', 'class' => '', 'id' => ''],
                 ]),
-                f('panels.items.muted', 'Wyciszony', 'true_false', [
-                    'instructions' => 'Ciemniejsze tło i kropki zamiast ptaszków.',
+                f('panels.items.variant', 'Wygląd', 'select', [
+                    'choices' => [
+                        '' => 'Dopasuj do tła sekcji',
+                        'glass' => 'Szklany (na ciemnym)',
+                        'muted' => 'Przyciemniony',
+                        'light' => 'Biały',
+                        'dark' => 'Granatowy',
+                    ],
+                    'default_value' => '',
+                    'allow_null' => 0,
                     'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
                 ]),
+                f('panels.items.list_style', 'Styl listy', 'select', [
+                    'choices' => ['check' => 'Ptaszki', 'rows' => 'Wiersze z kreską'],
+                    'default_value' => 'check',
+                    'allow_null' => 0,
+                ]),
+                f('panels.items.link', 'Odnośnik na dole', 'link'),
                 f('panels.items.items', 'Punkty', 'repeater', [
                     'button_label' => 'Dodaj punkt',
                     'collapsed' => key_for('panels.items.items.text'),

@@ -82,7 +82,7 @@
 			{% endif %}
 
 			{% if fields.trust|length %}
-				<div class="mt-[30px] flex flex-wrap items-center gap-x-[26px] gap-y-3 border-t border-white/14 pt-[26px]">
+				<div class="mt-[30px] flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/14 pt-[26px]">
 					{% for pozycja in fields.trust %}
 						{% set tresc %}
 							{% if pozycja.stars %}
@@ -96,9 +96,9 @@
 
 						{% if pozycja.url %}
 							<a href="{{ pozycja.url }}" target="_blank" rel="noopener"
-								class="inline-flex items-center gap-[9px] transition hover:text-sky-2">{{ tresc }}</a>
+								class="inline-flex items-center gap-[9px] whitespace-nowrap transition hover:text-sky-2">{{ tresc }}</a>
 						{% else %}
-							<span class="inline-flex items-center gap-[9px]">{{ tresc }}</span>
+							<span class="inline-flex items-center gap-[9px] whitespace-nowrap">{{ tresc }}</span>
 						{% endif %}
 					{% endfor %}
 				</div>

@@ -247,11 +247,11 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_10762b6701cb5",
-                    "label": "Wyciszony",
-                    "name": "muted",
-                    "type": "true_false",
-                    "instructions": "Ciemniejsze tło i kropki zamiast ptaszków.",
+                    "key": "field_66ae8b87adc26",
+                    "label": "Wygląd",
+                    "name": "variant",
+                    "type": "select",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -259,11 +259,60 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 1,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
+                    "choices": {
+                        "": "Dopasuj do tła sekcji",
+                        "glass": "Szklany (na ciemnym)",
+                        "muted": "Przyciemniony",
+                        "light": "Biały",
+                        "dark": "Granatowy"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_c40b283da823e",
+                    "label": "Styl listy",
+                    "name": "list_style",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "check": "Ptaszki",
+                        "rows": "Wiersze z kreską"
+                    },
+                    "default_value": "check",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_3fecac2b59d0a",
+                    "label": "Odnośnik na dole",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 },
                 {
                     "key": "field_3a162023f2b3a",

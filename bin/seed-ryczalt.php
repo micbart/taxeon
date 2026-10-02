@@ -51,7 +51,7 @@ $wCenie = taxeon_seed_block('panels', [
     'eyebrow' => $t('', 'span'), 'title' => $t('', 'h2'), 'text' => $t(''),
     'items' => [
         [
-            'title' => 'Co dokładnie dostajesz za 99 zł', 'muted' => 0,
+            'title' => 'Co dokładnie dostajesz za 99 zł', 'variant' => 'glass', 'list_style' => 'check',
             'items' => array_map(fn($x) => ['text' => $x], [
                 'Prowadzenie ewidencji przychodów.',
                 'Rozliczenie ZUS — DRA, korekty, zmiany kodów.',
@@ -63,7 +63,7 @@ $wCenie = taxeon_seed_block('panels', [
             'note' => '',
         ],
         [
-            'title' => 'Za co dopłacasz osobno', 'muted' => 1,
+            'title' => 'Za co dopłacasz osobno', 'variant' => 'muted', 'list_style' => 'check',
             'items' => array_map(fn($x) => ['text' => $x], [
                 'Kadry i płace, jeśli zatrudniasz pracownika — 80 zł/mies./os.',
                 'Rozliczenie podatku VAT — inny abonament.',
