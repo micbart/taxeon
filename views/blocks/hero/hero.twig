@@ -1,6 +1,6 @@
 {#
 	Title: Hero
-	Description: Nagłówek strony z wideo w tle, plakietką i kartami cennika
+	Description: Nagłówek strony z wideo w tle, kartami cennika albo panelem bocznym
 	Category: taxeon
 	Icon: cover-image
 	HideFieldsInSidebar: true
@@ -10,127 +10,118 @@
 	SupportsMultiple: false
 	SupportsAnchor: true
 #}
+{% set split = fields.layout == 'split' %}
+
 <section class="relative overflow-hidden bg-deep text-white">
 	{% include 'components/hero-media.twig' with {
 		url: fields.video,
 		poster: fields.poster.sizes.large ?: fields.poster.url,
-		title: fields.title.text
+		title: fields.title.text,
+		split: split
 	} only %}
 
-	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] pb-[72px] max-md:pt-[132px] max-sm:px-5">
-		{% if fields.show_breadcrumbs %}
-			{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
-		{% endif %}
+	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
+		{{ split
+			? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 pb-[84px] max-xl:grid-cols-1 max-xl:gap-10'
+			: 'pb-[72px]' }}">
 
-		{% if fields.badge %}
-			<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
-				<span class="block size-1.5 rounded-full bg-sky"></span>
-				{{ fields.badge }}
-			</div>
-		{% endif %}
+		<div>
+			{% if fields.show_breadcrumbs %}
+				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+			{% endif %}
 
-		{% if fields.title.text %}
-			<{{ fields.title.tag ?: 'h1' }} class="mt-[22px] max-w-[21ch] font-display text-[clamp(38px,4.4vw,66px)]
-				leading-none font-bold tracking-[-0.035em] text-balance">
-				{{ fields.title.text }}
-			</{{ fields.title.tag ?: 'h1' }}>
-		{% endif %}
+			{% if fields.badge %}
+				<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
+					<span class="block size-1.5 rounded-full bg-sky"></span>
+					{{ fields.badge }}
+				</div>
+			{% endif %}
 
-		{% if fields.subtitle %}
-			<p class="mt-[18px] font-display text-[clamp(20px,2vw,28px)] font-medium tracking-[-0.01em] text-sky-2">
-				{{ fields.subtitle }}
-			</p>
-		{% endif %}
+			{% if fields.title.text %}
+				<{{ fields.title.tag ?: 'h1' }} class="mt-[22px] font-display leading-none font-bold
+					tracking-[-0.035em] text-balance
+					{{ split ? 'max-w-[20ch] text-[clamp(38px,4.4vw,64px)]' : 'max-w-[21ch] text-[clamp(38px,4.4vw,66px)]' }}">
+					{{ fields.title.text }}
+				</{{ fields.title.tag ?: 'h1' }}>
+			{% endif %}
 
-		{% if fields.text %}
-			<p class="mt-[26px] max-w-[56ch] text-[18px] leading-[1.6] text-white/76">{{ fields.text }}</p>
-		{% endif %}
+			{% if fields.subtitle %}
+				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] text-sky-2
+					{{ split ? 'max-w-[30ch] text-[clamp(19px,1.9vw,26px)]' : 'text-[clamp(20px,2vw,28px)]' }}">
+					{{ fields.subtitle }}
+				</p>
+			{% endif %}
 
-		{% if fields.cards|length %}
-			<div class="mt-14 grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-5">
-				{% for card in fields.cards %}
-					<div class="flex flex-col gap-[18px] rounded-[20px] p-7
-						{{ card.featured
-							? 'border border-sky-2/55 bg-[linear-gradient(160deg,#0b63f6,#0a34a8)] shadow-[0_24px_60px_-24px_rgb(11_99_246/0.8)]'
-							: 'border border-white/14 bg-[rgb(4_13_32/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.2] transition hover:border-sky-2/55 hover:bg-[rgb(4_13_32/0.86)]' }}">
+			{% if fields.text %}
+				<p class="text-[18px] text-white/78
+					{{ split ? 'mt-6 max-w-[62ch] leading-[1.62]' : 'mt-[26px] max-w-[56ch] leading-[1.6]' }}">
+					{{ fields.text }}
+				</p>
+			{% endif %}
 
-						<div class="flex items-center justify-between gap-3">
-							<span class="text-[14px] font-semibold tracking-[0.12em] uppercase
-								{{ card.featured ? 'text-white' : 'text-sky-2' }}">
-								{{ card.label }}
-							</span>
+			{% if fields.button_primary.url or fields.button_secondary.url %}
+				<div class="mt-8 flex flex-wrap gap-3.5">
+					{% if fields.button_primary.url %}
+						<a href="{{ fields.button_primary.url }}"
+							target="{{ fields.button_primary.target ?: '_self' }}"
+							class="rounded-pill bg-white px-[30px] py-[17px] text-[16px] font-semibold text-ink
+								transition hover:bg-accent-tint">
+							{{ fields.button_primary.title }}
+						</a>
+					{% endif %}
 
-							{% if card.badge %}
-								<span class="flex-none rounded-pill text-[12px] font-semibold tracking-[0.04em] uppercase
-									{{ card.featured
-										? 'bg-white/95 px-[11px] py-[5px] text-[#0b3fd1]'
-										: (card.badge_style == 'outline'
-											? 'border border-sky-2/50 px-2.5 py-1 text-sky-2'
-											: 'border border-sky/50 bg-sky/16 px-[11px] py-[5px] text-[#9be7ff]') }}">
-									{{ card.badge }}
-								</span>
-							{% endif %}
-						</div>
-
-						{% if card.price %}
-							<div class="flex items-baseline gap-2">
-								<span class="font-display text-[52px] font-bold tracking-[-0.04em]">{{ card.price }}</span>
-								{% if card.period %}
-									<span class="text-[16px] {{ card.featured ? 'text-white/75' : 'text-white/60' }}">{{ card.period }}</span>
-								{% endif %}
-							</div>
-						{% endif %}
-
-						{% if card.text %}
-							<p class="text-[15px] leading-[1.55] {{ card.featured ? 'text-white/85' : 'text-white/72' }}">
-								{{ card.text }}
-							</p>
-						{% endif %}
-
-						{% if card.items|length %}
-							<div class="flex flex-col gap-2.5">
-								{% for item in card.items %}
-									<span class="flex gap-2.5 text-[15px] {{ card.featured ? '' : 'text-white/92' }}">
-										<span class="{{ card.featured ? 'text-[#bee3ff]' : 'text-sky' }}">✓</span>
-										{{ item.text }}
-									</span>
-								{% endfor %}
-							</div>
-						{% endif %}
-
-						{% if card.link.url %}
-							<a href="{{ card.link.url }}"
-								target="{{ card.link.target ?: '_self' }}"
-								class="mt-auto rounded-pill px-5 py-3.5 text-center text-[15px] font-semibold transition
-									{{ card.featured
-										? 'bg-white text-[#0b3fd1] hover:bg-accent-tint'
-										: 'border border-white/30 text-white hover:bg-white hover:text-ink' }}">
-								{{ card.link.title }}
-							</a>
-						{% endif %}
-					</div>
-				{% endfor %}
-			</div>
-		{% endif %}
-
-		{% if fields.note_title or fields.note_link.url %}
-			<div class="mt-7 flex max-w-[1180px] flex-wrap items-center gap-5 rounded-tile border
-				border-white/14 bg-deep/55 px-6 py-[18px]">
-				<div>
-					<div class="font-display text-[17px] font-semibold">{{ fields.note_title }}</div>
-					{% if fields.note_text %}
-						<div class="mt-0.5 text-[15px] text-white/70">{{ fields.note_text }}</div>
+					{% if fields.button_secondary.url %}
+						<a href="{{ fields.button_secondary.url }}"
+							target="{{ fields.button_secondary.target ?: '_self' }}"
+							class="rounded-pill border border-white/32 px-[30px] py-[17px] text-[16px] font-semibold
+								text-white transition hover:bg-white/10">
+							{{ fields.button_secondary.title }}
+						</a>
 					{% endif %}
 				</div>
+			{% endif %}
 
-				{% if fields.note_link.url %}
-					<a href="{{ fields.note_link.url }}"
-						target="{{ fields.note_link.target ?: '_self' }}"
-						class="ml-auto border-b border-sky-2/40 pb-0.5 text-[15px] font-semibold text-sky-2
-							transition hover:text-white max-sm:ml-0">
-						{{ fields.note_link.title }}
-					</a>
-				{% endif %}
+			{% if fields.trust|length %}
+				<div class="mt-[30px] flex flex-wrap items-center gap-x-[26px] gap-y-3 border-t border-white/14 pt-[26px]">
+					{% for pozycja in fields.trust %}
+						{% set tresc %}
+							{% if pozycja.stars %}
+								<span class="text-[14px] tracking-[0.08em] text-sky">★★★★★</span>
+							{% endif %}
+							<span class="font-display text-[15px] font-semibold text-white">{{ pozycja.value }}</span>
+							{% if pozycja.label %}
+								<span class="text-[14.5px] text-white/{{ pozycja.stars ? '60' : '72' }}">{{ pozycja.label }}</span>
+							{% endif %}
+						{% endset %}
+
+						{% if pozycja.url %}
+							<a href="{{ pozycja.url }}" target="_blank" rel="noopener"
+								class="inline-flex items-center gap-[9px] transition hover:text-sky-2">{{ tresc }}</a>
+						{% else %}
+							<span class="inline-flex items-center gap-[9px]">{{ tresc }}</span>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if not split and fields.cards|length %}
+				<div class="mt-14 grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-5">
+					{% for card in fields.cards %}
+						{% include 'blocks/hero/card.twig' with { card: card, wide: false } only %}
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if not split and (fields.note_title or fields.note_link.url) %}
+				{% include 'blocks/hero/note.twig' with { fields: fields } only %}
+			{% endif %}
+		</div>
+
+		{% if split and fields.cards|length %}
+			<div class="flex flex-col gap-5">
+				{% for card in fields.cards %}
+					{% include 'blocks/hero/card.twig' with { card: card, wide: true } only %}
+				{% endfor %}
 			</div>
 		{% endif %}
 	</div>

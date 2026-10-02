@@ -1,0 +1,68 @@
+{#
+	Title: Panele z wypunktowaniem
+	Description: Dwa panele z tytułem, listą punktów i notką na dole
+	Category: taxeon
+	Icon: columns
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+{% import 'components/section.twig' as section %}
+
+{% set onDark = section.isDark(fields) %}
+
+<section class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% if fields.background == 'gradient' %}
+		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-blue-glow)]"></div>
+	{% endif %}
+
+	<div class="relative {{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			onDark: onDark
+		} only %}
+
+		<div class="grid grid-cols-2 gap-6 max-xl:grid-cols-1
+			{{ fields.title.text or fields.eyebrow.text ? 'mt-[52px]' : '' }}">
+			{% for panel in fields.items %}
+				<div class="flex flex-col gap-[18px] rounded-panel px-9 py-10 backdrop-blur-[18px] backdrop-saturate-[1.3]
+					{{ onDark
+						? (panel.muted
+							? 'border border-white/24 bg-[rgb(6_16_50/0.42)]'
+							: 'border border-white/24 bg-white/11 shadow-[inset_0_1px_0_rgb(255_255_255/0.22),0_24px_50px_-30px_rgb(3_8_40/0.7)]')
+						: 'border border-line bg-page shadow-soft' }}">
+
+					<h3 class="font-display text-[clamp(26px,2.6vw,36px)] leading-[1.12] font-semibold tracking-[-0.03em]
+						{{ onDark ? 'text-white' : 'text-ink' }}">
+						{{ panel.title }}
+					</h3>
+
+					{% if panel.items|length %}
+						<div class="flex flex-col gap-[13px]">
+							{% for punkt in panel.items %}
+								<span class="grid grid-cols-[22px_1fr] items-start gap-x-3 text-[16px] leading-[1.55]
+									{{ onDark ? (panel.muted ? 'text-white/82' : 'text-white') : 'text-ink-2' }}">
+									<span class="text-center {{ panel.muted ? 'text-white/50' : 'text-sky' }}">
+										{{ panel.muted ? '•' : '✓' }}
+									</span>
+									<span>{{ punkt.text }}</span>
+								</span>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					{% if panel.note %}
+						<p class="mt-auto pt-3 text-[15px] leading-[1.6] [&_a]:underline
+							{{ onDark ? 'text-white/70' : 'text-ink-3' }}">
+							{{ panel.note }}
+						</p>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

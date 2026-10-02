@@ -297,11 +297,40 @@ $blocks = [];
 $blocks['hero'] = [
     'title' => 'Blok: Hero',
     'fields' => [
+        f('hero.layout', 'Układ', 'select', [
+            'choices' => [
+                'cards' => 'Karty pod tekstem (strona główna)',
+                'split' => 'Dwie kolumny z panelem (podstrony)',
+            ],
+            'default_value' => 'cards',
+            'allow_null' => 0,
+        ]),
         f('hero.badge', 'Plakietka nad tytułem', 'text'),
         textGroup('hero.title', 'Tytuł', TAGS_HEADING, 'h1', 'textarea'),
         f('hero.subtitle', 'Podtytuł', 'text'),
         f('hero.text', 'Opis', 'textarea', ['rows' => 3]),
         f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false'),
+
+        f('hero.button_primary', 'Przycisk główny', 'link'),
+        f('hero.button_secondary', 'Przycisk dodatkowy', 'link'),
+        f('hero.trust', 'Rząd zaufania', 'repeater', [
+            'button_label' => 'Dodaj pozycję',
+            'instructions' => 'Pod przyciskami, w układzie dwukolumnowym.',
+            'collapsed' => key_for('hero.trust.value'),
+            'sub_fields' => [
+                f('hero.trust.value', 'Wyróżnienie', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.trust.label', 'Opis', 'text', [
+                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.trust.stars', 'Gwiazdki', 'true_false', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.trust.url', 'Adres', 'url'),
+            ],
+        ]),
 
         f('hero.tab_media', 'Tło', 'tab'),
         f('hero.video', 'Wideo w tle', 'text', [
@@ -410,6 +439,52 @@ $blocks['latest-posts'] = [
     ]),
 ];
 
+$blocks['list'] = [
+    'title' => 'Blok: Lista z nagłówkiem',
+    'fields' => array_merge(sectionHead('list'), [
+        f('list.items', 'Wiersze', 'repeater', [
+            'button_label' => 'Dodaj wiersz',
+            'collapsed' => key_for('list.items.label'),
+            'sub_fields' => [
+                f('list.items.label', 'Opis', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '70', 'class' => '', 'id' => ''],
+                ]),
+                f('list.items.value', 'Wyróżniona wartość', 'text', [
+                    'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                ]),
+            ],
+        ]),
+    ]),
+];
+
+$blocks['panels'] = [
+    'title' => 'Blok: Panele',
+    'fields' => array_merge(sectionHead('panels'), [
+        f('panels.items', 'Panele', 'repeater', [
+            'button_label' => 'Dodaj panel',
+            'max' => 2,
+            'collapsed' => key_for('panels.items.title'),
+            'sub_fields' => [
+                f('panels.items.title', 'Tytuł', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '75', 'class' => '', 'id' => ''],
+                ]),
+                f('panels.items.muted', 'Wyciszony', 'true_false', [
+                    'instructions' => 'Ciemniejsze tło i kropki zamiast ptaszków.',
+                    'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+                ]),
+                f('panels.items.items', 'Punkty', 'repeater', [
+                    'button_label' => 'Dodaj punkt',
+                    'collapsed' => key_for('panels.items.items.text'),
+                    'sub_fields' => [f('panels.items.items.text', 'Treść', 'text', ['required' => 1])],
+                ]),
+                f('panels.items.note', 'Notka na dole', 'textarea', ['rows' => 2]),
+            ],
+        ]),
+    ]),
+];
+
 $blocks['reviews'] = [
     'title' => 'Blok: Opinie',
     'fields' => array_merge(sectionHead('reviews'), [
@@ -439,6 +514,11 @@ $blocks['cta'] = [
     'title' => 'Blok: Pas CTA',
     'fields' => [
         textGroup('cta.title', 'Tytuł', TAGS_HEADING, 'h2', 'textarea'),
+        f('cta.title_size', 'Rozmiar tytułu', 'select', [
+            'choices' => ['lg' => 'Duży (strona główna)', 'md' => 'Standardowy (podstrony)'],
+            'default_value' => 'md',
+            'allow_null' => 0,
+        ]),
         f('cta.text', 'Opis', 'textarea', ['rows' => 2]),
         f('cta.button_primary', 'Przycisk główny', 'link'),
         f('cta.button_secondary', 'Przycisk dodatkowy', 'link'),

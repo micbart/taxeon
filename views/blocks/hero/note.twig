@@ -1,0 +1,18 @@
+<div class="mt-7 flex max-w-[1180px] flex-wrap items-center gap-5 rounded-tile border border-white/14
+	bg-deep/55 px-6 py-[18px]">
+	<div>
+		<div class="font-display text-[17px] font-semibold">{{ fields.note_title }}</div>
+		{% if fields.note_text %}
+			<div class="mt-0.5 text-[15px] text-white/70">{{ fields.note_text }}</div>
+		{% endif %}
+	</div>
+
+	{% if fields.note_link.url %}
+		<a href="{{ fields.note_link.url }}"
+			target="{{ fields.note_link.target ?: '_self' }}"
+			class="ml-auto border-b border-sky-2/40 pb-0.5 text-[15px] font-semibold text-sky-2
+				transition hover:text-white max-sm:ml-0">
+			{{ fields.note_link.title }}
+		</a>
+	{% endif %}
+</div>

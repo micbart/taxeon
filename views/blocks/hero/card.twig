@@ -1,0 +1,61 @@
+<div class="flex flex-col gap-[18px]
+	{{ wide ? 'rounded-panel p-8' : 'rounded-[20px] p-7' }}
+	{{ card.featured
+		? 'border border-sky-2/55 bg-[linear-gradient(160deg,#0b63f6,#0a34a8)] shadow-[0_24px_60px_-24px_rgb(11_99_246/0.8)]'
+		: 'border border-white/16 bg-[rgb(4_13_32/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.2] transition hover:border-sky-2/55 hover:bg-[rgb(4_13_32/0.86)]' }}">
+
+	<div class="flex items-center justify-between gap-3">
+		<span class="text-[14px] font-semibold tracking-[0.12em] uppercase
+			{{ card.featured ? 'text-white' : 'text-sky-2' }}">
+			{{ card.label }}
+		</span>
+
+		{% if card.badge %}
+			<span class="flex-none rounded-pill text-[12px] font-semibold tracking-[0.04em] uppercase
+				{{ card.featured
+					? 'bg-white/95 px-[11px] py-[5px] text-[#0b3fd1]'
+					: (card.badge_style == 'outline'
+						? 'border border-sky-2/50 px-2.5 py-1 text-sky-2'
+						: 'border border-sky/50 bg-sky/16 px-[11px] py-[5px] text-[#9be7ff]') }}">
+				{{ card.badge }}
+			</span>
+		{% endif %}
+	</div>
+
+	{% if card.price %}
+		<div class="flex items-baseline gap-2">
+			<span class="font-display font-bold tracking-[-0.04em] {{ wide ? 'text-[58px]' : 'text-[52px]' }}">
+				{{ card.price }}
+			</span>
+			{% if card.period %}
+				<span class="text-[16px] {{ card.featured ? 'text-white/75' : 'text-white/60' }}">{{ card.period }}</span>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	{% if card.text %}
+		<p class="text-[15px] leading-[1.55] {{ card.featured ? 'text-white/85' : 'text-white/72' }}">{{ card.text }}</p>
+	{% endif %}
+
+	{% if card.items|length %}
+		<div class="flex flex-col gap-2.5">
+			{% for item in card.items %}
+				<span class="flex gap-2.5 text-[15px] {{ card.featured ? '' : 'text-white/92' }}">
+					<span class="{{ card.featured ? 'text-[#bee3ff]' : 'text-sky' }}">✓</span>
+					{{ item.text }}
+				</span>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	{% if card.link.url %}
+		<a href="{{ card.link.url }}"
+			target="{{ card.link.target ?: '_self' }}"
+			class="mt-auto rounded-pill px-5 py-3.5 text-center text-[15px] font-semibold transition
+				{{ card.featured
+					? 'bg-white text-[#0b3fd1] hover:bg-accent-tint'
+					: 'border border-white/30 text-white hover:bg-white hover:text-ink' }}">
+			{{ card.link.title }}
+		</a>
+	{% endif %}
+</div>

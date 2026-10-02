@@ -105,6 +105,16 @@
 		rgb(3 11 28 / 0) 55%
 	);
 
+	--gradient-hero-shade-split: linear-gradient(
+		100deg,
+		rgb(3 11 28 / 0.92) 0%,
+		rgb(3 11 28 / 0.72) 42%,
+		rgb(3 11 28 / 0.45) 100%
+	);
+
+	--gradient-hero-glow: radial-gradient(85% 70% at 12% 100%, rgb(11 99 246 / 0.5), transparent 62%),
+		radial-gradient(60% 60% at 95% 0%, rgb(69 208 255 / 0.22), transparent 68%);
+
 	--gradient-hero-bottom: linear-gradient(180deg, rgb(3 11 28 / 0) 55%, rgb(3 11 28 / 0.9) 100%);
 
 	--gradient-dark: linear-gradient(160deg, var(--color-deep-2) 0%, var(--color-deep) 100%);
