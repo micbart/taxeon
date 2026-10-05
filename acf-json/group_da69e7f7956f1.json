@@ -1,6 +1,6 @@
 {
     "key": "group_da69e7f7956f1",
-    "title": "Blok: Cennik (karty)",
+    "title": "Blok: Cennik (jeden plan)",
     "fields": [
         {
             "key": "field_d7d63d21027f3",
@@ -318,60 +318,9 @@
             "placeholder": ""
         },
         {
-            "key": "field_43761fb6ad269",
-            "label": "Odmiana",
-            "name": "variant",
-            "type": "select",
-            "instructions": "W kartach pobierania ikona stoi w kafelku obok tytułu, a etykieta jest linią z wersją pod tytułem.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "pricing": "Karty z ceną",
-                "download": "Karty pobierania"
-            },
-            "default_value": "pricing",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_fec82bfc00d98",
-            "label": "Kolumny",
-            "name": "columns",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "2": "2",
-                "3": "3",
-                "4": "4"
-            },
-            "default_value": "3",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_153e2769b849d",
-            "label": "Karty",
-            "name": "cards",
+            "key": "field_f610f2b398740",
+            "label": "Hasła nad kartą",
+            "name": "checks",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -381,229 +330,119 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_a041b81fcb30f",
+            "collapsed": "",
             "min": 0,
             "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj kartę",
+            "layout": "table",
+            "button_label": "Dodaj hasło",
             "sub_fields": [
                 {
-                    "key": "field_df70f9ca976c4",
-                    "label": "Wyróżniona (ciemna)",
-                    "name": "featured",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "35",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 1,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
-                },
-                {
-                    "key": "field_6e9008c490166",
-                    "label": "Wstążka",
-                    "name": "flag",
-                    "type": "text",
-                    "instructions": "np. „Najpopularniejszy”. Widoczna tylko na karcie wyróżnionej.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "65",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_3ada6243e7444",
-                    "label": "Ikona",
-                    "name": "icon",
-                    "type": "select",
-                    "instructions": "Lista pochodzi z plików w src/svg.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [],
-                    "default_value": "",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 1,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_e5206f99b2b8f",
-                    "label": "Etykieta",
-                    "name": "tag",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_a041b81fcb30f",
-                    "label": "Tytuł",
-                    "name": "title",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_75b82cc2c2089",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5567e7776c467",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "h1": "h1",
-                                "h2": "h2",
-                                "h3": "h3",
-                                "h4": "h4",
-                                "p": "p",
-                                "span": "span",
-                                "div": "div"
-                            },
-                            "default_value": "h3",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
-                },
-                {
-                    "key": "field_bd14e2a15da5b",
-                    "label": "Opis",
+                    "key": "field_6a14e98954a3e",
+                    "label": "Treść",
                     "name": "text",
-                    "type": "group",
+                    "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_50c07c5299a71",
-                            "label": "Treść",
-                            "name": "text",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "75",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 3,
-                            "new_lines": ""
-                        },
-                        {
-                            "key": "field_3efbbca5fcbd3",
-                            "label": "Znacznik",
-                            "name": "tag",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "p": "p",
-                                "div": "div",
-                                "span": "span"
-                            },
-                            "default_value": "p",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_9822fca863702",
+            "label": "Nazwa planu",
+            "name": "plan_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_9200b1e114c62",
+            "label": "Waluta",
+            "name": "currency",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "zł",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_1a76d84a95421",
+            "label": "Okresy rozliczenia",
+            "name": "periods",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Dodaj okres",
+            "sub_fields": [
+                {
+                    "key": "field_d9e84fa066f11",
+                    "label": "Nazwa",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
-                    "key": "field_7d41bc195f0d6",
+                    "key": "field_ed9fa8cd09550",
                     "label": "Cena",
                     "name": "price",
                     "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
@@ -614,27 +453,8 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_0cb05b0ab6166",
-                    "label": "Dopisek przy cenie",
-                    "name": "price_suffix",
-                    "type": "text",
-                    "instructions": "np. „/ moduł / mies.”",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_be6c0ca3ed806",
-                    "label": "Nota pod ceną",
+                    "key": "field_d42cf85edb65b",
+                    "label": "Dopisek pod ceną",
                     "name": "note",
                     "type": "text",
                     "instructions": "",
@@ -650,320 +470,82 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
-                },
-                {
-                    "key": "field_583ec90f5ac24",
-                    "label": "Lista",
-                    "name": "items",
-                    "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "collapsed": "",
-                    "min": 0,
-                    "max": 0,
-                    "layout": "table",
-                    "button_label": "Dodaj punkt",
-                    "sub_fields": [
-                        {
-                            "key": "field_d7aa59d7efffd",
-                            "label": "Tekst",
-                            "name": "text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        }
-                    ]
-                },
-                {
-                    "key": "field_5e7a813d07b5e",
-                    "label": "Przycisk",
-                    "name": "button",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_c285064114a2e",
-                            "label": "Link",
-                            "name": "link",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array"
-                        },
-                        {
-                            "key": "field_db0645080dd0c",
-                            "label": "Styl",
-                            "name": "variant",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "primary": "Główny (pomarańczowy)",
-                                "accent": "Akcent (granatowy)",
-                                "ghost": "Obrys na jasnym",
-                                "on-navy": "Biały na ciemnym",
-                                "ghost-navy": "Obrys na ciemnym"
-                            },
-                            "default_value": "accent",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_f60a922baa087",
-                            "label": "Rozmiar",
-                            "name": "size",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "20",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "base": "Zwykły",
-                                "lg": "Duży"
-                            },
-                            "default_value": "lg",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_77d663f0b6f6f",
-                            "label": "Ikona",
-                            "name": "icon",
-                            "type": "select",
-                            "instructions": "Lista pochodzi z plików w src/svg.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": [],
-                            "default_value": "",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 1,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
-                },
-                {
-                    "key": "field_0392f07f74e59",
-                    "label": "Przycisk drugi",
-                    "name": "button_secondary",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "layout": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_d2536335b9e75",
-                            "label": "Link",
-                            "name": "link",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array"
-                        },
-                        {
-                            "key": "field_9e36e1c191b41",
-                            "label": "Styl",
-                            "name": "variant",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "primary": "Główny (pomarańczowy)",
-                                "accent": "Akcent (granatowy)",
-                                "ghost": "Obrys na jasnym",
-                                "on-navy": "Biały na ciemnym",
-                                "ghost-navy": "Obrys na ciemnym"
-                            },
-                            "default_value": "ghost",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_482e54502cf0a",
-                            "label": "Rozmiar",
-                            "name": "size",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "20",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "base": "Zwykły",
-                                "lg": "Duży"
-                            },
-                            "default_value": "lg",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_d514e66a32ce3",
-                            "label": "Ikona",
-                            "name": "icon",
-                            "type": "select",
-                            "instructions": "Lista pochodzi z plików w src/svg.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": [],
-                            "default_value": "",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 1,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        }
-                    ]
-                },
-                {
-                    "key": "field_4efe467f7e0be",
-                    "label": "Linki dodatkowe",
-                    "name": "links",
-                    "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "collapsed": "",
-                    "min": 0,
-                    "max": 0,
-                    "layout": "table",
-                    "button_label": "Dodaj link",
-                    "sub_fields": [
-                        {
-                            "key": "field_2608a46521bbf",
-                            "label": "Ikona",
-                            "name": "icon",
-                            "type": "select",
-                            "instructions": "Lista pochodzi z plików w src/svg.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": [],
-                            "default_value": "",
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 1,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_f092e637361ab",
-                            "label": "Link",
-                            "name": "link",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "70",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array"
-                        }
-                    ]
                 }
             ]
+        },
+        {
+            "key": "field_48d505688752f",
+            "label": "Punkty",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Dodaj punkt",
+            "sub_fields": [
+                {
+                    "key": "field_8175c617dd1b0",
+                    "label": "Treść",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_afb0e3e886387",
+            "label": "Przycisk",
+            "name": "link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bfd4403b775ff",
+            "label": "Dopisek pod przyciskiem",
+            "name": "note",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_af54127bc765b",

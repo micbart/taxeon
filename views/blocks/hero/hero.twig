@@ -12,6 +12,7 @@
 #}
 {% set uklad = fields.layout ?: 'cards' %}
 {% set split = uklad == 'split' %}
+{% set srodek = uklad == 'center' %}
 {% set akcent = fields.button_style == 'accent' %}
 {% set odstepy = { '72': 'pb-[72px]', '76': 'pb-[76px]', '84': 'pb-[84px]', '88': 'pb-[88px]' } %}
 {% set podstrona = uklad != 'cards' %}
@@ -22,12 +23,14 @@
 		poster: fields.poster.sizes.large ?: fields.poster.url,
 		title: fields.title.text,
 		split: split,
+		center: srodek,
 		glow: podstrona
 	} only %}
 
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
 		{{ odstepy[fields.space_bottom] ?: (split ? 'pb-[84px]' : 'pb-[72px]') }}
-		{{ split ? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 max-xl:grid-cols-1 max-xl:gap-10' }}">
+		{{ split ? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 max-xl:grid-cols-1 max-xl:gap-10' }}
+		{{ srodek ? 'text-center' }}">
 
 		<div>
 			{% if fields.show_breadcrumbs %}
@@ -44,7 +47,9 @@
 			{% if fields.title.text %}
 				<{{ fields.title.tag ?: 'h1' }} class="mt-[22px] font-display leading-none font-bold
 					tracking-[-0.035em] text-balance
-					{{ split ? 'max-w-[20ch] text-[clamp(38px,4.4vw,64px)]' : 'max-w-[21ch] text-[clamp(38px,4.4vw,66px)]' }}">
+					{{ srodek
+						? 'mx-auto max-w-[20ch] text-[clamp(38px,4.4vw,62px)] leading-[1.03]'
+						: (split ? 'max-w-[20ch] text-[clamp(38px,4.4vw,64px)]' : 'max-w-[21ch] text-[clamp(38px,4.4vw,66px)]') }}">
 					{{ fields.title.text }}
 				</{{ fields.title.tag ?: 'h1' }}>
 			{% endif %}
@@ -59,10 +64,12 @@
 			{% endif %}
 
 			{% if fields.text %}
-				<p class="text-[18px] text-white/78
-					{{ podstrona
-						? (split ? 'mt-6 leading-[1.62]' : 'mt-[26px] leading-[1.6]') ~ ' max-w-[62ch]'
-						: 'mt-[26px] max-w-[56ch] leading-[1.6]' }}">
+				<p class="{{ srodek ? 'text-[19px] text-white/78' : 'text-[18px] text-white/78' }}
+					{{ srodek
+						? 'mx-auto mt-6 max-w-[62ch] leading-[1.6]'
+						: (podstrona
+							? (split ? 'mt-6 leading-[1.62]' : 'mt-[26px] leading-[1.6]') ~ ' max-w-[62ch]'
+							: 'mt-[26px] max-w-[56ch] leading-[1.6]') }}">
 					{{ fields.text }}
 				</p>
 			{% endif %}
@@ -80,14 +87,15 @@
 			{% endif %}
 
 			{% if fields.button_primary.url or fields.button_secondary.url %}
-				<div class="flex flex-wrap gap-3.5 {{ akcent ? 'mt-[34px]' : 'mt-8' }}">
+				<div class="flex flex-wrap gap-3.5
+					{{ srodek ? 'justify-center mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
 					{% if fields.button_primary.url %}
 						<a href="{{ fields.button_primary.url }}"
 							target="{{ fields.button_primary.target ?: '_self' }}"
 							class="rounded-pill font-semibold transition
-								{{ akcent
+								{{ srodek ? 'bg-white px-8 py-[17px] text-[16px] text-ink hover:bg-accent-tint' : (akcent
 									? 'bg-accent-cta px-9 py-5 text-[18px] text-white shadow-cta hover:bg-white hover:text-ink'
-									: 'bg-white px-[30px] py-[17px] text-[16px] text-ink hover:bg-accent-tint' }}">
+									: 'bg-white px-[30px] py-[17px] text-[16px] text-ink hover:bg-accent-tint') }}">
 							{{ fields.button_primary.title }}
 						</a>
 					{% endif %}
@@ -100,6 +108,18 @@
 							{{ fields.button_secondary.title }}
 						</a>
 					{% endif %}
+				</div>
+			{% endif %}
+
+			{% if fields.checks|length %}
+				<div class="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[15px] text-white/66
+					{{ srodek ? 'justify-center' }}">
+					{% for pozycja in fields.checks %}
+						<span class="inline-flex items-center gap-2">
+							<span aria-hidden="true" class="text-sky">✓</span>
+							{{ pozycja.text }}
+						</span>
+					{% endfor %}
 				</div>
 			{% endif %}
 

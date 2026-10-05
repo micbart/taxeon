@@ -24,9 +24,11 @@
 	<div aria-hidden="true" class="absolute inset-0 bg-accent-cta mix-blend-color"></div>
 
 	<div aria-hidden="true"
-		class="absolute inset-0 {{ split
-			? 'bg-[image:var(--gradient-hero-shade-split)]'
-			: 'bg-[image:var(--gradient-hero-shade)]' }}"></div>
+		class="absolute inset-0 {{ center
+			? 'bg-[image:var(--gradient-hero-shade-center)]'
+			: (split
+				? 'bg-[image:var(--gradient-hero-shade-split)]'
+				: 'bg-[image:var(--gradient-hero-shade)]') }}"></div>
 {% endif %}
 
 {% if glow %}

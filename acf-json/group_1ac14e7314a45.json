@@ -34,7 +34,8 @@
             "choices": {
                 "cards": "Karty pod tekstem (strona główna)",
                 "split": "Dwie kolumny z panelem (podstrony)",
-                "plain": "Sam tekst (strony branżowe)"
+                "plain": "Sam tekst (strony branżowe)",
+                "center": "Wyśrodkowany (strona dla biur)"
             },
             "default_value": "cards",
             "return_format": "value",
@@ -601,6 +602,46 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_fba107f123e38",
+            "label": "Hasła z ptaszkiem",
+            "name": "checks",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Dodaj hasło",
+            "sub_fields": [
+                {
+                    "key": "field_6300cd91e7745",
+                    "label": "Treść",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
         },
         {
             "key": "field_601bf77ddaa01",

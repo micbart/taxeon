@@ -1,6 +1,6 @@
 {#
-	Title: Cennik (karty)
-	Description: Karty z ceną, listą punktów i przyciskiem; jedna może być wyróżniona
+	Title: Cennik (jeden plan)
+	Description: Wyśrodkowana karta z ceną i przełącznikiem okresu rozliczenia
 	Category: taxeon
 	Icon: money-alt
 	HideFieldsInSidebar: true
@@ -9,197 +9,109 @@
 	SupportsAlign: false
 	SupportsAnchor: true
 #}
-
 {% import 'components/section.twig' as section %}
 
-{% set cols = {
-	'2': 'grid-cols-2 max-lg:grid-cols-1',
-	'3': 'grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1',
-	'4': 'grid-cols-4 max-2xl:grid-cols-2 max-sm:grid-cols-1'
-} %}
+{% set okresy = fields.periods|default([]) %}
 
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
-	class="{{ section.shell(fields, classes) }}">
+	class="relative overflow-hidden scroll-mt-header {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
-	<div class="{{ section.container(fields) }}">
-		{% include 'components/section-head.twig' with {
-			size: fields.head_size,
-			headWidth: fields.head_width,
-			titleWidth: fields.title_width,
-			textWidth: fields.text_width,
-			eyebrow: fields.eyebrow,
-			title: fields.title,
-			text: fields.text,
-			onDark: section.isDark(fields)
-		} only %}
+	<div class="relative {{ section.container(fields) }}">
+		<div class="mx-auto max-w-[60ch] text-center">
+			{% include 'components/section-head.twig' with {
+				size: fields.head_size,
+				titleWidth: fields.title_width,
+				eyebrow: fields.eyebrow,
+				title: fields.title,
+				center: true
+			} only %}
 
-		{% set paraZWyroznieniem = fields.cards|length == 2 and fields.cards|filter(c => c.featured)|length == 1 %}
-		{% set isDownload = fields.variant == 'download' %}
+			{% if fields.checks|length %}
+				<div class="mt-[18px] flex flex-wrap justify-center gap-x-[22px] gap-y-2.5 text-[16px] text-ink-3">
+					{% for pozycja in fields.checks %}
+						<span class="inline-flex items-center gap-2">
+							<span aria-hidden="true" class="text-accent">✓</span>
+							{{ pozycja.text }}
+						</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
 
-		<div class="grid items-stretch gap-6 {{ isDownload ? 'grid-cols-2 max-[860px]:grid-cols-1' : cols[fields.columns ?: '3'] }}">
-			{% for card in fields.cards %}
-				{% if isDownload %}
-				<div class="relative flex flex-col rounded-panel p-8 max-sm:px-6 max-sm:py-7
-					{{ card.featured
-						? 'border border-transparent bg-[image:var(--gradient-deep)] text-white shadow-navy'
-						: (paraZWyroznieniem ? 'gradient-frame' : 'border border-line bg-white shadow-soft') }}">
+		<div data-tabs>
+			{% if okresy|length > 1 %}
+				<div class="mt-[34px] flex justify-center">
+					<div role="tablist" class="inline-flex gap-1 rounded-pill bg-line p-[5px]">
+						{% for okres in okresy %}
+							<button type="button"
+								role="tab"
+								data-tab="{{ block.id }}-{{ loop.index }}"
+								data-active="{{ loop.first ? 'true' : 'false' }}"
+								class="cursor-pointer rounded-pill px-6 py-2.5 font-display text-[15px] font-semibold
+									text-ink-3 transition
+									data-[active=true]:bg-page data-[active=true]:text-ink
+									data-[active=true]:shadow-[0_6px_16px_-8px_rgb(6_16_36/0.6)]">
+								{{ okres.label }}
+							</button>
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
 
-					<div class="flex items-center gap-4">
-						{% if card.icon %}
-							<span class="grid size-[54px] flex-none place-items-center rounded-[14px] [&_svg]:size-[27px]
-								{{ card.featured ? 'bg-white/14 text-white' : 'bg-accent-soft text-accent' }}">
-								{{ card.icon|svg }}
-							</span>
-						{% endif %}
+			{% for okres in okresy %}
+				<div data-panel="{{ block.id }}-{{ loop.index }}"
+					{% if not loop.first %}hidden{% endif %}
+					class="mx-auto mt-8 max-w-[460px] rounded-[24px] border border-line bg-page px-10 py-11
+						text-center shadow-[0_40px_80px_-50px_rgb(6_16_36/0.6)] max-sm:px-7">
 
-						<div class="min-w-0">
-							{% include 'components/title-with-select-tag.twig' with {
-								title: card.title,
-								defaultTag: 'h3',
-								titleClass: 'font-display text-[22px] leading-[1.08] font-semibold tracking-[-0.02em] '
-									~ (card.featured ? 'text-white' : 'text-ink')
-							} only %}
-
-							{% if card.tag %}
-								<div class="mt-[3px] text-sm {{ card.featured ? 'text-white/72' : 'text-ink-3' }}">{{ card.tag }}</div>
-							{% endif %}
+					{% if fields.plan_label %}
+						<div class="text-[13px] font-semibold tracking-[0.12em] text-accent uppercase">
+							{{ fields.plan_label }}
 						</div>
+					{% endif %}
+
+					<div class="mt-5 flex items-baseline justify-center gap-2">
+						<span class="font-display text-[84px] leading-none font-bold tracking-[-0.04em] text-ink">
+							{{ okres.price }}
+						</span>
+
+						{% if fields.currency %}
+							<span class="font-display text-[26px] font-semibold text-ink">{{ fields.currency }}</span>
+						{% endif %}
 					</div>
 
-					{% include 'components/title-with-select-tag.twig' with {
-						title: card.text,
-						defaultTag: 'p',
-						titleClass: 'mt-[18px] flex-1 text-[15px] leading-[1.55] ' ~ (card.featured ? 'text-white/80' : 'text-ink-2')
-					} only %}
-
-					{% if card.button.link.url or card.button_secondary.link.url %}
-						<div class="mt-6 flex flex-wrap gap-3">
-							{% include 'components/button.twig' with {
-								button: card.button,
-								variant: card.featured ? 'on-navy' : null,
-								class: 'min-w-[150px] flex-1'
-							} only %}
-
-							{% include 'components/button.twig' with {
-								button: card.button_secondary,
-								variant: card.featured ? 'ghost-navy' : null,
-								class: 'min-w-[150px] flex-1'
-							} only %}
-						</div>
+					{% if okres.note %}
+						<div class="mt-2 text-[15px] text-ink-3">{{ okres.note }}</div>
 					{% endif %}
 
-					{% if card.links|length %}
-						<div class="mt-[22px] flex flex-wrap items-center gap-x-[26px] gap-y-[18px]">
-							{% for l in card.links %}
-								{% if l.link.url %}
-									<a href="{{ l.link.url }}"
-										target="{{ l.link.target ?: '_self' }}"
-										{% if l.link.target == '_blank' %}rel="noopener"{% endif %}
-										class="inline-flex items-center gap-2 text-[14.5px] font-bold
-											{{ card.featured ? 'text-deep-tint' : 'text-accent' }} [&_svg]:size-[17px]">
-										{% if l.icon %}{{ l.icon|svg }}{% endif %}
-										{{ l.link.title }}
-									</a>
-								{% endif %}
-							{% endfor %}
-						</div>
-					{% endif %}
-				</div>
-				{% else %}
-				<div class="relative flex flex-col overflow-hidden rounded-panel p-[34px] transition
-					{{ card.featured
-						? 'border border-transparent bg-[image:var(--gradient-deep)] text-white shadow-navy'
-						: (paraZWyroznieniem
-							? 'gradient-frame hover:-translate-y-1'
-							: 'border border-line bg-white hover:-translate-y-1 hover:shadow-mid') }}">
+					<div class="my-7 h-px bg-line"></div>
 
-					{% if card.featured and card.flag %}
-						<span class="absolute top-5 right-5 rounded-full bg-white/16 px-3 py-[5px] text-[11.5px]
-							font-bold tracking-[0.08em] text-white uppercase max-sm:static max-sm:mb-3.5 max-sm:self-start">
-							{{ card.flag }}
-						</span>
-					{% endif %}
-
-					{% if card.tag %}
-						<span class="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.06em] uppercase
-							{{ card.featured ? 'text-deep-tint' : 'text-accent' }} [&_svg]:size-4">
-							{% if card.icon %}{{ card.icon|svg }}{% endif %}
-							{{ card.tag }}
-						</span>
-					{% endif %}
-
-					{% include 'components/title-with-select-tag.twig' with {
-						title: card.title,
-						defaultTag: 'h3',
-						titleClass: 'mt-3.5 font-display text-[23px] leading-[1.08] font-semibold tracking-[-0.02em] '
-							~ (card.featured ? 'text-white' : 'text-ink')
-					} only %}
-
-					{% include 'components/title-with-select-tag.twig' with {
-						title: card.text,
-						defaultTag: 'p',
-						titleClass: 'mt-2 min-h-[44px] text-label ' ~ (card.featured ? 'text-white/82' : 'text-ink-2')
-					} only %}
-
-					{% if card.price %}
-						<div class="mt-[22px] font-display text-[42px] leading-none font-bold tracking-[-0.02em]
-							{{ card.featured ? 'text-white' : 'text-ink' }}">
-							{{ card.price }}
-							{% if card.price_suffix %}
-								<small class="font-sans text-[15px] font-semibold {{ card.featured ? 'text-white/60' : 'text-ink-3' }}">
-									{{ card.price_suffix }}
-								</small>
-							{% endif %}
-						</div>
-					{% endif %}
-
-					{% if card.note %}
-						<p class="mt-2 text-meta {{ card.featured ? 'text-white/60' : 'text-ink-3' }}">{{ card.note }}</p>
-					{% endif %}
-
-					{% if card.items|length %}
-						<ul class="mt-6 grid gap-3">
-							{% for item in card.items %}
-								<li class="flex items-start gap-[11px] text-[15px] {{ card.featured ? 'text-white' : 'text-ink' }}
-									[&_svg]:mt-0.5 [&_svg]:size-[19px] {{ card.featured ? '[&_svg]:text-deep-tint-2' : '[&_svg]:text-accent' }}">
-									{{ 'check'|svg }}
+					{% if fields.items|length %}
+						<div class="mb-[30px] flex flex-col gap-[13px] text-left">
+							{% for item in fields.items %}
+								<span class="flex gap-[11px] text-[15.5px] text-ink-2">
+									<span aria-hidden="true" class="flex-none text-accent">✓</span>
 									{{ item.text }}
-								</li>
+								</span>
 							{% endfor %}
-						</ul>
+						</div>
 					{% endif %}
 
-					<div class="mt-auto grid gap-3 pt-7">
-						{% include 'components/button.twig' with {
-							button: card.button,
-							variant: card.featured ? 'on-navy' : null,
-							block: true
-						} only %}
+					{% if fields.link.url %}
+						<a href="{{ fields.link.url }}"
+							target="{{ fields.link.target ?: '_self' }}"
+							class="block rounded-pill bg-accent-cta px-6 py-[17px] text-[17px] font-semibold
+								text-white shadow-[0_16px_34px_-16px_rgb(18_104_255/0.9)] transition
+								hover:bg-accent-strong">
+							{{ fields.link.title }}
+						</a>
+					{% endif %}
 
-						{% include 'components/button.twig' with {
-							button: card.button_secondary,
-							variant: card.featured ? 'ghost-navy' : null,
-							block: true
-						} only %}
-
-						{% if card.links|length %}
-							<div class="flex flex-wrap gap-x-6 gap-y-2 pt-1">
-								{% for l in card.links %}
-									{% if l.link.url %}
-										<a href="{{ l.link.url }}"
-											target="{{ l.link.target ?: '_self' }}"
-											class="inline-flex items-center gap-2 text-label font-bold
-												{{ card.featured ? 'text-deep-tint' : 'text-accent' }} [&_svg]:size-[17px]">
-											{% if l.icon %}{{ l.icon|svg }}{% endif %}
-											{{ l.link.title }}
-										</a>
-									{% endif %}
-								{% endfor %}
-							</div>
-						{% endif %}
-					</div>
+					{% if fields.note %}
+						<p class="mt-[14px] text-[13.5px] text-ink-4">{{ fields.note }}</p>
+					{% endif %}
 				</div>
-				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

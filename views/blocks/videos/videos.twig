@@ -1,0 +1,75 @@
+{#
+	Title: Filmy
+	Description: Siatka filmów z YouTube z miniaturą i odtwarzaniem po kliknięciu
+	Category: taxeon
+	Icon: video-alt3
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+{% import 'components/section.twig' as section %}
+
+{% set onDark = section.isDark(fields) %}
+{% set kolumny = { '2': 'grid-cols-2 max-lg:grid-cols-1', '3': 'grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1' } %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
+
+	<div class="relative {{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			size: fields.head_size,
+			headWidth: fields.head_width,
+			titleWidth: fields.title_width,
+			textWidth: fields.text_width,
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text,
+			onDark: onDark
+		} only %}
+
+		{% if fields.items|length %}
+			<div class="mt-11 grid gap-6 {{ kolumny[fields.columns ?: '2'] }}">
+				{% for item in fields.items %}
+					{% set youtube = item.url|youtubeId %}
+
+					<div class="overflow-hidden rounded-card border border-line bg-page
+						shadow-[0_18px_40px_-30px_rgb(6_16_36/0.5)]">
+						<div class="relative aspect-video w-full bg-deep" data-video>
+							{% if youtube %}
+								<button type="button"
+									data-video-play
+									data-embed="https://www.youtube-nocookie.com/embed/{{ youtube }}?autoplay=1&rel=0"
+									data-title="{{ item.title }}"
+									aria-label="{{ __('Odtwórz film', 'taxeon') }}: {{ item.title }}"
+									class="absolute inset-0 size-full cursor-pointer border-0 bg-cover bg-center p-0"
+									style="background-image: url('https://i.ytimg.com/vi/{{ youtube }}/hqdefault.jpg')">
+									<span aria-hidden="true"
+										class="absolute inset-0 bg-[linear-gradient(180deg,rgb(3_11_28/0.05),rgb(3_11_28/0.5))]"></span>
+
+									<span aria-hidden="true"
+										class="absolute top-1/2 left-1/2 grid size-[68px] -translate-x-1/2 -translate-y-1/2
+											place-items-center rounded-full bg-accent transition
+											group-hover:bg-accent-strong">
+										<span class="ml-1.5 block size-0 border-y-[12px] border-l-[20px]
+											border-y-transparent border-l-white"></span>
+									</span>
+								</button>
+							{% endif %}
+						</div>
+
+						<div class="px-6 py-[22px]">
+							<h3 class="font-display text-[20px] font-semibold tracking-[-0.02em] text-ink">{{ item.title }}</h3>
+
+							{% if item.text %}
+								<p class="mt-[7px] text-[15px] leading-[1.55] text-ink-3">{{ item.text }}</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</section>

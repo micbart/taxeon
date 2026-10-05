@@ -356,6 +356,7 @@ $blocks['hero'] = [
                 'cards' => 'Karty pod tekstem (strona główna)',
                 'split' => 'Dwie kolumny z panelem (podstrony)',
                 'plain' => 'Sam tekst (strony branżowe)',
+                'center' => 'Wyśrodkowany (strona dla biur)',
             ],
             'default_value' => 'cards',
             'allow_null' => 0,
@@ -428,6 +429,11 @@ $blocks['hero'] = [
         ]),
 
         f('hero.tab_cards', 'Karty cennika', 'tab'),
+        f('hero.checks', 'Hasła z ptaszkiem', 'repeater', [
+            'layout' => 'table',
+            'button_label' => 'Dodaj hasło',
+            'sub_fields' => [f('hero.checks.text', 'Treść', 'text', ['required' => 1])],
+        ]),
         f('hero.space_bottom', 'Odstęp u dołu', 'select', [
             'choices' => ['' => 'Zależnie od układu', '72' => '72 px', '76' => '76 px', '84' => '84 px', '88' => '88 px'],
             'default_value' => '',
@@ -699,6 +705,26 @@ $blocks['tabs'] = [
     ),
 ];
 
+$blocks['videos'] = [
+    'title' => 'Blok: Filmy',
+    'fields' => array_merge(sectionHead('videos'), [
+        f('videos.columns', 'Kolumny', 'select', [
+            'choices' => ['2' => 'Dwie', '3' => 'Trzy'],
+            'default_value' => '2',
+            'allow_null' => 0,
+        ]),
+        f('videos.items', 'Filmy', 'repeater', [
+            'button_label' => 'Dodaj film',
+            'collapsed' => key_for('videos.items.title'),
+            'sub_fields' => [
+                f('videos.items.url', 'Odnośnik YouTube', 'text', ['required' => 1]),
+                f('videos.items.title', 'Tytuł', 'text', ['required' => 1]),
+                f('videos.items.text', 'Opis', 'textarea', ['rows' => 2]),
+            ],
+        ]),
+    ]),
+];
+
 $blocks['cta'] = [
     'title' => 'Blok: Pas CTA',
     'fields' => [
@@ -835,62 +861,31 @@ $blocks['stats'] = [
 ];
 
 $blocks['pricing'] = [
-    'title' => 'Blok: Cennik (karty)',
+    'title' => 'Blok: Cennik (jeden plan)',
     'fields' => array_merge(sectionHead('pricing'), [
-        f('pricing.variant', 'Odmiana', 'select', [
-            'choices' => [
-                'pricing' => 'Karty z ceną',
-                'download' => 'Karty pobierania',
-            ],
-            'default_value' => 'pricing',
-            'allow_null' => 0,
-            'instructions' => 'W kartach pobierania ikona stoi w kafelku obok tytułu, a etykieta jest linią z wersją pod tytułem.',
+        f('pricing.checks', 'Hasła nad kartą', 'repeater', [
+            'layout' => 'table',
+            'button_label' => 'Dodaj hasło',
+            'sub_fields' => [f('pricing.checks.text', 'Treść', 'text', ['required' => 1])],
         ]),
-        f('pricing.columns', 'Kolumny', 'select', [
-            'choices' => ['2' => '2', '3' => '3', '4' => '4'],
-            'default_value' => '3',
-            'allow_null' => 0,
-        ]),
-        f('pricing.cards', 'Karty', 'repeater', [
-            'button_label' => 'Dodaj kartę',
-            'collapsed' => key_for('pricing.cards.title'),
+        f('pricing.plan_label', 'Nazwa planu', 'text'),
+        f('pricing.currency', 'Waluta', 'text', ['default_value' => 'zł']),
+        f('pricing.periods', 'Okresy rozliczenia', 'repeater', [
+            'layout' => 'table',
+            'button_label' => 'Dodaj okres',
             'sub_fields' => [
-                f('pricing.cards.featured', 'Wyróżniona (ciemna)', 'true_false', [
-                    'wrapper' => ['width' => '35', 'class' => '', 'id' => ''],
-                ]),
-                f('pricing.cards.flag', 'Wstążka', 'text', [
-                    'instructions' => 'np. „Najpopularniejszy”. Widoczna tylko na karcie wyróżnionej.',
-                    'wrapper' => ['width' => '65', 'class' => '', 'id' => ''],
-                ]),
-                icon('pricing.cards.icon'),
-                f('pricing.cards.tag', 'Etykieta', 'text'),
-                textGroup('pricing.cards.title', 'Tytuł', TAGS_HEADING, 'h3'),
-                textGroup('pricing.cards.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
-                f('pricing.cards.price', 'Cena', 'text', [
-                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-                ]),
-                f('pricing.cards.price_suffix', 'Dopisek przy cenie', 'text', [
-                    'instructions' => 'np. „/ moduł / mies.”',
-                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-                ]),
-                f('pricing.cards.note', 'Nota pod ceną', 'text'),
-                f('pricing.cards.items', 'Lista', 'repeater', [
-                    'button_label' => 'Dodaj punkt',
-                    'layout' => 'table',
-                    'sub_fields' => [f('pricing.cards.items.text', 'Tekst', 'text', ['required' => 1])],
-                ]),
-                buttonGroup('pricing.cards.button', 'Przycisk', 'accent', 'lg'),
-                buttonGroup('pricing.cards.button_secondary', 'Przycisk drugi', 'ghost', 'lg'),
-                f('pricing.cards.links', 'Linki dodatkowe', 'repeater', [
-                    'button_label' => 'Dodaj link',
-                    'layout' => 'table',
-                    'sub_fields' => [
-                        icon('pricing.cards.links.icon', 'Ikona', ['wrapper' => ['width' => '30', 'class' => '', 'id' => '']]),
-                        f('pricing.cards.links.link', 'Link', 'link', ['wrapper' => ['width' => '70', 'class' => '', 'id' => '']]),
-                    ],
-                ]),
+                f('pricing.periods.label', 'Nazwa', 'text', ['required' => 1]),
+                f('pricing.periods.price', 'Cena', 'text', ['required' => 1]),
+                f('pricing.periods.note', 'Dopisek pod ceną', 'text'),
             ],
         ]),
+        f('pricing.items', 'Punkty', 'repeater', [
+            'layout' => 'table',
+            'button_label' => 'Dodaj punkt',
+            'sub_fields' => [f('pricing.items.text', 'Treść', 'text', ['required' => 1])],
+        ]),
+        f('pricing.link', 'Przycisk', 'link'),
+        f('pricing.note', 'Dopisek pod przyciskiem', 'text'),
     ]),
 ];
 
