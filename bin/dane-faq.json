@@ -1,0 +1,96 @@
+[
+ {
+  "id": "cena",
+  "title": "Cena i abonament",
+  "items": [
+   {
+    "q": "Czy 99 zł i 169 zł to faktyczna cena, czy jest jakieś „od”?",
+    "a": "To są nasze stałe ceny abonamentu, nie ceny promocyjne ani „od”. 99 zł zapłacisz za pełną obsługę ryczałtu bez VAT, 139 zł za ryczałt z VAT, 169 zł za KPiR z VAT. Bez ukrytych dopłat, bez umowy lojalnościowej. Jedyne dodatkowe koszty to nadprogramowe usługi — kadry, korekty po terminie — wszystko jasno opisane w cenniku."
+   },
+   {
+    "q": "Czy są dopłaty za faktury zagraniczne?",
+    "a": "Nie. Bez względu na to, czy wystawiasz 5 faktur miesięcznie polskim klientom, czy 30 faktur do USA i UE — płacisz 99 lub 169 zł. To częsta różnica między nami a konkurencją."
+   },
+   {
+    "q": "Czy obowiązuje umowa lojalnościowa?",
+    "a": "Nie. Możesz zrezygnować z miesiąca na miesiąc. Wierzymy, że klient zostaje, bo chce, a nie dlatego, że musi."
+   },
+   {
+    "q": "Kiedy płacę abonament?",
+    "a": "Abonament płatny z góry za dany miesiąc, najpóźniej do 5 dnia. Fakturę dostajesz automatycznie w aplikacji."
+   }
+  ]
+ },
+ {
+  "id": "zakres",
+  "title": "Zakres usługi",
+  "items": [
+   {
+    "q": "Czy prowadzicie kadry i płace?",
+    "a": "Tak, jeśli zatrudniasz pracownika — to usługa dodatkowa za 80 zł od pracownika miesięcznie. Obejmuje pełną obsługę kadrową, listę płac, ZUS i PIT-11."
+   },
+   {
+    "q": "Czy obsługujecie spółki z o.o.?",
+    "a": "Nie, skupiamy się wyłącznie na jednoosobowych działalnościach gospodarczych."
+   },
+   {
+    "q": "Czy pomożecie założyć firmę?",
+    "a": "Tak, bezpłatnie pomagamy klientom przy rejestracji w CEIDG, zgłoszeniu do ZUS i wyborze formy opodatkowania. To część onboardingu, nie osobna usługa."
+   }
+  ]
+ },
+ {
+  "id": "wspolpraca",
+  "title": "Współpraca i komunikacja",
+  "items": [
+   {
+    "q": "Czy będę miał jedną, konkretną księgową?",
+    "a": "Tak. Zostajesz przypisany do konkretnej osoby — z imienia, nazwiska i adresu mailowego. To ona zna Twoją sytuację, prowadzi Twoje rozliczenia i odpowiada na Twoje pytania."
+   },
+   {
+    "q": "Jak przekazuję dokumenty?",
+    "a": "Żyjemy już w czasach KSeF, więc większość dokumentów trafi do nas automatycznie. Pozostałe skanujesz lub robisz zdjęcie telefonem i wysyłasz mailem."
+   },
+   {
+    "q": "Czy mogę dzwonić do księgowej z pytaniami?",
+    "a": "Nie. Bieżące konsultacje prowadzimy wyłącznie mailowo. Pozwala to zachować całą korespondencję i łatwo wrócić do ustaleń lub wskazówek, które zostały udzielone."
+   },
+   {
+    "q": "W jakich godzinach mogę się z Wami skontaktować?",
+    "a": "Biuro czynne w dni robocze 9:00–17:00. W pilnych sprawach księgowe odpisują też po godzinach i w weekendy — choć nie obiecujemy 24/7."
+   }
+  ]
+ },
+ {
+  "id": "dane",
+  "title": "Bezpieczeństwo i dane",
+  "items": [
+   {
+    "q": "Czy Wasze biuro ma OC?",
+    "a": "Tak, mamy pełną polisę OC obowiązkową dla biur rachunkowych. Jeśli z naszej winy poniesiesz stratę finansową, jest ona pokryta polisą."
+   },
+   {
+    "q": "Gdzie przechowywane są moje dane?",
+    "a": "Wyłącznie w Polsce, na zabezpieczonych serwerach z certyfikowanego hostingu. Połączenie z aplikacją zawsze przez SSL. Dane są przetwarzane zgodnie z RODO."
+   },
+   {
+    "q": "Co z KSeF?",
+    "a": "Krajowy System e-Faktur obsługujemy w pełni — wystawiamy i odbieramy faktury w Twoim imieniu poprzez integrację z systemem. Bez dodatkowych opłat."
+   }
+  ]
+ },
+ {
+  "id": "zmiana",
+  "title": "Zmiana biura",
+  "items": [
+   {
+    "q": "Mam już biuro rachunkowe, czy mogę do Was przejść w trakcie roku?",
+    "a": "Tak. Możesz zmienić biuro w dowolnym miesiącu. Przyjmiemy Cię na podstawie dokumentów z dotychczasowego biura — zajmiemy się formalnościami. Przeniesienie rozliczeń jest bezpłatne."
+   },
+   {
+    "q": "Co z dotychczasowymi dokumentami?",
+    "a": "Twoje dotychczasowe biuro ma obowiązek przekazać Ci wszystkie dokumenty — księgi, ewidencje, faktury. My pomagamy włączyć je do naszego systemu."
+   }
+  ]
+ }
+]

@@ -99,7 +99,8 @@
             },
             "choices": {
                 "lg": "Duży (strona główna)",
-                "md": "Standardowy (podstrony)"
+                "md": "Standardowy (podstrony)",
+                "sm": "Mniejszy (FAQ)"
             },
             "default_value": "md",
             "return_format": "value",

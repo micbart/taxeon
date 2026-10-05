@@ -312,6 +312,12 @@ $blocks['hero'] = [
         f('hero.text', 'Opis', 'textarea', ['rows' => 3]),
         f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false'),
 
+        f('hero.chips', 'Pigułki pod opisem', 'repeater', [
+            'button_label' => 'Dodaj pigułkę',
+            'instructions' => 'Odnośniki do kotwic na tej samej stronie.',
+            'collapsed' => key_for('hero.chips.link'),
+            'sub_fields' => [f('hero.chips.link', 'Odnośnik', 'link', ['required' => 1])],
+        ]),
         f('hero.button_style', 'Styl przycisków', 'select', [
             'choices' => ['light' => 'Biały z obrysowanym obok', 'accent' => 'Jeden duży w akcencie'],
             'default_value' => 'light',
@@ -561,7 +567,11 @@ $blocks['cta'] = [
     'fields' => [
         textGroup('cta.title', 'Tytuł', TAGS_HEADING, 'h2', 'textarea'),
         f('cta.title_size', 'Rozmiar tytułu', 'select', [
-            'choices' => ['lg' => 'Duży (strona główna)', 'md' => 'Standardowy (podstrony)'],
+            'choices' => [
+                'lg' => 'Duży (strona główna)',
+                'md' => 'Standardowy (podstrony)',
+                'sm' => 'Mniejszy (FAQ)',
+            ],
             'default_value' => 'md',
             'allow_null' => 0,
         ]),
@@ -889,10 +899,39 @@ $blocks['faq'] = [
         f('faq.open_first', 'Rozwiń pierwsze pytanie', 'true_false'),
         f('faq.items', 'Pytania', 'repeater', [
             'button_label' => 'Dodaj pytanie',
+            'instructions' => 'Pojedyncza lista. Jeśli wypełnisz grupy niżej, ta lista jest pomijana.',
             'collapsed' => key_for('faq.items.question'),
             'sub_fields' => [
                 f('faq.items.question', 'Pytanie', 'text', ['required' => 1]),
                 f('faq.items.answer', 'Odpowiedź', 'wysiwyg', ['required' => 1]),
+            ],
+        ]),
+
+        f('faq.tab_groups', 'Grupy', 'tab'),
+        f('faq.groups', 'Grupy pytań', 'repeater', [
+            'button_label' => 'Dodaj grupę',
+            'collapsed' => key_for('faq.groups.title'),
+            'sub_fields' => [
+                f('faq.groups.anchor', 'Kotwica', 'text', [
+                    'instructions' => 'Bez krzyżyka, np. cena.',
+                    'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                ]),
+                f('faq.groups.title', 'Tytuł grupy', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '45', 'class' => '', 'id' => ''],
+                ]),
+                f('faq.groups.eyebrow', 'Nadkreślenie', 'text', [
+                    'default_value' => 'Kategoria',
+                    'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+                ]),
+                f('faq.groups.items', 'Pytania', 'repeater', [
+                    'button_label' => 'Dodaj pytanie',
+                    'collapsed' => key_for('faq.groups.items.question'),
+                    'sub_fields' => [
+                        f('faq.groups.items.question', 'Pytanie', 'text', ['required' => 1]),
+                        f('faq.groups.items.answer', 'Odpowiedź', 'wysiwyg', ['required' => 1]),
+                    ],
+                ]),
             ],
         ]),
     ]),

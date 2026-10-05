@@ -66,6 +66,18 @@
 				</p>
 			{% endif %}
 
+			{% if fields.chips|length %}
+				<div class="mt-8 flex flex-wrap gap-2.5">
+					{% for pigulka in fields.chips %}
+						<a href="{{ pigulka.link.url }}"
+							class="rounded-pill border border-white/28 px-5 py-[11px] text-[15px] font-medium
+								text-white transition hover:bg-white/12">
+							{{ pigulka.link.title }}
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+
 			{% if fields.button_primary.url or fields.button_secondary.url %}
 				<div class="flex flex-wrap gap-3.5 {{ akcent ? 'mt-[34px]' : 'mt-8' }}">
 					{% if fields.button_primary.url %}

@@ -187,6 +187,42 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_4ed03006fd4d7",
+            "label": "Pigułki pod opisem",
+            "name": "chips",
+            "type": "repeater",
+            "instructions": "Odnośniki do kotwic na tej samej stronie.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_965a8edee160d",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj pigułkę",
+            "sub_fields": [
+                {
+                    "key": "field_965a8edee160d",
+                    "label": "Odnośnik",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
             "key": "field_b4cf35b014684",
             "label": "Styl przycisków",
             "name": "button_style",

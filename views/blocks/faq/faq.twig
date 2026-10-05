@@ -11,42 +11,61 @@
 #}
 {% import 'components/section.twig' as section %}
 
-<section class="{{ section.shell(fields) }}">
-	<div class="{{ section.container(fields) }}">
-		<div class="grid grid-cols-[minmax(260px,0.7fr)_minmax(420px,1.3fr)] items-start gap-16
-			max-xl:grid-cols-1 max-xl:gap-10">
-			<div>
-				{% include 'components/section-head.twig' with {
-					eyebrow: fields.eyebrow,
-					title: fields.title,
-					text: fields.text,
-					link: fields.link
-				} only %}
-			</div>
+<section class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% if fields.groups|length %}
+		<div class="relative {{ section.container(fields) }}">
+			<div class="flex flex-col gap-16">
+				{% for grupa in fields.groups %}
+					<div {% if grupa.anchor %}id="{{ grupa.anchor }}"{% endif %}
+						class="grid grid-cols-[minmax(240px,0.6fr)_minmax(420px,1.4fr)] items-start gap-14
+							scroll-mt-[110px] max-xl:grid-cols-1 max-xl:gap-8">
+						<div>
+							{% if grupa.eyebrow %}
+								<span class="font-display text-[13px] font-semibold tracking-[0.14em] text-accent uppercase">
+									{{ grupa.eyebrow }}
+								</span>
+							{% endif %}
 
-			<div class="flex flex-col gap-3">
-				{% for item in fields.items %}
-					<details class="group overflow-hidden rounded-sm border border-line bg-page"
-						{% if loop.first and fields.open_first %}open{% endif %}>
-						<summary class="flex cursor-pointer list-none items-center gap-[18px] px-6 py-5
-							font-display text-[18px] font-medium tracking-[-0.015em] text-ink
-							transition hover:bg-soft [&::-webkit-details-marker]:hidden">
-							<span class="flex-1">{{ item.question }}</span>
-
-							<span class="grid size-7 flex-none place-items-center rounded-full bg-[#eef3fb]
-								text-[17px] text-accent">
-								<span class="group-open:hidden">+</span>
-								<span class="hidden group-open:block">−</span>
-							</span>
-						</summary>
-
-						<div class="px-6 pb-5 text-[15px] leading-[1.65] text-ink-3
-							[&_a]:font-semibold [&_a]:text-accent">
-							{{ item.answer }}
+							<h2 class="mt-3.5 font-display text-[clamp(26px,2.6vw,38px)] leading-[1.1]
+								font-bold tracking-[-0.03em] text-ink">
+								{{ grupa.title }}
+							</h2>
 						</div>
-					</details>
+
+						<div class="flex flex-col gap-3">
+							{% for item in grupa.items %}
+								{% include 'blocks/faq/pytanie.twig' with {
+									item: item,
+									otwarte: loop.first and loop.parent.loop.first and fields.open_first
+								} only %}
+							{% endfor %}
+						</div>
+					</div>
 				{% endfor %}
 			</div>
 		</div>
-	</div>
+	{% else %}
+		<div class="{{ section.container(fields) }}">
+			<div class="grid grid-cols-[minmax(260px,0.7fr)_minmax(420px,1.3fr)] items-start gap-16
+				max-xl:grid-cols-1 max-xl:gap-10">
+				<div>
+					{% include 'components/section-head.twig' with {
+						eyebrow: fields.eyebrow,
+						title: fields.title,
+						text: fields.text,
+						link: fields.link
+					} only %}
+				</div>
+
+				<div class="flex flex-col gap-3">
+					{% for item in fields.items %}
+						{% include 'blocks/faq/pytanie.twig' with {
+							item: item,
+							otwarte: loop.first and fields.open_first
+						} only %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
 </section>

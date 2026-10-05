@@ -1,0 +1,17 @@
+<details class="group overflow-hidden rounded-sm border border-line bg-white/94 backdrop-blur-[8px]"
+	{% if otwarte %}open{% endif %}>
+	<summary class="flex cursor-pointer list-none items-center gap-[18px] px-6 py-5
+		font-display text-[18px] font-medium tracking-[-0.015em] text-ink
+		transition hover:bg-soft [&::-webkit-details-marker]:hidden">
+		<span class="flex-1">{{ item.question }}</span>
+
+		<span class="grid size-7 flex-none place-items-center rounded-full bg-[#eef3fb] text-[17px] text-accent">
+			<span class="group-open:hidden">+</span>
+			<span class="hidden group-open:block">−</span>
+		</span>
+	</summary>
+
+	<div class="px-6 pb-5 text-[15px] leading-[1.65] text-ink-3 [&_a]:font-semibold [&_a]:text-accent">
+		{{ item.answer }}
+	</div>
+</details>

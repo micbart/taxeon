@@ -247,7 +247,7 @@
             "label": "Pytania",
             "name": "items",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Pojedyncza lista. Jeśli wypełnisz grupy niżej, ta lista jest pomijana.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -298,6 +298,159 @@
                     "toolbar": "basic",
                     "media_upload": 0,
                     "delay": 0
+                }
+            ]
+        },
+        {
+            "key": "field_ab98040ee47de",
+            "label": "Grupy",
+            "name": "tab_groups",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_1d66d0286ee7d",
+            "label": "Grupy pytań",
+            "name": "groups",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_749ce98d59898",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj grupę",
+            "sub_fields": [
+                {
+                    "key": "field_c982606318e01",
+                    "label": "Kotwica",
+                    "name": "anchor",
+                    "type": "text",
+                    "instructions": "Bez krzyżyka, np. cena.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_749ce98d59898",
+                    "label": "Tytuł grupy",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "45",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_c94c5432def60",
+                    "label": "Nadkreślenie",
+                    "name": "eyebrow",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Kategoria",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_8579f92844b8c",
+                    "label": "Pytania",
+                    "name": "items",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "field_5508b53044d72",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Dodaj pytanie",
+                    "sub_fields": [
+                        {
+                            "key": "field_5508b53044d72",
+                            "label": "Pytanie",
+                            "name": "question",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_9eba9e204c4db",
+                            "label": "Odpowiedź",
+                            "name": "answer",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ]
                 }
             ]
         },
