@@ -24,16 +24,18 @@ export function initTabs(root = document) {
 			button.addEventListener('click', () => activate(button.dataset.tab));
 
 			button.addEventListener('keydown', (event) => {
-				const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+				const next = ['ArrowRight', 'ArrowDown'].includes(event.key);
+				const prev = ['ArrowLeft', 'ArrowUp'].includes(event.key);
+				const step = next ? 1 : prev ? -1 : 0;
 
 				if (step === 0) {
 					return;
 				}
 
 				event.preventDefault();
-				const next = buttons[(index + step + buttons.length) % buttons.length];
-				next.focus();
-				activate(next.dataset.tab);
+				const target = buttons[(index + step + buttons.length) % buttons.length];
+				target.focus();
+				activate(target.dataset.tab);
 			});
 		});
 

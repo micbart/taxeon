@@ -18,6 +18,7 @@ $hero = taxeon_seed_block('hero', [
 ]);
 
 $pytania = taxeon_seed_block('faq', [
+    'head_size' => 'sm',
     'eyebrow' => $t('', 'span'), 'title' => $t('', 'h2'), 'text' => $t(''),
     'link' => $pusty, 'open_first' => 1, 'items' => [],
     'groups' => array_map(fn($g) => [

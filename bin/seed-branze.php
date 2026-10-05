@@ -37,6 +37,7 @@ $strony['b2b'] = ['Kontrakt B2B', [
     taxeon_seed_block('timeline', [
         'eyebrow' => $t('Zanim wystawisz pierwszą fakturę', 'span'),
         'title' => $t('Cztery rzeczy do zrobienia, zanim zaczniesz B2B.', 'h2'), 'text' => $t(''),
+        'head_size' => 'lg', 'title_width' => '24ch',
         'items' => [
             ['number' => '01', 'title' => 'Wybierz formę opodatkowania', 'featured' => 0, 'text' => 'Ryczałt, podatek liniowy czy skala? Wybór zależy od branży, przychodu i kosztów. Pomożemy.'],
             ['number' => '02', 'title' => 'Załóż firmę', 'featured' => 0, 'text' => 'CEIDG, NIP, REGON, konto firmowe, ZUS — robimy to za Ciebie w 1–2 dni. Zajmujesz się tylko podpisem przez profil zaufany.'],
@@ -47,7 +48,7 @@ $strony['b2b'] = ['Kontrakt B2B', [
         'background' => 'gradient',
     ]),
     taxeon_seed_block('cta', [
-        'title_size' => 'md',
+        'title_size' => 'sm',
         'title' => $t('Zacznij od kalkulatora. Skończ pierwszą fakturą.', 'h2'),
         'text' => 'Bezpłatnie sprawdzimy, czy B2B Ci się opłaca. Jeśli tak — założymy firmę i poprowadzimy księgowość od 99 zł.',
         'button_primary' => $l('Otwórz kalkulator UoP vs B2B →', '/#kontakt'),
@@ -70,6 +71,7 @@ $strony['it'] = ['Księgowość dla IT', [
     taxeon_seed_block('features', [
         'eyebrow' => $t('Zakres obsługi', 'span'),
         'title' => $t('Co konkretnie robimy dla programisty.', 'h2'), 'text' => $t(''),
+        'head_size' => 'lg', 'title_width' => '24ch',
         'size' => 'md', 'columns' => '2',
         'items' => [
             ['kicker' => '', 'title' => 'Ryczałt 12%', 'link' => $pusty, 'text' => 'Stawka dla usług programistycznych. Sprawdzamy, czy Twoja praca kwalifikuje się do 12% — a może masz 8,5% albo mieszankę.'],
@@ -82,6 +84,7 @@ $strony['it'] = ['Księgowość dla IT', [
     taxeon_seed_block('list', [
         'eyebrow' => $t('Pierwsze pytanie na B2B', 'span'),
         'title' => $t('Ryczałt 12% czy podatek liniowy?', 'h2'),
+        'text_width' => '60ch', 'columns_ratio' => '1-0.9', 'link_style' => 'button',
         'text' => $t('Krótka odpowiedź: do mniej więcej 200 tys. przychodu rocznie ryczałt 12% prawie zawsze wygrywa. Powyżej trzeba liczyć. Mamy kalkulator, który zrobi to za Ciebie.'),
         'link' => $l('Kalkulator ryczałt vs liniowy →', '/b2b/'),
         'row_style' => 'stacked',
@@ -93,7 +96,7 @@ $strony['it'] = ['Księgowość dla IT', [
         'background' => 'page', 'padding_top' => 'medium', 'padding_bottom' => 'medium',
     ]),
     taxeon_seed_block('cta', [
-        'title_size' => 'md',
+        'title_size' => 'sm',
         'title' => $t('Sprawdź w kalkulatorze, ile faktycznie zarobisz na B2B.', 'h2'),
         'text' => 'Wpisz stawkę godzinową lub miesięczne wynagrodzenie. W 60 sekund pokażemy Ci kwotę netto na rękę przy każdej formie opodatkowania.',
         'button_primary' => $l('Otwórz kalkulator B2B →', '/b2b/'),
@@ -130,6 +133,7 @@ $strony['lekarze'] = ['Księgowość dla lekarzy', [
     taxeon_seed_block('features', [
         'eyebrow' => $t('Zakres obsługi', 'span'),
         'title' => $t('Co dokładnie robimy dla lekarza.', 'h2'), 'text' => $t(''),
+        'head_size' => 'lg', 'title_width' => '24ch',
         'size' => 'md', 'columns' => '2',
         'items' => [
             ['kicker' => '', 'title' => 'Ryczałt 14%', 'link' => $pusty, 'text' => 'Najczęściej wybierana forma przez lekarzy. Sprawdzamy, czy się Tobie opłaca, i prowadzimy rozliczenia.'],
@@ -202,7 +206,7 @@ $strony['prawnicy'] = ['Księgowość dla kancelarii', [
         'background' => 'gradient',
     ]),
     taxeon_seed_block('cta', [
-        'title_size' => 'md',
+        'title_size' => 'sm',
         'title' => $t('Sprawdź, ile zaoszczędzi Twoja kancelaria w skali roku.', 'h2'),
         'text' => 'Bezpłatna konsultacja z księgową. 15 minut, bez zobowiązań.',
         'button_primary' => $l('Umów konsultację →', '/#kontakt'),

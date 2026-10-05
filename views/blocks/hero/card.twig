@@ -24,7 +24,7 @@
 
 	{% if card.price %}
 		<div class="flex items-baseline gap-2">
-			<span class="font-display font-bold tracking-[-0.04em] {{ wide ? 'text-[58px]' : 'text-[52px]' }}">
+			<span class="font-display font-bold tracking-[-0.04em] {{ wide and not card.price_compact ? 'text-[58px]' : 'text-[52px]' }}">
 				{{ card.price }}
 			</span>
 			{% if card.period %}
@@ -34,7 +34,7 @@
 	{% endif %}
 
 	{% if card.text %}
-		<p class="text-[15px] leading-[1.55] {{ card.featured ? 'text-white/85' : 'text-white/72' }}">{{ card.text }}</p>
+		<p class="text-[15px] leading-[1.55] {{ card.featured ? 'text-white/85' : 'text-white/72' }}">{{ card.text|nl2br }}</p>
 	{% endif %}
 
 	{% if card.items|length %}

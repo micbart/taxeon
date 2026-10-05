@@ -209,6 +209,115 @@
             ]
         },
         {
+            "key": "field_a67aa2710b6f1",
+            "label": "Rozmiar nagłówka",
+            "name": "head_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "md": "Standardowy (46 px)",
+                "lg": "Duży (50 px)",
+                "sm": "Mniejszy (42 px)"
+            },
+            "default_value": "md",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_ce4473ef8e144",
+            "label": "Szerokość nagłówka",
+            "name": "head_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "56ch": "56 znaków",
+                "60ch": "60 znaków",
+                "62ch": "62 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_4ee210990b22d",
+            "label": "Szerokość tytułu",
+            "name": "title_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "18ch": "18 znaków",
+                "20ch": "20 znaków",
+                "22ch": "22 znaki",
+                "24ch": "24 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_a42ee84d88541",
+            "label": "Szerokość opisu",
+            "name": "text_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "46ch": "46 znaków",
+                "56ch": "56 znaków",
+                "60ch": "60 znaków",
+                "62ch": "62 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_a5dde3fd8b1d9",
             "label": "Odnośnik pod opisem",
             "name": "link",
@@ -222,6 +331,104 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_ce16b137cfd42",
+            "label": "Dopisek pod przyciskiem",
+            "name": "note",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_48f48954fee5b",
+            "label": "Położenie nagłówka",
+            "name": "head_position",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Po lewej",
+                "above": "Nad listą"
+            },
+            "default_value": "left",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_4fde6da1c4d1e",
+            "label": "Styl odnośnika",
+            "name": "link_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "text": "Tekstowy",
+                "button": "Przycisk"
+            },
+            "default_value": "text",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_06bc14164d7bf",
+            "label": "Proporcje kolumn",
+            "name": "columns_ratio",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Standardowe (0,85 / 1,15)",
+                "1-0.9": "Szerszy opis (1 / 0,9)",
+                "0.85-1.3": "Szersza lista (0,85 / 1,3)",
+                "0.8-1.2": "Szersza lista (0,8 / 1,2)",
+                "0.7-1.3": "Wąski opis (0,7 / 1,3)",
+                "0.6-1.4": "Wąski opis (0,6 / 1,4)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_bbff0b584f329",
@@ -265,7 +472,9 @@
             "choices": {
                 "inline": "Opis i wartość w jednej linii",
                 "numbered": "Numer i treść",
-                "stacked": "Tytuł nad opisem"
+                "stacked": "Tytuł nad opisem",
+                "icon": "Kafelki z ikoną",
+                "check": "Karty z ptaszkiem"
             },
             "default_value": "inline",
             "return_format": "value",
@@ -412,6 +621,7 @@
                 "page": "Białe",
                 "soft": "Jasnoszare",
                 "soft-2": "Jasnoszare chłodne",
+                "light": "Gradient jasny",
                 "navy": "Granatowe",
                 "gradient": "Gradient niebieski"
             },
@@ -438,6 +648,7 @@
             },
             "choices": {
                 "page": "Standardowa (1200)",
+                "content": "Treściowa (1160)",
                 "narrow": "Wąska (860)",
                 "wide": "Szeroka (1440)",
                 "full": "Pełna"
@@ -465,7 +676,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },
@@ -492,7 +706,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },

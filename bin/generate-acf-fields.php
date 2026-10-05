@@ -126,6 +126,7 @@ function sectionSettings(string $prefix): array
                 'page' => 'Białe',
                 'soft' => 'Jasnoszare',
                 'soft-2' => 'Jasnoszare chłodne',
+                'light' => 'Gradient jasny',
                 'navy' => 'Granatowe',
                 'gradient' => 'Gradient niebieski',
             ],
@@ -136,6 +137,7 @@ function sectionSettings(string $prefix): array
         f($prefix . '.container', 'Szerokość', 'select', [
             'choices' => [
                 'page' => 'Standardowa (1200)',
+                'content' => 'Treściowa (1160)',
                 'narrow' => 'Wąska (860)',
                 'wide' => 'Szeroka (1440)',
                 'full' => 'Pełna',
@@ -145,16 +147,67 @@ function sectionSettings(string $prefix): array
             'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
         ]),
         f($prefix . '.padding_top', 'Odstęp u góry', 'select', [
-            'choices' => ['default' => 'Standardowy (112)', 'medium' => 'Średni (104)', 'small' => 'Mały (72)', 'none' => 'Brak'],
+            'choices' => ['default' => 'Standardowy (112)', 'large' => 'Duży (108)', 'medium' => 'Średni (104)', 'medium-sm' => 'Średni mniejszy (100)', 'small-lg' => 'Mały większy (96)', 'small' => 'Mały (72)', 'none' => 'Brak'],
             'default_value' => 'default',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f($prefix . '.padding_bottom', 'Odstęp u dołu', 'select', [
-            'choices' => ['default' => 'Standardowy (112)', 'medium' => 'Średni (104)', 'small' => 'Mały (72)', 'none' => 'Brak'],
+            'choices' => ['default' => 'Standardowy (112)', 'large' => 'Duży (108)', 'medium' => 'Średni (104)', 'medium-sm' => 'Średni mniejszy (100)', 'small-lg' => 'Mały większy (96)', 'small' => 'Mały (72)', 'none' => 'Brak'],
             'default_value' => 'default',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
+    ];
+}
+
+function headSizeFields(string $prefix): array
+{
+    return [
+        f($prefix . '.head_size', 'Rozmiar nagłówka', 'select', [
+            'choices' => [
+                'md' => 'Standardowy (46 px)',
+                'lg' => 'Duży (50 px)',
+                'sm' => 'Mniejszy (42 px)',
+            ],
+            'default_value' => 'md',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
+        ]),
+        f($prefix . '.head_width', 'Szerokość nagłówka', 'select', [
+            'choices' => [
+                '' => 'Cała kolumna',
+                '56ch' => '56 znaków',
+                '60ch' => '60 znaków',
+                '62ch' => '62 znaki',
+            ],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
+        ]),
+        f($prefix . '.title_width', 'Szerokość tytułu', 'select', [
+            'choices' => [
+                '' => 'Cała kolumna',
+                '18ch' => '18 znaków',
+                '20ch' => '20 znaków',
+                '22ch' => '22 znaki',
+                '24ch' => '24 znaki',
+            ],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
+        ]),
+        f($prefix . '.text_width', 'Szerokość opisu', 'select', [
+            'choices' => [
+                '' => 'Cała kolumna',
+                '46ch' => '46 znaków',
+                '56ch' => '56 znaków',
+                '60ch' => '60 znaków',
+                '62ch' => '62 znaki',
+            ],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
         ]),
     ];
 }
@@ -165,6 +218,7 @@ function sectionHead(string $prefix, string $titleTag = 'h2'): array
         textGroup($prefix . '.eyebrow', 'Nadkreślenie', TAGS_EYEBROW, 'span'),
         textGroup($prefix . '.title', 'Tytuł', TAGS_HEADING, $titleTag),
         textGroup($prefix . '.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
+        ...headSizeFields($prefix),
     ];
 }
 
@@ -397,6 +451,9 @@ $blocks['hero'] = [
                 f('hero.cards.price', 'Cena', 'text', [
                     'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
                 ]),
+                f('hero.cards.price_compact', 'Mniejsza cena (52 px)', 'true_false', [
+                    'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+                ]),
                 f('hero.cards.period', 'Okres', 'text', [
                     'default_value' => '/ mies.',
                     'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
@@ -417,7 +474,7 @@ $blocks['features'] = [
     'title' => 'Blok: Karty',
     'fields' => array_merge(sectionHead('features'), [
         f('features.size', 'Rozmiar kart', 'select', [
-            'choices' => ['lg' => 'Duże (tytuł 34 px)', 'md' => 'Średnie (tytuł 26 px)'],
+            'choices' => ['lg' => 'Duże (tytuł 34 px)', 'md' => 'Średnie (tytuł 26 px)', 'sm' => 'Małe (tytuł 20 px, z paskiem)'],
             'default_value' => 'lg',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
@@ -462,6 +519,32 @@ $blocks['list'] = [
     'title' => 'Blok: Lista z nagłówkiem',
     'fields' => array_merge(sectionHead('list'), [
         f('list.link', 'Odnośnik pod opisem', 'link'),
+        f('list.note', 'Dopisek pod przyciskiem', 'text'),
+        f('list.head_position', 'Położenie nagłówka', 'select', [
+            'choices' => ['left' => 'Po lewej', 'above' => 'Nad listą'],
+            'default_value' => 'left',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
+        f('list.link_style', 'Styl odnośnika', 'select', [
+            'choices' => ['text' => 'Tekstowy', 'button' => 'Przycisk'],
+            'default_value' => 'text',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
+        f('list.columns_ratio', 'Proporcje kolumn', 'select', [
+            'choices' => [
+                '' => 'Standardowe (0,85 / 1,15)',
+                '1-0.9' => 'Szerszy opis (1 / 0,9)',
+                '0.85-1.3' => 'Szersza lista (0,85 / 1,3)',
+                '0.8-1.2' => 'Szersza lista (0,8 / 1,2)',
+                '0.7-1.3' => 'Wąski opis (0,7 / 1,3)',
+                '0.6-1.4' => 'Wąski opis (0,6 / 1,4)',
+            ],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
         f('list.columns', 'Kolumny listy', 'select', [
             'choices' => ['1' => 'Jedna', '2' => 'Dwie', '3' => 'Trzy'],
             'default_value' => '1',
@@ -473,6 +556,8 @@ $blocks['list'] = [
                 'inline' => 'Opis i wartość w jednej linii',
                 'numbered' => 'Numer i treść',
                 'stacked' => 'Tytuł nad opisem',
+                'icon' => 'Kafelki z ikoną',
+                'check' => 'Karty z ptaszkiem',
             ],
             'default_value' => 'inline',
             'allow_null' => 0,
@@ -574,6 +659,40 @@ $blocks['reviews'] = [
     ]),
 ];
 
+$blocks['tabs'] = [
+    'title' => 'Blok: Zakładki',
+    'fields' => array_merge(
+        [f('tabs.tab_content', 'Treść', 'tab')],
+        [
+            textGroup('tabs.eyebrow', 'Nadkreślenie', TAGS_EYEBROW, 'span'),
+            textGroup('tabs.title', 'Tytuł', TAGS_HEADING, 'h2'),
+            ...headSizeFields('tabs'),
+            f('tabs.items', 'Zakładki', 'repeater', [
+                'button_label' => 'Dodaj zakładkę',
+                'collapsed' => key_for('tabs.items.title'),
+                'sub_fields' => [
+                    f('tabs.items.title', 'Tytuł', 'text', [
+                        'required' => 1,
+                        'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                    ]),
+                    f('tabs.items.hint', 'Podpis na przycisku', 'text', [
+                        'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                    ]),
+                    f('tabs.items.step', 'Krok', 'text', [
+                        'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                    ]),
+                    f('tabs.items.text', 'Opis', 'textarea', ['rows' => 4]),
+                    f('tabs.items.points', 'Punkty', 'repeater', [
+                        'layout' => 'table',
+                        'button_label' => 'Dodaj punkt',
+                        'sub_fields' => [f('tabs.items.points.text', 'Treść', 'text', ['required' => 1])],
+                    ]),
+                ],
+            ]),
+        ]
+    ),
+];
+
 $blocks['cta'] = [
     'title' => 'Blok: Pas CTA',
     'fields' => [
@@ -583,6 +702,7 @@ $blocks['cta'] = [
                 'lg' => 'Duży (strona główna)',
                 'md' => 'Standardowy (podstrony)',
                 'sm' => 'Mniejszy (FAQ)',
+                'xs' => 'Najmniejszy (54 px)',
             ],
             'default_value' => 'md',
             'allow_null' => 0,
@@ -771,6 +891,11 @@ $blocks['pricing'] = [
 $blocks['table'] = [
     'title' => 'Blok: Porównanie',
     'fields' => array_merge(sectionHead('table'), [
+        f('table.head_position', 'Położenie nagłówka', 'select', [
+            'choices' => ['left' => 'Po lewej', 'above' => 'Nad tabelą'],
+            'default_value' => 'left',
+            'allow_null' => 0,
+        ]),
         f('table.note', 'Ramka z uwagą', 'wysiwyg', [
             'instructions' => 'Pod opisem, z pionową kreską z lewej. Puste = bez ramki.',
         ]),

@@ -209,6 +209,115 @@
             ]
         },
         {
+            "key": "field_87d7370664767",
+            "label": "Rozmiar nagłówka",
+            "name": "head_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "md": "Standardowy (46 px)",
+                "lg": "Duży (50 px)",
+                "sm": "Mniejszy (42 px)"
+            },
+            "default_value": "md",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_2d23e6172371a",
+            "label": "Szerokość nagłówka",
+            "name": "head_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "56ch": "56 znaków",
+                "60ch": "60 znaków",
+                "62ch": "62 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_754cdf1fc65da",
+            "label": "Szerokość tytułu",
+            "name": "title_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "18ch": "18 znaków",
+                "20ch": "20 znaków",
+                "22ch": "22 znaki",
+                "24ch": "24 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_ee58efea196d4",
+            "label": "Szerokość opisu",
+            "name": "text_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Cała kolumna",
+                "46ch": "46 znaków",
+                "56ch": "56 znaków",
+                "60ch": "60 znaków",
+                "62ch": "62 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_2e28f4bf186b2",
             "label": "Odnośnik pod opisem",
             "name": "link",
@@ -487,6 +596,7 @@
                 "page": "Białe",
                 "soft": "Jasnoszare",
                 "soft-2": "Jasnoszare chłodne",
+                "light": "Gradient jasny",
                 "navy": "Granatowe",
                 "gradient": "Gradient niebieski"
             },
@@ -513,6 +623,7 @@
             },
             "choices": {
                 "page": "Standardowa (1200)",
+                "content": "Treściowa (1160)",
                 "narrow": "Wąska (860)",
                 "wide": "Szeroka (1440)",
                 "full": "Pełna"
@@ -540,7 +651,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },
@@ -567,7 +681,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },

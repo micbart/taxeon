@@ -723,6 +723,25 @@
                     "maxlength": ""
                 },
                 {
+                    "key": "field_e8c46a522a3f3",
+                    "label": "Mniejsza cena (52 px)",
+                    "name": "price_compact",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
                     "key": "field_0af2a280a5ab6",
                     "label": "Okres",
                     "name": "period",
@@ -850,6 +869,7 @@
                 "page": "Białe",
                 "soft": "Jasnoszare",
                 "soft-2": "Jasnoszare chłodne",
+                "light": "Gradient jasny",
                 "navy": "Granatowe",
                 "gradient": "Gradient niebieski"
             },
@@ -876,6 +896,7 @@
             },
             "choices": {
                 "page": "Standardowa (1200)",
+                "content": "Treściowa (1160)",
                 "narrow": "Wąska (860)",
                 "wide": "Szeroka (1440)",
                 "full": "Pełna"
@@ -903,7 +924,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },
@@ -930,7 +954,10 @@
             },
             "choices": {
                 "default": "Standardowy (112)",
+                "large": "Duży (108)",
                 "medium": "Średni (104)",
+                "medium-sm": "Średni mniejszy (100)",
+                "small-lg": "Mały większy (96)",
                 "small": "Mały (72)",
                 "none": "Brak"
             },

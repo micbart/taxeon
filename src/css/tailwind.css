@@ -119,6 +119,8 @@
 
 	--gradient-dark: linear-gradient(160deg, var(--color-deep-2) 0%, var(--color-deep) 100%);
 
+	--gradient-light: linear-gradient(180deg, #ffffff 0%, var(--color-soft) 45%, var(--color-line-2) 100%);
+
 	--gradient-soft: linear-gradient(180deg, #ffffff 0%, var(--color-soft) 100%);
 
 	--gradient-blue: linear-gradient(135deg, #0a7bee 0%, #0b4fd6 34%, #10289b 68%, #170a63 100%);

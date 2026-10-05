@@ -1,21 +1,52 @@
+{% set presety = {
+	'lg': {
+		'title': 'text-[clamp(32px,3.4vw,50px)] leading-[1.08]',
+		'text': 'mt-[18px] text-[18px] leading-[1.6]'
+	},
+	'md': {
+		'title': 'text-[clamp(30px,3.1vw,46px)] leading-[1.1]',
+		'text': 'mt-[18px] text-[17px] leading-[1.65]'
+	},
+	'sm': {
+		'title': 'text-[clamp(28px,3vw,42px)] leading-[1.1]',
+		'text': 'mt-4 text-[17px] leading-[1.66]'
+	}
+} %}
+
+{% set preset = presety[size] ?: presety.md %}
+
+{% set szerokosciTytulu = {
+	'18ch': 'max-w-[18ch]', '20ch': 'max-w-[20ch]', '22ch': 'max-w-[22ch]', '24ch': 'max-w-[24ch]'
+} %}
+
+{% set szerokosciTekstu = {
+	'46ch': 'max-w-[46ch]', '56ch': 'max-w-[56ch]', '60ch': 'max-w-[60ch]', '62ch': 'max-w-[62ch]'
+} %}
+
+{% set szerokosciGlowy = {
+	'56ch': 'max-w-[56ch]', '60ch': 'max-w-[60ch]', '62ch': 'max-w-[62ch]', '72ch': 'max-w-[72ch]'
+} %}
+
+{% set klasaTytulu = (titleSize ?: preset.title) ~ ' ' ~ (szerokosciTytulu[titleWidth] ?: '') %}
+{% set klasaTekstu = (textSize ?: preset.text) ~ ' ' ~ (szerokosciTekstu[textWidth] ?: '') %}
+
 {% if title.text or eyebrow.text %}
-	<div class="{{ wide ? 'max-w-[72ch]' : 'max-w-[62ch]' }}
-		{{ center ? 'mx-auto text-center' }}
-		{{ link.url ? 'flex max-w-none flex-wrap items-end justify-between gap-5' }}">
-		<div>
+	<div class="{{ center ? 'mx-auto text-center' }}
+		{{ link.url ? 'flex flex-wrap items-end justify-between gap-5' }}">
+		<div class="{{ szerokosciGlowy[headWidth] ?: '' }}">
 			{% include 'components/eyebrow.twig' with { title: eyebrow, onDark: onDark } only %}
 
 			{% include 'components/title-with-select-tag.twig' with {
 				title: title,
 				defaultTag: titleTag ?: 'h2',
-				titleClass: 'mt-4 font-display text-[clamp(32px,3.4vw,50px)] leading-[1.08] font-bold
-					tracking-[-0.03em] text-balance ' ~ (onDark ? 'text-white' : 'text-ink')
+				titleClass: 'mt-4 font-display font-bold tracking-[-0.03em] text-balance '
+					~ klasaTytulu ~ ' ' ~ (onDark ? 'text-white' : 'text-ink')
 			} only %}
 
 			{% include 'components/title-with-select-tag.twig' with {
 				title: text,
 				defaultTag: 'p',
-				titleClass: 'mt-[18px] text-[18px] leading-[1.6] text-pretty ' ~ (onDark ? 'text-white/82' : 'text-ink-3')
+				titleClass: 'text-pretty ' ~ klasaTekstu ~ ' ' ~ (onDark ? 'text-white/82' : 'text-ink-3')
 			} only %}
 		</div>
 

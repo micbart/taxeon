@@ -41,16 +41,18 @@ $dlaKogo = taxeon_seed_block('list', [
     'background' => 'page', 'padding_top' => 'medium', 'padding_bottom' => 'medium',
 ]);
 
-$wCenie = taxeon_seed_block('panels', [
-    'eyebrow' => $t('', 'span'), 'title' => $t('', 'h2'), 'text' => $t(''),
-    'items' => [[
-        'title' => 'Co dostajesz w abonamencie.', 'variant' => 'glass', 'list_style' => 'check',
-        'items' => $punkty(['Prowadzenie KPiR.', 'Ewidencja środków trwałych i amortyzacja.',
-            'Rozliczenia VAT — JPK_V7, deklaracje, VAT-UE.', 'Rozliczenia ZUS, w tym DRA.',
-            'Miesięczne zaliczki na PIT.', 'Konsultacje z księgową.',
-            'Dostęp do aplikacji do wystawiania faktur.', 'Rozliczenie kosztów pojazdu.']),
-        'note' => '',
-    ]],
+$wCenie = taxeon_seed_block('list', [
+    'eyebrow' => $t('Zakres abonamentu', 'span'),
+    'title' => $t('Co dostajesz w abonamencie.', 'h2'),
+    'text' => $t(''),
+    'head_size' => 'lg', 'title_width' => '24ch',
+    'head_position' => 'above', 'row_style' => 'check', 'columns' => '2',
+    'items' => array_map(fn($x) => ['label' => $x, 'value' => '', 'tone' => 'default', 'text' => ''], [
+        'Prowadzenie KPiR.', 'Ewidencja środków trwałych i amortyzacja.',
+        'Rozliczenia VAT — JPK_V7, deklaracje, VAT-UE.', 'Rozliczenia ZUS, w tym DRA.',
+        'Miesięczne zaliczki na PIT.', 'Konsultacje z księgową.',
+        'Dostęp do aplikacji do wystawiania faktur.', 'Rozliczenie kosztów pojazdu.',
+    ]),
     'background' => 'gradient',
 ]);
 

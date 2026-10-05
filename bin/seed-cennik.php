@@ -52,6 +52,7 @@ $wiersze = [
 ];
 
 $tabela = taxeon_seed_block('table', [
+    'head_position' => 'above', 'title_width' => '22ch', 'text_width' => '60ch',
     'eyebrow' => $t('Zakres funkcjonalny', 'span'),
     'title' => $t('Co dokładnie zawiera każdy abonament.', 'h2'), 'text' => $t(''),
     'note' => '', 'head_label' => 'Zakres',
@@ -69,6 +70,7 @@ $tabela = taxeon_seed_block('table', [
 ]);
 
 $dodatki = taxeon_seed_block('list', [
+    'title_width' => '20ch', 'text_width' => '46ch', 'columns_ratio' => '0.8-1.2',
     'eyebrow' => $t('Cennik dodatkowy', 'span'),
     'title' => $t('Usługi poza abonamentem.', 'h2'),
     'text' => $t('Jesteśmy uczciwi: kilka rzeczy jest płatnych osobno. To pełna lista — nic poza nią nie pojawi się na Twojej fakturze.'),
@@ -86,6 +88,7 @@ $dodatki = taxeon_seed_block('list', [
 ]);
 
 $zasady = taxeon_seed_block('list', [
+    'head_size' => 'sm', 'columns_ratio' => '0.8-1.2',
     'eyebrow' => $t('Zasady rozliczeń', 'span'),
     'title' => $t('Trzy zdania, które warto znać przed startem.', 'h2'), 'text' => $t(''),
     'link' => $pusty, 'row_style' => 'stacked', 'columns' => '3',

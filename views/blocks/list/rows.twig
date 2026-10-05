@@ -1,0 +1,61 @@
+	<div class="{{ siatka ?: 'flex flex-col' }}
+		{{ fields.row_style == 'check' ? 'gap-3.5' : (fields.columns == '3' or ikony ? 'gap-3.5' : 'gap-3') }}">
+		{% for item in fields.items %}
+			{% if fields.row_style == 'check' %}
+				<div class="flex gap-3 rounded-tile px-[26px] py-[22px] text-[17px] leading-[1.5]
+					{{ onDark
+						? 'border border-white/22 bg-white/11 text-white backdrop-blur-[14px]'
+						: 'border border-line bg-page text-ink-2' }}">
+					<span aria-hidden="true" class="flex-none {{ onDark ? 'text-sky' : 'text-accent' }}">✓</span>
+					{{ item.label }}
+				</div>
+			{% elseif ikony %}
+				<div class="flex items-start gap-4 rounded-tile
+					{{ onDark
+						? 'border border-white/14 bg-white/6 px-6 py-[22px] backdrop-blur-[12px]'
+						: 'border border-line bg-page px-[26px] py-6' }}">
+					<span aria-hidden="true"
+						class="grid size-10 flex-none place-items-center rounded-[12px] font-bold
+							{{ onDark ? 'bg-sky/16 text-[19px] text-sky' : 'bg-line-2 text-[18px] text-accent' }}">✓</span>
+
+					<div class="flex flex-col gap-[5px]">
+						<h3 class="font-display text-[18px] font-semibold tracking-[-0.02em]
+							{{ onDark ? 'text-white' : 'text-ink' }}">{{ item.label }}</h3>
+
+						{% if item.text %}
+							<p class="{{ onDark
+								? 'text-[15px] leading-[1.55] text-white/70'
+								: 'text-[15.5px] leading-[1.58] text-ink-3' }}">{{ item.text }}</p>
+						{% endif %}
+					</div>
+				</div>
+			{% elseif fields.row_style == 'numbered' %}
+				<div class="flex items-baseline gap-4 rounded-sm border px-6 py-5 {{ kartaWiersza }}">
+					<span class="flex-none font-display text-[15px] font-semibold
+						{{ onDark ? 'text-sky-2' : 'text-accent' }}">{{ item.value }}</span>
+					<span class="text-[16px] leading-[1.55] {{ onDark ? 'text-white/88' : 'text-ink-2' }}">{{ item.label }}</span>
+				</div>
+			{% elseif fields.row_style == 'stacked' %}
+				<div class="flex flex-col gap-1.5 rounded-card border px-[26px] py-6 {{ kartaWiersza }}">
+					<span class="font-display font-semibold tracking-[-0.02em]
+						{{ fields.columns == '3' ? 'text-[19px]' : 'text-[20px]' }}
+						{{ onDark ? 'text-white' : 'text-ink' }}">{{ item.label }}</span>
+					{% if item.text %}
+						<span class="leading-[1.58] text-pretty
+							{{ fields.columns == '3' ? 'text-[15px]' : 'text-[16px]' }}
+							{{ onDark ? 'text-white/80' : 'text-ink-3' }}">{{ item.text }}</span>
+					{% endif %}
+				</div>
+			{% else %}
+				<div class="flex items-center justify-between gap-[18px] rounded-sm border px-6 py-5 {{ kartaWiersza }}">
+					<span class="text-[17px] leading-[1.5] {{ onDark ? 'text-white/88' : 'text-ink-2' }}">{{ item.label }}</span>
+					{% if item.value %}
+						<span class="font-display text-[15px] font-semibold whitespace-nowrap
+							{{ barwyWartosci[item.tone] ?: (onDark ? 'text-white' : 'text-accent') }}">
+							{{ item.value }}
+						</span>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>

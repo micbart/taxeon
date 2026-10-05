@@ -19,11 +19,11 @@
 			class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
 	{% endif %}
 
-	<div class="relative mx-auto w-full max-w-page px-gutter max-sm:px-5">
+	<div class="relative mx-auto w-full max-w-page">
 		<div class="mx-auto max-w-[900px] text-center">
 		{% if fields.title.text %}
 			<{{ fields.title.tag ?: 'h2' }} class="font-display leading-[1.04]
-				{{ { 'lg': 'text-[clamp(34px,4.2vw,62px)]', 'sm': 'text-[clamp(32px,4vw,56px)]' }[fields.title_size] ?: 'text-[clamp(34px,4.2vw,58px)]' }}
+				{{ { 'lg': 'text-[clamp(34px,4.2vw,62px)]', 'sm': 'text-[clamp(32px,4vw,56px)]', 'xs': 'text-[clamp(32px,4vw,54px)]' }[fields.title_size] ?: 'text-[clamp(34px,4.2vw,58px)]' }}
 				font-bold tracking-[-0.035em] text-balance {{ onDark ? 'text-white' : 'text-ink' }}">
 				{{ fields.title.text|nl2br }}
 			</{{ fields.title.tag ?: 'h2' }}>
