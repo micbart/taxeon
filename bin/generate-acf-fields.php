@@ -301,6 +301,7 @@ $blocks['hero'] = [
             'choices' => [
                 'cards' => 'Karty pod tekstem (strona główna)',
                 'split' => 'Dwie kolumny z panelem (podstrony)',
+                'plain' => 'Sam tekst (strony branżowe)',
             ],
             'default_value' => 'cards',
             'allow_null' => 0,
@@ -311,6 +312,11 @@ $blocks['hero'] = [
         f('hero.text', 'Opis', 'textarea', ['rows' => 3]),
         f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false'),
 
+        f('hero.button_style', 'Styl przycisków', 'select', [
+            'choices' => ['light' => 'Biały z obrysowanym obok', 'accent' => 'Jeden duży w akcencie'],
+            'default_value' => 'light',
+            'allow_null' => 0,
+        ]),
         f('hero.button_primary', 'Przycisk główny', 'link'),
         f('hero.button_secondary', 'Przycisk dodatkowy', 'link'),
         f('hero.trust', 'Rząd zaufania', 'repeater', [
@@ -404,10 +410,17 @@ $blocks['hero'] = [
 $blocks['features'] = [
     'title' => 'Blok: Karty',
     'fields' => array_merge(sectionHead('features'), [
+        f('features.size', 'Rozmiar kart', 'select', [
+            'choices' => ['lg' => 'Duże (tytuł 34 px)', 'md' => 'Średnie (tytuł 26 px)'],
+            'default_value' => 'lg',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
         f('features.columns', 'Kolumny', 'select', [
             'choices' => ['2' => 'Dwie', '3' => 'Trzy', '4' => 'Cztery'],
             'default_value' => '2',
             'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('features.items', 'Karty', 'repeater', [
             'button_label' => 'Dodaj kartę',
@@ -442,6 +455,16 @@ $blocks['latest-posts'] = [
 $blocks['list'] = [
     'title' => 'Blok: Lista z nagłówkiem',
     'fields' => array_merge(sectionHead('list'), [
+        f('list.link', 'Odnośnik pod opisem', 'link'),
+        f('list.row_style', 'Układ wiersza', 'select', [
+            'choices' => [
+                'inline' => 'Opis i wartość w jednej linii',
+                'numbered' => 'Numer i treść',
+                'stacked' => 'Tytuł nad opisem',
+            ],
+            'default_value' => 'inline',
+            'allow_null' => 0,
+        ]),
         f('list.items', 'Wiersze', 'repeater', [
             'button_label' => 'Dodaj wiersz',
             'collapsed' => key_for('list.items.label'),
@@ -450,9 +473,10 @@ $blocks['list'] = [
                     'required' => 1,
                     'wrapper' => ['width' => '70', 'class' => '', 'id' => ''],
                 ]),
-                f('list.items.value', 'Wyróżniona wartość', 'text', [
+                f('list.items.value', 'Wartość albo numer', 'text', [
                     'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
                 ]),
+                f('list.items.text', 'Opis pod tytułem', 'textarea', ['rows' => 2]),
             ],
         ]),
     ]),
@@ -477,6 +501,8 @@ $blocks['panels'] = [
                         'muted' => 'Przyciemniony',
                         'light' => 'Biały',
                         'dark' => 'Granatowy',
+                        'positive' => 'Biały z zielonym akcentem',
+                        'negative' => 'Biały z czerwonym akcentem',
                     ],
                     'default_value' => '',
                     'allow_null' => 0,

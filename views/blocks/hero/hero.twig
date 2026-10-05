@@ -11,13 +11,16 @@
 	SupportsAnchor: true
 #}
 {% set split = fields.layout == 'split' %}
+{% set akcent = fields.button_style == 'accent' %}
+{% set podstrona = fields.layout != 'cards' %}
 
 <section class="relative overflow-hidden bg-deep text-white">
 	{% include 'components/hero-media.twig' with {
 		url: fields.video,
 		poster: fields.poster.sizes.large ?: fields.poster.url,
 		title: fields.title.text,
-		split: split
+		split: split,
+		glow: fields.layout != 'cards'
 	} only %}
 
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
@@ -47,25 +50,31 @@
 
 			{% if fields.subtitle %}
 				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] text-sky-2
-					{{ split ? 'max-w-[30ch] text-[clamp(19px,1.9vw,26px)]' : 'text-[clamp(20px,2vw,28px)]' }}">
+					{{ podstrona
+						? (split ? 'max-w-[30ch]' : 'max-w-[32ch]') ~ ' text-[clamp(19px,1.9vw,26px)]'
+						: 'text-[clamp(20px,2vw,28px)]' }}">
 					{{ fields.subtitle }}
 				</p>
 			{% endif %}
 
 			{% if fields.text %}
 				<p class="text-[18px] text-white/78
-					{{ split ? 'mt-6 max-w-[62ch] leading-[1.62]' : 'mt-[26px] max-w-[56ch] leading-[1.6]' }}">
+					{{ podstrona
+						? (split ? 'mt-6 leading-[1.62]' : 'mt-[26px] leading-[1.6]') ~ ' max-w-[62ch]'
+						: 'mt-[26px] max-w-[56ch] leading-[1.6]' }}">
 					{{ fields.text }}
 				</p>
 			{% endif %}
 
 			{% if fields.button_primary.url or fields.button_secondary.url %}
-				<div class="mt-8 flex flex-wrap gap-3.5">
+				<div class="flex flex-wrap gap-3.5 {{ akcent ? 'mt-[34px]' : 'mt-8' }}">
 					{% if fields.button_primary.url %}
 						<a href="{{ fields.button_primary.url }}"
 							target="{{ fields.button_primary.target ?: '_self' }}"
-							class="rounded-pill bg-white px-[30px] py-[17px] text-[16px] font-semibold text-ink
-								transition hover:bg-accent-tint">
+							class="rounded-pill font-semibold transition
+								{{ akcent
+									? 'bg-accent-cta px-9 py-5 text-[18px] text-white shadow-cta hover:bg-white hover:text-ink'
+									: 'bg-white px-[30px] py-[17px] text-[16px] text-ink hover:bg-accent-tint' }}">
 							{{ fields.button_primary.title }}
 						</a>
 					{% endif %}

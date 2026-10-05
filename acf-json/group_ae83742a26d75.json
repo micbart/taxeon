@@ -209,6 +209,31 @@
             ]
         },
         {
+            "key": "field_b086354da7d54",
+            "label": "Rozmiar kart",
+            "name": "size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "lg": "Duże (tytuł 34 px)",
+                "md": "Średnie (tytuł 26 px)"
+            },
+            "default_value": "lg",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_f044a2df85840",
             "label": "Kolumny",
             "name": "columns",
@@ -217,7 +242,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },

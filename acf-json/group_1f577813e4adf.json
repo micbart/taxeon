@@ -264,7 +264,9 @@
                         "glass": "Szklany (na ciemnym)",
                         "muted": "Przyciemniony",
                         "light": "Biały",
-                        "dark": "Granatowy"
+                        "dark": "Granatowy",
+                        "positive": "Biały z zielonym akcentem",
+                        "negative": "Biały z czerwonym akcentem"
                     },
                     "default_value": "",
                     "return_format": "value",

@@ -33,7 +33,8 @@
             },
             "choices": {
                 "cards": "Karty pod tekstem (strona główna)",
-                "split": "Dwie kolumny z panelem (podstrony)"
+                "split": "Dwie kolumny z panelem (podstrony)",
+                "plain": "Sam tekst (strony branżowe)"
             },
             "default_value": "cards",
             "return_format": "value",
@@ -184,6 +185,31 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_b4cf35b014684",
+            "label": "Styl przycisków",
+            "name": "button_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "light": "Biały z obrysowanym obok",
+                "accent": "Jeden duży w akcencie"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_e044f14db4394",

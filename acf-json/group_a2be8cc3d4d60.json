@@ -209,6 +209,47 @@
             ]
         },
         {
+            "key": "field_a5dde3fd8b1d9",
+            "label": "Odnośnik pod opisem",
+            "name": "link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_1138320f479cd",
+            "label": "Układ wiersza",
+            "name": "row_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "inline": "Opis i wartość w jednej linii",
+                "numbered": "Numer i treść",
+                "stacked": "Tytuł nad opisem"
+            },
+            "default_value": "inline",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_6504c01c2c824",
             "label": "Wiersze",
             "name": "items",
@@ -248,7 +289,7 @@
                 },
                 {
                     "key": "field_b9214348824ef",
-                    "label": "Wyróżniona wartość",
+                    "label": "Wartość albo numer",
                     "name": "value",
                     "type": "text",
                     "instructions": "",
@@ -264,6 +305,25 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_c483f3770e3e4",
+                    "label": "Opis pod tytułem",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": ""
                 }
             ]
         },

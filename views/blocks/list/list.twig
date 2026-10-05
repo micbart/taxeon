@@ -24,25 +24,49 @@
 	<div class="relative {{ section.container(fields) }}">
 		<div class="grid grid-cols-[minmax(280px,0.85fr)_minmax(420px,1.15fr)] items-start gap-16
 			max-xl:grid-cols-1 max-xl:gap-10">
-			{% include 'components/section-head.twig' with {
-				eyebrow: fields.eyebrow,
-				title: fields.title,
-				text: fields.text,
-				onDark: onDark
-			} only %}
+			<div>
+				{% include 'components/section-head.twig' with {
+					eyebrow: fields.eyebrow,
+					title: fields.title,
+					text: fields.text,
+					onDark: onDark
+				} only %}
+
+				{% if fields.link.url %}
+					<a href="{{ fields.link.url }}"
+						target="{{ fields.link.target ?: '_self' }}"
+						class="mt-5 inline-block text-[15px] font-semibold
+							{{ onDark ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
+						{{ fields.link.title }}
+					</a>
+				{% endif %}
+			</div>
 
 			<div class="flex flex-col gap-3">
 				{% for item in fields.items %}
-					<div class="flex items-center justify-between gap-[18px] rounded-sm border border-line
-						bg-white/90 px-6 py-5 backdrop-blur-[8px]">
-						<span class="text-[17px] leading-[1.5] text-ink-2">{{ item.label }}</span>
-
-						{% if item.value %}
-							<span class="font-display text-[15px] font-semibold whitespace-nowrap text-accent">
-								{{ item.value }}
-							</span>
-						{% endif %}
-					</div>
+					{% if fields.row_style == 'numbered' %}
+						<div class="flex items-baseline gap-4 rounded-sm border border-line bg-white/90
+							px-6 py-5 backdrop-blur-[8px]">
+							<span class="flex-none font-display text-[15px] font-semibold text-accent">{{ item.value }}</span>
+							<span class="text-[16px] leading-[1.55] text-ink-2">{{ item.label }}</span>
+						</div>
+					{% elseif fields.row_style == 'stacked' %}
+						<div class="flex flex-col gap-1.5 rounded-card border border-line bg-white/90
+							px-[26px] py-6 backdrop-blur-[8px]">
+							<span class="font-display text-[20px] font-semibold tracking-[-0.02em] text-ink">{{ item.label }}</span>
+							{% if item.text %}
+								<span class="text-[16px] leading-[1.58] text-ink-3">{{ item.text }}</span>
+							{% endif %}
+						</div>
+					{% else %}
+						<div class="flex items-center justify-between gap-[18px] rounded-sm border border-line
+							bg-white/90 px-6 py-5 backdrop-blur-[8px]">
+							<span class="text-[17px] leading-[1.5] text-ink-2">{{ item.label }}</span>
+							{% if item.value %}
+								<span class="font-display text-[15px] font-semibold whitespace-nowrap text-accent">{{ item.value }}</span>
+							{% endif %}
+						</div>
+					{% endif %}
 				{% endfor %}
 			</div>
 		</div>
