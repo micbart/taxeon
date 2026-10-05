@@ -209,34 +209,8 @@
             ]
         },
         {
-            "key": "field_1f1c42dfa03d8",
-            "label": "Kolumny",
-            "name": "columns",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "2": "2",
-                "3": "3",
-                "4": "4"
-            },
-            "default_value": "4",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_945cfff5eefa3",
-            "label": "Liczby",
+            "label": "Karty",
             "name": "items",
             "type": "repeater",
             "instructions": "",
@@ -247,37 +221,15 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
+            "collapsed": "field_91fedf45699e6",
             "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Dodaj liczbę",
+            "max": 3,
+            "layout": "block",
+            "button_label": "Dodaj kartę",
             "sub_fields": [
                 {
-                    "key": "field_dd9fada227617",
-                    "label": "Ikona",
-                    "name": "icon",
-                    "type": "select",
-                    "instructions": "Lista pochodzi z plików w src/svg.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [],
-                    "default_value": "",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 1,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
                     "key": "field_c335f7f741ab2",
-                    "label": "Wartość",
+                    "label": "Liczba",
                     "name": "value",
                     "type": "text",
                     "instructions": "",
@@ -295,12 +247,12 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_c6542508db2b1",
-                    "label": "Opis",
-                    "name": "label",
+                    "key": "field_91fedf45699e6",
+                    "label": "Tytuł",
+                    "name": "title",
                     "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "50",
@@ -312,6 +264,44 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_2c0e077faf6f1",
+                    "label": "Granatowa",
+                    "name": "dark",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_30898dbef2bbf",
+                    "label": "Opis",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
                 }
             ]
         },

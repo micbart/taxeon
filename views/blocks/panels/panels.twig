@@ -48,6 +48,13 @@
 				<div class="flex flex-col rounded-panel {{ ramki[wariant] }}
 					{{ onDark ? 'gap-[18px] px-9 py-10' : 'gap-4 px-[34px] py-9' }}">
 
+					{% if panel.eyebrow %}
+						<span class="font-display text-[13px] font-semibold tracking-[0.14em] uppercase
+							{{ jasnyTekst ? 'text-accent-tint-2' : 'text-accent' }}">
+							{{ panel.eyebrow }}
+						</span>
+					{% endif %}
+
 					<h3 class="font-display font-semibold
 						{{ onDark
 							? 'text-[clamp(26px,2.6vw,36px)] leading-[1.12] tracking-[-0.03em]'
@@ -55,6 +62,12 @@
 						{{ barwyTytulu[wariant] ?: (jasnyTekst ? 'text-white' : 'text-ink') }}">
 						{% if znaki[wariant] %}{{ znaki[wariant] }} {% endif %}{{ panel.title }}
 					</h3>
+
+					{% if panel.text %}
+						<p class="text-[17px] leading-[1.62] {{ jasnyTekst ? 'text-white/84' : 'text-ink-3' }}">
+							{{ panel.text }}
+						</p>
+					{% endif %}
 
 					{% if panel.items|length %}
 						{% if panel.list_style == 'rows' %}
@@ -89,13 +102,28 @@
 						</p>
 					{% endif %}
 
-					{% if panel.link.url %}
-						<a href="{{ panel.link.url }}"
-							target="{{ panel.link.target ?: '_self' }}"
-							class="mt-auto pt-2.5 text-[16px] font-semibold transition
-								{{ jasnyTekst ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
-							{{ panel.link.title }}
-						</a>
+					{% if panel.links|length %}
+						{% if panel.links|length > 1 %}
+							<div class="mt-auto flex flex-wrap gap-3 pt-3.5">
+								{% for pozycja in panel.links %}
+									<a href="{{ pozycja.link.url }}"
+										target="{{ pozycja.link.target ?: '_self' }}"
+										class="rounded-pill border px-[22px] py-[13px] text-[15px] font-semibold transition
+											{{ jasnyTekst
+												? 'border-white/40 text-white hover:bg-white hover:text-[#0b3fd1]'
+												: 'border-line text-ink hover:bg-soft' }}">
+										{{ pozycja.link.title }}
+									</a>
+								{% endfor %}
+							</div>
+						{% else %}
+							<a href="{{ panel.links|first.link.url }}"
+								target="{{ panel.links|first.link.target ?: '_self' }}"
+								class="mt-auto pt-2.5 text-[16px] font-semibold transition
+									{{ jasnyTekst ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
+								{{ panel.links|first.link.title }}
+							</a>
+						{% endif %}
 					{% endif %}
 				</div>
 			{% endfor %}

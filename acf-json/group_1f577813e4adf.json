@@ -302,10 +302,10 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_3fecac2b59d0a",
-                    "label": "Odnośnik na dole",
-                    "name": "link",
-                    "type": "link",
+                    "key": "field_4fecd297dfdea",
+                    "label": "Przyciski na dole",
+                    "name": "links",
+                    "type": "repeater",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -314,7 +314,28 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array"
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 2,
+                    "layout": "block",
+                    "button_label": "Dodaj przycisk",
+                    "sub_fields": [
+                        {
+                            "key": "field_4b8fead45d82e",
+                            "label": "Odnośnik",
+                            "name": "link",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ]
                 },
                 {
                     "key": "field_3a162023f2b3a",
@@ -355,6 +376,44 @@
                             "maxlength": ""
                         }
                     ]
+                },
+                {
+                    "key": "field_a3b6e44d908e3",
+                    "label": "Nadkreślenie",
+                    "name": "eyebrow",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_94200056548af",
+                    "label": "Akapit pod tytułem",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
                 },
                 {
                     "key": "field_719fff9e13a44",

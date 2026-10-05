@@ -513,12 +513,18 @@ $blocks['panels'] = [
                     'default_value' => 'check',
                     'allow_null' => 0,
                 ]),
-                f('panels.items.link', 'Odnośnik na dole', 'link'),
+                f('panels.items.links', 'Przyciski na dole', 'repeater', [
+                    'button_label' => 'Dodaj przycisk',
+                    'max' => 2,
+                    'sub_fields' => [f('panels.items.links.link', 'Odnośnik', 'link', ['required' => 1])],
+                ]),
                 f('panels.items.items', 'Punkty', 'repeater', [
                     'button_label' => 'Dodaj punkt',
                     'collapsed' => key_for('panels.items.items.text'),
                     'sub_fields' => [f('panels.items.items.text', 'Treść', 'text', ['required' => 1])],
                 ]),
+                f('panels.items.eyebrow', 'Nadkreślenie', 'text'),
+                f('panels.items.text', 'Akapit pod tytułem', 'textarea', ['rows' => 3]),
                 f('panels.items.note', 'Notka na dole', 'textarea', ['rows' => 2]),
             ],
         ]),
@@ -658,18 +664,23 @@ $blocks['timeline'] = [
 $blocks['stats'] = [
     'title' => 'Blok: Liczby',
     'fields' => array_merge(sectionHead('stats'), [
-        f('stats.columns', 'Kolumny', 'select', [
-            'choices' => ['2' => '2', '3' => '3', '4' => '4'],
-            'default_value' => '4',
-            'allow_null' => 0,
-        ]),
-        f('stats.items', 'Liczby', 'repeater', [
-            'button_label' => 'Dodaj liczbę',
-            'layout' => 'table',
+        f('stats.items', 'Karty', 'repeater', [
+            'button_label' => 'Dodaj kartę',
+            'max' => 3,
+            'collapsed' => key_for('stats.items.title'),
             'sub_fields' => [
-                icon('stats.items.icon', 'Ikona', ['wrapper' => ['width' => '20', 'class' => '', 'id' => '']]),
-                f('stats.items.value', 'Wartość', 'text', ['required' => 1, 'wrapper' => ['width' => '30', 'class' => '', 'id' => '']]),
-                f('stats.items.label', 'Opis', 'text', ['wrapper' => ['width' => '50', 'class' => '', 'id' => '']]),
+                f('stats.items.value', 'Liczba', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                ]),
+                f('stats.items.title', 'Tytuł', 'text', [
+                    'required' => 1,
+                    'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+                ]),
+                f('stats.items.dark', 'Granatowa', 'true_false', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
+                ]),
+                f('stats.items.text', 'Opis', 'textarea', ['rows' => 3]),
             ],
         ]),
     ]),
