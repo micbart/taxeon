@@ -46,6 +46,8 @@
 
 			{% if fields.banner_link.url %}
 				<a href="{{ fields.banner_link.url }}"
+					target="{{ fields.banner_link.target ?: '_self' }}"
+					{% if fields.banner_link.target == '_blank' %}rel="noopener"{% endif %}
 					class="col-span-full flex flex-wrap items-center gap-7 px-[30px] py-[34px] text-white
 						bg-[linear-gradient(120deg,#0b4fd6,#10289b)] transition
 						hover:bg-[linear-gradient(120deg,#0a45bc,#0c1f7f)]">

@@ -2,6 +2,7 @@
 	{% for item in items %}
 		<a href="{{ item.url }}"
 			target="{{ item.target ?: '_self' }}"
+		{% if item.target == '_blank' %}rel="noopener"{% endif %}
 			{% if currentUrl and item.url == currentUrl %}aria-current="page"{% endif %}
 			class="rounded-pill px-[13px] py-[9px] text-[15px] font-medium whitespace-nowrap text-white
 				transition hover:bg-white/12
