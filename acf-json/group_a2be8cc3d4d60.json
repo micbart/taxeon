@@ -224,6 +224,32 @@
             "return_format": "array"
         },
         {
+            "key": "field_bbff0b584f329",
+            "label": "Kolumny listy",
+            "name": "columns",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Jedna",
+                "2": "Dwie",
+                "3": "Trzy"
+            },
+            "default_value": "1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_1138320f479cd",
             "label": "Układ wiersza",
             "name": "row_style",
@@ -232,7 +258,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -305,6 +331,32 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_6a3da1aba9b7f",
+                    "label": "Kolor wartości",
+                    "name": "tone",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "default": "Zwykły",
+                        "muted": "Przygaszony",
+                        "free": "Wyróżniony"
+                    },
+                    "default_value": "default",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_c483f3770e3e4",

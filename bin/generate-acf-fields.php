@@ -462,6 +462,12 @@ $blocks['list'] = [
     'title' => 'Blok: Lista z nagłówkiem',
     'fields' => array_merge(sectionHead('list'), [
         f('list.link', 'Odnośnik pod opisem', 'link'),
+        f('list.columns', 'Kolumny listy', 'select', [
+            'choices' => ['1' => 'Jedna', '2' => 'Dwie', '3' => 'Trzy'],
+            'default_value' => '1',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
         f('list.row_style', 'Układ wiersza', 'select', [
             'choices' => [
                 'inline' => 'Opis i wartość w jednej linii',
@@ -470,6 +476,7 @@ $blocks['list'] = [
             ],
             'default_value' => 'inline',
             'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('list.items', 'Wiersze', 'repeater', [
             'button_label' => 'Dodaj wiersz',
@@ -481,6 +488,11 @@ $blocks['list'] = [
                 ]),
                 f('list.items.value', 'Wartość albo numer', 'text', [
                     'wrapper' => ['width' => '30', 'class' => '', 'id' => ''],
+                ]),
+                f('list.items.tone', 'Kolor wartości', 'select', [
+                    'choices' => ['default' => 'Zwykły', 'muted' => 'Przygaszony', 'free' => 'Wyróżniony'],
+                    'default_value' => 'default',
+                    'allow_null' => 0,
                 ]),
                 f('list.items.text', 'Opis pod tytułem', 'textarea', ['rows' => 2]),
             ],
@@ -770,7 +782,7 @@ $blocks['table'] = [
         ]),
         f('table.columns', 'Kolumny', 'repeater', [
             'button_label' => 'Dodaj kolumnę',
-            'max' => 3,
+            'max' => 4,
             'collapsed' => key_for('table.columns.label'),
             'sub_fields' => [
                 f('table.columns.label', 'Nazwa', 'text', [
@@ -792,7 +804,7 @@ $blocks['table'] = [
                 f('table.rows.label', 'Opis', 'text', ['required' => 1]),
                 f('table.rows.values', 'Wartości', 'repeater', [
                     'button_label' => 'Dodaj wartość',
-                    'max' => 3,
+                    'max' => 4,
                     'instructions' => 'Po jednej na kolumnę, w tej samej kolejności.',
                     'sub_fields' => [
                         f('table.rows.values.on', 'W cenie', 'true_false'),

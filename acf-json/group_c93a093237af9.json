@@ -277,7 +277,7 @@
             },
             "collapsed": "field_c23324dc4ab8d",
             "min": 0,
-            "max": 3,
+            "max": 4,
             "layout": "block",
             "button_label": "Dodaj kolumnę",
             "sub_fields": [
@@ -393,7 +393,7 @@
                     },
                     "collapsed": "",
                     "min": 0,
-                    "max": 3,
+                    "max": 4,
                     "layout": "block",
                     "button_label": "Dodaj wartość",
                     "sub_fields": [
