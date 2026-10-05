@@ -614,6 +614,94 @@
             "append": ""
         },
         {
+            "key": "field_fab78a8c9c1f4",
+            "label": "Blog",
+            "name": "tab_blog",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_e7913e10a8d8d",
+            "label": "Podpis autora w nagłówku wpisu",
+            "name": "author_role",
+            "type": "text",
+            "instructions": "Dopisek po imieniu autora, np. „księgowa Taxeon”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_81812a9399b20",
+            "label": "Karta w artykule — tytuł",
+            "name": "article_cta_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_24603e9e1f901",
+            "label": "Karta w artykule — opis",
+            "name": "article_cta_text",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_dcb0705db2db7",
+            "label": "Karta w artykule — przycisk",
+            "name": "article_cta_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_ed9f59d18eb0a",
             "label": "Skrypty",
             "name": "tab_scripts",

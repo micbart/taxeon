@@ -305,6 +305,14 @@ $groups['options'] = [
             'conditional_logic' => [[['field' => key_for('opt.recaptcha_enabled'), 'operator' => '==', 'value' => '1']]],
         ]),
 
+        f('opt.tab_blog', 'Blog', 'tab'),
+        f('opt.author_role', 'Podpis autora w nagłówku wpisu', 'text', [
+            'instructions' => 'Dopisek po imieniu autora, np. „księgowa Taxeon”.',
+        ]),
+        f('opt.article_cta_title', 'Karta w artykule — tytuł', 'text'),
+        f('opt.article_cta_text', 'Karta w artykule — opis', 'textarea', ['rows' => 2]),
+        f('opt.article_cta_link', 'Karta w artykule — przycisk', 'link'),
+
         f('opt.tab_scripts', 'Skrypty', 'tab'),
         f('opt.scripts_head', 'Skrypty w <head>', 'textarea', ['rows' => 6, 'new_lines' => '']),
         f('opt.scripts_body', 'Skrypty po <body>', 'textarea', ['rows' => 6, 'new_lines' => '']),
@@ -315,7 +323,6 @@ $groups['category'] = [
     'title' => 'Ustawienia kategorii',
     'location' => [
         [['param' => 'taxonomy', 'operator' => '==', 'value' => 'category']],
-        [['param' => 'taxonomy', 'operator' => '==', 'value' => 'kategoria-produktu']],
     ],
     'fields' => [
         f('cat.color', 'Kolor', 'color_picker', [
@@ -343,6 +350,10 @@ $groups['blog_page'] = [
             'instructions' => 'Puste = tytuł strony. Nagłówek bywa dłuższy niż nazwa w menu.',
         ]),
         f('blog.archive_description', 'Opis archiwum', 'wysiwyg', ['toolbar' => 'basic']),
+        f('blog.archive_badge', 'Plakietka nad nagłówkiem', 'text'),
+        f('blog.archive_cta_title', 'Pas na dole — tytuł', 'text'),
+        f('blog.archive_cta_text', 'Pas na dole — opis', 'textarea', ['rows' => 2]),
+        f('blog.archive_cta_link', 'Pas na dole — przycisk', 'link'),
     ],
 ];
 

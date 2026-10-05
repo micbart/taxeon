@@ -17,14 +17,6 @@ if (is_singular('post')) {
 	$data = array_merge($data, (new PostContext())->build($data['post']));
 }
 
-if (is_singular('produkt')) {
-	$template = ['templates/single-produkt.twig'];
-}
-
-if (is_tax('kategoria-produktu')) {
-	$template = ['templates/archive-produkt.twig'];
-}
-
 if (is_home() || is_category() || is_tag() || is_author() || is_date()) {
 	$template = ['templates/archive.twig'];
 	$data = array_merge($data, (new BlogArchiveContext())->build());

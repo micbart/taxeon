@@ -1,46 +1,47 @@
 {% extends "layouts/base.twig" %}
 
-{% set solidHeader = false %}
-
 {% block main %}
-	<section data-hero-bg="bands"
-		class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
-		pt-header max-md:rounded-b-section-sm">
-		<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
-			<div class="pt-16 pb-21">
-				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+	<section class="relative overflow-hidden bg-deep text-white">
+		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-hero-glow)]"></div>
 
-				<span class="inline-flex items-center gap-2.5 rounded-full bg-white/10 py-1.5 pr-4 pl-1.5
-					text-meta font-bold whitespace-nowrap text-white">
-					<b class="rounded-full bg-white px-2.5 py-[3px] text-xs text-ink">{{ archiveEyebrow }}</b>
-					{{ site.name }}
-				</span>
+		<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] pb-[72px] max-md:pt-[132px] max-sm:px-5">
+			{% if archiveBadge %}
+				<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
+					<span class="block size-1.5 rounded-full bg-sky"></span>
+					{{ archiveBadge }}
+				</div>
+			{% endif %}
 
-				<h1 class="mt-5 max-w-[20ch] font-display text-[clamp(33px,4.6vw,54px)] leading-[1.08]
-					font-semibold tracking-[-0.02em] text-balance text-white">
-					{{ archiveTitle }}
-				</h1>
+			<h1 class="mt-[22px] max-w-[18ch] font-display text-[clamp(38px,4.4vw,62px)] leading-[1.03]
+				font-bold tracking-[-0.035em] text-balance">
+				{{ archiveTitle }}
+			</h1>
 
-				{% if archiveDescription %}
-					<div class="mt-[22px] max-w-[600px] text-[clamp(17px,2vw,20px)] leading-relaxed text-white/78">
-						{{ archiveDescription }}
-					</div>
-				{% endif %}
-			</div>
+			{% if archiveDescription %}
+				<div class="mt-6 max-w-[58ch] text-[18px] leading-[1.6] text-white/76 [&_p]:m-0">
+					{{ archiveDescription }}
+				</div>
+			{% endif %}
 		</div>
 	</section>
 
-	<section class="py-section max-sm:py-16">
-		<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+	<section class="relative overflow-hidden bg-[image:var(--gradient-light)] px-gutter pt-[72px]
+		pb-section-md max-sm:px-5 max-sm:pt-14 max-sm:pb-16">
+		{% include 'components/section-decor.twig' with { background: 'light' } only %}
+
+		<div class="relative mx-auto w-full max-w-page">
 			{% if filterTerms|length > 1 %}
-				{% set pill = 'rounded-full border-[1.5px] border-line bg-white px-[18px] py-[9px] text-label font-semibold text-ink-2 transition hover:border-[color-mix(in_srgb,var(--color-accent)_40%,var(--color-line))] hover:text-ink data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-accent-ink' %}
+				{% set pigulka = 'rounded-pill px-[18px] py-2.5 font-display text-[15px] font-medium transition
+					border border-[#d7e1f0] bg-white/70 text-ink-3 hover:border-accent hover:text-ink
+					data-[active=true]:border-ink data-[active=true]:bg-ink data-[active=true]:text-white' %}
 
 				<div data-blog-filter
 					role="group"
 					aria-label="{{ __('Filtruj wpisy według kategorii', 'taxeon') }}"
-					class="mb-9 flex flex-wrap gap-2.5">
+					class="flex flex-wrap gap-2.5">
 
-					<a href="{{ blogUrl }}" data-category="all" data-active="{{ activeTerm ? 'false' : 'true' }}" class="{{ pill }}">
+					<a href="{{ blogUrl }}" data-category="all"
+						data-active="{{ activeTerm ? 'false' : 'true' }}" class="{{ pigulka }}">
 						{{ __('Wszystkie', 'taxeon') }}
 					</a>
 
@@ -48,7 +49,7 @@
 						<a href="{{ term.url }}"
 							data-category="{{ term.slug }}"
 							data-active="{{ activeTerm == term.id ? 'true' : 'false' }}"
-							class="{{ pill }}">
+							class="{{ pigulka }}">
 							{{ term.name }}
 						</a>
 					{% endfor %}
@@ -56,7 +57,7 @@
 			{% endif %}
 
 			{% if featuredPost %}
-				<div data-blog-featured>
+				<div data-blog-featured class="mt-[34px]">
 					{% include 'components/post-featured.twig' with { post: featuredPost } only %}
 				</div>
 			{% endif %}
@@ -65,29 +66,26 @@
 				data-max-pages="{{ maxPages }}"
 				class="relative transition-opacity data-loading:pointer-events-none data-loading:opacity-45">
 
-				<div data-blog-grid class="grid grid-cols-3 gap-[26px] max-xl:grid-cols-2 max-sm:grid-cols-1">
+				<div data-blog-grid
+					class="mt-7 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
+						max-xl:grid-cols-2 max-sm:grid-cols-1">
 					{% for post in posts %}
-						{% include 'components/post-card.twig' with {
-							post: post,
-							eagerFirst: loop.first and isPaged
-						} only %}
+						{% include 'components/post-card.twig' with { post: post } only %}
 					{% endfor %}
 				</div>
 
 				<p data-blog-empty
 					{% if posts|length %}hidden{% endif %}
-					class="py-10 text-center text-base text-ink-3">
+					class="py-10 text-center text-[16px] text-ink-3">
 					{{ __('Nie znaleziono wpisów.', 'taxeon') }}
 				</p>
 			</div>
 
-			<div data-blog-load-more hidden class="mt-10 flex justify-center">
+			<div data-blog-load-more hidden class="mt-8 flex justify-center">
 				<button type="button"
-					class="inline-flex items-center justify-center rounded-btn border-[1.5px]
-						border-[color-mix(in_srgb,var(--color-accent)_42%,#fff)] bg-white px-[26px] py-3.5
-						font-sans text-base font-bold text-ink transition
-						hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong">
-					{{ __('Pokaż więcej', 'taxeon') }}
+					class="cursor-pointer rounded-pill border border-[#c6d4ea] bg-page px-[30px] py-[15px]
+						text-[16px] font-semibold text-ink transition hover:border-accent hover:text-accent">
+					{{ __('Pokaż więcej artykułów', 'taxeon') }}
 				</button>
 			</div>
 
@@ -95,4 +93,31 @@
 		</div>
 	</section>
 
+	{% if archiveCtaTitle %}
+		<section class="relative overflow-hidden bg-deep px-gutter py-24 text-white max-sm:px-5 max-sm:py-16">
+			<div aria-hidden="true"
+				class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
+
+			<div class="relative mx-auto max-w-[900px] text-center">
+				<h2 class="font-display text-[clamp(30px,3.6vw,48px)] leading-[1.06] font-bold tracking-[-0.035em]">
+					{{ archiveCtaTitle }}
+				</h2>
+
+				{% if archiveCtaText %}
+					<p class="mt-[18px] text-[18px] text-white/76">{{ archiveCtaText }}</p>
+				{% endif %}
+
+				{% if archiveCtaLink.url %}
+					<div class="mt-8 flex flex-wrap justify-center gap-3.5">
+						<a href="{{ archiveCtaLink.url }}"
+							target="{{ archiveCtaLink.target ?: '_self' }}"
+							class="rounded-pill bg-white px-8 py-[17px] text-[16px] font-semibold text-ink
+								transition hover:bg-accent-tint">
+							{{ archiveCtaLink.title }}
+						</a>
+					</div>
+				{% endif %}
+			</div>
+		</section>
+	{% endif %}
 {% endblock %}

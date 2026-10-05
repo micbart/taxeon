@@ -144,6 +144,15 @@ class BlogArchiveContext
 			$data['archiveEyebrow'] = __('Blog', 'taxeon');
 		}
 
+		$blogPageId = (int) get_option('page_for_posts');
+
+		if ($blogPageId && function_exists('get_field')) {
+			$data['archiveBadge'] = (string) get_field('archive_badge', $blogPageId);
+			$data['archiveCtaTitle'] = (string) get_field('archive_cta_title', $blogPageId);
+			$data['archiveCtaText'] = (string) get_field('archive_cta_text', $blogPageId);
+			$data['archiveCtaLink'] = get_field('archive_cta_link', $blogPageId) ?: [];
+		}
+
 		$posts = Timber::get_posts();
 
 		$data['posts'] = $posts;

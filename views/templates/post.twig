@@ -1,133 +1,132 @@
 {% extends "layouts/base.twig" %}
 
-{% set solidHeader = false %}
-{% set category = post.terms({ taxonomy: 'category' })|first %}
+{% set kategoria = post.terms({ taxonomy: 'category' })|first %}
+{% set autor = post.author %}
 
 {% block main %}
-	<div data-reading-progress
-		aria-hidden="true"
-		class="fixed top-0 left-0 z-[200] h-[3px] w-full origin-left scale-x-0 bg-cta will-change-transform"></div>
+	<section class="relative overflow-hidden bg-deep text-white">
+		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-hero-glow)]"></div>
 
-	<article data-article-body>
-		<section data-hero-bg="bands"
-		class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
-			pt-header max-md:rounded-b-section-sm">
-			<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
-				<div class="pt-16 pb-21">
-					{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+		<div class="relative mx-auto w-full max-w-[1160px] px-gutter pt-[156px] pb-[72px]
+			max-md:pt-[128px] max-sm:px-5">
 
-					{% if category %}
-						<a href="{{ category.link }}"
-							style="--term-color: {{ category|termColor ?: 'var(--color-deep-500)' }}"
-							class="mb-[22px] inline-flex items-center rounded-full bg-(--term-color) px-3 py-[5px]
-								text-xs font-bold tracking-[0.03em] text-white uppercase">
-							{{ category.name }}
-						</a>
-					{% endif %}
-
-					{% set hasCover = post.thumbnail is not empty %}
-
-					<div class="{{ hasCover ? 'grid grid-cols-[1.05fr_0.95fr] items-stretch gap-14 max-lg:grid-cols-1 max-lg:gap-9' : '' }}">
-						<div>
-							<h1 class="font-display leading-[1.08] font-semibold tracking-[-0.02em] text-balance text-white
-								{{ hasCover
-									? 'text-[clamp(28px,3.6vw,40px)]'
-									: 'mt-5 max-w-[20ch] text-[clamp(33px,4.6vw,54px)]' }}">
-								{{ post.title }}
-							</h1>
-
-							{% if post.post_excerpt %}
-								<p class="mt-[22px] text-[clamp(17px,2vw,20px)] leading-[1.6] text-white/78
-									{{ hasCover ? '' : 'max-w-[600px]' }}">
-									{{ post.post_excerpt }}
-								</p>
-							{% endif %}
-						</div>
-
-						{% if hasCover %}
-							{% include 'components/image.twig' with {
-								id: post.thumbnail.ID,
-								size: 'taxeon-wide-2x',
-								sizes: '(max-width: 820px) 100vw, 480px',
-								altFrom: post.title,
-								eager: true,
-								class: 'h-full min-h-[280px] w-full rounded-[20px] object-cover shadow-deep max-lg:aspect-16/9'
-							} only %}
-						{% endif %}
-					</div>
-
-					<div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm font-semibold text-white/75
-						[&_svg]:size-[15px] [&_svg]:text-deep-tint">
-
-						<span class="inline-flex items-center gap-2">
-							{{ 'calendar'|svg }}
-							<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('j F Y') }}</time>
-						</span>
-
-						<span class="inline-flex items-center gap-2">
-							{{ 'clock'|svg }}
-							{{ post.content|readTime }} {{ __('min czytania', 'taxeon') }}
-						</span>
-					</div>
-				</div>
+			<div class="flex items-center gap-2.5 text-[14px] text-white/60">
+				<a href="{{ fn('get_permalink', fn('get_option', 'page_for_posts')) }}"
+					class="text-white/60 transition hover:text-white">{{ __('Baza wiedzy', 'taxeon') }}</a>
+				<span>/</span>
+				{% if kategoria %}<span class="text-sky">{{ kategoria.name }}</span>{% endif %}
 			</div>
-		</section>
 
-		<div class="pt-16 pb-section max-sm:py-16">
-			<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
-				<div class="prose mx-auto max-w-[760px]">
-					{{ post.content }}
-				</div>
+			<h1 class="mt-5 font-display text-[clamp(34px,4vw,56px)] leading-[1.06] font-bold
+				tracking-[-0.035em] text-balance">
+				{{ post.title }}
+			</h1>
 
-				<div class="mx-auto mt-11 flex max-w-[760px] flex-wrap items-center justify-between gap-[18px]
-					border-t border-line pt-7">
+			{% set zajawka = post.excerpt({ words: 34, force: true, read_more: '' })|striptags|trim %}
 
-					{% if post.terms({ taxonomy: 'post_tag' })|length %}
-						<div class="flex flex-wrap gap-2.5">
-							{% for tag in post.terms({ taxonomy: 'post_tag' }) %}
-								<a href="{{ tag.link }}"
-									class="rounded-full border border-line bg-soft px-3 py-1.5 text-[13px] font-semibold text-ink-2 hover:text-accent">
-									{{ tag.name }}
+			{% if zajawka %}
+				<p class="mt-[22px] max-w-[58ch] text-[19px] leading-[1.6] text-white/78">{{ zajawka }}</p>
+			{% endif %}
+
+			<div class="mt-7 flex flex-wrap gap-x-6 gap-y-2.5 text-[14.5px] text-white/60">
+				{% if autor %}
+					<span>{{ autor.name }}{% if themeOptions.author_role %} · {{ themeOptions.author_role }}{% endif %}</span>
+				{% endif %}
+
+				<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('j F Y') }}</time>
+				<span>{{ post.content|readTime }} {{ __('min czytania', 'taxeon') }}</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative overflow-hidden bg-[image:var(--gradient-light)] px-gutter pt-[72px] pb-24
+		max-sm:px-5 max-sm:pb-16">
+		<div aria-hidden="true"
+			class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.12),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.08),transparent_72%)]"></div>
+
+		<div class="relative mx-auto grid w-full max-w-[1160px] grid-cols-[minmax(0,1fr)_280px]
+			items-start gap-14 max-xl:grid-cols-1">
+
+			<article class="rounded-panel border border-line bg-page px-[60px] py-14
+				shadow-[0_40px_90px_-70px_rgb(6_16_36/0.7)] max-sm:px-7 max-sm:py-9">
+				<div class="prose">{{ postContent }}</div>
+
+				{% if autor %}
+					<div class="mt-11 flex flex-wrap items-center gap-[18px] border-t border-line pt-7">
+						<span aria-hidden="true"
+							class="grid size-[52px] flex-none place-items-center rounded-full bg-line-2
+								font-display text-[18px] font-semibold text-accent">
+							{{ autor.name|slice(0, 1) }}
+						</span>
+
+						<span class="flex flex-col gap-[3px]">
+							<span class="font-display text-[17px] font-semibold text-ink">{{ autor.name }}</span>
+
+							{% if autor.description %}
+								<span class="text-[15px] text-ink-3">{{ autor.description }}</span>
+							{% endif %}
+						</span>
+					</div>
+				{% endif %}
+			</article>
+
+			<aside class="flex flex-col gap-5 max-xl:order-first">
+				{% if toc|length > 1 %}
+					<div class="rounded-card border border-line bg-page px-6 py-[26px]">
+						<span class="font-mono text-[12px] tracking-[0.08em] text-accent uppercase">
+							{{ __('W tym artykule', 'taxeon') }}
+						</span>
+
+						<div class="mt-4 flex flex-col gap-[11px]">
+							{% for pozycja in toc %}
+								<a href="#{{ pozycja.id }}"
+									class="text-[15.5px] leading-[1.5] text-ink-2 transition hover:text-accent">
+									{{ pozycja.title }}
 								</a>
 							{% endfor %}
 						</div>
-					{% endif %}
-
-					<div class="flex items-center gap-2.5">
-						<span class="text-meta font-bold text-ink-3">{{ __('Udostępnij', 'taxeon') }}</span>
-
-						{% set shareLink = 'grid size-[38px] place-items-center rounded-[10px] border border-line text-ink-2 transition hover:border-accent hover:bg-accent-soft hover:text-accent [&_svg]:size-[18px]' %}
-
-						{% for link in shareLinks %}
-							<a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}" class="{{ shareLink }}">
-								{{ link.icon|svg }}
-							</a>
-						{% endfor %}
-
-						<a href="{{ post.link }}"
-							data-copy-link
-							data-copied-label="{{ __('Skopiowano link', 'taxeon') }}"
-							aria-label="{{ __('Kopiuj link', 'taxeon') }}"
-							class="{{ shareLink }} data-copied:border-[#b7e2c8] data-copied:bg-[#e9f7ef] data-copied:text-[#1d6b3f]">
-							{{ 'link'|svg }}
-						</a>
 					</div>
-				</div>
-			</div>
+				{% endif %}
+
+				{% if themeOptions.article_cta_title %}
+					<div class="flex flex-col gap-3 rounded-card bg-[linear-gradient(135deg,#0b4fd6,#10289b)]
+						px-6 py-7 text-white">
+						<span class="font-display text-[20px] leading-[1.25] font-semibold tracking-[-0.02em]">
+							{{ themeOptions.article_cta_title }}
+						</span>
+
+						{% if themeOptions.article_cta_text %}
+							<span class="text-[15px] leading-[1.6] text-white/80">{{ themeOptions.article_cta_text }}</span>
+						{% endif %}
+
+						{% if themeOptions.article_cta_link.url %}
+							<a href="{{ themeOptions.article_cta_link.url }}"
+								target="{{ themeOptions.article_cta_link.target ?: '_self' }}"
+								class="mt-1.5 rounded-pill bg-white px-5 py-[13px] text-center text-[15px]
+									font-semibold text-ink transition hover:bg-accent-tint">
+								{{ themeOptions.article_cta_link.title }}
+							</a>
+						{% endif %}
+					</div>
+				{% endif %}
+			</aside>
 		</div>
-	</article>
+	</section>
 
 	{% if relatedPosts|length %}
-		<section class="bg-soft py-section max-sm:py-16">
-			<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
-				{% include 'components/section-head.twig' with {
-					eyebrow: { text: __('Powiązane wpisy', 'taxeon') },
-					title: { text: __('Czytaj dalej', 'taxeon') }
-				} only %}
+		<section class="bg-soft-2 px-gutter py-[88px] max-sm:px-5 max-sm:py-16">
+			<div class="mx-auto w-full max-w-[1160px]">
+				{% include 'components/eyebrow.twig' with { title: { text: __('Czytaj dalej', 'taxeon'), tag: 'span' } } only %}
 
-				<div class="grid grid-cols-2 gap-[26px] max-md:grid-cols-1">
-					{% for post in relatedPosts %}
-						{% include 'components/post-card.twig' with { post: post } only %}
+				<h2 class="mt-3.5 font-display text-[clamp(28px,2.8vw,40px)] leading-[1.12] font-bold
+					tracking-[-0.03em] text-ink">
+					{{ __('Powiązane artykuły', 'taxeon') }}
+				</h2>
+
+				<div class="mt-9 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
+					max-xl:grid-cols-2 max-sm:grid-cols-1">
+					{% for powiazany in relatedPosts %}
+						{% include 'components/post-card.twig' with { post: powiazany, compact: true } only %}
 					{% endfor %}
 				</div>
 			</div>

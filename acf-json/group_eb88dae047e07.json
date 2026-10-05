@@ -27,13 +27,6 @@
                 "operator": "==",
                 "value": "category"
             }
-        ],
-        [
-            {
-                "param": "taxonomy",
-                "operator": "==",
-                "value": "kategoria-produktu"
-            }
         ]
     ],
     "menu_order": 0,

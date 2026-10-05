@@ -1,51 +1,23 @@
-{% set category = post.terms({ taxonomy: 'category' })|first %}
+{% set kategoria = post.terms({ taxonomy: 'category' })|first %}
 
-<article class="flex flex-col overflow-hidden rounded-panel border border-line bg-white transition
-	hover:-translate-y-1 hover:shadow-mid">
+<a href="{{ post.link }}"
+	class="flex flex-col bg-page px-7 py-[30px] text-ink transition
+		{{ compact ? 'min-h-[190px] gap-3 hover:bg-soft' : 'min-h-[210px] gap-3.5 hover:bg-soft-2' }}">
+	{% if kategoria %}
+		<span class="font-mono text-[12px] tracking-[0.08em] text-accent uppercase">{{ kategoria.name }}</span>
+	{% endif %}
 
-	<div class="relative aspect-16/10 bg-soft">
-		{% if post.thumbnail %}
-			<a href="{{ post.link }}" tabindex="-1" aria-hidden="true">
-				{% include 'components/image.twig' with {
-					id: post.thumbnail.ID,
-					size: 'taxeon-card',
-					sizes: '(max-width: 560px) 100vw, (max-width: 920px) 50vw, 33vw',
-					altFrom: post.title,
-					eager: eagerFirst ?? false,
-					class: 'absolute inset-0 size-full object-cover'
-				} only %}
-			</a>
-		{% endif %}
+	<span class="font-display leading-[1.3] font-medium tracking-[-0.02em]
+		{{ compact ? 'text-[21px]' : 'text-[22px]' }}">{{ post.title }}</span>
 
-		{% if category %}
-			<a href="{{ category.link }}"
-				style="--term-color: {{ category|termColor ?: 'var(--color-accent)' }}"
-				class="absolute top-4 left-4 z-[2] rounded-full bg-(--term-color) px-3 py-[5px] text-xs
-					font-bold tracking-[0.03em] whitespace-nowrap text-white uppercase">
-				{{ category.name }}
-			</a>
-		{% endif %}
-	</div>
-
-	<div class="flex flex-1 flex-col px-6 pt-[22px] pb-[26px]">
-		<span class="inline-flex items-center gap-2 text-[13px] font-semibold text-ink-3 [&_svg]:size-[15px]">
-			{{ 'calendar'|svg }}
-			<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('F Y') }}</time>
+	{% if not compact %}
+		<span class="text-[15px] leading-[1.6] text-ink-3">
+			{{ post.excerpt({ words: 22, force: true, read_more: '' })|striptags|trim }}
 		</span>
+	{% endif %}
 
-		<h3 class="my-2.5 font-display text-lg leading-[1.3] font-semibold tracking-[-0.02em] text-ink">
-			<a href="{{ post.link }}" class="hover:text-accent">{{ post.title }}</a>
-		</h3>
-
-		<p class="flex-1 text-label leading-[1.55] text-ink-2">
-			{{ post.excerpt({ words: 24, force: true, read_more: '' })|striptags|trim }}
-		</p>
-
-		<a href="{{ post.link }}"
-			class="group/link mt-[18px] inline-flex items-center gap-[7px] font-bold text-accent
-				[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
-			{{ __('Czytaj artykuł', 'taxeon') }}
-			{{ 'arrow-right'|svg }}
-		</a>
-	</div>
-</article>
+	<span class="mt-auto text-[13.5px] text-ink-4">
+		{{ post.content|readTime }} {{ __('min czytania', 'taxeon') }} ·
+		<time datetime="{{ post.date('Y-m-d') }}">{{ post.date('F Y') }}</time>
+	</span>
+</a>

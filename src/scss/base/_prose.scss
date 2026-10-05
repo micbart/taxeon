@@ -1,17 +1,16 @@
 .prose {
-	font-size: 17.5px;
-	line-height: 1.75;
-	color: var(--color-ink-2);
+	font-size: 17px;
+	line-height: 1.7;
+	color: var(--color-body);
 
 	> * + * {
-		margin-top: 22px;
+		margin-top: 16px;
 	}
 
 	> p:first-of-type {
-		font-size: 20px;
-		line-height: 1.65;
-		font-weight: 500;
-		color: var(--color-ink);
+		font-size: 19px;
+		line-height: 1.7;
+		color: var(--color-ink-2);
 	}
 
 	h2,
@@ -19,23 +18,23 @@
 	h4 {
 		font-family: var(--font-display);
 		font-weight: 600;
-		line-height: 1.15;
-		letter-spacing: -0.02em;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
 		color: var(--color-ink);
 	}
 
 	h2 {
-		margin-top: 48px;
-		font-size: 26px;
+		margin-top: 44px;
+		font-size: 30px;
 	}
 
 	h3 {
-		margin-top: 44px;
-		font-size: 22px;
+		margin-top: 36px;
+		font-size: 23px;
 	}
 
 	h4 {
-		margin-top: 36px;
+		margin-top: 30px;
 		font-size: 19px;
 	}
 
@@ -69,6 +68,9 @@
 	ol {
 		display: grid;
 		gap: 12px;
+		margin-top: 20px;
+		font-size: 17px;
+		line-height: 1.6;
 		padding-left: 0;
 		list-style: none;
 	}
@@ -118,12 +120,20 @@
 	}
 
 	blockquote {
-		padding: 26px 30px;
-		border-radius: var(--radius-panel);
-		background: var(--color-accent-soft);
-		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-line));
-		font-size: 18px;
-		color: var(--color-ink);
+		margin-top: 32px;
+		padding: 24px 28px;
+		border-left: 3px solid var(--color-accent);
+		border-radius: 0 14px 14px 0;
+		background: var(--color-soft-2);
+		font-size: 16.5px;
+		line-height: 1.65;
+		color: var(--color-ink-2);
+
+		> p {
+			margin: 0;
+			font-size: inherit;
+			line-height: inherit;
+		}
 	}
 
 	code {
@@ -139,7 +149,7 @@
 	pre {
 		padding: 20px 24px;
 		border-radius: var(--radius-card);
-		background: var(--color-navy);
+		background: var(--color-deep);
 		color: #fff;
 		overflow-x: auto;
 
@@ -152,25 +162,34 @@
 	}
 
 	table {
-		display: block;
 		width: 100%;
-		overflow-x: auto;
-		border-collapse: collapse;
+		margin-top: 22px;
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-tile);
+		border-collapse: separate;
+		border-spacing: 0;
+		overflow: hidden;
+		font-size: 16px;
+		color: var(--color-ink-2);
 
 		th,
 		td {
-			padding: 13px 16px;
+			padding: 16px 22px;
 			text-align: left;
-			border-bottom: 1px solid var(--color-line-2);
+		}
+
+		tbody tr + tr td,
+		tbody td {
+			border-top: 1px solid var(--color-line);
 		}
 
 		thead th {
-			background: var(--color-soft);
-			font-size: 13px;
-			font-weight: 700;
-			text-transform: uppercase;
-			letter-spacing: 0.05em;
-			color: var(--color-ink-3);
+			background: var(--color-soft-2);
+			border-top: 0;
+			font-family: var(--font-display);
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--color-ink);
 		}
 	}
 }

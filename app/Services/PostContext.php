@@ -19,7 +19,7 @@ class PostContext
 		if (!empty($postCategories)) {
 			$data['relatedPosts'] = Timber::get_posts([
 				'post_type' => 'post',
-				'posts_per_page' => 2,
+				'posts_per_page' => 3,
 				'post__not_in' => [$post->ID],
 				'category__in' => $postCategories,
 				'orderby' => 'date',
@@ -31,7 +31,32 @@ class PostContext
 
 		$data['shareLinks'] = $this->shareLinks($post);
 
+		$toc = [];
+		$data['postContent'] = $this->withAnchors((string) $post->content(), $toc);
+		$data['toc'] = $toc;
+
 		return $data;
+	}
+
+	/** @param array<int, array{id: string, title: string}> $toc */
+	private function withAnchors(string $content, array &$toc): string
+	{
+		return (string) preg_replace_callback(
+			'/<h2([^>]*)>(.*?)<\\/h2>/is',
+			function (array $match) use (&$toc): string {
+				$title = trim(wp_strip_all_tags($match[2]));
+				$id = sanitize_title($title);
+
+				if ($id === '' || str_contains($match[1], 'id=')) {
+					return $match[0];
+				}
+
+				$toc[] = ['id' => $id, 'title' => $title];
+
+				return '<h2' . $match[1] . ' id="' . esc_attr($id) . '">' . $match[2] . '</h2>';
+			},
+			$content
+		);
 	}
 
 	private function shareLinks(Post $post): array
