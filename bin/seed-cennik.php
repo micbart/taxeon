@@ -6,6 +6,7 @@ $pkt = fn(array $x): array => array_map(fn($y) => ['text' => $y], $x);
 $pusty = ['title' => '', 'url' => '', 'target' => ''];
 
 $hero = taxeon_seed_block('hero', [
+    'space_bottom' => '76',
     'layout' => 'cards', 'button_style' => 'light',
     'badge' => 'Cennik usług księgowych · Ceny netto, bez umowy lojalnościowej',
     'title' => $t('Cały cennik na jednej stronie.', 'h1'),
@@ -54,8 +55,9 @@ $wiersze = [
 $tabela = taxeon_seed_block('table', [
     'head_position' => 'above', 'title_width' => '22ch', 'text_width' => '60ch',
     'eyebrow' => $t('Zakres funkcjonalny', 'span'),
-    'title' => $t('Co dokładnie zawiera każdy abonament.', 'h2'), 'text' => $t(''),
-    'note' => '', 'head_label' => 'Zakres',
+    'title' => $t('Co dokładnie zawiera każdy abonament.', 'h2'),
+    'text' => $t('Aplikacja to narzędzie do samodzielnego księgowania. Trzy pozostałe pakiety to pełna obsługa biura rachunkowego z dedykowaną księgową.'),
+    'note' => '', 'head_label' => 'Zakres usługi',
     'columns' => [
         ['label' => 'Aplikacja', 'note' => '19 zł', 'highlight' => 0],
         ['label' => 'Ryczałt', 'note' => '99 zł', 'highlight' => 0],

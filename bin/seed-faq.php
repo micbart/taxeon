@@ -30,7 +30,7 @@ $pytania = taxeon_seed_block('faq', [
             'answer' => '<p>' . $p['a'] . '</p>',
         ], $g['items']),
     ], $grupy),
-    'background' => 'page', 'padding_top' => 'medium', 'padding_bottom' => 'medium',
+    'background' => 'page', 'padding_top' => 'small-lg', 'padding_bottom' => 'medium',
 ]);
 
 $cta = taxeon_seed_block('cta', [

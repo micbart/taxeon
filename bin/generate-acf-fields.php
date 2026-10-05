@@ -428,6 +428,12 @@ $blocks['hero'] = [
         ]),
 
         f('hero.tab_cards', 'Karty cennika', 'tab'),
+        f('hero.space_bottom', 'Odstęp u dołu', 'select', [
+            'choices' => ['' => 'Zależnie od układu', '72' => '72 px', '76' => '76 px', '84' => '84 px', '88' => '88 px'],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
         f('hero.cards', 'Karty', 'repeater', [
             'button_label' => 'Dodaj kartę',
             'collapsed' => key_for('hero.cards.label'),

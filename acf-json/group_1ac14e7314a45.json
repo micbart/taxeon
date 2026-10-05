@@ -603,6 +603,34 @@
             "endpoint": 0
         },
         {
+            "key": "field_601bf77ddaa01",
+            "label": "Odstęp u dołu",
+            "name": "space_bottom",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Zależnie od układu",
+                "72": "72 px",
+                "76": "76 px",
+                "84": "84 px",
+                "88": "88 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_7e59c7e0809b4",
             "label": "Karty",
             "name": "cards",

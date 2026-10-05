@@ -9,6 +9,7 @@ $strony = [];
 
 $strony['b2b'] = ['Kontrakt B2B', [
     taxeon_seed_block('hero', [
+    'space_bottom' => '84',
         'layout' => 'plain', 'button_style' => 'accent',
         'badge' => 'Landing branżowy · Start od zera',
         'title' => $t('Przechodzisz na B2B? Najpierw policz, potem podpisuj.', 'h1'),
@@ -59,6 +60,7 @@ $strony['b2b'] = ['Kontrakt B2B', [
 
 $strony['it'] = ['Księgowość dla IT', [
     taxeon_seed_block('hero', [
+    'space_bottom' => '84',
         'layout' => 'plain', 'button_style' => 'light',
         'badge' => 'Landing branżowy · Ryczałt 12%',
         'title' => $t('Księgowość dla IT. Faktury w euro, ryczałt 12%, zero stresu.', 'h1'),
@@ -107,6 +109,7 @@ $strony['it'] = ['Księgowość dla IT', [
 
 $strony['lekarze'] = ['Księgowość dla lekarzy', [
     taxeon_seed_block('hero', [
+    'space_bottom' => '84',
         'layout' => 'plain', 'button_style' => 'light',
         'badge' => 'Landing branżowy · Ryczałt 14%',
         'title' => $t('Księgowość dla lekarzy, którzy nie mają czasu na księgowość.', 'h1'),
@@ -167,6 +170,7 @@ $strony['lekarze'] = ['Księgowość dla lekarzy', [
 
 $strony['prawnicy'] = ['Księgowość dla kancelarii', [
     taxeon_seed_block('hero', [
+    'space_bottom' => '84',
         'layout' => 'plain', 'button_style' => 'light',
         'badge' => 'Landing branżowy · Ryczałt 17%',
         'title' => $t('Księgowość dla kancelarii. Dyskretnie, terminowo, taniej.', 'h1'),

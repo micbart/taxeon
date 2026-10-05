@@ -13,6 +13,7 @@
 {% set uklad = fields.layout ?: 'cards' %}
 {% set split = uklad == 'split' %}
 {% set akcent = fields.button_style == 'accent' %}
+{% set odstepy = { '72': 'pb-[72px]', '76': 'pb-[76px]', '84': 'pb-[84px]', '88': 'pb-[88px]' } %}
 {% set podstrona = uklad != 'cards' %}
 
 <section class="relative overflow-hidden bg-deep text-white">
@@ -25,9 +26,8 @@
 	} only %}
 
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
-		{{ split
-			? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 pb-[84px] max-xl:grid-cols-1 max-xl:gap-10'
-			: 'pb-[72px]' }}">
+		{{ odstepy[fields.space_bottom] ?: (split ? 'pb-[84px]' : 'pb-[72px]') }}
+		{{ split ? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 max-xl:grid-cols-1 max-xl:gap-10' }}">
 
 		<div>
 			{% if fields.show_breadcrumbs %}

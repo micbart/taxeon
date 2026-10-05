@@ -5,6 +5,7 @@ $l = fn(string $tytul, string $url): array => ['title' => $tytul, 'url' => str_s
 $pkt = fn(array $x): array => array_map(fn($y) => ['text' => $y], $x);
 
 $hero = taxeon_seed_block('hero', [
+    'space_bottom' => '88',
     'layout' => 'split',
     'badge' => 'Aplikacja Taxeon · w cenie abonamentu',
     'title' => $t('Program księgowy online', 'h1'),
