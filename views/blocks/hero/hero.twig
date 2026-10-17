@@ -67,7 +67,9 @@
 				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] text-sky-2
 					{{ podstrona
 						? (split ? 'max-w-[30ch]' : 'max-w-[32ch]') ~ ' text-[clamp(19px,1.9vw,26px)]'
-						: (fields.subtitle_size == '26' ? 'text-[clamp(19px,1.9vw,26px)]' : 'text-[clamp(20px,2vw,28px)]') }}">
+						: (fields.subtitle_size == '26'
+							? 'max-w-[32ch] text-[clamp(19px,1.9vw,26px)]'
+							: 'text-[clamp(20px,2vw,28px)]') }}">
 					{{ fields.subtitle }}
 				</p>
 			{% endif %}

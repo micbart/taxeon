@@ -183,6 +183,7 @@ $strony['prawnicy'] = ['Księgowość dla kancelarii', [
     taxeon_seed_block('list', [
         'eyebrow' => $t('Znamy tę pracę', 'span'),
         'title' => $t('Co rozumiemy o pracy prawnika.', 'h2'),
+        'row_size' => 'sm',
         'text' => $t('Cztery rzeczy, których nie musisz nam tłumaczyć na pierwszym spotkaniu.'),
         'link' => $pusty, 'row_style' => 'stacked',
         'items' => [

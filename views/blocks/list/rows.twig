@@ -1,3 +1,5 @@
+	{% set zWartoscia = fields.items|filter(i => i.value)|length > 0 %}
+
 	<div class="{{ siatka ?: 'flex flex-col' }}
 		{{ fields.row_style == 'check' ? 'gap-3.5' : (fields.columns == '3' or ikony ? 'gap-3.5' : 'gap-3') }}">
 		{% for item in fields.items %}
@@ -36,9 +38,12 @@
 					<span class="text-[16px] leading-[1.55] {{ onDark ? 'text-white/88' : 'text-ink-2' }}">{{ item.label }}</span>
 				</div>
 			{% elseif fields.row_style == 'stacked' %}
-				<div class="flex flex-col gap-1.5 rounded-card border px-[26px] py-6 {{ kartaWiersza }}">
+				{% set ciasny = fields.row_size == 'sm' %}
+
+				<div class="flex flex-col gap-1.5 border px-[26px] {{ kartaWiersza }}
+					{{ ciasny ? 'rounded-[14px] py-[22px]' : 'rounded-card py-6' }}">
 					<span class="font-display font-semibold tracking-[-0.02em]
-						{{ fields.columns == '3' ? 'text-[19px]' : 'text-[20px]' }}
+						{{ ciasny or fields.columns == '3' ? 'text-[19px]' : 'text-[20px]' }}
 						{{ onDark ? 'text-white' : 'text-ink' }}">{{ item.label }}</span>
 					{% if item.text %}
 						<span class="leading-[1.58] text-pretty
@@ -47,8 +52,11 @@
 					{% endif %}
 				</div>
 			{% else %}
-				<div class="flex items-center justify-between gap-5 rounded-tile border px-6 py-5 {{ kartaWiersza }}">
-					<span class="leading-[1.5] {{ onDark ? 'text-[16px] text-white' : 'text-[17px] text-ink-2' }}">{{ item.label }}</span>
+				<div class="flex items-center justify-between gap-[18px] border {{ kartaWiersza }}
+					{{ onDark ? 'rounded-tile' : 'rounded-[14px]' }}
+					{{ zWartoscia ? 'px-6 py-5' : 'px-[26px] py-[22px]' }}">
+					<span class="{{ onDark ? 'text-[16px] text-white' : 'text-[17px] text-ink-2' }}
+						{{ zWartoscia ? 'leading-[1.5]' : 'leading-[1.55]' }}">{{ item.label }}</span>
 					{% if item.value %}
 						<span class="font-display font-semibold whitespace-nowrap
 							{{ onDark ? 'text-[17px]' : 'text-[15px]' }}

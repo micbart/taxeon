@@ -672,6 +672,11 @@ $blocks['list'] = [
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
+        f('list.row_size', 'Rozmiar wiersza', 'select', [
+            'choices' => ['' => 'Standardowy', 'sm' => 'Ciaśniejszy (tytuł 19 px)'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
         f('list.items', 'Wiersze', 'repeater', [
             'instructions' => 'Wiersze listy. Pola „wartość” używamy w układzie z ceną po prawej.',
             'button_label' => 'Dodaj wiersz',
@@ -1160,7 +1165,7 @@ $blocks['faq'] = [
 const LOOK_FIELDS = [
     'head_size', 'head_width', 'title_width', 'text_width', 'text_gap',
     'title_size', 'subtitle_size', 'text_tone', 'space_bottom',
-    'columns_ratio', 'head_position', 'link_style',
+    'columns_ratio', 'head_position', 'link_style', 'row_size',
 ];
 
 foreach ($blocks as $slug => $block) {

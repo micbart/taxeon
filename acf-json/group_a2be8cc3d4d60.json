@@ -634,6 +634,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_89a58c095da83",
+            "label": "Rozmiar wiersza",
+            "name": "row_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Standardowy",
+                "sm": "Ciaśniejszy (tytuł 19 px)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_a65b4237190d2",
             "label": "Sekcja",
             "name": "tab_section",
