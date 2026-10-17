@@ -38,7 +38,7 @@
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
 		{{ odstepy[fields.space_bottom] ?: (split ? 'pb-[84px]' : 'pb-[72px]') }}
 		{{ split ? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 max-xl:grid-cols-1 max-xl:gap-10' }}
-		{{ srodek ? 'text-center' }}">
+		{{ srodek ? 'text-center max-lg:text-left' }}">
 
 		<div>
 			{% if fields.show_breadcrumbs %}
@@ -58,7 +58,7 @@
 					{{ rozmiaryTytulu[fields.title_size]
 						?: (srodek or split ? 'text-[clamp(38px,4.4vw,64px)]' : 'text-[clamp(38px,4.4vw,66px)]') }}
 					{{ fields.title_size == '62' ? 'leading-[1.03]' : 'leading-none' }}
-					{{ srodek ? 'mx-auto max-w-[20ch]' : (split ? 'max-w-[20ch]' : 'max-w-[21ch]') }}">
+					{{ srodek ? 'mx-auto max-w-[20ch] max-lg:mx-0' : (split ? 'max-w-[20ch]' : 'max-w-[21ch]') }}">
 					{{ fields.title.text }}
 				</{{ fields.title.tag ?: 'h1' }}>
 			{% endif %}
@@ -77,7 +77,7 @@
 			{% if fields.text %}
 				<p class="{{ srodek ? 'text-[19px]' : 'text-[18px]' }}
 					{{ barwyOpisu[fields.text_tone] ?: (srodek or split ? 'text-white/78 leading-[1.62]' : 'text-white/76 leading-[1.6]') }}
-					{{ srodek ? 'mx-auto' }}
+					{{ srodek ? 'mx-auto max-lg:mx-0' }}
 					{{ odstepyOpisu[fields.text_gap] ?: (srodek or split ? 'mt-6' : 'mt-[26px]') }}
 					{{ szerokosciOpisu[fields.text_width] ?: (podstrona or srodek ? 'max-w-[62ch]' : 'max-w-[56ch]') }}">
 					{{ fields.text }}
@@ -98,7 +98,7 @@
 
 			{% if fields.button_primary.url or fields.button_secondary.url %}
 				<div class="flex flex-wrap gap-3.5
-					{{ srodek ? 'justify-center mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
+					{{ srodek ? 'justify-center max-lg:justify-start mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
 					{% if fields.button_primary.url %}
 						<a href="{{ fields.button_primary.url }}"
 							{{ linkAttrs(fields.button_primary.url, fields.button_primary.target)|raw }}
@@ -123,7 +123,7 @@
 
 			{% if fields.checks|length %}
 				<div class="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[15px] text-white/66
-					{{ srodek ? 'justify-center' }}">
+					{{ srodek ? 'justify-center max-lg:justify-start' }}">
 					{% for pozycja in fields.checks %}
 						<span class="inline-flex items-center gap-2">
 							<span aria-hidden="true" class="text-sky">✓</span>

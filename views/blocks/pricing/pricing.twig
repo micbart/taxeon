@@ -18,7 +18,7 @@
 	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
 	<div class="relative {{ section.container(fields) }}">
-		<div class="mx-auto max-w-[60ch] text-center">
+		<div class="mx-auto max-w-[60ch] text-center max-lg:mx-0 max-lg:text-left">
 			{% include 'components/section-head.twig' with {
 				size: fields.head_size,
 			background: fields.background,
@@ -29,7 +29,8 @@
 			} only %}
 
 			{% if fields.checks|length %}
-				<div class="mt-[18px] flex flex-wrap justify-center gap-x-[22px] gap-y-2.5 text-[16px] text-ink-3">
+				<div class="mt-[18px] flex flex-wrap justify-center gap-x-[22px] gap-y-2.5 text-[16px] text-ink-3
+					max-lg:justify-start">
 					{% for pozycja in fields.checks %}
 						<span class="inline-flex items-center gap-2">
 							<span aria-hidden="true" class="text-accent">✓</span>
@@ -42,7 +43,7 @@
 
 		<div data-tabs>
 			{% if okresy|length > 1 %}
-				<div class="mt-[34px] flex justify-center">
+				<div class="mt-[34px] flex justify-center max-lg:justify-start">
 					<div role="tablist" class="inline-flex gap-1 rounded-pill bg-line p-[5px]">
 						{% for okres in okresy %}
 							<button type="button"
