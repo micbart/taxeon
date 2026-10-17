@@ -77,11 +77,18 @@ function taxeon_seed_data(array $values, array $defs, string $prefix = ''): arra
 
 function taxeon_seed_block(string $slug, array $fields): string
 {
+    $anchor = $fields['anchor'] ?? '';
+    unset($fields['anchor']);
+
     $attributes = [
         'name' => 'acf/' . $slug,
         'data' => taxeon_seed_data($fields, taxeon_seed_groups()['acf/' . $slug] ?? []),
         'mode' => 'preview',
     ];
+
+    if ($anchor !== '') {
+        $attributes['anchor'] = $anchor;
+    }
 
     return '<!-- wp:acf/' . $slug . ' '
         . wp_json_encode($attributes, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)

@@ -8,6 +8,15 @@ export function initBooking(root = document) {
 	const ramka = modal.querySelector('[data-booking-frame]');
 	const wzorzec = new URL(modal.dataset.src, window.location.origin).hostname;
 
+	const loader = modal.querySelector('[data-booking-loader]');
+
+	ramka.addEventListener('load', () => {
+		if (loader) {
+			loader.style.opacity = '0';
+			setTimeout(() => loader.remove(), 300);
+		}
+	});
+
 	const otworz = (event) => {
 		event.preventDefault();
 

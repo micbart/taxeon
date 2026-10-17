@@ -290,6 +290,35 @@
             "placeholder": ""
         },
         {
+            "key": "field_02313a171d58e",
+            "label": "Odstęp nad opisem",
+            "name": "text_gap",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w rozmiarze",
+                "16": "16 px",
+                "18": "18 px",
+                "20": "20 px",
+                "24": "24 px",
+                "26": "26 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_709f1d97d3b23",
             "label": "Szerokość opisu",
             "name": "text_width",

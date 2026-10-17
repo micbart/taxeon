@@ -19,7 +19,7 @@ $hero = taxeon_seed_block('hero', [
     ],
     'video' => '',
     'cards' => [[
-        'label' => 'Abonament', 'badge' => '', 'badge_style' => 'filled', 'featured' => 0,
+        'label' => 'Abonament', 'badge' => 'Najpopularniejszy', 'badge_style' => 'filled', 'featured' => 1,
         'price' => '169 zł', 'period' => '/ mies.',
         'text' => 'Pełna obsługa kosztów, VAT-u i środków trwałych.',
         'items' => $punkty(['Dedykowana księgowa', 'Amortyzacja i środki trwałe',

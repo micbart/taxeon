@@ -7,6 +7,7 @@ $pusty = ['title' => '', 'url' => '', 'target' => ''];
 $grupy = json_decode(file_get_contents(get_template_directory() . '/bin/dane-faq.json'), true);
 
 $hero = taxeon_seed_block('hero', [
+    'text_gap' => '22', 'text_width' => '62ch', 'text_tone' => 'strong', 'title_size' => '64',
     'layout' => 'plain', 'button_style' => 'light',
     'badge' => 'Pytania i odpowiedzi',
     'title' => $t('Najczęstsze pytania o księgowość Taxeon', 'h1'),

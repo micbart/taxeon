@@ -14,7 +14,7 @@
 {% set onDark = section.isDark(fields) %}
 {% set naGradiencie = fields.background == 'gradient' %}
 
-<section class="relative overflow-hidden {{ section.shell(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
 	{% if onDark %}
 		<div aria-hidden="true"
 			class="absolute inset-0 bg-[radial-gradient(90%_60%_at_100%_0%,rgb(11_99_246/0.35),transparent_62%)]"></div>
@@ -23,9 +23,11 @@
 	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
 			size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 			titleWidth: fields.title_width,
 			textWidth: fields.text_width,
+			textGap: fields.text_gap,
 			eyebrow: fields.eyebrow,
 			title: fields.title,
 			text: fields.text,

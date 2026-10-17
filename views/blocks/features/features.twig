@@ -17,15 +17,17 @@
 {% set maly = rozmiar == 'sm' %}
 {% set duze = rozmiar == 'lg' %}
 
-<section class="relative overflow-hidden {{ section.shell(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
 	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
 	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
 			size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 			titleWidth: fields.title_width,
 			textWidth: fields.text_width,
+			textGap: fields.text_gap,
 			eyebrow: fields.eyebrow,
 			title: fields.title,
 			text: fields.text,
@@ -51,7 +53,7 @@
 
 						{% if item.kicker %}
 							<span class="font-display text-[13px] font-semibold tracking-[0.1em] uppercase
-								{{ onDark ? 'text-accent-tint-2' : 'text-accent' }}">
+								{{ onDark ? (item.highlight ? 'text-sky-2' : 'text-accent-tint-2') : 'text-accent' }}">
 								{{ item.kicker }}
 							</span>
 						{% endif %}
@@ -68,7 +70,9 @@
 							<p class="{{ maly
 									? 'text-[15.5px] leading-[1.58]'
 									: 'leading-[1.62] ' ~ (duze ? 'max-w-[44ch] text-[17px]' : 'text-[16px]') }}
-								{{ onDark ? (maly ? 'text-white/78' : 'text-white/84') : 'text-ink-3' }}">
+								{{ onDark
+									? (maly or item.highlight ? 'text-white/78' : 'text-white/84')
+									: 'text-ink-3' }}">
 								{{ item.text }}
 							</p>
 						{% endif %}
@@ -77,7 +81,9 @@
 							<a href="{{ item.link.url }}"
 								{{ linkAttrs(item.link.url, item.link.target)|raw }}
 								class="mt-auto text-[16px] font-semibold
-									{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
+									{{ onDark
+										? (item.highlight ? 'text-sky-2 hover:text-white' : 'text-white hover:text-accent-tint-2')
+										: 'text-accent hover:text-accent-strong' }}">
 								{{ item.link.title }}
 							</a>
 						{% endif %}

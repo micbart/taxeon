@@ -11,7 +11,7 @@
 #}
 {% import 'components/section.twig' as section %}
 
-<section class="relative overflow-hidden {{ section.shell(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
 	{% if fields.groups|length %}
 		<div class="relative {{ section.container(fields) }}">
 			<div class="flex flex-col gap-16">
@@ -21,7 +21,7 @@
 							scroll-mt-[110px] max-xl:grid-cols-1 max-xl:gap-8">
 						<div>
 							{% if grupa.eyebrow %}
-								<span class="font-display text-[13px] font-semibold tracking-[0.14em] text-accent uppercase">
+								<span class="text-[13px] font-semibold tracking-[0.14em] text-accent uppercase">
 									{{ grupa.eyebrow }}
 								</span>
 							{% endif %}
@@ -51,9 +51,11 @@
 				<div>
 					{% include 'components/section-head.twig' with {
 			size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 			titleWidth: fields.title_width,
 			textWidth: fields.text_width,
+			textGap: fields.text_gap,
 						eyebrow: fields.eyebrow,
 						title: fields.title,
 						text: fields.text,

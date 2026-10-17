@@ -290,6 +290,35 @@
             "placeholder": ""
         },
         {
+            "key": "field_def4e4c7fb590",
+            "label": "Odstęp nad opisem",
+            "name": "text_gap",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w rozmiarze",
+                "16": "16 px",
+                "18": "18 px",
+                "20": "20 px",
+                "24": "24 px",
+                "26": "26 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_00eda23ef779a",
             "label": "Szerokość opisu",
             "name": "text_width",
@@ -406,6 +435,25 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_8e285ad3e9c1c",
+                    "label": "Karta wyróżniona",
+                    "name": "highlight",
+                    "type": "true_false",
+                    "instructions": "Jaśniejsze nadkreślenie, opis i odnośnik na ciemnym tle.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_38cf68ae7f666",

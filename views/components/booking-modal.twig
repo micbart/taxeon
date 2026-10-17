@@ -20,11 +20,20 @@
 			</button>
 		</div>
 
-		<div class="h-[min(72vh,760px)] w-full bg-soft">
+		<div class="relative h-[min(72vh,760px)] w-full bg-soft">
+			<div data-booking-loader
+				class="absolute inset-0 grid place-items-center gap-3 bg-soft transition-opacity duration-300">
+				<span class="flex flex-col items-center gap-3 text-[15px] text-ink-3">
+					<span aria-hidden="true"
+						class="block size-9 animate-spin rounded-full border-[3px] border-line border-t-accent"></span>
+					{{ __('Wczytuję kalendarz…', 'taxeon') }}
+				</span>
+			</div>
+
 			<iframe data-booking-frame
 				title="{{ themeOptions.booking_title ?: __('Umów rozmowę z księgową', 'taxeon') }}"
 				loading="lazy"
-				class="size-full border-0"></iframe>
+				class="relative z-[1] size-full border-0"></iframe>
 		</div>
 	</dialog>
 {% endif %}

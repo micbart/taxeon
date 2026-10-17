@@ -7,6 +7,7 @@ $pusty = ['title' => '', 'url' => '', 'target' => ''];
 
 $hero = taxeon_seed_block('hero', [
     'space_bottom' => '76',
+    'text_gap' => '24', 'text_width' => '60ch', 'subtitle_size' => '26', 'title_size' => '66',
     'layout' => 'cards', 'button_style' => 'light',
     'badge' => 'Cennik usług księgowych · Ceny netto, bez umowy lojalnościowej',
     'title' => $t('Cały cennik na jednej stronie.', 'h1'),
@@ -15,7 +16,7 @@ $hero = taxeon_seed_block('hero', [
     'button_primary' => $pusty, 'button_secondary' => $pusty, 'chips' => [], 'trust' => [], 'stats' => [],
     'video' => home_url('/projekt/assets/hero-main.mp4'),
     'cards' => [
-        ['label' => 'Aplikacja', 'badge' => 'Samodzielnie', 'badge_style' => 'outline', 'featured' => 0,
+        ['label' => 'Aplikacja', 'badge' => 'Samodzielnie', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '19 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Przez pierwsze 3 miesiące, potem 43 zł netto. Księgujesz sam — my dajemy narzędzie.',
          'link' => $l('Wypróbuj aplikację →', '/aplikacja/')],
@@ -27,7 +28,7 @@ $hero = taxeon_seed_block('hero', [
          'price' => '139 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Ryczałt dla czynnych podatników VAT — JPK_V7, deklaracje, VAT-UE.',
          'link' => $l('Zamów ryczałt z VAT →', '/#kontakt')],
-        ['label' => 'KPiR', 'badge' => 'Najpopularniejszy', 'badge_style' => 'filled', 'featured' => 1,
+        ['label' => 'KPiR', 'badge' => 'Najpopularniejszy', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '169 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Księga Przychodów i Rozchodów z VAT, kosztami i środkami trwałymi.',
          'link' => $l('Zamów KPiR →', '/#kontakt')],
@@ -53,7 +54,7 @@ $wiersze = [
 ];
 
 $tabela = taxeon_seed_block('table', [
-    'head_position' => 'above', 'title_width' => '22ch', 'text_width' => '60ch',
+    'head_position' => 'above', 'title_width' => '22ch', 'text_width' => '60ch', 'text_gap' => '16',
     'eyebrow' => $t('Zakres funkcjonalny', 'span'),
     'title' => $t('Co dokładnie zawiera każdy abonament.', 'h2'),
     'text' => $t('Aplikacja to narzędzie do samodzielnego księgowania. Trzy pozostałe pakiety to pełna obsługa biura rachunkowego z dedykowaną księgową.'),

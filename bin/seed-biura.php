@@ -7,6 +7,7 @@ $pusty = ['title' => '', 'url' => '', 'target' => ''];
 
 $hero = taxeon_seed_block('hero', [
     'layout' => 'center',
+    'title_size' => '62', 'text_gap' => '24',
     'space_bottom' => '76',
     'badge' => 'Od ponad 14 lat wybierany przez biura rachunkowe w całej Polsce',
     'title' => $t('KPiR i Ryczałt dla biur rachunkowych za 12 zł mies. za firmę', 'h1'),
@@ -22,7 +23,7 @@ $hero = taxeon_seed_block('hero', [
     'cards' => [],
     'stats' => [
         ['value' => '14 lat', 'label' => 'na rynku', 'url' => ''],
-        ['value' => '12 zł', 'label' => 'netto / firma / mies.', 'url' => ''],
+        ['value' => '12 zł', 'label' => 'netto / firma / mies.', 'url' => '', 'highlight' => 1],
         ['value' => '6 lat', 'label' => 'bezpłatne archiwum', 'url' => ''],
         ['value' => '256-bit', 'label' => 'szyfrowanie danych', 'url' => ''],
     ],
@@ -32,7 +33,7 @@ $filmy = taxeon_seed_block('videos', [
     'eyebrow' => $t('Zobacz Taxeon w akcji', 'span'),
     'title' => $t('Najważniejsze funkcje w kilka minut.', 'h2'),
     'text' => $t('Cztery krótkie filmy pokazujące, jak Taxeon usprawnia codzienną pracę biura.'),
-    'head_width' => '60ch', 'columns' => '2',
+    'head_width' => '60ch', 'columns' => '2', 'text_gap' => '16',
     'items' => array_map(fn($x) => ['url' => 'https://www.youtube.com/watch?v=' . $x[0], 'title' => $x[1], 'text' => $x[2]], [
         ['8_OEM_gmXPg', 'Dodaj nową firmę w jednym oknie', 'Dane pobierzesz z GUS i od razu skonfigurujesz program pod KPiR, ryczałt czy VAT.'],
         ['fuqM23eycGM', 'Klienci sami wystawiają faktury', 'Faktury klientów trafiają wprost do KPiR — Ty tylko weryfikujesz, czy wszystko się zgadza.'],
@@ -44,6 +45,7 @@ $filmy = taxeon_seed_block('videos', [
 ]);
 
 $funkcje = taxeon_seed_block('features', [
+    'anchor' => 'funkcje-biura',
     'eyebrow' => $t('Funkcje', 'span'),
     'title' => $t('Wszystko, czego potrzebuje biuro rachunkowe.', 'h2'),
     'head_size' => 'lg', 'title_width' => '24ch',
@@ -63,6 +65,7 @@ $funkcje = taxeon_seed_block('features', [
 ]);
 
 $cennik = taxeon_seed_block('pricing', [
+    'anchor' => 'cennik-biura',
     'eyebrow' => $t('Cennik', 'span'),
     'title' => $t('Prosty cennik. Płacisz tylko za aktywne firmy.', 'h2'),
     'checks' => $pkt(['Bez abonamentu za konto', 'Bez opłat wstępnych', 'Bez limitu użytkowników w biurze']),
@@ -82,10 +85,11 @@ $cennik = taxeon_seed_block('pricing', [
 ]);
 
 $gwarancja = taxeon_seed_block('list', [
+    'anchor' => 'kontakt-biura',
     'eyebrow' => $t('Nasza gwarancja', 'span'),
     'title' => $t('Zero ryzyka na starcie.', 'h2'),
     'text' => $t('Wypróbuj Taxeon bez zobowiązań. Płacisz dopiero, gdy realnie rozliczasz firmy — a Twoje dane zawsze zostają pod Twoją kontrolą.'),
-    'row_style' => 'icon', 'columns' => '1',
+    'row_style' => 'icon', 'columns' => '1', 'text_gap' => '16',
     'link' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/'),
     'note' => 'Załóż konto w kilka minut · bez karty płatniczej',
     'items' => array_map(fn($x) => ['label' => $x[0], 'value' => '', 'tone' => 'default', 'text' => $x[1]], [

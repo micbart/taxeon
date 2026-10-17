@@ -47,10 +47,11 @@
 					{% endif %}
 				</div>
 			{% else %}
-				<div class="flex items-center justify-between gap-[18px] rounded-sm border px-6 py-5 {{ kartaWiersza }}">
-					<span class="text-[17px] leading-[1.5] {{ onDark ? 'text-white/88' : 'text-ink-2' }}">{{ item.label }}</span>
+				<div class="flex items-center justify-between gap-5 rounded-tile border px-6 py-5 {{ kartaWiersza }}">
+					<span class="leading-[1.5] {{ onDark ? 'text-[16px] text-white' : 'text-[17px] text-ink-2' }}">{{ item.label }}</span>
 					{% if item.value %}
-						<span class="font-display text-[15px] font-semibold whitespace-nowrap
+						<span class="font-display font-semibold whitespace-nowrap
+							{{ onDark ? 'text-[17px]' : 'text-[15px]' }}
 							{{ barwyWartosci[item.tone] ?: (onDark ? 'text-white' : 'text-accent') }}">
 							{{ item.value }}
 						</span>

@@ -29,7 +29,7 @@
 } %}
 {% set jasne = fields.background in ['', 'page'] %}
 
-<section class="relative overflow-hidden
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden
 	{{ section.shell(fields, jasne ? 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]' : '') }}">
 	{% include 'components/section-decor.twig' with {
 		background: jasne ? 'light' : fields.background,

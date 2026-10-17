@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-[18px]
-	{{ wide ? 'rounded-panel p-8' : 'rounded-[20px] p-7' }}
+	{{ wide ? 'rounded-panel p-8' : (waska ? 'gap-4 rounded-[20px] p-7' : 'rounded-[20px] p-7') }}
 	{{ card.featured
 		? 'border border-sky-2/55 bg-[linear-gradient(160deg,#0b63f6,#0a34a8)] shadow-[0_24px_60px_-24px_rgb(11_99_246/0.8)]'
 		: 'border border-white/16 bg-[rgb(4_13_32/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.2] transition hover:border-sky-2/55 hover:bg-[rgb(4_13_32/0.86)]' }}">
@@ -24,11 +24,13 @@
 
 	{% if card.price %}
 		<div class="flex items-baseline gap-2">
-			<span class="font-display font-bold tracking-[-0.04em] {{ wide and not card.price_compact ? 'text-[58px]' : 'text-[52px]' }}">
+			<span class="font-display font-bold tracking-[-0.04em]
+				{{ waska ? 'text-[46px]' : (wide and not card.price_compact ? 'text-[58px]' : 'text-[52px]') }}">
 				{{ card.price }}
 			</span>
 			{% if card.period %}
-				<span class="text-[16px] {{ card.featured ? 'text-white/75' : 'text-white/60' }}">{{ card.period }}</span>
+				<span class="{{ waska ? 'text-[15px]' : 'text-[16px]' }}
+					{{ card.featured ? 'text-white/75' : 'text-white/60' }}">{{ card.period }}</span>
 			{% endif %}
 		</div>
 	{% endif %}
@@ -51,7 +53,8 @@
 	{% if card.link.url %}
 		<a href="{{ card.link.url }}"
 			{{ linkAttrs(card.link.url, card.link.target)|raw }}
-			class="mt-auto rounded-pill px-5 py-3.5 text-center text-[15px] font-semibold transition
+			class="mt-auto rounded-pill text-center text-[15px] font-semibold transition
+				{{ waska ? 'px-[18px] py-[13px]' : 'px-5 py-3.5' }}
 				{{ card.featured
 					? 'bg-white text-[#0b3fd1] hover:bg-accent-tint'
 					: 'border border-white/30 text-white hover:bg-white hover:text-ink' }}">

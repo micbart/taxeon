@@ -198,6 +198,12 @@ function headSizeFields(string $prefix): array
             'allow_null' => 0,
             'wrapper' => ['width' => '33', 'class' => '', 'id' => ''],
         ]),
+        f($prefix . '.text_gap', 'Odstęp nad opisem', 'select', [
+            'choices' => ['' => 'Jak w rozmiarze', '16' => '16 px', '18' => '18 px', '20' => '20 px', '24' => '24 px', '26' => '26 px'],
+            'default_value' => '',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
         f($prefix . '.text_width', 'Szerokość opisu', 'select', [
             'choices' => [
                 '' => 'Cała kolumna',
@@ -389,6 +395,31 @@ $blocks['hero'] = [
             'default_value' => 'cards',
             'allow_null' => 0,
         ]),
+        f('hero.title_size', 'Rozmiar tytułu', 'select', [
+            'choices' => ['' => 'Jak w układzie', '62' => '62 px', '64' => '64 px', '66' => '66 px'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('hero.subtitle_size', 'Rozmiar podtytułu', 'select', [
+            'choices' => ['' => 'Jak w układzie', '26' => '26 px', '28' => '28 px'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('hero.text_gap', 'Odstęp nad opisem', 'select', [
+            'choices' => ['' => 'Jak w układzie', '22' => '22 px', '24' => '24 px', '26' => '26 px'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('hero.text_width', 'Szerokość opisu', 'select', [
+            'choices' => ['' => 'Jak w układzie', '56ch' => '56 znaków', '60ch' => '60 znaków', '62ch' => '62 znaki'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('hero.text_tone', 'Jasność opisu', 'select', [
+            'choices' => ['' => 'Jak w układzie', 'soft' => 'Przygaszony (76%)', 'strong' => 'Mocniejszy (78%)'],
+            'default_value' => '', 'allow_null' => 0,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
         f('hero.badge', 'Plakietka nad tytułem', 'text'),
         textGroup('hero.title', 'Tytuł', TAGS_HEADING, 'h1', 'textarea'),
         f('hero.subtitle', 'Podtytuł', 'text'),
@@ -448,6 +479,9 @@ $blocks['hero'] = [
                 f('hero.stats.value', 'Wartość', 'text', [
                     'required' => 1,
                     'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.stats.highlight', 'Wyróżniona', 'true_false', [
+                    'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
                 ]),
                 f('hero.stats.label', 'Podpis', 'text', [
                     'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
@@ -531,6 +565,9 @@ $blocks['features'] = [
             'sub_fields' => [
                 f('features.items.kicker', 'Nadkreślenie', 'text', [
                     'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
+                ]),
+                f('features.items.highlight', 'Karta wyróżniona', 'true_false', [
+                    'instructions' => 'Jaśniejsze nadkreślenie, opis i odnośnik na ciemnym tle.',
                 ]),
                 f('features.items.title', 'Tytuł', 'text', [
                     'required' => 1,
@@ -652,7 +689,12 @@ $blocks['panels'] = [
                     'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
                 ]),
                 f('panels.items.list_style', 'Styl listy', 'select', [
-                    'choices' => ['check' => 'Ptaszki', 'rows' => 'Wiersze z kreską'],
+                    'choices' => [
+                        'check' => 'Ptaszki',
+                        'check-lg' => 'Ptaszki większe (17 px)',
+                        'dash' => 'Myślniki (wykluczenia)',
+                        'rows' => 'Wiersze z kreską',
+                    ],
                     'default_value' => 'check',
                     'allow_null' => 0,
                 ]),

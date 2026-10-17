@@ -19,8 +19,9 @@
 	4: 'grid-cols-[1fr_108px_108px_108px_108px] max-sm:grid-cols-[1fr_58px_58px_58px_58px]'
 } %}
 {% set siatka = siatki[kolumny|length] ?: siatki[2] %}
+{% set waskie = kolumny|length > 3 %}
 
-<section class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
 	<div aria-hidden="true"
 		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
 
@@ -32,9 +33,11 @@
 		{% if fields.head_position == 'above' %}
 			{% include 'components/section-head.twig' with {
 				size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 				titleWidth: fields.title_width,
 				textWidth: fields.text_width,
+			textGap: fields.text_gap,
 				eyebrow: fields.eyebrow,
 				title: fields.title,
 				text: fields.text
@@ -48,7 +51,7 @@
 			{% endif %}
 
 			<div class="mt-11">
-				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka } only %}
+				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie } only %}
 			</div>
 		{% else %}
 			<div class="grid grid-cols-[minmax(280px,0.85fr)_minmax(420px,1.3fr)] items-start gap-16
@@ -56,9 +59,11 @@
 				<div>
 					{% include 'components/section-head.twig' with {
 						size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 						titleWidth: fields.title_width,
 						textWidth: fields.text_width,
+			textGap: fields.text_gap,
 						eyebrow: fields.eyebrow,
 						title: fields.title,
 						text: fields.text
@@ -72,7 +77,7 @@
 					{% endif %}
 				</div>
 
-				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka } only %}
+				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie } only %}
 			</div>
 		{% endif %}
 	</div>

@@ -1,5 +1,10 @@
-{% set eyebrowClass = 'font-display text-[13px] font-semibold tracking-[0.14em] uppercase
-	' ~ (color ?: (onDark ? 'text-accent-tint-2' : 'text-accent')) ~ ' ' ~ (class ?: '') %}
+{% set kolorTla = {
+	'navy': 'text-sky-2',
+	'gradient': 'text-accent-tint-2'
+} %}
+
+{% set eyebrowClass = 'text-[13px] font-semibold tracking-[0.14em] uppercase
+	' ~ (color ?: kolorTla[background] ?: (onDark ? 'text-accent-tint-2' : 'text-accent')) ~ ' ' ~ (class ?: '') %}
 
 {% if title is defined and title %}
 	{% include 'components/title-with-select-tag.twig' with {

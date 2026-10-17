@@ -13,11 +13,19 @@
 {% set uklad = fields.layout ?: 'cards' %}
 {% set split = uklad == 'split' %}
 {% set srodek = uklad == 'center' %}
+{% set rozmiaryTytulu = {
+	'62': 'text-[clamp(38px,4.4vw,62px)]',
+	'64': 'text-[clamp(38px,4.4vw,64px)]',
+	'66': 'text-[clamp(38px,4.4vw,66px)]'
+} %}
+{% set odstepyOpisu = { '22': 'mt-[22px]', '24': 'mt-6', '26': 'mt-[26px]' } %}
+{% set szerokosciOpisu = { '56ch': 'max-w-[56ch]', '60ch': 'max-w-[60ch]', '62ch': 'max-w-[62ch]' } %}
+{% set barwyOpisu = { 'soft': 'text-white/76 leading-[1.6]', 'strong': 'text-white/78 leading-[1.62]' } %}
 {% set akcent = fields.button_style == 'accent' %}
 {% set odstepy = { '72': 'pb-[72px]', '76': 'pb-[76px]', '84': 'pb-[84px]', '88': 'pb-[88px]' } %}
 {% set podstrona = uklad != 'cards' %}
 
-<section class="relative overflow-hidden bg-deep text-white">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden bg-deep text-white">
 	{% include 'components/hero-media.twig' with {
 		url: fields.video,
 		poster: fields.poster.sizes.large ?: fields.poster.url,
@@ -45,11 +53,12 @@
 			{% endif %}
 
 			{% if fields.title.text %}
-				<{{ fields.title.tag ?: 'h1' }} class="mt-[22px] font-display leading-none font-bold
+				<{{ fields.title.tag ?: 'h1' }} class="mt-[22px] font-display font-bold
 					tracking-[-0.035em] text-balance
-					{{ srodek
-						? 'mx-auto max-w-[20ch] text-[clamp(38px,4.4vw,62px)] leading-[1.03]'
-						: (split ? 'max-w-[20ch] text-[clamp(38px,4.4vw,64px)]' : 'max-w-[21ch] text-[clamp(38px,4.4vw,66px)]') }}">
+					{{ rozmiaryTytulu[fields.title_size]
+						?: (srodek or split ? 'text-[clamp(38px,4.4vw,64px)]' : 'text-[clamp(38px,4.4vw,66px)]') }}
+					{{ fields.title_size == '62' ? 'leading-[1.03]' : 'leading-none' }}
+					{{ srodek ? 'mx-auto max-w-[20ch]' : (split ? 'max-w-[20ch]' : 'max-w-[21ch]') }}">
 					{{ fields.title.text }}
 				</{{ fields.title.tag ?: 'h1' }}>
 			{% endif %}
@@ -58,18 +67,17 @@
 				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] text-sky-2
 					{{ podstrona
 						? (split ? 'max-w-[30ch]' : 'max-w-[32ch]') ~ ' text-[clamp(19px,1.9vw,26px)]'
-						: 'text-[clamp(20px,2vw,28px)]' }}">
+						: (fields.subtitle_size == '26' ? 'text-[clamp(19px,1.9vw,26px)]' : 'text-[clamp(20px,2vw,28px)]') }}">
 					{{ fields.subtitle }}
 				</p>
 			{% endif %}
 
 			{% if fields.text %}
-				<p class="{{ srodek ? 'text-[19px] text-white/78' : 'text-[18px] text-white/78' }}
-					{{ srodek
-						? 'mx-auto mt-6 max-w-[62ch] leading-[1.6]'
-						: (podstrona
-							? (split ? 'mt-6 leading-[1.62]' : 'mt-[26px] leading-[1.6]') ~ ' max-w-[62ch]'
-							: 'mt-[26px] max-w-[56ch] leading-[1.6]') }}">
+				<p class="{{ srodek ? 'text-[19px]' : 'text-[18px]' }}
+					{{ barwyOpisu[fields.text_tone] ?: (srodek or split ? 'text-white/78 leading-[1.62]' : 'text-white/76 leading-[1.6]') }}
+					{{ srodek ? 'mx-auto' }}
+					{{ odstepyOpisu[fields.text_gap] ?: (srodek or split ? 'mt-6' : 'mt-[26px]') }}
+					{{ szerokosciOpisu[fields.text_width] ?: (podstrona or srodek ? 'max-w-[62ch]' : 'max-w-[56ch]') }}">
 					{{ fields.text }}
 				</p>
 			{% endif %}
@@ -153,7 +161,7 @@
 
 				<div class="mt-14 grid max-w-[1180px] gap-5 {{ siatkaKart }}">
 					{% for card in fields.cards %}
-						{% include 'blocks/hero/card.twig' with { card: card, wide: false } only %}
+						{% include 'blocks/hero/card.twig' with { card: card, wide: false, waska: fields.cards|length > 3 } only %}
 					{% endfor %}
 				</div>
 			{% endif %}
@@ -166,7 +174,7 @@
 		{% if split and fields.cards|length %}
 			<div class="flex flex-col gap-5">
 				{% for card in fields.cards %}
-					{% include 'blocks/hero/card.twig' with { card: card, wide: true } only %}
+					{% include 'blocks/hero/card.twig' with { card: card, wide: true, waska: false } only %}
 				{% endfor %}
 			</div>
 		{% endif %}
@@ -180,11 +188,14 @@
 					<div class="flex flex-col items-center gap-0.5">
 						{% if stat.url %}
 							<a href="{{ stat.url }}" target="_blank" rel="noopener"
-								class="font-display text-[20px] font-semibold text-white transition hover:text-sky-2">
+								class="font-display text-[20px] font-semibold transition hover:text-sky-2
+									{{ stat.highlight ? 'text-sky' : 'text-white' }}">
 								{{ stat.value }}
 							</a>
 						{% else %}
-							<span class="font-display text-[20px] font-semibold">{{ stat.value }}</span>
+							<span class="font-display text-[20px] font-semibold {{ stat.highlight ? 'text-sky' : '' }}">
+								{{ stat.value }}
+							</span>
 						{% endif %}
 
 						<span class="text-[14px] text-white/60">{{ stat.label }}</span>

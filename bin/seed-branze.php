@@ -200,7 +200,7 @@ $strony['prawnicy'] = ['Księgowość dla kancelarii', [
              'eyebrow' => 'Wybór formy', 'note' => '', 'items' => [],
              'text' => 'Większość kancelarii indywidualnych w Polsce jest na ryczałcie 17% — to najprostsza forma, jeśli koszty są niskie. Jeśli wynajmujesz lokal, zatrudniasz aplikanta albo masz inne istotne wydatki, KPiR z podatkiem liniowym może być korzystniejszy. Policzymy oba scenariusze, zanim zaczniemy współpracę.',
              'links' => [['link' => $l('Ryczałt 99 zł', '/ryczalt/')], ['link' => $l('KPiR 169 zł', '/kpir/')]]],
-            ['title' => 'Co dostajesz w pakiecie', 'variant' => 'muted', 'list_style' => 'check',
+            ['title' => 'Co dostajesz w pakiecie', 'variant' => 'muted', 'list_style' => 'check-lg',
              'eyebrow' => '', 'text' => '', 'note' => '', 'links' => [],
              'items' => $pkt(['Prowadzenie ewidencji przychodów lub KPiR.',
                 'Rozliczenia VAT — JPK_V7, deklaracje miesięczne lub kwartalne.',

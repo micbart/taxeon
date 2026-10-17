@@ -6,6 +6,7 @@ $pkt = fn(array $x): array => array_map(fn($y) => ['text' => $y], $x);
 
 $hero = taxeon_seed_block('hero', [
     'space_bottom' => '88',
+    'title_size' => '62', 'text_gap' => '24',
     'layout' => 'split',
     'badge' => 'Aplikacja Taxeon · w cenie abonamentu',
     'title' => $t('Program księgowy online', 'h1'),

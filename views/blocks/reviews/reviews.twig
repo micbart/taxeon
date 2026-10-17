@@ -16,14 +16,16 @@
 {% set opinie = zGoogle ? profil.items : fields.items %}
 {% set wizytowka = fields.link.url ?: (profil.mapsUrl ?? '') %}
 
-<section class="{{ section.shell(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="{{ section.shell(fields) }}">
 	<div class="{{ section.container(fields) }}">
 		<div class="flex flex-wrap items-end justify-between gap-8">
 			{% include 'components/section-head.twig' with {
 			size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 			titleWidth: fields.title_width,
 			textWidth: fields.text_width,
+			textGap: fields.text_gap,
 				eyebrow: fields.eyebrow,
 				title: fields.title,
 				text: {
@@ -37,7 +39,7 @@
 			{% if wizytowka %}
 				<a href="{{ wizytowka }}" target="_blank" rel="noopener"
 					class="inline-flex items-center gap-2.5 rounded-pill border border-[#c6d4ea] bg-page
-						px-[22px] py-[13px] text-[15px] font-semibold whitespace-nowrap text-ink
+						px-[22px] py-[13px] text-[15px] font-semibold whitespace-nowrap text-accent
 						transition hover:border-accent hover:bg-soft">
 					{{ fields.link.title }} →
 				</a>

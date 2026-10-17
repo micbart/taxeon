@@ -13,7 +13,7 @@
 
 {% set wpisy = get_posts({ post_type: 'post', posts_per_page: fields.count > 0 ? fields.count : 6 }) %}
 
-<section class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
 	<div aria-hidden="true"
 		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
 
@@ -24,9 +24,11 @@
 	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
 			size: fields.head_size,
+			background: fields.background,
 			headWidth: fields.head_width,
 			titleWidth: fields.title_width,
 			textWidth: fields.text_width,
+			textGap: fields.text_gap,
 			eyebrow: fields.eyebrow,
 			title: fields.title,
 			text: fields.text

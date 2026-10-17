@@ -13,7 +13,7 @@
 
 {% set onDark = section.isDark(fields) %}
 
-<section class="relative overflow-hidden {{ section.shell(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
 	{% if onDark %}
 		<div aria-hidden="true"
 			class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
@@ -48,7 +48,7 @@
 					<a href="{{ fields.button_secondary.url }}"
 						{{ linkAttrs(fields.button_secondary.url, fields.button_secondary.target)|raw }}
 						class="rounded-pill border px-8 py-[17px] text-[16px] font-semibold transition
-							{{ onDark ? 'border-white/30 text-white hover:bg-white hover:text-ink' : 'border-line text-ink hover:bg-soft' }}">
+							{{ onDark ? 'border-white/32 text-white hover:bg-white hover:text-ink' : 'border-line text-ink hover:bg-soft' }}">
 						{{ fields.button_secondary.title }}
 					</a>
 				{% endif %}

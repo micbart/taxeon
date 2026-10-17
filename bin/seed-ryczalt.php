@@ -63,14 +63,15 @@ $wCenie = taxeon_seed_block('panels', [
             'note' => '',
         ],
         [
-            'title' => 'Za co dopłacasz osobno', 'variant' => 'muted', 'list_style' => 'check',
+            'title' => 'Co NIE jest w cenie', 'variant' => 'muted', 'list_style' => 'dash',
+            'text' => 'Jesteśmy uczciwi — kilka rzeczy jest płatnych dodatkowo:',
             'items' => array_map(fn($x) => ['text' => $x], [
                 'Kadry i płace, jeśli zatrudniasz pracownika — 80 zł/mies./os.',
                 'Rozliczenie podatku VAT — inny abonament.',
                 'Korekty dokumentów dostarczonych po terminie z winy klienta.',
                 'Rozliczenie roczne PIT — 69 zł.',
             ]),
-            'note' => 'Pełen cennik dodatkowy znajdziesz na stronie Cennik.',
+            'note' => 'Pełen cennik dodatkowy znajdziesz na <a href="' . home_url('/cennik/') . '">podstronie Cennik</a>.',
         ],
     ],
     'background' => 'gradient',

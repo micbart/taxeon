@@ -1,15 +1,18 @@
 {% set presety = {
 	'lg': {
 		'title': 'text-[clamp(32px,3.4vw,50px)] leading-[1.08]',
-		'text': 'mt-[18px] text-[18px] leading-[1.6]'
+		'text': 'text-[18px] leading-[1.6]',
+		'gap': 'mt-[18px]'
 	},
 	'md': {
 		'title': 'text-[clamp(30px,3.1vw,46px)] leading-[1.1]',
-		'text': 'mt-[18px] text-[17px] leading-[1.65]'
+		'text': 'text-[17px] leading-[1.65]',
+		'gap': 'mt-[18px]'
 	},
 	'sm': {
 		'title': 'text-[clamp(28px,3vw,42px)] leading-[1.1]',
-		'text': 'mt-4 text-[17px] leading-[1.66]'
+		'text': 'text-[17px] leading-[1.66]',
+		'gap': 'mt-4'
 	}
 } %}
 
@@ -28,13 +31,15 @@
 } %}
 
 {% set klasaTytulu = (titleSize ?: preset.title) ~ ' ' ~ (szerokosciTytulu[titleWidth] ?: '') %}
-{% set klasaTekstu = (textSize ?: preset.text) ~ ' ' ~ (szerokosciTekstu[textWidth] ?: '') %}
+{% set odstepyTekstu = { '16': 'mt-4', '18': 'mt-[18px]', '20': 'mt-5', '24': 'mt-6', '26': 'mt-[26px]' } %}
+
+{% set klasaTekstu = (textSize ?: preset.text) ~ ' ' ~ (odstepyTekstu[textGap] ?: preset.gap)
+	~ ' ' ~ (szerokosciTekstu[textWidth] ?: '') %}
 
 {% if title.text or eyebrow.text %}
-	<div class="{{ center ? 'mx-auto text-center' }}
-		{{ link.url ? 'flex flex-wrap items-end justify-between gap-5' }}">
+	<div class="{{ center ? 'mx-auto text-center' }}">
 		<div class="{{ szerokosciGlowy[headWidth] ?: '' }}">
-			{% include 'components/eyebrow.twig' with { title: eyebrow, onDark: onDark } only %}
+			{% include 'components/eyebrow.twig' with { title: eyebrow, onDark: onDark, background: background } only %}
 
 			{% include 'components/title-with-select-tag.twig' with {
 				title: title,
@@ -46,17 +51,18 @@
 			{% include 'components/title-with-select-tag.twig' with {
 				title: text,
 				defaultTag: 'p',
-				titleClass: 'text-pretty ' ~ klasaTekstu ~ ' ' ~ (onDark ? 'text-white/82' : 'text-ink-3')
+				titleClass: 'text-pretty ' ~ klasaTekstu ~ ' '
+					~ (onDark ? (background == 'navy' ? 'text-white/76' : 'text-white/82') : 'text-ink-3')
 			} only %}
-		</div>
 
-		{% if link.url %}
-			<a href="{{ link.url }}"
-				{{ linkAttrs(link.url, link.target)|raw }}
-				class="mb-1.5 inline-flex items-center gap-[7px] text-[16px] font-semibold
-					{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
-				{{ link.title }} →
-			</a>
-		{% endif %}
+			{% if link.url %}
+				<a href="{{ link.url }}"
+					{{ linkAttrs(link.url, link.target)|raw }}
+					class="mt-5 inline-flex items-center gap-[7px] text-[15px] font-semibold
+						{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
+					{{ link.title }} →
+				</a>
+			{% endif %}
+		</div>
 	</div>
 {% endif %}
