@@ -209,6 +209,214 @@
             ]
         },
         {
+            "key": "field_a5dde3fd8b1d9",
+            "label": "Odnośnik pod opisem",
+            "name": "link",
+            "type": "link",
+            "instructions": "Odnośnik pod opisem po lewej stronie.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_ce16b137cfd42",
+            "label": "Dopisek pod przyciskiem",
+            "name": "note",
+            "type": "text",
+            "instructions": "Drobny dopisek pod przyciskiem.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_bbff0b584f329",
+            "label": "Kolumny listy",
+            "name": "columns",
+            "type": "select",
+            "instructions": "Na ile kolumn rozbić listę po prawej.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Jedna",
+                "2": "Dwie",
+                "3": "Trzy"
+            },
+            "default_value": "1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_1138320f479cd",
+            "label": "Układ wiersza",
+            "name": "row_style",
+            "type": "select",
+            "instructions": "Wygląd pojedynczego wiersza listy.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "inline": "Opis i wartość w jednej linii",
+                "numbered": "Numer i treść",
+                "stacked": "Tytuł nad opisem",
+                "icon": "Kafelki z ikoną",
+                "check": "Karty z ptaszkiem"
+            },
+            "default_value": "inline",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6504c01c2c824",
+            "label": "Wiersze",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "Wiersze listy. Pola „wartość” używamy w układzie z ceną po prawej.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_3eb6908c2e22a",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj wiersz",
+            "sub_fields": [
+                {
+                    "key": "field_3eb6908c2e22a",
+                    "label": "Opis",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_b9214348824ef",
+                    "label": "Wartość albo numer",
+                    "name": "value",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_6a3da1aba9b7f",
+                    "label": "Kolor wartości",
+                    "name": "tone",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "default": "Zwykły",
+                        "muted": "Przygaszony",
+                        "free": "Wyróżniony"
+                    },
+                    "default_value": "default",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_c483f3770e3e4",
+                    "label": "Opis pod tytułem",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_2ba30e0fa83a9",
+            "label": "Wygląd",
+            "name": "tab_look",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_a67aa2710b6f1",
             "label": "Rozmiar nagłówka",
             "name": "head_size",
@@ -347,40 +555,6 @@
             "placeholder": ""
         },
         {
-            "key": "field_a5dde3fd8b1d9",
-            "label": "Odnośnik pod opisem",
-            "name": "link",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_ce16b137cfd42",
-            "label": "Dopisek pod przyciskiem",
-            "name": "note",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_48f48954fee5b",
             "label": "Położenie nagłówka",
             "name": "head_position",
@@ -458,164 +632,6 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_bbff0b584f329",
-            "label": "Kolumny listy",
-            "name": "columns",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "1": "Jedna",
-                "2": "Dwie",
-                "3": "Trzy"
-            },
-            "default_value": "1",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_1138320f479cd",
-            "label": "Układ wiersza",
-            "name": "row_style",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "inline": "Opis i wartość w jednej linii",
-                "numbered": "Numer i treść",
-                "stacked": "Tytuł nad opisem",
-                "icon": "Kafelki z ikoną",
-                "check": "Karty z ptaszkiem"
-            },
-            "default_value": "inline",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_6504c01c2c824",
-            "label": "Wiersze",
-            "name": "items",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_3eb6908c2e22a",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj wiersz",
-            "sub_fields": [
-                {
-                    "key": "field_3eb6908c2e22a",
-                    "label": "Opis",
-                    "name": "label",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "70",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_b9214348824ef",
-                    "label": "Wartość albo numer",
-                    "name": "value",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "30",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_6a3da1aba9b7f",
-                    "label": "Kolor wartości",
-                    "name": "tone",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "default": "Zwykły",
-                        "muted": "Przygaszony",
-                        "free": "Wyróżniony"
-                    },
-                    "default_value": "default",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_c483f3770e3e4",
-                    "label": "Opis pod tytułem",
-                    "name": "text",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 2,
-                    "new_lines": ""
-                }
-            ]
         },
         {
             "key": "field_a65b4237190d2",

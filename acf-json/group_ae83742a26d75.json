@@ -209,6 +209,186 @@
             ]
         },
         {
+            "key": "field_b086354da7d54",
+            "label": "Rozmiar kart",
+            "name": "size",
+            "type": "select",
+            "instructions": "Duże karty mają tytuł 34 px, małe 20 px i kolorowy pasek.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "lg": "Duże (tytuł 34 px)",
+                "md": "Średnie (tytuł 26 px)",
+                "sm": "Małe (tytuł 20 px, z paskiem)"
+            },
+            "default_value": "lg",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_f044a2df85840",
+            "label": "Kolumny",
+            "name": "columns",
+            "type": "select",
+            "instructions": "Na ile kolumn układamy karty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "Dwie",
+                "3": "Trzy",
+                "4": "Cztery"
+            },
+            "default_value": "2",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_8ba11e162c402",
+            "label": "Karty",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "Karty w siatce. Wyróżniona karta dostaje jaśniejszy akcent.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_38cf68ae7f666",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj kartę",
+            "sub_fields": [
+                {
+                    "key": "field_2cb0eb0934196",
+                    "label": "Nadkreślenie",
+                    "name": "kicker",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_8e285ad3e9c1c",
+                    "label": "Karta wyróżniona",
+                    "name": "highlight",
+                    "type": "true_false",
+                    "instructions": "Jaśniejsze nadkreślenie, opis i odnośnik na ciemnym tle.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_38cf68ae7f666",
+                    "label": "Tytuł",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_55b86e28240bd",
+                    "label": "Opis",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_70792a03325e5",
+                    "label": "Odnośnik",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
+            "key": "field_feef8dddaa29e",
+            "label": "Wygląd",
+            "name": "tab_look",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_fc8bbf1323fde",
             "label": "Rozmiar nagłówka",
             "name": "head_size",
@@ -345,170 +525,6 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_b086354da7d54",
-            "label": "Rozmiar kart",
-            "name": "size",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "lg": "Duże (tytuł 34 px)",
-                "md": "Średnie (tytuł 26 px)",
-                "sm": "Małe (tytuł 20 px, z paskiem)"
-            },
-            "default_value": "lg",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_f044a2df85840",
-            "label": "Kolumny",
-            "name": "columns",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "2": "Dwie",
-                "3": "Trzy",
-                "4": "Cztery"
-            },
-            "default_value": "2",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_8ba11e162c402",
-            "label": "Karty",
-            "name": "items",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_38cf68ae7f666",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj kartę",
-            "sub_fields": [
-                {
-                    "key": "field_2cb0eb0934196",
-                    "label": "Nadkreślenie",
-                    "name": "kicker",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "40",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_8e285ad3e9c1c",
-                    "label": "Karta wyróżniona",
-                    "name": "highlight",
-                    "type": "true_false",
-                    "instructions": "Jaśniejsze nadkreślenie, opis i odnośnik na ciemnym tle.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 1,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
-                },
-                {
-                    "key": "field_38cf68ae7f666",
-                    "label": "Tytuł",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "60",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_55b86e28240bd",
-                    "label": "Opis",
-                    "name": "text",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 3,
-                    "new_lines": ""
-                },
-                {
-                    "key": "field_70792a03325e5",
-                    "label": "Odnośnik",
-                    "name": "link",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array"
-                }
-            ]
         },
         {
             "key": "field_77f8eacaf8a51",

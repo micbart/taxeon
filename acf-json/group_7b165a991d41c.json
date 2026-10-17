@@ -85,38 +85,11 @@
             ]
         },
         {
-            "key": "field_4878d496807d2",
-            "label": "Rozmiar tytułu",
-            "name": "title_size",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "lg": "Duży (strona główna)",
-                "md": "Standardowy (podstrony)",
-                "sm": "Mniejszy (FAQ)",
-                "xs": "Najmniejszy (54 px)"
-            },
-            "default_value": "md",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_2eabb9317a8f8",
             "label": "Opis",
             "name": "text",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Jedno zdanie pod tytułem.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -159,6 +132,49 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_e77ecd72edd17",
+            "label": "Wygląd",
+            "name": "tab_look",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_4878d496807d2",
+            "label": "Rozmiar tytułu",
+            "name": "title_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "lg": "Duży (strona główna)",
+                "md": "Standardowy (podstrony)",
+                "sm": "Mniejszy (FAQ)",
+                "xs": "Najmniejszy (54 px)"
+            },
+            "default_value": "md",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_a8ac696ae884e",

@@ -23,7 +23,7 @@
             "label": "Układ",
             "name": "layout",
             "type": "select",
-            "instructions": "",
+            "instructions": "Decyduje, co pokazujemy obok tekstu: karty, panel boczny, sam tekst albo układ wyśrodkowany.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -46,144 +46,11 @@
             "placeholder": ""
         },
         {
-            "key": "field_1fdf3b6155c3a",
-            "label": "Rozmiar tytułu",
-            "name": "title_size",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Jak w układzie",
-                "62": "62 px",
-                "64": "64 px",
-                "66": "66 px"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_e5db94c6d4a01",
-            "label": "Rozmiar podtytułu",
-            "name": "subtitle_size",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Jak w układzie",
-                "26": "26 px",
-                "28": "28 px"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_c6b3d82c83187",
-            "label": "Odstęp nad opisem",
-            "name": "text_gap",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Jak w układzie",
-                "22": "22 px",
-                "24": "24 px",
-                "26": "26 px"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_24912b5c832ca",
-            "label": "Szerokość opisu",
-            "name": "text_width",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Jak w układzie",
-                "56ch": "56 znaków",
-                "60ch": "60 znaków",
-                "62ch": "62 znaki"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_4cd5ea72549f9",
-            "label": "Jasność opisu",
-            "name": "text_tone",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Jak w układzie",
-                "soft": "Przygaszony (76%)",
-                "strong": "Mocniejszy (78%)"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_514cf14b1b664",
             "label": "Plakietka nad tytułem",
             "name": "badge",
             "type": "text",
-            "instructions": "",
+            "instructions": "Krótki dopisek nad tytułem, np. „Biuro rachunkowe online · 14 lat na rynku”.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -268,7 +135,7 @@
             "label": "Podtytuł",
             "name": "subtitle",
             "type": "text",
-            "instructions": "",
+            "instructions": "Jedno zdanie pod tytułem, większą czcionką.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -306,7 +173,7 @@
             "label": "Pokaż okruszki",
             "name": "show_breadcrumbs",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Ścieżka nawigacji nad plakietką.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -361,7 +228,7 @@
             "label": "Styl przycisków",
             "name": "button_style",
             "type": "select",
-            "instructions": "",
+            "instructions": "Akcent to duży niebieski przycisk, jasny to biała pigułka.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -585,7 +452,15 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -604,7 +479,15 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -623,7 +506,15 @@
             "type": "link",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -760,9 +651,17 @@
             "label": "Hasła z ptaszkiem",
             "name": "checks",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Rząd haseł pod przyciskiem — używany w układzie wyśrodkowanym.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "center"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -796,41 +695,28 @@
             ]
         },
         {
-            "key": "field_601bf77ddaa01",
-            "label": "Odstęp u dołu",
-            "name": "space_bottom",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "": "Zależnie od układu",
-                "72": "72 px",
-                "76": "76 px",
-                "84": "84 px",
-                "88": "88 px"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_7e59c7e0809b4",
             "label": "Karty",
             "name": "cards",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "W układzie „Karty” leżą pod tekstem, w układzie „Panel z boku” — obok niego.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "split"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -1056,6 +942,191 @@
                     "return_format": "array"
                 }
             ]
+        },
+        {
+            "key": "field_8131cbb0b56f8",
+            "label": "Wygląd",
+            "name": "tab_look",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_1fdf3b6155c3a",
+            "label": "Rozmiar tytułu",
+            "name": "title_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w układzie",
+                "62": "62 px",
+                "64": "64 px",
+                "66": "66 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_e5db94c6d4a01",
+            "label": "Rozmiar podtytułu",
+            "name": "subtitle_size",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_f01b32a10a5a3",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w układzie",
+                "26": "26 px",
+                "28": "28 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_c6b3d82c83187",
+            "label": "Odstęp nad opisem",
+            "name": "text_gap",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w układzie",
+                "22": "22 px",
+                "24": "24 px",
+                "26": "26 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_24912b5c832ca",
+            "label": "Szerokość opisu",
+            "name": "text_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w układzie",
+                "56ch": "56 znaków",
+                "60ch": "60 znaków",
+                "62ch": "62 znaki"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_4cd5ea72549f9",
+            "label": "Jasność opisu",
+            "name": "text_tone",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Jak w układzie",
+                "soft": "Przygaszony (76%)",
+                "strong": "Mocniejszy (78%)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_601bf77ddaa01",
+            "label": "Odstęp u dołu",
+            "name": "space_bottom",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Zależnie od układu",
+                "72": "72 px",
+                "76": "76 px",
+                "84": "84 px",
+                "88": "88 px"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_52829fa237393",

@@ -209,6 +209,226 @@
             ]
         },
         {
+            "key": "field_035716ba1ff5c",
+            "label": "Odnośnik do wizytówki",
+            "name": "link",
+            "type": "link",
+            "instructions": "Przycisk obok nagłówka, prowadzi do wizytówki Google.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_add7aeecce688",
+            "label": "Skąd opinie",
+            "name": "source",
+            "type": "select",
+            "instructions": "Z profilu Google pobieramy opinie automatycznie; ręczne wpisujesz sam.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "google": "Z profilu Google",
+                "manual": "Wpisane ręcznie"
+            },
+            "default_value": "google",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_a7a216499ba05",
+            "label": "Które opinie pokazać",
+            "name": "google_items",
+            "type": "checkbox",
+            "instructions": "Lista pochodzi z ostatniego pobrania. Bez zaznaczenia pokazujemy wszystkie.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_add7aeecce688",
+                        "operator": "==",
+                        "value": "google"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 1
+        },
+        {
+            "key": "field_a579f1ca22cd5",
+            "label": "Maksymalna liczba kart",
+            "name": "limit",
+            "type": "number",
+            "instructions": "Ile kart pokazać. Cztery wypełniają jeden rząd.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_add7aeecce688",
+                        "operator": "==",
+                        "value": "google"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 8,
+            "min": 1,
+            "max": 12,
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_18ca6461a9480",
+            "label": "Opinie",
+            "name": "items",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_add7aeecce688",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_ccb9036ae8290",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Dodaj opinię",
+            "sub_fields": [
+                {
+                    "key": "field_ccb9036ae8290",
+                    "label": "Autor",
+                    "name": "author",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_2ae913923d8ca",
+                    "label": "Kiedy",
+                    "name": "when",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_70627f47b9ff4",
+                    "label": "Ocena",
+                    "name": "rating",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 5,
+                    "min": 1,
+                    "max": 5,
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_431828209bb5e",
+                    "label": "Treść",
+                    "name": "text",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_2e1ce76fa9ed6",
+            "label": "Wygląd",
+            "name": "tab_look",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_3ac2a962f0001",
             "label": "Rozmiar nagłówka",
             "name": "head_size",
@@ -345,210 +565,6 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_035716ba1ff5c",
-            "label": "Odnośnik do wizytówki",
-            "name": "link",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_add7aeecce688",
-            "label": "Skąd opinie",
-            "name": "source",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "google": "Z profilu Google",
-                "manual": "Wpisane ręcznie"
-            },
-            "default_value": "google",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_a7a216499ba05",
-            "label": "Które opinie pokazać",
-            "name": "google_items",
-            "type": "checkbox",
-            "instructions": "Lista pochodzi z ostatniego pobrania. Bez zaznaczenia pokazujemy wszystkie.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "google"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": [],
-            "default_value": [],
-            "return_format": "value",
-            "allow_custom": 0,
-            "layout": "vertical",
-            "toggle": 1
-        },
-        {
-            "key": "field_a579f1ca22cd5",
-            "label": "Maksymalna liczba kart",
-            "name": "limit",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "google"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 8,
-            "min": 1,
-            "max": 12,
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_18ca6461a9480",
-            "label": "Opinie",
-            "name": "items",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "manual"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_ccb9036ae8290",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Dodaj opinię",
-            "sub_fields": [
-                {
-                    "key": "field_ccb9036ae8290",
-                    "label": "Autor",
-                    "name": "author",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "40",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_2ae913923d8ca",
-                    "label": "Kiedy",
-                    "name": "when",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "35",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_70627f47b9ff4",
-                    "label": "Ocena",
-                    "name": "rating",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "25",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": 5,
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_431828209bb5e",
-                    "label": "Treść",
-                    "name": "text",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 3,
-                    "new_lines": ""
-                }
-            ]
         },
         {
             "key": "field_77559255dca86",

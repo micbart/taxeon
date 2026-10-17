@@ -386,6 +386,7 @@ $blocks['hero'] = [
     'title' => 'Blok: Hero',
     'fields' => [
         f('hero.layout', 'Układ', 'select', [
+            'instructions' => 'Decyduje, co pokazujemy obok tekstu: karty, panel boczny, sam tekst albo układ wyśrodkowany.',
             'choices' => [
                 'cards' => 'Karty pod tekstem (strona główna)',
                 'split' => 'Dwie kolumny z panelem (podstrony)',
@@ -401,6 +402,7 @@ $blocks['hero'] = [
             'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
         ]),
         f('hero.subtitle_size', 'Rozmiar podtytułu', 'select', [
+            'conditional_logic' => [[['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'cards']]],
             'choices' => ['' => 'Jak w układzie', '26' => '26 px', '28' => '28 px'],
             'default_value' => '', 'allow_null' => 0,
             'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
@@ -420,11 +422,17 @@ $blocks['hero'] = [
             'default_value' => '', 'allow_null' => 0,
             'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
         ]),
-        f('hero.badge', 'Plakietka nad tytułem', 'text'),
+        f('hero.badge', 'Plakietka nad tytułem', 'text', [
+            'instructions' => 'Krótki dopisek nad tytułem, np. „Biuro rachunkowe online · 14 lat na rynku”.',
+        ]),
         textGroup('hero.title', 'Tytuł', TAGS_HEADING, 'h1', 'textarea'),
-        f('hero.subtitle', 'Podtytuł', 'text'),
+        f('hero.subtitle', 'Podtytuł', 'text', [
+            'instructions' => 'Jedno zdanie pod tytułem, większą czcionką.',
+        ]),
         f('hero.text', 'Opis', 'textarea', ['rows' => 3]),
-        f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false'),
+        f('hero.show_breadcrumbs', 'Pokaż okruszki', 'true_false', [
+            'instructions' => 'Ścieżka nawigacji nad plakietką.',
+        ]),
 
         f('hero.chips', 'Pigułki pod opisem', 'repeater', [
             'button_label' => 'Dodaj pigułkę',
@@ -433,6 +441,7 @@ $blocks['hero'] = [
             'sub_fields' => [f('hero.chips.link', 'Odnośnik', 'link', ['required' => 1])],
         ]),
         f('hero.button_style', 'Styl przycisków', 'select', [
+            'instructions' => 'Akcent to duży niebieski przycisk, jasny to biała pigułka.',
             'choices' => ['light' => 'Biały z obrysowanym obok', 'accent' => 'Jeden duży w akcencie'],
             'default_value' => 'light',
             'allow_null' => 0,
@@ -467,9 +476,15 @@ $blocks['hero'] = [
         ]),
 
         f('hero.tab_note', 'Ramka pod kartami', 'tab'),
-        f('hero.note_title', 'Tytuł', 'text'),
-        f('hero.note_text', 'Opis', 'text'),
-        f('hero.note_link', 'Odnośnik', 'link'),
+        f('hero.note_title', 'Tytuł', 'text', [
+            'conditional_logic' => [[['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'cards']]],
+        ]),
+        f('hero.note_text', 'Opis', 'text', [
+            'conditional_logic' => [[['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'cards']]],
+        ]),
+        f('hero.note_link', 'Odnośnik', 'link', [
+            'conditional_logic' => [[['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'cards']]],
+        ]),
 
         f('hero.tab_stats', 'Pasek liczb', 'tab'),
         f('hero.stats', 'Liczby', 'repeater', [
@@ -492,6 +507,8 @@ $blocks['hero'] = [
 
         f('hero.tab_cards', 'Karty cennika', 'tab'),
         f('hero.checks', 'Hasła z ptaszkiem', 'repeater', [
+            'instructions' => 'Rząd haseł pod przyciskiem — używany w układzie wyśrodkowanym.',
+            'conditional_logic' => [[['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'center']]],
             'layout' => 'table',
             'button_label' => 'Dodaj hasło',
             'sub_fields' => [f('hero.checks.text', 'Treść', 'text', ['required' => 1])],
@@ -503,6 +520,11 @@ $blocks['hero'] = [
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('hero.cards', 'Karty', 'repeater', [
+            'instructions' => 'W układzie „Karty” leżą pod tekstem, w układzie „Panel z boku” — obok niego.',
+            'conditional_logic' => [
+                [['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'cards']],
+                [['field' => key_for('hero.layout'), 'operator' => '==', 'value' => 'split']],
+            ],
             'button_label' => 'Dodaj kartę',
             'collapsed' => key_for('hero.cards.label'),
             'sub_fields' => [
@@ -548,18 +570,21 @@ $blocks['features'] = [
     'title' => 'Blok: Karty',
     'fields' => array_merge(sectionHead('features'), [
         f('features.size', 'Rozmiar kart', 'select', [
+            'instructions' => 'Duże karty mają tytuł 34 px, małe 20 px i kolorowy pasek.',
             'choices' => ['lg' => 'Duże (tytuł 34 px)', 'md' => 'Średnie (tytuł 26 px)', 'sm' => 'Małe (tytuł 20 px, z paskiem)'],
             'default_value' => 'lg',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('features.columns', 'Kolumny', 'select', [
+            'instructions' => 'Na ile kolumn układamy karty.',
             'choices' => ['2' => 'Dwie', '3' => 'Trzy', '4' => 'Cztery'],
             'default_value' => '2',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('features.items', 'Karty', 'repeater', [
+            'instructions' => 'Karty w siatce. Wyróżniona karta dostaje jaśniejszy akcent.',
             'button_label' => 'Dodaj kartę',
             'collapsed' => key_for('features.items.title'),
             'sub_fields' => [
@@ -583,7 +608,8 @@ $blocks['features'] = [
 $blocks['latest-posts'] = [
     'title' => 'Blok: Baza wiedzy',
     'fields' => array_merge(sectionHead('latest_posts'), [
-        f('latest_posts.count', 'Ile wpisów', 'number', ['default_value' => 6, 'min' => 1, 'max' => 12]),
+        f('latest_posts.count', 'Ile wpisów', 'number', [
+            'instructions' => 'Ile wpisów pobrać z bazy wiedzy.','default_value' => 6, 'min' => 1, 'max' => 12]),
 
         f('latest_posts.tab_banner', 'Baner', 'tab'),
         f('latest_posts.banner_title', 'Tytuł', 'text'),
@@ -595,8 +621,12 @@ $blocks['latest-posts'] = [
 $blocks['list'] = [
     'title' => 'Blok: Lista z nagłówkiem',
     'fields' => array_merge(sectionHead('list'), [
-        f('list.link', 'Odnośnik pod opisem', 'link'),
-        f('list.note', 'Dopisek pod przyciskiem', 'text'),
+        f('list.link', 'Odnośnik pod opisem', 'link', [
+            'instructions' => 'Odnośnik pod opisem po lewej stronie.',
+        ]),
+        f('list.note', 'Dopisek pod przyciskiem', 'text', [
+            'instructions' => 'Drobny dopisek pod przyciskiem.',
+        ]),
         f('list.head_position', 'Położenie nagłówka', 'select', [
             'choices' => ['left' => 'Po lewej', 'above' => 'Nad listą'],
             'default_value' => 'left',
@@ -623,12 +653,14 @@ $blocks['list'] = [
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('list.columns', 'Kolumny listy', 'select', [
+            'instructions' => 'Na ile kolumn rozbić listę po prawej.',
             'choices' => ['1' => 'Jedna', '2' => 'Dwie', '3' => 'Trzy'],
             'default_value' => '1',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('list.row_style', 'Układ wiersza', 'select', [
+            'instructions' => 'Wygląd pojedynczego wiersza listy.',
             'choices' => [
                 'inline' => 'Opis i wartość w jednej linii',
                 'numbered' => 'Numer i treść',
@@ -641,6 +673,7 @@ $blocks['list'] = [
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
         f('list.items', 'Wiersze', 'repeater', [
+            'instructions' => 'Wiersze listy. Pola „wartość” używamy w układzie z ceną po prawej.',
             'button_label' => 'Dodaj wiersz',
             'collapsed' => key_for('list.items.label'),
             'sub_fields' => [
@@ -666,6 +699,7 @@ $blocks['panels'] = [
     'title' => 'Blok: Panele',
     'fields' => array_merge(sectionHead('panels'), [
         f('panels.items', 'Panele', 'repeater', [
+            'instructions' => 'Dwa lub trzy panele obok siebie. Każdy ma własny wariant kolorystyczny i listę.',
             'button_label' => 'Dodaj panel',
             'max' => 2,
             'collapsed' => key_for('panels.items.title'),
@@ -699,6 +733,7 @@ $blocks['panels'] = [
                     'allow_null' => 0,
                 ]),
                 f('panels.items.links', 'Przyciski na dole', 'repeater', [
+                    'layout' => 'table',
                     'button_label' => 'Dodaj przycisk',
                     'max' => 2,
                     'sub_fields' => [f('panels.items.links.link', 'Odnośnik', 'link', ['required' => 1])],
@@ -719,8 +754,11 @@ $blocks['panels'] = [
 $blocks['reviews'] = [
     'title' => 'Blok: Opinie',
     'fields' => array_merge(sectionHead('reviews'), [
-        f('reviews.link', 'Odnośnik do wizytówki', 'link'),
+        f('reviews.link', 'Odnośnik do wizytówki', 'link', [
+            'instructions' => 'Przycisk obok nagłówka, prowadzi do wizytówki Google.',
+        ]),
         f('reviews.source', 'Skąd opinie', 'select', [
+            'instructions' => 'Z profilu Google pobieramy opinie automatycznie; ręczne wpisujesz sam.',
             'choices' => ['google' => 'Z profilu Google', 'manual' => 'Wpisane ręcznie'],
             'default_value' => 'google',
             'allow_null' => 0,
@@ -731,6 +769,7 @@ $blocks['reviews'] = [
             'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
         ]),
         f('reviews.limit', 'Maksymalna liczba kart', 'number', [
+            'instructions' => 'Ile kart pokazać. Cztery wypełniają jeden rząd.',
             'default_value' => 8, 'min' => 1, 'max' => 12,
             'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
         ]),
@@ -765,6 +804,7 @@ $blocks['tabs'] = [
             textGroup('tabs.title', 'Tytuł', TAGS_HEADING, 'h2'),
             ...headSizeFields('tabs'),
             f('tabs.items', 'Zakładki', 'repeater', [
+            'instructions' => 'Każda zakładka to jeden krok: przycisk po lewej i opis po prawej.',
                 'button_label' => 'Dodaj zakładkę',
                 'collapsed' => key_for('tabs.items.title'),
                 'sub_fields' => [
@@ -794,11 +834,13 @@ $blocks['videos'] = [
     'title' => 'Blok: Filmy',
     'fields' => array_merge(sectionHead('videos'), [
         f('videos.columns', 'Kolumny', 'select', [
+            'instructions' => 'Dwie kolumny to układ z makiety.',
             'choices' => ['2' => 'Dwie', '3' => 'Trzy'],
             'default_value' => '2',
             'allow_null' => 0,
         ]),
         f('videos.items', 'Filmy', 'repeater', [
+            'instructions' => 'Wklej zwykły odnośnik do filmu na YouTube — miniaturę pobierzemy automatycznie.',
             'button_label' => 'Dodaj film',
             'collapsed' => key_for('videos.items.title'),
             'sub_fields' => [
@@ -824,78 +866,18 @@ $blocks['cta'] = [
             'default_value' => 'md',
             'allow_null' => 0,
         ]),
-        f('cta.text', 'Opis', 'textarea', ['rows' => 2]),
+        f('cta.text', 'Opis', 'textarea', [
+            'instructions' => 'Jedno zdanie pod tytułem.','rows' => 2]),
         f('cta.button_primary', 'Przycisk główny', 'link'),
         f('cta.button_secondary', 'Przycisk dodatkowy', 'link'),
     ],
-];
-
-$blocks['content-media'] = [
-    'title' => 'Blok: Treść + media',
-    'fields' => array_merge(sectionHead('media'), [
-        f('media.media_position', 'Media po stronie', 'select', [
-            'choices' => ['right' => 'Prawej', 'left' => 'Lewej'],
-            'default_value' => 'right',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
-        f('media.frame', 'Ramka', 'select', [
-            'choices' => ['none' => 'Bez ramki', 'window' => 'Okno aplikacji'],
-            'default_value' => 'none',
-            'allow_null' => 0,
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
-        f('media.frame_label', 'Podpis w pasku okna', 'text', [
-            'conditional_logic' => [[['field' => key_for('media.frame'), 'operator' => '==', 'value' => 'window']]],
-        ]),
-        f('media.media_type', 'Rodzaj mediów', 'select', [
-            'choices' => ['image' => 'Zdjęcie', 'embed' => 'Osadzenie (iframe)'],
-            'default_value' => 'image',
-            'allow_null' => 0,
-        ]),
-        f('media.image', 'Zdjęcie', 'image', [
-            'conditional_logic' => [[['field' => key_for('media.media_type'), 'operator' => '==', 'value' => 'image']]],
-        ]),
-        f('media.embed_url', 'Adres osadzenia', 'text', [
-            'instructions' => 'Adres do iframe — np. kalendarz rezerwacji albo wideo.',
-            'conditional_logic' => [[['field' => key_for('media.media_type'), 'operator' => '==', 'value' => 'embed']]],
-        ]),
-        f('media.embed_height', 'Wysokość osadzenia (px)', 'number', [
-            'default_value' => 720, 'min' => 200,
-            'conditional_logic' => [[['field' => key_for('media.media_type'), 'operator' => '==', 'value' => 'embed']]],
-        ]),
-        f('media.items', 'Lista punktów', 'repeater', [
-            'button_label' => 'Dodaj punkt',
-            'instructions' => 'Sam tekst daje zwykły punkt z ptaszkiem. Tytuł i ikona zamieniają go w pozycję z nagłówkiem.',
-            'collapsed' => key_for('media.items.text'),
-            'sub_fields' => [
-                icon('media.items.icon', 'Ikona', ['wrapper' => ['width' => '30', 'class' => '', 'id' => '']]),
-                textGroup('media.items.title', 'Tytuł', TAGS_HEADING, 'h3'),
-                f('media.items.text', 'Tekst', 'text', ['required' => 1]),
-            ],
-        ]),
-        f('media.align', 'Wyrównanie kolumn', 'select', [
-            'choices' => ['center' => 'Do środka', 'start' => 'Do górnej krawędzi'],
-            'default_value' => 'center',
-            'allow_null' => 0,
-            'instructions' => 'Przy wysokim osadzeniu (kalendarz) tekst wyśrodkowany wisi w połowie ramki.',
-            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
-        ]),
-        f('media.link', 'Link tekstowy', 'link'),
-        buttonGroup('media.button', 'Przycisk', 'accent'),
-        f('media.tab_footnote', 'Dopisek', 'tab'),
-        f('media.footnote_label', 'Dopisek — wstęp', 'text', [
-            'instructions' => 'Np. „Wolisz porozmawiać od razu?”. Pokazuje się nad odnośnikiem, oddzielony kreską.',
-        ]),
-        icon('media.footnote_icon', 'Dopisek — ikona', ['instructions' => 'Puste = słuchawka telefonu.']),
-        f('media.footnote_link', 'Dopisek — odnośnik', 'link'),
-    ]),
 ];
 
 $blocks['timeline'] = [
     'title' => 'Blok: Kroki',
     'fields' => array_merge(sectionHead('timeline'), [
         f('timeline.items', 'Kroki', 'repeater', [
+            'instructions' => 'Kroki w kolejności, numery wpisujesz ręcznie.',
             'button_label' => 'Dodaj krok',
             'collapsed' => key_for('timeline.items.title'),
             'sub_fields' => [
@@ -924,6 +906,7 @@ $blocks['stats'] = [
     'title' => 'Blok: Liczby',
     'fields' => array_merge(sectionHead('stats'), [
         f('stats.items', 'Karty', 'repeater', [
+            'instructions' => 'Liczba i podpis pod nią.',
             'button_label' => 'Dodaj kartę',
             'max' => 3,
             'collapsed' => key_for('stats.items.title'),
@@ -949,13 +932,17 @@ $blocks['pricing'] = [
     'title' => 'Blok: Cennik (jeden plan)',
     'fields' => array_merge(sectionHead('pricing'), [
         f('pricing.checks', 'Hasła nad kartą', 'repeater', [
+            'instructions' => 'Hasła nad kartą z ceną.',
             'layout' => 'table',
             'button_label' => 'Dodaj hasło',
             'sub_fields' => [f('pricing.checks.text', 'Treść', 'text', ['required' => 1])],
         ]),
-        f('pricing.plan_label', 'Nazwa planu', 'text'),
+        f('pricing.plan_label', 'Nazwa planu', 'text', [
+            'instructions' => 'Nazwa planu nad ceną, np. „KPiR & Ryczałt”.',
+        ]),
         f('pricing.currency', 'Waluta', 'text', ['default_value' => 'zł']),
         f('pricing.periods', 'Okresy rozliczenia', 'repeater', [
+            'instructions' => 'Okresy rozliczenia przełączane nad kartą. Zostaw jeden, żeby ukryć przełącznik.',
             'layout' => 'table',
             'button_label' => 'Dodaj okres',
             'sub_fields' => [
@@ -965,12 +952,17 @@ $blocks['pricing'] = [
             ],
         ]),
         f('pricing.items', 'Punkty', 'repeater', [
+            'instructions' => 'Lista z ptaszkami wewnątrz karty.',
             'layout' => 'table',
             'button_label' => 'Dodaj punkt',
             'sub_fields' => [f('pricing.items.text', 'Treść', 'text', ['required' => 1])],
         ]),
-        f('pricing.link', 'Przycisk', 'link'),
-        f('pricing.note', 'Dopisek pod przyciskiem', 'text'),
+        f('pricing.link', 'Przycisk', 'link', [
+            'instructions' => 'Przycisk na dole karty.',
+        ]),
+        f('pricing.note', 'Dopisek pod przyciskiem', 'text', [
+            'instructions' => 'Dopisek pod przyciskiem.',
+        ]),
     ]),
 ];
 
@@ -1014,6 +1006,7 @@ $blocks['table'] = [
             'sub_fields' => [
                 f('table.rows.label', 'Opis', 'text', ['required' => 1]),
                 f('table.rows.values', 'Wartości', 'repeater', [
+                    'layout' => 'table',
                     'button_label' => 'Dodaj wartość',
                     'max' => 4,
                     'instructions' => 'Po jednej na kolumnę, w tej samej kolejności.',
@@ -1118,8 +1111,12 @@ $blocks['contact'] = [
 $blocks['faq'] = [
     'title' => 'Blok: FAQ',
     'fields' => array_merge(sectionHead('faq'), [
-        f('faq.link', 'Odnośnik pod opisem', 'link'),
-        f('faq.open_first', 'Rozwiń pierwsze pytanie', 'true_false'),
+        f('faq.link', 'Odnośnik pod opisem', 'link', [
+            'instructions' => 'Odnośnik pod opisem, np. do pełnej listy pytań.',
+        ]),
+        f('faq.open_first', 'Rozwiń pierwsze pytanie', 'true_false', [
+            'instructions' => 'Pierwsze pytanie otwarte od razu — tak jest w makiecie.',
+        ]),
         f('faq.items', 'Pytania', 'repeater', [
             'button_label' => 'Dodaj pytanie',
             'instructions' => 'Pojedyncza lista. Jeśli wypełnisz grupy niżej, ta lista jest pomijana.',
@@ -1160,6 +1157,12 @@ $blocks['faq'] = [
     ]),
 ];
 
+const LOOK_FIELDS = [
+    'head_size', 'head_width', 'title_width', 'text_width', 'text_gap',
+    'title_size', 'subtitle_size', 'text_tone', 'space_bottom',
+    'columns_ratio', 'head_position', 'link_style',
+];
+
 foreach ($blocks as $slug => $block) {
     $prefix = str_replace('-', '_', $slug);
 
@@ -1169,10 +1172,30 @@ foreach ($blocks as $slug => $block) {
         array_unshift($fields, f($prefix . '.tab_content', 'Treść', 'tab'));
     }
 
+    // pola czysto wizualne idą do osobnej zakładki, żeby „Treść” została krótka
+    $tresc = [];
+    $wyglad = [];
+
+    foreach ($fields as $pole) {
+        if (in_array($pole['name'], LOOK_FIELDS, true)) {
+            $wyglad[] = $pole;
+
+            continue;
+        }
+
+        $tresc[] = $pole;
+    }
+
+    if ($wyglad) {
+        $wyglad = array_merge([f($prefix . '.tab_look', 'Wygląd', 'tab', [
+            'instructions' => '',
+        ])], $wyglad);
+    }
+
     $groups['block-' . $slug] = [
         'title' => $block['title'],
         'location' => [[['param' => 'block', 'operator' => '==', 'value' => 'acf/' . $slug]]],
-        'fields' => array_merge($fields, sectionSettings($prefix)),
+        'fields' => array_merge($tresc, $wyglad, sectionSettings($prefix)),
     ];
 }
 
