@@ -9,7 +9,7 @@
 
 	{% if fields.note_link.url %}
 		<a href="{{ fields.note_link.url }}"
-			target="{{ fields.note_link.target ?: '_self' }}"
+			{{ linkAttrs(fields.note_link.url, fields.note_link.target)|raw }}
 			class="ml-auto border-b border-sky-2/40 pb-0.5 text-[15px] font-semibold text-sky-2
 				transition hover:text-white max-sm:ml-0">
 			{{ fields.note_link.title }}

@@ -79,7 +79,7 @@
 
 				{% if fields.cta_link.url %}
 					<a href="{{ fields.cta_link.url }}"
-						target="{{ fields.cta_link.target ?: '_self' }}"
+						{{ linkAttrs(fields.cta_link.url, fields.cta_link.target)|raw }}
 						class="ml-auto rounded-pill px-[30px] py-4 text-[16px] font-semibold whitespace-nowrap transition
 							{{ onDark ? 'bg-white text-ink hover:bg-accent-tint' : 'bg-accent text-white hover:bg-accent-strong' }}
 							max-sm:ml-0">

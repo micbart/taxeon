@@ -10,7 +10,7 @@
 
 		{{ headerMenuHtml|raw }}
 
-		<div class="ml-auto flex items-center gap-2">
+		<div class="ml-auto flex items-center gap-2 max-md:flex-row-reverse">
 			<button type="button"
 				id="menu-toggle"
 				aria-expanded="false"
@@ -28,10 +28,16 @@
 
 			{% if themeOptions.header_cta.url %}
 				<a href="{{ themeOptions.header_cta.url }}"
-					target="{{ themeOptions.header_cta.target ?: '_self' }}"
-					class="flex-none rounded-pill bg-accent-cta px-[22px] py-[13px] text-[15px] font-semibold
-						text-white shadow-cta transition hover:brightness-110 max-sm:px-4">
-					{{ themeOptions.header_cta.title }}
+					{{ linkAttrs(themeOptions.header_cta.url, themeOptions.header_cta.target)|raw }}
+					aria-label="{{ themeOptions.header_cta.title }}"
+					class="flex flex-none items-center justify-center rounded-pill bg-accent-cta text-[15px]
+						font-semibold text-white shadow-cta transition hover:brightness-110
+						px-[22px] py-[13px] max-md:size-11 max-md:px-0 max-md:py-0">
+					<span class="max-md:hidden">{{ themeOptions.header_cta.title }}</span>
+
+					<span aria-hidden="true" class="hidden max-md:block [&_svg]:size-5">
+						{{ 'calendar-check'|svg }}
+					</span>
 				</a>
 			{% endif %}
 		</div>
@@ -42,4 +48,13 @@
 	class="fixed inset-0 z-[59] hidden flex-col gap-1.5 overflow-y-auto bg-deep/96 px-gutter pt-[108px] pb-10
 		backdrop-blur-[12px] data-open:flex max-sm:px-5">
 	{{ mobileMenuHtml|raw }}
+
+	{% if themeOptions.header_cta.url %}
+		<a href="{{ themeOptions.header_cta.url }}"
+			{{ linkAttrs(themeOptions.header_cta.url, themeOptions.header_cta.target)|raw }}
+			class="mt-6 rounded-pill bg-accent-cta px-7 py-[17px] text-center text-[16px] font-semibold
+				text-white shadow-cta transition hover:brightness-110">
+			{{ themeOptions.header_cta.title }}
+		</a>
+	{% endif %}
 </div>

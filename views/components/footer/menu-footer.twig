@@ -1,7 +1,6 @@
 {% for item in menu.items %}
 	<a href="{{ item.link }}"
-		target="{{ item.target ?: '_self' }}"
-		{% if item.target == '_blank' %}rel="noopener"{% endif %}
+		{{ linkAttrs(item.url, item.target)|raw }}
 		class="text-[15px] transition hover:text-white">
 		{{ item.title }}
 	</a>

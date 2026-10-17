@@ -21,8 +21,7 @@
 	{% set pickedSize = size ?: (button.size ?: 'base') %}
 
 	<a href="{{ link.url }}"
-		target="{{ link.target ?: '_self' }}"
-		{% if link.target == '_blank' %}rel="noopener"{% endif %}
+		{{ linkAttrs(link.url, link.target)|raw }}
 		class="{{ base }} {{ sizes[pickedSize] }} {{ variants[pickedVariant] }} {{ block ? 'w-full' }} {{ class }}">
 		{% set pickedIcon = icon ?: button.icon %}
 		{% if pickedIcon %}{{ pickedIcon|svg }}{% endif %}

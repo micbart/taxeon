@@ -79,7 +79,7 @@
 
 				{% if fields.link.url %}
 					<a href="{{ fields.link.url }}"
-						target="{{ fields.link.target ?: '_self' }}"
+						{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
 						class="group/link mt-5 inline-flex items-center gap-[7px] font-bold
 							{{ onDark ? 'text-deep-tint' : 'text-accent' }}
 							[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
@@ -99,7 +99,7 @@
 						{% endif %}
 
 						<a href="{{ fields.footnote_link.url }}"
-							target="{{ fields.footnote_link.target ?: '_self' }}"
+							{{ linkAttrs(fields.footnote_link.url, fields.footnote_link.target)|raw }}
 							class="mt-2.5 inline-flex items-center gap-[9px] text-base font-bold
 								{{ onDark ? 'text-deep-tint' : 'text-accent-strong' }} [&_svg]:size-[18px]">
 							{{ (fields.footnote_icon ?: 'phone')|svg }}

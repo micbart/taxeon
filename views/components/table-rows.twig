@@ -11,7 +11,7 @@
 				<td class="px-[22px] py-[15px] text-left align-middle max-md:px-3.5 max-md:py-[13px] {{ border }} {{ col.hide_mobile ? 'max-md:hidden' }}">
 					{% if cell.link.url %}
 						<a href="{{ cell.link.url }}"
-							target="{{ cell.link.target ?: '_self' }}"
+							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
 							class="inline-flex items-center gap-[7px] text-sm whitespace-nowrap transition-colors [&_svg]:size-4
 								{{ cell.style == 'muted' ? 'font-normal text-ink-3 hover:text-accent' : 'font-bold text-accent' }}">
 							{% if cell.icon %}{{ cell.icon|svg }}{% endif %}
@@ -46,7 +46,7 @@
 						</span>
 					{% elseif cell.link.url %}
 						<a href="{{ cell.link.url }}"
-							target="{{ cell.link.target ?: '_self' }}"
+							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
 							class="group/link inline-flex items-center gap-[7px] font-bold whitespace-nowrap text-accent
 								[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1
 								max-[620px]:gap-1 max-[620px]:[&_svg]:size-[18px]">
@@ -73,7 +73,7 @@
 					{{ loop.first ? 'w-[30%] font-semibold' : 'font-normal' }} {{ border }} {{ col.hide_mobile ? 'max-[620px]:hidden' }}">
 					{% if cell.link.url %}
 						<a href="{{ cell.link.url }}"
-							target="{{ cell.link.target ?: '_self' }}"
+							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
 							class="group/link inline-flex items-center gap-[7px] font-bold text-accent
 								[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
 							{{ cell.link.title ?: cell.text }}

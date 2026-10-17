@@ -1,7 +1,6 @@
 {% for item in items %}
 	<a href="{{ item.url }}"
-		target="{{ item.target ?: '_self' }}"
-		{% if item.target == '_blank' %}rel="noopener"{% endif %}
+		{{ linkAttrs(item.url, item.target)|raw }}
 		{% if currentUrl and item.url == currentUrl %}aria-current="page"{% endif %}
 		class="border-b border-white/10 py-3 font-display text-[26px] font-medium text-white">
 		{{ item.title }}

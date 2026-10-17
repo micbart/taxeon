@@ -36,7 +36,7 @@
 
 			{% if themeOptions.footer_contact_link.url %}
 				<a href="{{ themeOptions.footer_contact_link.url }}"
-					target="{{ themeOptions.footer_contact_link.target ?: '_self' }}"
+					{{ linkAttrs(themeOptions.footer_contact_link.url, themeOptions.footer_contact_link.target)|raw }}
 					class="text-[15px] transition hover:text-white">
 					{{ themeOptions.footer_contact_link.title }}
 				</a>

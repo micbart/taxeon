@@ -468,6 +468,27 @@ class TimberTheme extends TimberSite
 
 		$twig->addFunction(
 			new TwigFunction(
+				'linkAttrs',
+				function (?string $url, ?string $target = ''): string {
+					$url = trim((string) $url);
+
+					if ($url === '' || str_starts_with($url, 'mailto:') || str_starts_with($url, 'tel:')) {
+						return '';
+					}
+
+					$host = parse_url($url, PHP_URL_HOST);
+					$wlasny = parse_url(home_url(), PHP_URL_HOST);
+					$nowaKarta = $target === '_blank'
+						|| ($host && strcasecmp($host, (string) $wlasny) !== 0);
+
+					return $nowaKarta ? ' target="_blank" rel="noopener"' : '';
+				},
+				['is_safe' => ['html']]
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
 				'googleReviews',
 				function (array $selected = [], int $limit = 8): array {
 					$store = \App\Services\GoogleReviews::stored();

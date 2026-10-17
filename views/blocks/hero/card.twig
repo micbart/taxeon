@@ -50,7 +50,7 @@
 
 	{% if card.link.url %}
 		<a href="{{ card.link.url }}"
-			target="{{ card.link.target ?: '_self' }}"
+			{{ linkAttrs(card.link.url, card.link.target)|raw }}
 			class="mt-auto rounded-pill px-5 py-3.5 text-center text-[15px] font-semibold transition
 				{{ card.featured
 					? 'bg-white text-[#0b3fd1] hover:bg-accent-tint'

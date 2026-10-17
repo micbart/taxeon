@@ -111,7 +111,7 @@
 							<div class="mt-auto flex flex-wrap gap-3 pt-3.5">
 								{% for pozycja in panel.links %}
 									<a href="{{ pozycja.link.url }}"
-										target="{{ pozycja.link.target ?: '_self' }}"
+										{{ linkAttrs(pozycja.link.url, pozycja.link.target)|raw }}
 										class="rounded-pill border px-[22px] py-[13px] text-[15px] font-semibold transition
 											{{ jasnyTekst
 												? 'border-white/40 text-white hover:bg-white hover:text-[#0b3fd1]'
@@ -122,7 +122,7 @@
 							</div>
 						{% else %}
 							<a href="{{ panel.links|first.link.url }}"
-								target="{{ panel.links|first.link.target ?: '_self' }}"
+								{{ linkAttrs(panel.links|first.link.url, panel.links|first.link.target)|raw }}
 								class="mt-auto pt-2.5 text-[16px] font-semibold transition
 									{{ jasnyTekst ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
 								{{ panel.links|first.link.title }}

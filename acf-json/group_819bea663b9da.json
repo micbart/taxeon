@@ -614,6 +614,39 @@
             "append": ""
         },
         {
+            "key": "field_571b25dec8102",
+            "label": "Adres rezerwacji (YouCanBookMe)",
+            "name": "booking_url",
+            "type": "url",
+            "instructions": "Odnośniki prowadzące pod ten adres otwierają okno rezerwacji zamiast nowej karty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_10b25a228ae55",
+            "label": "Tytuł okna rezerwacji",
+            "name": "booking_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_ae13f2efa82cb",
             "label": "Opinie Google",
             "name": "tab_reviews",

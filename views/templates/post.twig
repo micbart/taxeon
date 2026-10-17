@@ -101,7 +101,7 @@
 
 						{% if themeOptions.article_cta_link.url %}
 							<a href="{{ themeOptions.article_cta_link.url }}"
-								target="{{ themeOptions.article_cta_link.target ?: '_self' }}"
+								{{ linkAttrs(themeOptions.article_cta_link.url, themeOptions.article_cta_link.target)|raw }}
 								class="mt-1.5 rounded-pill bg-white px-5 py-[13px] text-center text-[15px]
 									font-semibold text-ink transition hover:bg-accent-tint">
 								{{ themeOptions.article_cta_link.title }}

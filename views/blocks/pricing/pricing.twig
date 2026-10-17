@@ -100,7 +100,7 @@
 
 					{% if fields.link.url %}
 						<a href="{{ fields.link.url }}"
-							target="{{ fields.link.target ?: '_self' }}"
+							{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
 							class="block rounded-pill bg-accent-cta px-6 py-[17px] text-[17px] font-semibold
 								text-white shadow-[0_16px_34px_-16px_rgb(18_104_255/0.9)] transition
 								hover:bg-accent-strong">

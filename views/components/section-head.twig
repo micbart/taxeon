@@ -52,7 +52,7 @@
 
 		{% if link.url %}
 			<a href="{{ link.url }}"
-				target="{{ link.target ?: '_self' }}"
+				{{ linkAttrs(link.url, link.target)|raw }}
 				class="mb-1.5 inline-flex items-center gap-[7px] text-[16px] font-semibold
 					{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
 				{{ link.title }} →

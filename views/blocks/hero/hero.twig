@@ -91,7 +91,7 @@
 					{{ srodek ? 'justify-center mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
 					{% if fields.button_primary.url %}
 						<a href="{{ fields.button_primary.url }}"
-							target="{{ fields.button_primary.target ?: '_self' }}"
+							{{ linkAttrs(fields.button_primary.url, fields.button_primary.target)|raw }}
 							class="rounded-pill font-semibold transition
 								{{ srodek ? 'bg-white px-8 py-[17px] text-[16px] text-ink hover:bg-accent-tint' : (akcent
 									? 'bg-accent-cta px-9 py-5 text-[18px] text-white shadow-cta hover:bg-white hover:text-ink'
@@ -102,7 +102,7 @@
 
 					{% if fields.button_secondary.url %}
 						<a href="{{ fields.button_secondary.url }}"
-							target="{{ fields.button_secondary.target ?: '_self' }}"
+							{{ linkAttrs(fields.button_secondary.url, fields.button_secondary.target)|raw }}
 							class="rounded-pill border border-white/32 px-[30px] py-[17px] text-[16px] font-semibold
 								text-white transition hover:bg-white/10">
 							{{ fields.button_secondary.title }}

@@ -223,8 +223,7 @@
 											{{ onNavy ? 'text-white/66' : 'text-ink-2' }}">
 											{%- if item.link.url -%}
 												<a href="{{ item.link.url }}"
-													target="{{ item.link.target ?: '_self' }}"
-													{% if item.link.target == '_blank' %}rel="noopener"{% endif %}
+													{{ linkAttrs(item.link.url, item.link.target)|raw }}
 													class="hover:underline {{ onNavy ? 'text-deep-tint' : 'text-accent' }}">{{ item.link.title }}</a>
 											{%- endif -%}
 											{{- item.text -}}

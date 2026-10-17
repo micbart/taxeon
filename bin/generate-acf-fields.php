@@ -306,6 +306,11 @@ $groups['options'] = [
             'conditional_logic' => [[['field' => key_for('opt.recaptcha_enabled'), 'operator' => '==', 'value' => '1']]],
         ]),
 
+        f('opt.booking_url', 'Adres rezerwacji (YouCanBookMe)', 'url', [
+            'instructions' => 'Odnośniki prowadzące pod ten adres otwierają okno rezerwacji zamiast nowej karty.',
+        ]),
+        f('opt.booking_title', 'Tytuł okna rezerwacji', 'text'),
+
         f('opt.tab_reviews', 'Opinie Google', 'tab'),
         f('opt.google_api_key', 'Klucz API Google', 'text', [
             'instructions' => 'Klucz z włączonym „Places API (New)”. Używany tylko po stronie serwera.',
