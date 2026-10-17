@@ -75,6 +75,13 @@ function taxeon_seed_data(array $values, array $defs, string $prefix = ''): arra
     return $data;
 }
 
+function taxeon_wideo(string $plik): string
+{
+    $mapa = get_option('taxeon_mapa_wideo', []);
+
+    return $mapa[$plik] ?? home_url('/projekt/assets/' . $plik);
+}
+
 function taxeon_booking(): string
 {
     $adres = function_exists('get_field') ? (string) get_field('booking_url', 'option') : '';

@@ -163,7 +163,7 @@ $strony['lekarze'] = ['Księgowość dla lekarzy', [
         'title' => $t('Bezpłatne spotkanie z księgową.', 'h2'),
         'text' => 'Powiedz, jak wygląda Twoja sytuacja zawodowa. W 15 minut powiemy, ile zapłacisz i co najlepiej wybrać.',
         'button_primary' => $l('Umów rozmowę z księgową →', taxeon_booking()),
-        'button_secondary' => $l('Zadzwoń: +48 XXX XXX XXX', 'tel:+48000000000'),
+        'button_secondary' => $l('Zadzwoń: +48 515 033 505', 'tel:+48515033505'),
         'background' => 'navy',
     ]),
 ]];
@@ -215,7 +215,7 @@ $strony['prawnicy'] = ['Księgowość dla kancelarii', [
         'title' => $t('Sprawdź, ile zaoszczędzi Twoja kancelaria w skali roku.', 'h2'),
         'text' => 'Bezpłatna konsultacja z księgową. 15 minut, bez zobowiązań.',
         'button_primary' => $l('Umów konsultację →', taxeon_booking()),
-        'button_secondary' => $l('Zadzwoń: +48 XXX XXX XXX', 'tel:+48000000000'),
+        'button_secondary' => $l('Zadzwoń: +48 515 033 505', 'tel:+48515033505'),
         'background' => 'navy',
     ]),
 ]];

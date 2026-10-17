@@ -18,7 +18,7 @@ $hero = taxeon_seed_block('hero', [
     'checks' => $pkt(['Bez zobowiązań', 'Płacisz tylko za aktywne firmy',
         'Bezpłatne archiwum danych przez 6 lat', 'Bezpłatna wymiana danych z KSeF']),
     'trust' => [],
-    'video' => home_url('/projekt/assets/biura-hero.mp4'),
+    'video' => taxeon_wideo('biura-hero.mp4'),
     'poster' => taxeon_seed_image('biura-hero-poster.jpg', 'Taxeon dla biur rachunkowych'),
     'cards' => [],
     'stats' => [

@@ -13,7 +13,7 @@ $hero = taxeon_seed_block('hero', [
     'button_primary' => $l('Zamów KPiR →', taxeon_booking()),
     'button_secondary' => $l('Porównaj z ryczałtem', '/ryczalt/'),
     'trust' => [
-        ['value' => '4,9 / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
+        ['value' => '{ocena} / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
         ['value' => '137 tys.', 'label' => 'przedsiębiorców na naszym YouTube', 'stars' => 0, 'url' => ''],
         ['value' => '14 lat', 'label' => 'na rynku', 'stars' => 0, 'url' => ''],
     ],

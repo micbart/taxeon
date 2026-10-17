@@ -22,6 +22,11 @@
 {% set szerokosciOpisu = { '56ch': 'max-w-[56ch]', '60ch': 'max-w-[60ch]', '62ch': 'max-w-[62ch]' } %}
 {% set barwyOpisu = { 'soft': 'text-white/76 leading-[1.6]', 'strong': 'text-white/78 leading-[1.62]' } %}
 {% set akcent = fields.button_style == 'accent' %}
+{% set profilGoogle = googleReviews([], 1) %}
+{% set podmien = {
+	'{ocena}': profilGoogle.rating ? profilGoogle.rating|number_format(1, ',') : '',
+	'{liczba}': profilGoogle.total ?: ''
+} %}
 {% set odstepy = { '72': 'pb-[72px]', '76': 'pb-[76px]', '84': 'pb-[84px]', '88': 'pb-[88px]' } %}
 {% set podstrona = uklad != 'cards' %}
 
@@ -140,9 +145,9 @@
 							{% if pozycja.stars %}
 								<span class="text-[14px] tracking-[0.08em] text-sky">★★★★★</span>
 							{% endif %}
-							<span class="font-display text-[15px] font-semibold text-white">{{ pozycja.value }}</span>
+							<span class="font-display text-[15px] font-semibold text-white">{{ pozycja.value|replace(podmien) }}</span>
 							{% if pozycja.label %}
-								<span class="text-[14.5px] text-white/{{ pozycja.stars ? '60' : '72' }}">{{ pozycja.label }}</span>
+								<span class="text-[14.5px] text-white/{{ pozycja.stars ? '60' : '72' }}">{{ pozycja.label|replace(podmien) }}</span>
 							{% endif %}
 						{% endset %}
 
@@ -192,15 +197,15 @@
 							<a href="{{ stat.url }}" target="_blank" rel="noopener"
 								class="font-display text-[20px] font-semibold transition hover:text-sky-2
 									{{ stat.highlight ? 'text-sky' : 'text-white' }}">
-								{{ stat.value }}
+								{{ stat.value|replace(podmien) }}
 							</a>
 						{% else %}
 							<span class="font-display text-[20px] font-semibold {{ stat.highlight ? 'text-sky' : '' }}">
-								{{ stat.value }}
+								{{ stat.value|replace(podmien) }}
 							</span>
 						{% endif %}
 
-						<span class="text-[14px] text-white/60">{{ stat.label }}</span>
+						<span class="text-[14px] text-white/60">{{ stat.label|replace(podmien) }}</span>
 					</div>
 				{% endfor %}
 			</div>

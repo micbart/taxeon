@@ -15,11 +15,11 @@ $hero = taxeon_seed_block('hero', [
     'button_primary' => ['title' => '', 'url' => '', 'target' => ''],
     'button_secondary' => ['title' => '', 'url' => '', 'target' => ''],
     'trust' => [
-        ['value' => '4,9 / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
+        ['value' => '{ocena} / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
         ['value' => '137 tys.', 'label' => 'firm na YouTube', 'stars' => 0, 'url' => ''],
         ['value' => '14 lat', 'label' => 'na rynku', 'stars' => 0, 'url' => ''],
     ],
-    'video' => home_url('/projekt/assets/hero-main.mp4'),
+    'video' => taxeon_wideo('hero-main.mp4'),
     'poster' => taxeon_seed_image('hero-main-poster.jpg', 'Aplikacja Taxeon'),
     'cards' => [[
         'label' => 'Aplikacja', 'badge' => 'Samodzielnie', 'badge_style' => 'filled', 'featured' => 1,

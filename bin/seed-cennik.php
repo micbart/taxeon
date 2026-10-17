@@ -14,7 +14,7 @@ $hero = taxeon_seed_block('hero', [
     'subtitle' => 'Bez „od”, bez gwiazdek, bez ukrytych pozycji na fakturze.',
     'text' => 'To są nasze stałe ceny abonamentu, a nie ceny promocyjne. Płacisz z góry za dany miesiąc, najpóźniej do 5 dnia — fakturę dostajesz automatycznie w aplikacji. Rezygnujesz z miesiąca na miesiąc.',
     'button_primary' => $pusty, 'button_secondary' => $pusty, 'chips' => [], 'trust' => [], 'stats' => [],
-    'video' => home_url('/projekt/assets/hero-main.mp4'),
+    'video' => taxeon_wideo('hero-main.mp4'),
     'cards' => [
         ['label' => 'Aplikacja', 'badge' => 'Samodzielnie', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '19 zł', 'period' => '/ mies.', 'items' => [],
