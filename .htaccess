@@ -1,24 +1,7 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteRule ^(app|bin|views|vendor|acf-json|src|tests|node_modules)/ - [F,L]
+
+	RewriteRule ^(app|bin|src|tests|views|node_modules|vendor|acf-json|languages)/ - [F,L]
+	RewriteRule \.(twig|json|lock|md|neon|log|sh|yml|yaml|sql|bak|orig|save|dist|map)$ - [F,L]
+	RewriteRule ^(composer\.(json|lock)|package(-lock)?\.json|phpcs\.xml|vite\.config\.js|\.env) - [F,L]
 </IfModule>
-
-<FilesMatch "\.(twig|json|lock|md|neon|dist|log|sh|yml|yaml|sql|bak|orig|save)$">
-	<IfModule mod_authz_core.c>
-		Require all denied
-	</IfModule>
-	<IfModule !mod_authz_core.c>
-		Order allow,deny
-		Deny from all
-	</IfModule>
-</FilesMatch>
-
-<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|phpcs\.xml|phpunit\.xml(\.dist)?|vite\.config\.js|tailwind\.config\.js|\.env.*|\.gitignore|\.editorconfig)$">
-	<IfModule mod_authz_core.c>
-		Require all denied
-	</IfModule>
-	<IfModule !mod_authz_core.c>
-		Order allow,deny
-		Deny from all
-	</IfModule>
-</FilesMatch>
