@@ -77,11 +77,8 @@ class TimberTheme extends TimberSite
 
 	public function initDisableFeed(): void
 	{
-		add_action('do_feed', [$this, 'disableFeed'], 1);
-		add_action('do_feed_rdf', [$this, 'disableFeed'], 1);
-		add_action('do_feed_rss', [$this, 'disableFeed'], 1);
-		add_action('do_feed_rss2', [$this, 'disableFeed'], 1);
-		add_action('do_feed_atom', [$this, 'disableFeed'], 1);
+		// kanał wpisów zostaje — blog ma być czytelny dla czytników i robotów;
+		// wyłączamy tylko kanały komentarzy, bo komentarzy nie prowadzimy
 		add_action('do_feed_rss2_comments', [$this, 'disableFeed'], 1);
 		add_action('do_feed_atom_comments', [$this, 'disableFeed'], 1);
 		remove_action('wp_head', 'wp_generator');

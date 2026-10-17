@@ -13,10 +13,10 @@
 
 {% set kolumny = fields.columns|default([]) %}
 {% set siatki = {
-	1: 'grid-cols-[1fr_118px] max-sm:grid-cols-[1fr_72px]',
-	2: 'grid-cols-[1fr_118px_118px] max-sm:grid-cols-[1fr_72px_72px]',
-	3: 'grid-cols-[1fr_118px_118px_118px] max-sm:grid-cols-[1fr_72px_72px_72px]',
-	4: 'grid-cols-[1fr_108px_108px_108px_108px] max-sm:grid-cols-[1fr_58px_58px_58px_58px]'
+	1: 'grid-cols-[minmax(0,1fr)_118px] max-sm:grid-cols-[minmax(0,1fr)_72px]',
+	2: 'grid-cols-[minmax(0,1fr)_118px_118px] max-sm:grid-cols-[minmax(0,1fr)_64px_64px]',
+	3: 'grid-cols-[minmax(0,1fr)_118px_118px_118px] max-sm:grid-cols-[minmax(0,1fr)_56px_56px_56px]',
+	4: 'grid-cols-[minmax(0,1fr)_108px_108px_108px_108px] max-sm:grid-cols-[minmax(0,1fr)_50px_50px_50px_50px]'
 } %}
 {% set siatka = siatki[kolumny|length] ?: siatki[2] %}
 {% set waskie = kolumny|length > 3 %}

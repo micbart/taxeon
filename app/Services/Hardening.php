@@ -13,6 +13,7 @@ class Hardening
 
 		add_action('template_redirect', [$this, 'blockAuthorEnumeration'], 1);
 		add_filter('rest_endpoints', [$this, 'restrictUserEndpoints']);
+		add_filter('oembed_response_data', [$this, 'stripAuthorFromOembed']);
 	}
 
 	public function securityHeaders(): void
@@ -67,6 +68,23 @@ class Hardening
 
 		wp_safe_redirect(home_url('/'), 301);
 		exit;
+	}
+
+	/**
+	 * oEmbed podaje autora wraz z adresem archiwum, a ten zdradza login.
+	 *
+	 * @param array<string, mixed> $data
+	 * @return array<string, mixed>
+	 */
+	public function stripAuthorFromOembed(array $data): array
+	{
+		if (!apply_filters('taxeon_block_author_enumeration', true)) {
+			return $data;
+		}
+
+		unset($data['author_name'], $data['author_url']);
+
+		return $data;
 	}
 
 	/**

@@ -18,6 +18,7 @@ function init(): void
 	new Services\ThemeEditorLock();
 	new Services\Hardening();
 	new Services\GoogleReviews();
+	new Services\LlmsTxt();
 
 	new Providers\AcfSupports();
 	new Providers\BlogSupports();

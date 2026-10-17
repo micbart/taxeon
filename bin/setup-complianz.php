@@ -52,6 +52,19 @@ WP_CLI::log('  region: ' . ($nowe['regions'] ?? '?') . ', bloker: ' . $nowe['ena
 $baner = json_decode((string) file_get_contents(get_template_directory() . '/bin/dane-complianz-baner.json'), true);
 
 if (is_array($baner)) {
+    $polityka = get_page_by_path('polityka-prywatnosci');
+    $cookies = get_page_by_path('polityka-cookies');
+
+    foreach ($baner as $pole => $wartosc) {
+        if (!is_string($wartosc)) {
+            continue;
+        }
+
+        if ($polityka) {
+            $baner[$pole] = preg_replace('#https?://[^"\']*pdf_polityka_prywatnosci\.pdf#', get_permalink($polityka), $baner[$pole]);
+        }
+    }
+
     global $wpdb;
     $tabela = $wpdb->prefix . 'cmplz_cookiebanners';
     unset($baner['ID']);
@@ -67,6 +80,37 @@ if (is_array($baner)) {
     }
 }
 
+// dokumenty prawne: Complianz trzyma typ w opcjach, a stronę w osobnym kluczu
+$ustawienia = get_option('cmplz_options', []);
+
+foreach (['privacy-statement' => 'polityka-prywatnosci', 'cookie-statement' => 'polityka-cookies'] as $typ => $slug) {
+    $strona = get_page_by_path($slug);
+
+    if (!$strona) {
+        WP_CLI::warning("Brak strony {$slug} — Complianz nie będzie miał dokąd linkować.");
+
+        continue;
+    }
+
+    $ustawienia[$typ] = 'custom';
+    update_option('cmplz_' . $typ . '_custom_page', (int) $strona->ID, false);
+    WP_CLI::log('  ' . $typ . ' → ' . get_permalink($strona));
+}
+
+update_option('cmplz_options', $ustawienia, false);
+
+// wymuszenie przebudowy stylu banera
+foreach (glob(WP_CONTENT_DIR . '/uploads/complianz/css/banner-*.css') ?: [] as $plik) {
+    @unlink($plik);
+}
+
+update_option('cmplz_banner_version', (int) get_option('cmplz_banner_version') + 1, false);
+
+// pamięć podręczna banera trzyma też tytuły dokumentów
+global $wpdb;
+$wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name = 'cmplz_transients'
+    OR option_name LIKE '_transient_cmplz%' OR option_name LIKE '_transient_timeout_cmplz%'");
+wp_cache_flush();
 update_option('cmplz_wizard_completed_once', '1', false);
 delete_transient('cmplz_cookiebanner_1');
 wp_cache_flush();

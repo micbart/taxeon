@@ -1,7 +1,8 @@
 <?php
 /** Podstawowa konfiguracja Rank Math + opisy meta dla stron zbudowanych z makiety. */
 
-$moduly = ['sitemap', 'rich-snippet', 'seo-analysis', 'link-counter', '404-monitor', 'redirections'];
+// 404-monitor i redirections wymagaja wlasnych tabel; wlaczamy je dopiero na produkcji
+$moduly = ['sitemap', 'rich-snippet', 'seo-analysis', 'link-counter'];
 update_option('rank_math_modules', $moduly);
 update_option('rank_math_wizard_completed', true);
 update_option('rank_math_is_configured', true);
