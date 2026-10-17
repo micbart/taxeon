@@ -287,8 +287,6 @@ class TimberTheme extends TimberSite
 		add_theme_support(
 			'html5',
 			[
-				'comment-form',
-				'comment-list',
 				'gallery',
 				'caption',
 				'search-form',

@@ -19,6 +19,7 @@ function init(): void
 	new Services\Hardening();
 	new Services\GoogleReviews();
 	new Services\LlmsTxt();
+	new Services\Comments();
 
 	new Providers\AcfSupports();
 	new Providers\BlogSupports();
