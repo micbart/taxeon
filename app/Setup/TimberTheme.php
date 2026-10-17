@@ -468,6 +468,22 @@ class TimberTheme extends TimberSite
 
 		$twig->addFunction(
 			new TwigFunction(
+				'googleReviews',
+				function (array $selected = [], int $limit = 8): array {
+					$store = \App\Services\GoogleReviews::stored();
+
+					return [
+						'rating' => $store['rating'] ?? null,
+						'total' => $store['total'] ?? null,
+						'mapsUrl' => $store['mapsUrl'] ?? '',
+						'items' => \App\Services\GoogleReviews::selected($selected, $limit),
+					];
+				}
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
 				'block_index',
 				function (string $blockName = 'default'): int {
 					static $counters = [];

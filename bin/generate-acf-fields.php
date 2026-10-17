@@ -49,6 +49,7 @@ function f(string $path, string $label, string $type, array $extra = []): array
         'image' => ['return_format' => 'array', 'preview_size' => 'medium', 'library' => 'all', 'min_width' => '', 'min_height' => '', 'min_size' => '', 'max_width' => '', 'max_height' => '', 'max_size' => '', 'mime_types' => ''],
         'file' => ['return_format' => 'array', 'library' => 'all', 'min_size' => '', 'max_size' => '', 'mime_types' => 'mp4,webm'],
         'link' => ['return_format' => 'array'],
+        'checkbox' => ['choices' => [], 'default_value' => [], 'return_format' => 'value', 'allow_custom' => 0, 'layout' => 'vertical', 'toggle' => 1],
         'select' => ['choices' => [], 'default_value' => '', 'return_format' => 'value', 'multiple' => 0, 'allow_null' => 1, 'ui' => 0, 'ajax' => 0, 'placeholder' => ''],
         'true_false' => ['message' => '', 'default_value' => 0, 'ui' => 1, 'ui_on_text' => '', 'ui_off_text' => ''],
         'number' => ['default_value' => '', 'min' => '', 'max' => '', 'step' => '', 'placeholder' => '', 'prepend' => '', 'append' => ''],
@@ -303,6 +304,17 @@ $groups['options'] = [
             'default_value' => '0.5', 'min' => '0', 'max' => '1', 'step' => '0.1',
             'instructions' => 'Zgłoszenia z niższym wynikiem są odrzucane.',
             'conditional_logic' => [[['field' => key_for('opt.recaptcha_enabled'), 'operator' => '==', 'value' => '1']]],
+        ]),
+
+        f('opt.tab_reviews', 'Opinie Google', 'tab'),
+        f('opt.google_api_key', 'Klucz API Google', 'text', [
+            'instructions' => 'Klucz z włączonym „Places API (New)”. Używany tylko po stronie serwera.',
+        ]),
+        f('opt.google_place_id', 'Identyfikator wizytówki (Place ID)', 'text'),
+        f('opt.google_reviews_sync', 'Pobieranie', 'message', [
+            'message' => '',
+            'new_lines' => '',
+            'esc_html' => 0,
         ]),
 
         f('opt.tab_blog', 'Blog', 'tab'),
@@ -661,7 +673,22 @@ $blocks['reviews'] = [
     'title' => 'Blok: Opinie',
     'fields' => array_merge(sectionHead('reviews'), [
         f('reviews.link', 'Odnośnik do wizytówki', 'link'),
+        f('reviews.source', 'Skąd opinie', 'select', [
+            'choices' => ['google' => 'Z profilu Google', 'manual' => 'Wpisane ręcznie'],
+            'default_value' => 'google',
+            'allow_null' => 0,
+        ]),
+        f('reviews.google_items', 'Które opinie pokazać', 'checkbox', [
+            'instructions' => 'Lista pochodzi z ostatniego pobrania. Bez zaznaczenia pokazujemy wszystkie.',
+            'choices' => [],
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
+        ]),
+        f('reviews.limit', 'Maksymalna liczba kart', 'number', [
+            'default_value' => 8, 'min' => 1, 'max' => 12,
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
+        ]),
         f('reviews.items', 'Opinie', 'repeater', [
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'manual']]],
             'button_label' => 'Dodaj opinię',
             'collapsed' => key_for('reviews.items.author'),
             'sub_fields' => [

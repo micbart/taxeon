@@ -614,6 +614,77 @@
             "append": ""
         },
         {
+            "key": "field_ae13f2efa82cb",
+            "label": "Opinie Google",
+            "name": "tab_reviews",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_caec80b9af93d",
+            "label": "Klucz API Google",
+            "name": "google_api_key",
+            "type": "text",
+            "instructions": "Klucz z włączonym „Places API (New)”. Używany tylko po stronie serwera.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_7fff59bb01d35",
+            "label": "Identyfikator wizytówki (Place ID)",
+            "name": "google_place_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_e22cd5856cc0b",
+            "label": "Pobieranie",
+            "name": "google_reviews_sync",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
+        },
+        {
             "key": "field_fab78a8c9c1f4",
             "label": "Blog",
             "name": "tab_blog",
