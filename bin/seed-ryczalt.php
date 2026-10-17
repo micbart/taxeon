@@ -10,7 +10,7 @@ $hero = taxeon_seed_block('hero', [
     'title' => $t('Ryczałt — 99 zł.', 'h1'),
     'subtitle' => 'Najprostsza forma rozliczenia jednoosobowej działalności w Polsce.',
     'text' => 'Płacisz procent od przychodu — 8,5%, 12%, 14% czy 17%, zależnie od branży — nie odliczasz kosztów, papierologia minimalna. U nas pełna obsługa tej formy to 99 zł miesięcznie i tyle. Bez dopłat za roczne rozliczenie, bez dopłat za korekty, bez dopłat za konsultacje z księgową.',
-    'button_primary' => $l('Zamów ryczałt za 99 zł →', '/#kontakt'),
+    'button_primary' => $l('Zamów ryczałt za 99 zł →', taxeon_booking()),
     'button_secondary' => $l('Porównaj z KPiR', '/kpir/'),
     'trust' => [
         ['value' => '4,9 / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
@@ -80,7 +80,7 @@ $wCenie = taxeon_seed_block('panels', [
 $cta = taxeon_seed_block('cta', [
     'title' => $t('Zacznij prowadzić ryczałt taniej.', 'h2'),
     'text' => 'Bezpłatne spotkanie online z księgową. 30 minut, bez zobowiązań.',
-    'button_primary' => $l('Zamów ryczałt za 99 zł →', '/#kontakt'),
+    'button_primary' => $l('Zamów ryczałt za 99 zł →', taxeon_booking()),
     'button_secondary' => $l('Zobacz KPiR za 169 zł', '/kpir/'),
     'background' => 'navy',
 ]);

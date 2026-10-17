@@ -75,6 +75,19 @@ function taxeon_seed_data(array $values, array $defs, string $prefix = ''): arra
     return $data;
 }
 
+function taxeon_booking(): string
+{
+    $adres = function_exists('get_field') ? (string) get_field('booking_url', 'option') : '';
+
+    if ($adres === '') {
+        return home_url('/#kontakt');
+    }
+
+    $czesci = wp_parse_url($adres);
+
+    return ($czesci['scheme'] ?? 'https') . '://' . ($czesci['host'] ?? '') . ($czesci['path'] ?? '/');
+}
+
 function taxeon_seed_block(string $slug, array $fields): string
 {
     $anchor = $fields['anchor'] ?? '';

@@ -59,7 +59,17 @@
 						<p class="line-clamp-[9] flex-1 text-[15px] leading-[1.6] text-ink-2">{{ item.text }}</p>
 
 						<div class="flex items-center gap-2.5">
-							<span class="block size-[34px] rounded-full bg-line"></span>
+							{% if item.photo %}
+								<img src="{{ item.photo }}" alt="" loading="lazy" width="34" height="34"
+									referrerpolicy="no-referrer"
+									class="size-[34px] flex-none rounded-full object-cover">
+							{% else %}
+								<span aria-hidden="true"
+									class="grid size-[34px] flex-none place-items-center rounded-full
+										bg-accent-soft font-display text-[14px] font-semibold text-accent">
+									{{ item.author|slice(0, 1)|upper }}
+								</span>
+							{% endif %}
 							<span class="flex flex-col">
 								<span class="text-[14px] font-semibold">{{ item.author }}</span>
 								<span class="text-[13px] text-[#6c7c96]">{{ item.when }}</span>

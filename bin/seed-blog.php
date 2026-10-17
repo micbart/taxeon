@@ -3,14 +3,16 @@ require get_template_directory() . '/bin/seed-helpers.php';
 
 $wpisy = json_decode((string) file_get_contents(get_template_directory() . '/bin/dane-blog.json'), true);
 
-$strona = get_page_by_path('baza-wiedzy');
+$strona = get_page_by_path('blog');
 $stronaId = $strona ? (int) $strona->ID : (int) wp_insert_post([
     'post_type' => 'page', 'post_status' => 'publish',
-    'post_title' => 'Baza wiedzy', 'post_name' => 'baza-wiedzy', 'post_content' => '',
+    'post_title' => 'Baza wiedzy', 'post_name' => 'blog', 'post_content' => '',
 ]);
 
 update_option('show_on_front', 'page');
 update_option('page_for_posts', $stronaId);
+update_option('permalink_structure', '/blog/%postname%/');
+flush_rewrite_rules(false);
 
 update_field(taxeon_seed_key('archive_title', 'posts_page'), 'Księgowość bez tajemnic.', $stronaId);
 update_field(taxeon_seed_key('archive_description', 'posts_page'), '<p>Piszemy o tym, o co najczęściej pytają nas Klienci. Po polsku, bez paragrafów — ryczałt, KPiR, ZUS, VAT i KSeF w praktyce.</p>', $stronaId);
@@ -18,14 +20,14 @@ update_field(taxeon_seed_key('archive_badge', 'posts_page'), 'Baza wiedzy Taxeon
 update_field(taxeon_seed_key('archive_cta_title', 'posts_page'), 'Masz pytanie, którego nie ma na blogu?', $stronaId);
 update_field(taxeon_seed_key('archive_cta_text', 'posts_page'), 'Zapytaj księgową Taxeon. Odpowiadamy w ciągu jednego dnia roboczego.', $stronaId);
 update_field(taxeon_seed_key('archive_cta_link', 'posts_page'), [
-    'title' => 'Umów rozmowę z księgową', 'url' => home_url('/#kontakt'), 'target' => '',
+    'title' => 'Umów rozmowę z księgową', 'url' => home_url(taxeon_booking()), 'target' => '',
 ], $stronaId);
 
 update_field(taxeon_seed_key('author_role'), 'księgowa Taxeon', 'option');
 update_field(taxeon_seed_key('article_cta_title'), 'Nie wiesz, co wybrać?', 'option');
 update_field(taxeon_seed_key('article_cta_text'), 'Policzymy oba warianty na Twoich liczbach. Bezpłatnie, bez zobowiązań.', 'option');
 update_field(taxeon_seed_key('article_cta_link'), [
-    'title' => 'Napisz do nas', 'url' => home_url('/#kontakt'), 'target' => '',
+    'title' => 'Napisz do nas', 'url' => home_url(taxeon_booking()), 'target' => '',
 ], 'option');
 
 $tresc = static function (string $temat): string {

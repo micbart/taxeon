@@ -99,6 +99,24 @@ class TimberTheme extends TimberSite
 
 		$context['site'] = $this;
 		$context['themeOptions'] = $optionsFields;
+
+		if (is_404()) {
+			$context['notFoundLinks'] = array_values(array_filter(array_map(
+				static function (array $wpis): ?array {
+					$strona = get_page_by_path($wpis[0]);
+
+					return $strona ? ['title' => get_the_title($strona), 'url' => get_permalink($strona), 'text' => $wpis[1]] : null;
+				},
+				[
+					['ryczalt', __('Pełna obsługa ryczałtu od 99 zł miesięcznie.', 'taxeon')],
+					['kpir', __('Księga przychodów i rozchodów z VAT i kosztami.', 'taxeon')],
+					['cennik', __('Wszystkie pakiety i dopłaty w jednym miejscu.', 'taxeon')],
+					['aplikacja', __('Program księgowy online w cenie abonamentu.', 'taxeon')],
+					['biura-rachunkowe', __('KPiR i ryczałt dla biur rachunkowych.', 'taxeon')],
+					['faq', __('Odpowiedzi na najczęstsze pytania.', 'taxeon')],
+				]
+			)));
+		}
 		$context['breadcrumbs'] = Breadcrumbs::build();
 
 		$context['viteIsDev'] = Vite::isDev();

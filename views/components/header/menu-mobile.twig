@@ -2,7 +2,7 @@
 	<a href="{{ item.url }}"
 		{{ linkAttrs(item.url, item.target)|raw }}
 		{% if currentUrl and item.url == currentUrl %}aria-current="page"{% endif %}
-		class="border-b border-white/10 py-3 font-display text-[26px] font-medium text-white">
+		class="border-b border-white/10 py-[11px] font-display text-[20px] font-medium text-white">
 		{{ item.title }}
 	</a>
 {% endfor %}

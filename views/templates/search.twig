@@ -1,58 +1,35 @@
 {% extends "layouts/base.twig" %}
 
-{% set solidHeader = false %}
-
 {% block main %}
-	<section class="hero-clip relative -mt-header overflow-hidden rounded-b-section bg-[image:var(--gradient-hero)]
-		pt-header max-md:rounded-b-section-sm">
-		<div class="relative z-[1] mx-auto w-full max-w-page px-gutter max-sm:px-5">
-			<div class="pt-16 pb-21">
-				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+	{% include 'components/page-hero.twig' with {
+		badge: __('Wyszukiwanie', 'taxeon'),
+		title: archiveTitle,
+		text: posts|length
+			? __('Poniżej wpisy i strony pasujące do zapytania.', 'taxeon')
+			: __('Nic nie znaleźliśmy. Spróbuj innego słowa albo zajrzyj do bazy wiedzy.', 'taxeon')
+	} only %}
 
-				<h1 class="max-w-[20ch] font-display text-[clamp(33px,4.6vw,54px)] leading-[1.08]
-					font-semibold tracking-[-0.02em] text-balance text-white">
-					{{ archiveTitle }}
-				</h1>
+	<section class="relative overflow-hidden bg-[image:var(--gradient-light)] px-gutter py-section-md
+		max-sm:px-5 max-sm:py-16">
+		{% include 'components/section-decor.twig' with { background: 'light' } only %}
 
-				<p class="mt-[22px] text-[clamp(17px,2vw,20px)] leading-relaxed text-white/78">
-					{{ __('Znaleziono wyników:', 'taxeon') }} {{ posts.found_posts ?? posts|length }}
-				</p>
-
-				<form role="search" method="get" action="{{ site.url }}"
-					class="mt-7 flex max-w-[520px] gap-3 max-sm:flex-col">
-					<label class="sr-only" for="search-field">{{ __('Szukaj', 'taxeon') }}</label>
-
-					<input id="search-field" type="search" name="s"
-						value="{{ fn('get_search_query') }}"
-						placeholder="{{ __('Czego szukasz?', 'taxeon') }}"
-						class="w-full flex-1 rounded-btn border-[1.5px] border-line bg-white px-4 py-3.5 text-[15px]
-							text-ink transition placeholder:text-ink-3
-							focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--color-accent)_16%,transparent)] focus:outline-none">
-
-					<button type="submit"
-						class="inline-flex items-center justify-center rounded-btn bg-cta px-[26px] py-3.5
-							font-sans text-base font-bold text-white shadow-cta transition
-							hover:-translate-y-0.5 hover:bg-cta-strong max-sm:w-full">
-						{{ __('Szukaj', 'taxeon') }}
-					</button>
-				</form>
-			</div>
-		</div>
-	</section>
-
-	<div class="py-section max-sm:py-16">
-		<div class="mx-auto w-full max-w-page px-gutter max-sm:px-5">
+		<div class="relative mx-auto w-full max-w-page">
 			{% if posts|length %}
-				<div class="grid grid-cols-3 gap-[26px] max-xl:grid-cols-2 max-sm:grid-cols-1">
+				<div class="grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
+					max-xl:grid-cols-2 max-sm:grid-cols-1">
 					{% for post in posts %}
-						{% include 'components/post-card.twig' with { post: post, eagerFirst: loop.first } only %}
+						{% include 'components/post-card.twig' with { post: post } only %}
 					{% endfor %}
 				</div>
 
 				{% include 'components/pagination.twig' with { pagination: pagination } only %}
 			{% else %}
-				<p class="py-10 text-center text-base text-ink-3">{{ __('Brak wyników. Spróbuj innej frazy.', 'taxeon') }}</p>
+				<a href="{{ fn('get_permalink', fn('get_option', 'page_for_posts')) }}"
+					class="inline-flex rounded-pill bg-accent-cta px-7 py-4 text-[16px] font-semibold text-white
+						shadow-cta transition hover:bg-accent-strong">
+					{{ __('Przejdź do bazy wiedzy', 'taxeon') }}
+				</a>
 			{% endif %}
 		</div>
-	</div>
+	</section>
 {% endblock %}

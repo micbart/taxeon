@@ -10,7 +10,7 @@ $hero = taxeon_seed_block('hero', [
     'title' => $t('KPiR za 169 zł.', 'h1'),
     'subtitle' => 'Koszty, VAT, środki trwałe — wszystko ogarniemy.',
     'text' => 'Książka Przychodów i Rozchodów to forma dla tych, którzy chcą odliczać koszty. Wybierasz ją, jeśli masz istotne wydatki — sprzęt, paliwo, biuro, szkolenia, podwykonawcy — i opłaca Ci się obniżać podatek przez koszty. Rozliczenie odbywa się na skali (12% i 32%) lub podatkiem liniowym (19%). Prowadzenie KPiR to więcej pracy niż ryczałt, ale i większe możliwości.',
-    'button_primary' => $l('Zamów KPiR →', '/#kontakt'),
+    'button_primary' => $l('Zamów KPiR →', taxeon_booking()),
     'button_secondary' => $l('Porównaj z ryczałtem', '/ryczalt/'),
     'trust' => [
         ['value' => '4,9 / 5', 'label' => 'opinie w Google', 'stars' => 1, 'url' => 'https://www.google.pl/maps/search/TAXEON+-+Biuro+Rachunkowe+Warszawa.+Kamionkowska+51/'],
@@ -67,7 +67,7 @@ $decyzja = taxeon_seed_block('panels', [
             'Cenisz prostotę bez papierologii.',
             'Twoja branża ma niską stawkę ryczałtu: 8,5%, 12% lub 14%.'])],
         ['title' => 'Wybierz KPiR, jeśli…', 'variant' => 'dark', 'list_style' => 'rows', 'note' => '',
-         'links' => [['link' => $l('Zamów KPiR za 169 zł →', '/#kontakt')]],
+         'links' => [['link' => $l('Zamów KPiR za 169 zł →', taxeon_booking())]],
          'items' => $punkty(['Masz istotne koszty — sprzęt, biuro, podwykonawcy.',
             'Inwestujesz w środki trwałe: auto, sprzęt.',
             'Twój przychód przekracza 300–400 tys. zł rocznie.'])],
@@ -79,7 +79,7 @@ $cta = taxeon_seed_block('cta', [
     'title_size' => 'md',
     'title' => $t('Zamów KPiR za 169 zł.', 'h2'),
     'text' => 'Albo umów krótką rozmowę — pomożemy wybrać między ryczałtem a KPiR.',
-    'button_primary' => $l('Zamów KPiR →', '/#kontakt'),
+    'button_primary' => $l('Zamów KPiR →', taxeon_booking()),
     'button_secondary' => $l('Zobacz ryczałt za 99 zł', '/ryczalt/'),
     'background' => 'navy',
 ]);

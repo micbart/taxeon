@@ -212,6 +212,7 @@ class GoogleReviews
 				'id' => substr(md5($nazwa . '|' . $tresc), 0, 12),
 				'author' => $nazwa,
 				'authorUrl' => (string) ($autor['uri'] ?? ''),
+				'photo' => (string) ($autor['photoUri'] ?? ''),
 				'rating' => (int) ($opinia['rating'] ?? 5),
 				'when' => (string) ($opinia['relativePublishTimeDescription'] ?? ''),
 				'time' => strtotime((string) ($opinia['publishTime'] ?? '')) ?: 0,

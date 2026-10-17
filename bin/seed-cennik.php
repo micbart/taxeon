@@ -23,15 +23,15 @@ $hero = taxeon_seed_block('hero', [
         ['label' => 'Ryczałt', 'badge' => 'Najtańszy', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '99 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Pełna obsługa ryczałtu bez VAT. Dla wolnych zawodów, IT i B2B.',
-         'link' => $l('Zamów ryczałt →', '/#kontakt')],
+         'link' => $l('Zamów ryczałt →', taxeon_booking())],
         ['label' => 'Ryczałt + VAT', 'badge' => '', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '139 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Ryczałt dla czynnych podatników VAT — JPK_V7, deklaracje, VAT-UE.',
-         'link' => $l('Zamów ryczałt z VAT →', '/#kontakt')],
+         'link' => $l('Zamów ryczałt z VAT →', taxeon_booking())],
         ['label' => 'KPiR', 'badge' => 'Najpopularniejszy', 'badge_style' => 'filled', 'featured' => 0,
          'price' => '169 zł', 'period' => '/ mies.', 'items' => [],
          'text' => 'Księga Przychodów i Rozchodów z VAT, kosztami i środkami trwałymi.',
-         'link' => $l('Zamów KPiR →', '/#kontakt')],
+         'link' => $l('Zamów KPiR →', taxeon_booking())],
     ],
 ]);
 
@@ -107,7 +107,7 @@ $cta = taxeon_seed_block('cta', [
     'title_size' => 'md',
     'title' => $t('Nie wiesz, który pakiet wybrać?', 'h2'),
     'text' => 'Napisz albo zadzwoń — dobierzemy abonament do Twojej sytuacji. Bezpłatnie, bez zobowiązań.',
-    'button_primary' => $l('Umów rozmowę z księgową →', '/#kontakt'),
+    'button_primary' => $l('Umów rozmowę z księgową →', taxeon_booking()),
     'button_secondary' => $pusty,
     'background' => 'navy',
 ]);
