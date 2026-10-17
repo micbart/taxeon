@@ -142,9 +142,39 @@ class TimberTheme extends TimberSite
 			])
 			: '';
 
-		unset($menus['headerMenuItems']);
+		$menus['legalMenuHtml'] = $menus['legalMenuItems']
+			? Timber::compile('components/footer/menu-legal.twig', [
+				'items' => $menus['legalMenuItems'],
+				'currentUrl' => $currentUrl,
+			])
+			: '';
+
+		foreach ($menus['footerMenuColumns'] as $indeks => $kolumna) {
+			$menus['footerMenuColumns'][$indeks]['html'] = Timber::compile('components/footer/menu-footer.twig', [
+				'items' => $kolumna['items'],
+				'currentUrl' => $currentUrl,
+			]);
+		}
+
+		unset($menus['headerMenuItems'], $menus['legalMenuItems']);
 
 		return $context + $menus;
+	}
+
+	/** @return array<int, array{url: string, title: string, target: string}> */
+	private static function menuItems($menu): array
+	{
+		$pozycje = [];
+
+		foreach ($menu->get_items() as $item) {
+			$pozycje[] = [
+				'url' => (string) $item->link(),
+				'title' => (string) $item->title(),
+				'target' => (string) ($item->target ?? ''),
+			];
+		}
+
+		return $pozycje;
 	}
 
 	private static function currentUrl(): string
@@ -182,7 +212,7 @@ class TimberTheme extends TimberSite
 	{
 		$menus = [
 			'headerMenuItems' => [],
-			'legalMenuHtml' => '',
+			'legalMenuItems' => [],
 			'footerMenuColumns' => [],
 		];
 
@@ -228,9 +258,7 @@ class TimberTheme extends TimberSite
 			$menu = Timber::get_menu('legalMenu', ['depth' => 1]);
 
 			if ($menu) {
-				$menus['legalMenuHtml'] = Timber::compile('components/footer/menu-legal.twig', [
-					'menu' => $menu,
-				]);
+				$menus['legalMenuItems'] = self::menuItems($menu);
 			}
 		}
 
@@ -247,9 +275,7 @@ class TimberTheme extends TimberSite
 
 			$menus['footerMenuColumns'][] = [
 				'title' => $column['title_menu'] ?? $menu->title,
-				'html' => Timber::compile('components/footer/menu-footer.twig', [
-					'menu' => $menu,
-				]),
+				'items' => self::menuItems($menu),
 			];
 		}
 

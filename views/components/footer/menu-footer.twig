@@ -1,7 +1,11 @@
-{% for item in menu.items %}
-	<a href="{{ item.link }}"
+{% for item in items %}
+	{% set biezacy = currentUrl and item.url == currentUrl %}
+
+	<a href="{{ item.url }}"
 		{{ linkAttrs(item.url, item.target)|raw }}
-		class="text-[15px] transition hover:text-white">
+		{% if biezacy %}aria-current="page"{% endif %}
+		class="text-[15px] transition hover:text-white
+			{{ biezacy ? 'font-semibold text-white' : '' }}">
 		{{ item.title }}
 	</a>
 {% endfor %}
