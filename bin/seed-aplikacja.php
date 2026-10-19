@@ -27,7 +27,7 @@ $hero = taxeon_seed_block('hero', [
         'text' => "Przez pierwsze 3 miesiące, potem 43 zł netto.\nKsięgujesz sam — my dajemy narzędzie.",
         'items' => $pkt(['Wystawianie faktur i KSeF', 'Ewidencje i wyliczenia podatku',
             'Przypomnienia o terminach', 'Bez umowy lojalnościowej']),
-        'link' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/'),
+        'link' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/#/rejestracja'),
     ]],
     'stats' => [],
 ]);
@@ -94,7 +94,7 @@ $dostep = taxeon_seed_block('list', [
     'title' => $t('Przeglądarka, telefon, tablet.', 'h2'),
     'head_size' => 'sm',
     'text' => $t('Nic nie instalujesz i nie aktualizujesz. Logujesz się z dowolnego urządzenia, a dane są szyfrowane i kopiowane codziennie.'),
-    'link' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/'),
+    'link' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/#/rejestracja'),
     'row_style' => 'icon', 'columns' => '1',
     'items' => array_map(fn($x) => ['label' => $x[0], 'value' => '', 'tone' => 'default', 'text' => $x[1]], [
         ['Bez instalacji', 'Aplikacja działa w przeglądarce. Aktualizacje robimy po naszej stronie, Ty nic nie pobierasz.'],
@@ -109,7 +109,7 @@ $cta = taxeon_seed_block('cta', [
     'title_size' => 'xs',
     'title' => $t('Zobacz aplikację od środka.', 'h2'),
     'text' => 'Bez ukrytych kosztów i niespodzianek. Możesz zrezygnować w każdej chwili.',
-    'button_primary' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/'),
+    'button_primary' => $l('Wypróbuj za darmo', 'https://app.taxeon.pl/#/rejestracja'),
     'button_secondary' => ['title' => '', 'url' => '', 'target' => ''],
     'background' => 'navy', 'padding_top' => 'medium', 'padding_bottom' => 'medium',
 ]);
