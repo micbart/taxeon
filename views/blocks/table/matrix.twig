@@ -31,3 +31,28 @@
 				{% endfor %}
 			</div>
 		{% endfor %}
+
+		{% if kolumny|filter(k => k.cta.url)|length %}
+			<div class="grid {{ siatka }} items-stretch border-t border-line bg-[#f7faff]">
+				<div class="flex items-center py-[18px] font-display font-semibold text-ink
+					px-[22px] text-[14px] max-sm:px-3 max-sm:text-[13px]">
+					{{ fields.cta_label }}
+				</div>
+
+				{% for kolumna in kolumny %}
+					<div class="flex items-center justify-center px-1.5 py-3
+						{{ kolumna.highlight ? 'bg-accent/[0.035]' : '' }}">
+						{% if kolumna.cta.url %}
+							<a href="{{ kolumna.cta.url }}"
+								{{ linkAttrs(kolumna.cta.url, kolumna.cta.target)|raw }}
+								class="block w-full rounded-pill bg-accent-cta px-2 py-2 text-center text-[12.5px]
+									leading-[1.25] font-semibold text-balance text-white transition
+									hover:bg-accent-strong max-sm:px-1 max-sm:text-[11px]">
+								{{ kolumna.cta.title }}
+							</a>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>

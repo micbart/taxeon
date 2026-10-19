@@ -3,8 +3,8 @@
 	line-height: 1.7;
 	color: var(--color-body);
 
-	> * + * {
-		margin-top: 16px;
+	p {
+		margin: 0 0 16px;
 	}
 
 	> p:first-of-type {
@@ -24,18 +24,31 @@
 	}
 
 	h2 {
-		margin-top: 44px;
+		margin: 44px 0 16px;
 		font-size: 30px;
 	}
 
 	h3 {
-		margin-top: 36px;
+		margin: 36px 0 14px;
 		font-size: 23px;
 	}
 
 	h4 {
-		margin-top: 30px;
+		margin: 30px 0 12px;
 		font-size: 19px;
+	}
+
+	h5 {
+		margin: 24px 0 10px;
+		font-size: 17px;
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
 	}
 
 	strong {
@@ -67,8 +80,8 @@
 	ul,
 	ol {
 		display: grid;
-		gap: 12px;
-		margin-top: 20px;
+		gap: 14px;
+		margin: 20px 0;
 		font-size: 17px;
 		line-height: 1.6;
 		padding-left: 0;
@@ -163,7 +176,7 @@
 
 	table {
 		width: 100%;
-		margin-top: 22px;
+		margin: 22px 0;
 		border: 1px solid var(--color-line);
 		border-radius: var(--radius-tile);
 		border-collapse: separate;
@@ -191,5 +204,69 @@
 			font-weight: 600;
 			color: var(--color-ink);
 		}
+	}
+}
+
+.prose {
+	#cmplz-cookies-overview,
+	.cmplz-dropdown {
+		font-size: 16px;
+	}
+
+	.cmplz-dropdown {
+		margin: 0 0 10px;
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-tile);
+		background: var(--color-page);
+
+		summary {
+			padding: 14px 18px;
+			cursor: pointer;
+			list-style: none;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		h3,
+		h4,
+		h5 {
+			margin: 0;
+			font-size: 16px;
+			line-height: 1.4;
+		}
+
+		p {
+			margin: 2px 0 0;
+			font-size: 14.5px;
+			line-height: 1.5;
+			color: var(--color-ink-3);
+		}
+
+		table {
+			margin: 0;
+			border: 0;
+			border-radius: 0;
+			font-size: 14.5px;
+		}
+
+		th,
+		td {
+			padding: 10px 18px;
+		}
+	}
+
+	.cmplz-service-header,
+	.cmplz-categories {
+		h3,
+		h4,
+		h5 {
+			font-size: 16px;
+		}
+	}
+
+	.cmplz-dropdown-cookiepolicy > summary ~ * {
+		padding: 0 18px 16px;
 	}
 }

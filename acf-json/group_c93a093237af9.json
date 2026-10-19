@@ -244,6 +244,25 @@
             "endpoint": 0
         },
         {
+            "key": "field_53a5ca9a39572",
+            "label": "Opis wiersza z przyciskami",
+            "name": "cta_label",
+            "type": "text",
+            "instructions": "Tekst w pierwszej kolumnie ostatniego wiersza, np. „Wybierz pakiet”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_da3db143115a6",
             "label": "Nagłówek kolumny opisów",
             "name": "head_label",
@@ -337,6 +356,21 @@
                     "ui": 1,
                     "ui_on_text": "",
                     "ui_off_text": ""
+                },
+                {
+                    "key": "field_8058b3b9cd59a",
+                    "label": "Przycisk pod tabelą",
+                    "name": "cta",
+                    "type": "link",
+                    "instructions": "Pojawia się w ostatnim wierszu, w kolumnie tej usługi.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 }
             ]
         },

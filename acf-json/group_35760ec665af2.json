@@ -209,6 +209,21 @@
             ]
         },
         {
+            "key": "field_ea31aeae6545f",
+            "label": "Odnośnik pod opisem",
+            "name": "link",
+            "type": "link",
+            "instructions": "Np. „Zobacz wszystkie wpisy →”. Pojawia się pod opisem, tak jak w bloku FAQ.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_2a27a906cf7e0",
             "label": "Ile wpisów",
             "name": "count",

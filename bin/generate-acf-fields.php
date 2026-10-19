@@ -608,6 +608,9 @@ $blocks['features'] = [
 $blocks['latest-posts'] = [
     'title' => 'Blok: Baza wiedzy',
     'fields' => array_merge(sectionHead('latest_posts'), [
+        f('latest_posts.link', 'Odnośnik pod opisem', 'link', [
+            'instructions' => 'Np. „Zobacz wszystkie wpisy →”. Pojawia się pod opisem, tak jak w bloku FAQ.',
+        ]),
         f('latest_posts.count', 'Ile wpisów', 'number', [
             'instructions' => 'Ile wpisów pobrać z bazy wiedzy.','default_value' => 6, 'min' => 1, 'max' => 12]),
 
@@ -984,6 +987,9 @@ $blocks['table'] = [
         ]),
 
         f('table.tab_table', 'Tabela', 'tab'),
+        f('table.cta_label', 'Opis wiersza z przyciskami', 'text', [
+            'instructions' => 'Tekst w pierwszej kolumnie ostatniego wiersza, np. „Wybierz pakiet”.',
+        ]),
         f('table.head_label', 'Nagłówek kolumny opisów', 'text', [
             'default_value' => 'Co dostajesz',
             'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
@@ -1002,6 +1008,9 @@ $blocks['table'] = [
                 ]),
                 f('table.columns.highlight', 'Wyróżniona', 'true_false', [
                     'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
+                ]),
+                f('table.columns.cta', 'Przycisk pod tabelą', 'link', [
+                    'instructions' => 'Pojawia się w ostatnim wierszu, w kolumnie tej usługi.',
                 ]),
             ],
         ]),
