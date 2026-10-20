@@ -15,8 +15,8 @@
 {% set siatki = {
 	1: 'grid-cols-[minmax(0,1fr)_118px] max-sm:grid-cols-[minmax(0,1fr)_72px]',
 	2: 'grid-cols-[minmax(0,1fr)_118px_118px] max-sm:grid-cols-[minmax(0,1fr)_64px_64px]',
-	3: 'grid-cols-[minmax(0,1fr)_118px_118px_118px] max-sm:grid-cols-[minmax(0,1fr)_56px_56px_56px]',
-	4: 'grid-cols-[minmax(0,1fr)_108px_108px_108px_108px] max-sm:grid-cols-[minmax(0,1fr)_50px_50px_50px_50px]'
+	3: 'grid-cols-[minmax(0,1fr)_118px_118px_118px] max-md:grid-cols-[minmax(0,1fr)_minmax(96px,auto)]',
+	4: 'grid-cols-[minmax(0,1fr)_108px_108px_108px_108px] max-md:grid-cols-[minmax(0,1fr)_minmax(96px,auto)]'
 } %}
 {% set siatka = siatki[kolumny|length] ?: siatki[2] %}
 {% set waskie = kolumny|length > 3 %}

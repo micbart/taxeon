@@ -1,0 +1,7 @@
+@media (width < 48rem) {
+	@for $i from 0 through 5 {
+		[data-matrix][data-wybrany="#{$i}"] [data-kolumna]:not([data-kolumna="#{$i}"]) {
+			display: none;
+		}
+	}
+}
