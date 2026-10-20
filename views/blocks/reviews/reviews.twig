@@ -48,37 +48,52 @@
 		</div>
 
 		{% if opinie|length %}
-			<div class="mt-11 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
-				{% for item in opinie %}
-					<a href="{{ item.authorUrl ?: wizytowka ?: '#' }}" target="_blank" rel="noopener"
-						class="flex min-h-[210px] flex-col gap-3.5 rounded-card border border-line bg-page p-[26px]
-							text-ink transition hover:border-accent hover:shadow-[0_18px_40px_-26px_rgb(11_99_246/0.4)]">
-						<div class="flex gap-1 text-[15px] tracking-[0.1em] text-accent">
-							{% for gwiazdka in 1..5 %}{{ gwiazdka <= (item.rating ?: 5) ? '★' : '☆' }}{% endfor %}
-						</div>
+			{% if opinie|length > 4 %}
+				<div class="mt-11" data-reviews>
+					<div data-reviews-track
+						role="group"
+						tabindex="0"
+						aria-label="{{ __('Opinie klientów — przewijana lista', 'taxeon') }}"
+						class="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-1
+							[scrollbar-width:none] motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden">
+						{% for item in opinie %}
+							{% include 'components/review-card.twig' with {
+								item: item,
+								wizytowka: wizytowka,
+								klasy: 'shrink-0 snap-start basis-[calc((100%-60px)/4)]
+									max-lg:basis-[calc((100%-40px)/3)] max-md:basis-[calc((100%-20px)/2)]
+									max-sm:basis-[86%]'
+							} only %}
+						{% endfor %}
+					</div>
 
-						<p class="line-clamp-[9] flex-1 text-[15px] leading-[1.6] text-ink-2">{{ item.text }}</p>
+					<div class="mt-6 flex justify-end gap-2.5" data-reviews-nav>
+						<button type="button" data-reviews-prev
+							aria-label="{{ __('Poprzednie opinie', 'taxeon') }}"
+							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#c6d4ea]
+								bg-page text-accent transition hover:border-accent hover:bg-soft
+								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#c6d4ea]
+								disabled:hover:bg-page [&_svg]:size-5">
+							{{ 'arrow-left'|svg }}
+						</button>
 
-						<div class="flex items-center gap-2.5">
-							{% if item.photo %}
-								<img src="{{ item.photo }}" alt="" loading="lazy" width="34" height="34"
-									referrerpolicy="no-referrer"
-									class="size-[34px] flex-none rounded-full object-cover">
-							{% else %}
-								<span aria-hidden="true"
-									class="grid size-[34px] flex-none place-items-center rounded-full
-										bg-accent-soft font-display text-[14px] font-semibold text-accent">
-									{{ item.author|slice(0, 1)|upper }}
-								</span>
-							{% endif %}
-							<span class="flex flex-col">
-								<span class="text-[14px] font-semibold">{{ item.author }}</span>
-								<span class="text-[13px] text-ink-3">{{ item.when }}</span>
-							</span>
-						</div>
-					</a>
-				{% endfor %}
-			</div>
+						<button type="button" data-reviews-next
+							aria-label="{{ __('Następne opinie', 'taxeon') }}"
+							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#c6d4ea]
+								bg-page text-accent transition hover:border-accent hover:bg-soft
+								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#c6d4ea]
+								disabled:hover:bg-page [&_svg]:size-5">
+							{{ 'arrow-right'|svg }}
+						</button>
+					</div>
+				</div>
+			{% else %}
+				<div class="mt-11 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+					{% for item in opinie %}
+						{% include 'components/review-card.twig' with { item: item, wizytowka: wizytowka, klasy: '' } only %}
+					{% endfor %}
+				</div>
+			{% endif %}
 		{% endif %}
 	</div>
 </section>

@@ -782,7 +782,8 @@ $blocks['reviews'] = [
             'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '!=', 'value' => 'manual']]],
         ]),
         f('reviews.limit', 'Maksymalna liczba kart z Google', 'number', [
-            'instructions' => 'Ile kart z Google pokazać. Cztery wypełniają jeden rząd. Opinie dopisane ręcznie dochodzą do nich.',
+            'instructions' => 'Ile opinii z Google wziąć do sekcji; dopisane ręcznie dochodzą do nich. '
+                . 'Widoczne są zawsze cztery karty — powyżej czterech sekcja zamienia się w karuzelę ze strzałkami.',
             'default_value' => 8, 'min' => 1, 'max' => 12,
             'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '!=', 'value' => 'manual']]],
         ]),

@@ -282,7 +282,7 @@
             "label": "Maksymalna liczba kart z Google",
             "name": "limit",
             "type": "number",
-            "instructions": "Ile kart z Google pokazać. Cztery wypełniają jeden rząd. Opinie dopisane ręcznie dochodzą do nich.",
+            "instructions": "Ile opinii z Google wziąć do sekcji; dopisane ręcznie dochodzą do nich. Widoczne są zawsze cztery karty — powyżej czterech sekcja zamienia się w karuzelę ze strzałkami.",
             "required": 0,
             "conditional_logic": [
                 [

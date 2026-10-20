@@ -1,0 +1,28 @@
+<a href="{{ item.authorUrl ?: wizytowka ?: '#' }}" target="_blank" rel="noopener"
+	class="flex min-h-[210px] flex-col gap-3.5 rounded-card border border-line bg-page p-[26px]
+		text-ink transition hover:border-accent hover:shadow-[0_18px_40px_-26px_rgb(11_99_246/0.4)]
+		{{ klasy }}">
+	<div class="flex gap-1 text-[15px] tracking-[0.1em] text-accent">
+		{% for gwiazdka in 1..5 %}{{ gwiazdka <= (item.rating ?: 5) ? '★' : '☆' }}{% endfor %}
+	</div>
+
+	<p class="line-clamp-[9] flex-1 text-[15px] leading-[1.6] text-ink-2">{{ item.text }}</p>
+
+	<div class="flex items-center gap-2.5">
+		{% if item.photo %}
+			<img src="{{ item.photo }}" alt="" loading="lazy" width="34" height="34"
+				referrerpolicy="no-referrer"
+				class="size-[34px] flex-none rounded-full object-cover">
+		{% else %}
+			<span aria-hidden="true"
+				class="grid size-[34px] flex-none place-items-center rounded-full
+					bg-accent-soft font-display text-[14px] font-semibold text-accent">
+				{{ item.author|slice(0, 1)|upper }}
+			</span>
+		{% endif %}
+		<span class="flex flex-col">
+			<span class="text-[14px] font-semibold">{{ item.author }}</span>
+			<span class="text-[13px] text-ink-3">{{ item.when }}</span>
+		</span>
+	</div>
+</a>
