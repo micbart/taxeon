@@ -9,6 +9,7 @@ import { initBooking } from './app/booking.js';
 import { initTrial } from './app/trial.js';
 import { initReviews } from './app/reviews.js';
 import { initMatrix } from './app/matrix.js';
+import { initKalkulatory } from './app/kalkulatory.js';
 import { initContactForm } from './app/contactForm.js';
 import { initVerifyBox } from './app/verifyBox.js';
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	initTrial();
 	initReviews();
 	initMatrix();
+	initKalkulatory();
 	initVerifyBox();
 	initContactForm();
 });

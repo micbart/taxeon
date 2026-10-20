@@ -39,6 +39,7 @@
 				{{ kolumny[fields.columns ?: '2'] }} max-xl:grid-cols-2 max-md:grid-cols-1">
 				{% for item in fields.items %}
 					{% set klikalna = item.link.url ? 'a' : 'div' %}
+					{% set ruch = item.link.url %}
 
 					<{{ klikalna }}
 						{% if item.link.url %}
@@ -50,9 +51,14 @@
 						{{ duze ? 'min-h-[340px] gap-4 px-[38px] py-10' : '' }}
 						{{ rozmiar == 'md' ? 'gap-3 px-8 py-[34px]' : '' }}
 						{{ onDark
-							? 'border border-white/24 bg-white/11 transform-gpu transition hover:border-white/45 hover:bg-white/17 '
-								~ (maly ? 'shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]' : 'shadow-[inset_0_1px_0_rgb(255_255_255/0.22),0_24px_50px_-30px_rgb(3_8_40/0.7)] hover:-translate-y-[3px]')
-							: 'border border-line bg-page shadow-soft transition hover:-translate-y-[3px] hover:shadow-mid' }}">
+							? 'border border-white/24 bg-white/11 transform-gpu transition '
+								~ (ruch ? 'hover:border-white/45 hover:bg-white/17 ' : '')
+								~ (maly
+									? 'shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]'
+									: 'shadow-[inset_0_1px_0_rgb(255_255_255/0.22),0_24px_50px_-30px_rgb(3_8_40/0.7)] '
+										~ (ruch ? 'hover:-translate-y-[3px]' : ''))
+							: 'border border-line bg-page shadow-soft transition '
+								~ (ruch ? 'hover:-translate-y-[3px] hover:shadow-mid' : '') }}">
 
 						{% if maly %}
 							<span aria-hidden="true" class="mb-2 block h-1 w-[34px] rounded-[2px] bg-sky"></span>

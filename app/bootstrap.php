@@ -20,6 +20,7 @@ function init(): void
 	new Services\GoogleReviews();
 	new Services\LlmsTxt();
 	new Services\Comments();
+	new Services\Redirects();
 
 	new Providers\AcfSupports();
 	new Providers\BlogSupports();

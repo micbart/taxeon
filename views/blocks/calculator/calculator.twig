@@ -1,0 +1,58 @@
+{#
+	Title: Kalkulator
+	Description: Kalkulator podatkowy, kosztu księgowości albo limitu zwolnienia
+	Category: taxeon
+	Icon: calculator
+	HideFieldsInSidebar: true
+	ExpandedEditorButtons: true
+	ExpandedEditorButtonText: Edytuj zawartość
+	SupportsAlign: false
+	SupportsAnchor: true
+#}
+{% import 'components/section.twig' as section %}
+
+{% set dane = kalkulator(fields.kind ?: 'podatkowy') %}
+
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="relative overflow-hidden {{ section.shell(fields) }}">
+	<div class="relative {{ section.container(fields) }}">
+		{% include 'components/section-head.twig' with {
+			size: fields.head_size,
+			background: fields.background,
+			headWidth: fields.head_width,
+			titleWidth: fields.title_width,
+			textWidth: fields.text_width,
+			textGap: fields.text_gap,
+			eyebrow: fields.eyebrow,
+			title: fields.title,
+			text: fields.text
+		} only %}
+
+		<div class="mt-11">
+			{% if dane.rodzaj == 'ksiegowy' %}
+				{% include 'blocks/calculator/ksiegowy.twig' with { dane: dane } only %}
+			{% elseif dane.rodzaj == 'podatkowy' %}
+				{% include 'blocks/calculator/podatkowy.twig' with { dane: dane } only %}
+			{% else %}
+				{% include 'blocks/calculator/limit.twig' with { dane: dane } only %}
+			{% endif %}
+		</div>
+
+		{% if fields.cta.url %}
+			<div class="mt-9 flex justify-center">
+				<a href="{{ fields.cta.url }}" {{ linkAttrs(fields.cta.url, fields.cta.target)|raw }}
+					class="rounded-pill bg-accent-cta px-8 py-[17px] text-[16px] font-semibold text-white
+						shadow-cta transition hover:brightness-110">
+					{{ fields.cta.title }}
+				</a>
+			</div>
+		{% endif %}
+
+		{% if fields.note %}
+			<div class="mt-9 border-l-[3px] border-line py-1 pl-[18px]
+				[&_p]:text-[13.5px] [&_p]:leading-[1.65] [&_p]:text-ink-3">
+				{{ fields.note }}
+			</div>
+		{% endif %}
+	</div>
+</section>

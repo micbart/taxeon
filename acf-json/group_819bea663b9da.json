@@ -718,6 +718,520 @@
             "esc_html": 0
         },
         {
+            "key": "field_4ffb993ccabfd",
+            "label": "Kalkulatory",
+            "name": "tab_kalkulatory",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_4f858bdf52700",
+            "label": "Rok, dla którego liczymy",
+            "name": "kalk_rok",
+            "type": "text",
+            "instructions": "Pokazujemy go w nagłówku wyników i w zastrzeżeniu pod kalkulatorem.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "2026",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_73d3b65e79538",
+            "label": "Strona z cennikiem",
+            "name": "kalk_strona_cennika",
+            "type": "post_object",
+            "instructions": "Stąd kalkulator kosztu księgowości bierze pakiety i ceny. Puste = strona „Cennik”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "66",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
+            "key": "field_f3a9e808df30e",
+            "label": "Skala podatkowa i podatek liniowy",
+            "name": "kalk_naglowek_skala",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Wartości na rok podatkowy — do potwierdzenia z księgową przy każdej zmianie przepisów.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_08d24cb5ec816",
+            "label": "Próg skali podatkowej (zł)",
+            "name": "kalk_skala_prog",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 120000,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_a29707f44c45f",
+            "label": "Stawka do progu (%)",
+            "name": "kalk_skala_stawka_nizsza",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 12,
+            "min": "",
+            "max": "",
+            "step": 0.1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_273301e136f49",
+            "label": "Stawka powyżej progu (%)",
+            "name": "kalk_skala_stawka_wyzsza",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 32,
+            "min": "",
+            "max": "",
+            "step": 0.1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_d6df01eb8ede1",
+            "label": "Kwota zmniejszająca podatek (zł)",
+            "name": "kalk_kwota_zmniejszajaca",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 3600,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_0ce34d22c66a4",
+            "label": "Podatek liniowy (%)",
+            "name": "kalk_liniowy_stawka",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 19,
+            "min": "",
+            "max": "",
+            "step": 0.1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5d8836cef41df",
+            "label": "Składka zdrowotna",
+            "name": "kalk_naglowek_zdrowotna",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Minimalna podstawa to miesięczna kwota, poniżej której liczymy składkę od minimum.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_782e8c9b465b3",
+            "label": "Na skali (%)",
+            "name": "kalk_zdrowotna_skala",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 9,
+            "min": "",
+            "max": "",
+            "step": 0.1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_2dc9dd98f6c6a",
+            "label": "Na liniowym (%)",
+            "name": "kalk_zdrowotna_liniowy",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4.9,
+            "min": "",
+            "max": "",
+            "step": 0.1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_d6de61cbf266f",
+            "label": "Minimalna podstawa miesięczna (zł)",
+            "name": "kalk_zdrowotna_minimalna",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 3499.5,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_eeec5c93355a5",
+            "label": "Ryczałt",
+            "name": "kalk_naglowek_ryczalt",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Składka zdrowotna na ryczałcie zależy od przychodu pomniejszonego o składki społeczne.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_d58dd56e16e45",
+            "label": "Przeciętne wynagrodzenie (zł)",
+            "name": "kalk_ryczalt_przecietne",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 8549.18,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_df7d59ce5b1dd",
+            "label": "Pierwszy próg przychodu (zł)",
+            "name": "kalk_ryczalt_prog_nizszy",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 60000,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_f4bdb9c050c2b",
+            "label": "Drugi próg przychodu (zł)",
+            "name": "kalk_ryczalt_prog_wyzszy",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 300000,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_aefa7a2faf7a1",
+            "label": "Odliczenie składki zdrowotnej (%)",
+            "name": "kalk_ryczalt_odliczenie",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 50,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_19df0471ff877",
+            "label": "Limity i wartości startowe",
+            "name": "kalk_naglowek_limity",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Limity roczne dzielimy proporcjonalnie do liczby dni od rozpoczęcia sprzedaży do końca roku.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_e5eea674aa04b",
+            "label": "Limit zwolnienia z VAT (zł)",
+            "name": "kalk_limit_vat",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 240000,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_85aa10e9108a7",
+            "label": "Limit dla kasy fiskalnej (zł)",
+            "name": "kalk_limit_kasy",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 20000,
+            "min": "",
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_e2c0f73102687",
+            "label": "Startowy przychód miesięczny (zł)",
+            "name": "kalk_domyslny_przychod",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 10500,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_2582ce191431a",
+            "label": "Startowe koszty miesięczne (zł)",
+            "name": "kalk_domyslne_koszty",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1000,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_da55b371c24ab",
+            "label": "Startowe składki społeczne (zł / mies.)",
+            "name": "kalk_domyslne_spoleczne",
+            "type": "number",
+            "instructions": "Suma składek ZUS bez zdrowotnej.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1518.98,
+            "min": "",
+            "max": "",
+            "step": 0.01,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cbdfc1354df69",
+            "label": "Startowa stawka ryczałtu (%)",
+            "name": "kalk_domyslna_stawka",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "3": "3%",
+                "5.5": "5.5%",
+                "8.5": "8.5%",
+                "10": "10%",
+                "12": "12%",
+                "12.5": "12.5%",
+                "14": "14%",
+                "15": "15%",
+                "17": "17%"
+            },
+            "default_value": "12",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_fab78a8c9c1f4",
             "label": "Blog",
             "name": "tab_blog",

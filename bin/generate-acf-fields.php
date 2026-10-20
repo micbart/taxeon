@@ -16,6 +16,8 @@ const BUTTON_VARIANTS = [
 
 const BUTTON_SIZES = ['base' => 'Zwykły', 'lg' => 'Duży'];
 
+const KALK_STAWKI = ['3', '5.5', '8.5', '10', '12', '12.5', '14', '15', '17'];
+
 function key_for(string $path): string
 {
     return 'field_' . substr(md5('taxeon:' . $path), 0, 13);
@@ -60,6 +62,8 @@ function f(string $path, string $label, string $type, array $extra = []): array
         'repeater' => ['collapsed' => '', 'min' => 0, 'max' => 0, 'layout' => 'block', 'button_label' => 'Dodaj', 'sub_fields' => []],
         'group' => ['layout' => 'block', 'sub_fields' => []],
         'tab' => ['placement' => 'top', 'endpoint' => 0],
+        'message' => ['message' => '', 'new_lines' => 'wpautop', 'esc_html' => 0],
+        'post_object' => ['post_type' => [], 'taxonomy' => [], 'allow_null' => 1, 'multiple' => 0, 'return_format' => 'object', 'ui' => 1],
     ];
 
     return array_merge($base, $defaults[$type] ?? [], $extra);
@@ -326,6 +330,111 @@ $groups['options'] = [
             'message' => '',
             'new_lines' => '',
             'esc_html' => 0,
+        ]),
+
+        f('opt.tab_kalkulatory', 'Kalkulatory', 'tab'),
+        f('opt.kalk_rok', 'Rok, dla którego liczymy', 'text', [
+            'default_value' => '2026',
+            'instructions' => 'Pokazujemy go w nagłówku wyników i w zastrzeżeniu pod kalkulatorem.',
+            'wrapper' => ['width' => '34', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_strona_cennika', 'Strona z cennikiem', 'post_object', [
+            'instructions' => 'Stąd kalkulator kosztu księgowości bierze pakiety i ceny. Puste = strona „Cennik”.',
+            'post_type' => ['page'],
+            'return_format' => 'id',
+            'ui' => 1,
+            'wrapper' => ['width' => '66', 'class' => '', 'id' => ''],
+        ]),
+
+        f('opt.kalk_naglowek_skala', 'Skala podatkowa i podatek liniowy', 'message', [
+            'message' => 'Wartości na rok podatkowy — do potwierdzenia z księgową przy każdej zmianie przepisów.',
+        ]),
+        f('opt.kalk_skala_prog', 'Próg skali podatkowej (zł)', 'number', [
+            'default_value' => 120000, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_skala_stawka_nizsza', 'Stawka do progu (%)', 'number', [
+            'default_value' => 12, 'step' => 0.1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_skala_stawka_wyzsza', 'Stawka powyżej progu (%)', 'number', [
+            'default_value' => 32, 'step' => 0.1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_kwota_zmniejszajaca', 'Kwota zmniejszająca podatek (zł)', 'number', [
+            'default_value' => 3600, 'step' => 0.01,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_liniowy_stawka', 'Podatek liniowy (%)', 'number', [
+            'default_value' => 19, 'step' => 0.1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+
+        f('opt.kalk_naglowek_zdrowotna', 'Składka zdrowotna', 'message', [
+            'message' => 'Minimalna podstawa to miesięczna kwota, poniżej której liczymy składkę od minimum.',
+        ]),
+        f('opt.kalk_zdrowotna_skala', 'Na skali (%)', 'number', [
+            'default_value' => 9, 'step' => 0.1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_zdrowotna_liniowy', 'Na liniowym (%)', 'number', [
+            'default_value' => 4.9, 'step' => 0.1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_zdrowotna_minimalna', 'Minimalna podstawa miesięczna (zł)', 'number', [
+            'default_value' => 3499.5, 'step' => 0.01,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
+
+        f('opt.kalk_naglowek_ryczalt', 'Ryczałt', 'message', [
+            'message' => 'Składka zdrowotna na ryczałcie zależy od przychodu pomniejszonego o składki społeczne.',
+        ]),
+        f('opt.kalk_ryczalt_przecietne', 'Przeciętne wynagrodzenie (zł)', 'number', [
+            'default_value' => 8549.18, 'step' => 0.01,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_ryczalt_prog_nizszy', 'Pierwszy próg przychodu (zł)', 'number', [
+            'default_value' => 60000, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_ryczalt_prog_wyzszy', 'Drugi próg przychodu (zł)', 'number', [
+            'default_value' => 300000, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_ryczalt_odliczenie', 'Odliczenie składki zdrowotnej (%)', 'number', [
+            'default_value' => 50, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+
+        f('opt.kalk_naglowek_limity', 'Limity i wartości startowe', 'message', [
+            'message' => 'Limity roczne dzielimy proporcjonalnie do liczby dni od rozpoczęcia sprzedaży do końca roku.',
+        ]),
+        f('opt.kalk_limit_vat', 'Limit zwolnienia z VAT (zł)', 'number', [
+            'default_value' => 240000, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_limit_kasy', 'Limit dla kasy fiskalnej (zł)', 'number', [
+            'default_value' => 20000, 'step' => 1,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_domyslny_przychod', 'Startowy przychód miesięczny (zł)', 'number', [
+            'default_value' => 10500, 'step' => 0.01,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_domyslne_koszty', 'Startowe koszty miesięczne (zł)', 'number', [
+            'default_value' => 1000, 'step' => 0.01,
+            'wrapper' => ['width' => '25', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_domyslne_spoleczne', 'Startowe składki społeczne (zł / mies.)', 'number', [
+            'default_value' => 1518.98, 'step' => 0.01,
+            'instructions' => 'Suma składek ZUS bez zdrowotnej.',
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
+        ]),
+        f('opt.kalk_domyslna_stawka', 'Startowa stawka ryczałtu (%)', 'select', [
+            'choices' => array_combine(KALK_STAWKI, array_map(fn($s) => $s . '%', KALK_STAWKI)),
+            'default_value' => '12',
+            'allow_null' => 0,
+            'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
 
         f('opt.tab_blog', 'Blog', 'tab'),
@@ -807,6 +916,28 @@ $blocks['reviews'] = [
                 f('reviews.items.text', 'Treść', 'textarea', ['required' => 1, 'rows' => 3]),
             ],
         ]),
+    ]),
+];
+
+$blocks['calculator'] = [
+    'title' => 'Blok: Kalkulator',
+    'fields' => array_merge(sectionHead('calculator'), [
+        f('calculator.kind', 'Który kalkulator', 'select', [
+            'instructions' => 'Stawki, progi i limity ustawiasz raz w Opcjach motywu → Kalkulatory.',
+            'choices' => [
+                'podatkowy' => 'Wybór formy opodatkowania',
+                'ksiegowy' => 'Koszt usługi księgowej',
+                'limit_vat' => 'Limit zwolnienia z VAT',
+                'kasa_fiskalna' => 'Limit dla kasy fiskalnej',
+            ],
+            'default_value' => 'podatkowy',
+            'allow_null' => 0,
+        ]),
+        f('calculator.note', 'Zastrzeżenie pod kalkulatorem', 'wysiwyg', [
+            'instructions' => 'Mała czcionka pod wynikami. Zostaw puste, żeby nie pokazywać.',
+            'toolbar' => 'basic',
+        ]),
+        f('calculator.cta', 'Przycisk pod wynikiem', 'link'),
     ]),
 ];
 

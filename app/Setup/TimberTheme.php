@@ -544,6 +544,40 @@ class TimberTheme extends TimberSite
 
 		$twig->addFunction(
 			new TwigFunction(
+				'kalkulator',
+				function (string $rodzaj): array {
+					$parametry = \App\Services\Kalkulatory::parametry();
+
+					$dane = ['rodzaj' => $rodzaj, 'parametry' => $parametry];
+
+					if ($rodzaj === 'podatkowy') {
+						$dane['wynik'] = \App\Services\Kalkulatory::podatkowy(
+							(float) $parametry['domyslnyPrzychod'],
+							(float) $parametry['domyslneKoszty'],
+							(float) $parametry['domyslneSpoleczne'],
+							(float) $parametry['domyslnaStawka']
+						);
+					}
+
+					if ($rodzaj === 'ksiegowy') {
+						$dane['pakiety'] = \App\Services\Kalkulatory::pakiety();
+					}
+
+					if ($rodzaj === 'limit_vat' || $rodzaj === 'kasa_fiskalna') {
+						$dane['limitRoczny'] = $rodzaj === 'limit_vat'
+							? (float) $parametry['limitVat']
+							: (float) $parametry['limitKasy'];
+						$dane['dzis'] = current_time('Y-m-d');
+						$dane['wynik'] = \App\Services\Kalkulatory::limit($dane['dzis'], $dane['limitRoczny']);
+					}
+
+					return $dane;
+				}
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
 				'block_index',
 				function (string $blockName = 'default'): int {
 					static $counters = [];

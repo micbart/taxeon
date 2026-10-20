@@ -1,0 +1,31 @@
+<div class="grid gap-[7px]">
+	<label for="{{ id }}" class="text-sm font-bold text-ink">{{ label }}</label>
+
+	{% if opcje %}
+		<select id="{{ id }}" data-k-pole="{{ nazwa }}"
+			class="w-full cursor-pointer rounded-btn border-[1.5px] border-line bg-white px-4 py-[13px]
+				text-[15px] text-ink transition focus:border-accent focus:outline-none">
+			{% for opcja in opcje %}
+				<option value="{{ opcja }}" {{ opcja == wartosc ? 'selected' : '' }}>{{ opcja|replace({'.': ','}) }}%</option>
+			{% endfor %}
+		</select>
+	{% else %}
+		<div class="relative">
+			<input id="{{ id }}"
+				type="number"
+				inputmode="decimal"
+				min="0"
+				step="0.01"
+				value="{{ wartosc }}"
+				data-k-pole="{{ nazwa }}"
+				class="w-full rounded-btn border-[1.5px] border-line bg-white py-[13px] pr-12 pl-4
+					text-[15px] text-ink transition focus:border-accent focus:outline-none">
+			<span aria-hidden="true"
+				class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-[14px] text-ink-3">
+				zł
+			</span>
+		</div>
+	{% endif %}
+
+	{% if hint %}<span class="text-[13px] leading-[1.5] text-ink-3">{{ hint }}</span>{% endif %}
+</div>

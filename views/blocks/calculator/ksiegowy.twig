@@ -1,0 +1,91 @@
+{% set pakiety = dane.pakiety %}
+
+{% if pakiety|length %}
+	<div data-kalkulator="ksiegowy"
+		class="grid grid-cols-[minmax(260px,0.8fr)_minmax(0,1.4fr)] items-start gap-10
+			max-lg:grid-cols-1 max-lg:gap-8">
+
+		<form class="rounded-card border border-line bg-white/90 p-7 shadow-[0_24px_60px_-40px_rgb(6_26_80/0.35)]
+				backdrop-blur-[8px] max-sm:p-5"
+			aria-label="{{ __('Dobór pakietu', 'taxeon') }}"
+			onsubmit="return false">
+			<fieldset class="grid gap-[7px]">
+				<legend class="text-sm font-bold text-ink">{{ __('Kto prowadzi księgowość', 'taxeon') }}</legend>
+				{% for opcja in [
+					{ wartosc: 'ksiegowa', etykieta: __('Dedykowana księgowa z Taxeon', 'taxeon') },
+					{ wartosc: 'samodzielnie', etykieta: __('Księguję sam w aplikacji', 'taxeon') }
+				] %}
+					<label class="flex cursor-pointer items-center gap-2.5 rounded-btn border-[1.5px] border-line
+						bg-white px-4 py-3 text-[15px] text-ink transition has-checked:border-accent has-checked:bg-accent-soft">
+						<input type="radio" name="kalk-obsluga" value="{{ opcja.wartosc }}" data-k-pole="obsluga"
+							{{ loop.first ? 'checked' : '' }} class="accent-accent">
+						{{ opcja.etykieta }}
+					</label>
+				{% endfor %}
+			</fieldset>
+
+			<fieldset class="mt-5 grid gap-[7px]" data-k-grupa="forma">
+				<legend class="text-sm font-bold text-ink">{{ __('Forma opodatkowania', 'taxeon') }}</legend>
+				{% for opcja in [
+					{ wartosc: 'ryczalt', etykieta: __('Ryczałt', 'taxeon') },
+					{ wartosc: 'kpir', etykieta: __('KPiR — zasady ogólne albo liniowy', 'taxeon') }
+				] %}
+					<label class="flex cursor-pointer items-center gap-2.5 rounded-btn border-[1.5px] border-line
+						bg-white px-4 py-3 text-[15px] text-ink transition has-checked:border-accent has-checked:bg-accent-soft">
+						<input type="radio" name="kalk-forma" value="{{ opcja.wartosc }}" data-k-pole="forma"
+							{{ loop.first ? 'checked' : '' }} class="accent-accent">
+						{{ opcja.etykieta }}
+					</label>
+				{% endfor %}
+			</fieldset>
+
+			<label class="mt-5 flex cursor-pointer items-center gap-2.5 rounded-btn border-[1.5px] border-line
+				bg-white px-4 py-3 text-[15px] text-ink transition has-checked:border-accent has-checked:bg-accent-soft"
+				data-k-grupa="vat">
+				<input type="checkbox" data-k-pole="vat" class="accent-accent">
+				{{ __('Jestem czynnym podatnikiem VAT', 'taxeon') }}
+			</label>
+		</form>
+
+		<div>
+			<div class="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+				{% for indeks, pakiet in pakiety %}
+					<div data-k-pakiet="{{ indeks }}" data-etykieta="{{ pakiet.label }}"
+						class="flex flex-col rounded-card border border-line bg-white/90 p-6 transition
+							data-[wybrany]:border-accent data-[wybrany]:shadow-[0_18px_44px_-26px_rgb(11_99_246/0.5)]
+							max-sm:p-5">
+						<div class="flex items-start justify-between gap-2">
+							<h3 class="font-display text-[17px] font-bold text-ink">{{ pakiet.label }}</h3>
+							<span data-k-znacznik
+								class="hidden rounded-pill bg-accent px-2.5 py-1 text-[11px] font-semibold
+									whitespace-nowrap text-white data-[widoczny]:block">
+								{{ __('dla Ciebie', 'taxeon') }}
+							</span>
+						</div>
+
+						<p class="mt-3 font-display text-[28px] leading-[1.1] font-bold text-ink">
+							{{ pakiet.price }}
+							<span class="text-[15px] font-normal text-ink-3">{{ pakiet.period }}</span>
+						</p>
+
+						{% if pakiet.text %}
+							<p class="mt-2.5 text-[14px] leading-[1.6] text-ink-2">{{ pakiet.text }}</p>
+						{% endif %}
+
+						{% if pakiet.link.url %}
+							<a href="{{ pakiet.link.url }}" {{ linkAttrs(pakiet.link.url, pakiet.link.target)|raw }}
+								class="mt-5 rounded-pill bg-accent-cta px-5 py-3 text-center text-[14px]
+									font-semibold text-white transition hover:brightness-110">
+								{{ pakiet.link.title }}
+							</a>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+
+			<p class="mt-5 text-[13px] text-ink-3">
+				{{ __('Ceny netto z cennika. Kadry i płace, rozliczenie roczne i nietypowe rozliczenia transgraniczne wyceniamy osobno.', 'taxeon') }}
+			</p>
+		</div>
+	</div>
+{% endif %}
