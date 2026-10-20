@@ -766,23 +766,29 @@ $blocks['reviews'] = [
             'instructions' => 'Przycisk obok nagłówka, prowadzi do wizytówki Google.',
         ]),
         f('reviews.source', 'Skąd opinie', 'select', [
-            'instructions' => 'Z profilu Google pobieramy opinie automatycznie; ręczne wpisujesz sam.',
-            'choices' => ['google' => 'Z profilu Google', 'manual' => 'Wpisane ręcznie'],
+            'instructions' => 'Google udostępnia najwyżej pięć opinii z wizytówki i sam wybiera, które to będą. '
+                . 'Żeby pokazać więcej, wybierz „Z Google i dopisane ręcznie” i dopisz pozostałe poniżej.',
+            'choices' => [
+                'google' => 'Z profilu Google',
+                'both' => 'Z Google i dopisane ręcznie',
+                'manual' => 'Tylko wpisane ręcznie',
+            ],
             'default_value' => 'google',
             'allow_null' => 0,
         ]),
-        f('reviews.google_items', 'Które opinie pokazać', 'checkbox', [
+        f('reviews.google_items', 'Które opinie z Google pokazać', 'checkbox', [
             'instructions' => 'Lista pochodzi z ostatniego pobrania. Bez zaznaczenia pokazujemy wszystkie.',
             'choices' => [],
-            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '!=', 'value' => 'manual']]],
         ]),
-        f('reviews.limit', 'Maksymalna liczba kart', 'number', [
-            'instructions' => 'Ile kart pokazać. Cztery wypełniają jeden rząd.',
+        f('reviews.limit', 'Maksymalna liczba kart z Google', 'number', [
+            'instructions' => 'Ile kart z Google pokazać. Cztery wypełniają jeden rząd. Opinie dopisane ręcznie dochodzą do nich.',
             'default_value' => 8, 'min' => 1, 'max' => 12,
-            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'google']]],
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '!=', 'value' => 'manual']]],
         ]),
-        f('reviews.items', 'Opinie', 'repeater', [
-            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '==', 'value' => 'manual']]],
+        f('reviews.items', 'Opinie dopisane ręcznie', 'repeater', [
+            'instructions' => 'Przepisz opinię z wizytówki albo wklej tę, którą klient przysłał mailem.',
+            'conditional_logic' => [[['field' => key_for('reviews.source'), 'operator' => '!=', 'value' => 'google']]],
             'button_label' => 'Dodaj opinię',
             'collapsed' => key_for('reviews.items.author'),
             'sub_fields' => [

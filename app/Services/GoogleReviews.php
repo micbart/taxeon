@@ -151,13 +151,30 @@ class GoogleReviews
 			'taxeon_sync_reviews'
 		);
 
+		$ocena = $magazyn['rating']
+			? sprintf(
+				__('Wizytówka: %1$s/5 z %2$d ocen.', 'taxeon'),
+				number_format_i18n((float) $magazyn['rating'], 1),
+				(int) ($magazyn['total'] ?? 0)
+			)
+			: '';
+
 		$pole['message'] = sprintf(
-			'<p>%s %s<br>%s</p><p><a class="button button-secondary" href="%s">%s</a></p>',
+			'<p>%s %s<br>%s %s</p><p><a class="button button-secondary" href="%s">%s</a></p>'
+				. '<p class="description">%s</p>',
 			esc_html($kiedy),
 			esc_html(sprintf(__('W pamięci: %d opinii.', 'taxeon'), count($magazyn['items']))),
+			esc_html($ocena),
 			esc_html($plan),
 			esc_url($url),
-			esc_html__('Pobierz opinie teraz', 'taxeon')
+			esc_html__('Pobierz opinie teraz', 'taxeon'),
+			esc_html__(
+				'Google udostępnia przez API najwyżej pięć opinii z wizytówki i sam wybiera, '
+					. 'które to będą — nie zawsze są to najnowsze. Treść opinii trzymamy przez 30 dni, '
+					. 'tyle pozwalają warunki Google. Żeby pokazać więcej opinii, w bloku „Opinie” '
+					. 'wybierz „Z Google i dopisane ręcznie” i dopisz pozostałe.',
+				'taxeon'
+			)
 		);
 
 		return $pole;

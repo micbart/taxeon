@@ -228,7 +228,7 @@
             "label": "Skąd opinie",
             "name": "source",
             "type": "select",
-            "instructions": "Z profilu Google pobieramy opinie automatycznie; ręczne wpisujesz sam.",
+            "instructions": "Google udostępnia najwyżej pięć opinii z wizytówki i sam wybiera, które to będą. Żeby pokazać więcej, wybierz „Z Google i dopisane ręcznie” i dopisz pozostałe poniżej.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -238,7 +238,8 @@
             },
             "choices": {
                 "google": "Z profilu Google",
-                "manual": "Wpisane ręcznie"
+                "both": "Z Google i dopisane ręcznie",
+                "manual": "Tylko wpisane ręcznie"
             },
             "default_value": "google",
             "return_format": "value",
@@ -250,7 +251,7 @@
         },
         {
             "key": "field_a7a216499ba05",
-            "label": "Które opinie pokazać",
+            "label": "Które opinie z Google pokazać",
             "name": "google_items",
             "type": "checkbox",
             "instructions": "Lista pochodzi z ostatniego pobrania. Bez zaznaczenia pokazujemy wszystkie.",
@@ -259,8 +260,8 @@
                 [
                     {
                         "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "google"
+                        "operator": "!=",
+                        "value": "manual"
                     }
                 ]
             ],
@@ -278,17 +279,17 @@
         },
         {
             "key": "field_a579f1ca22cd5",
-            "label": "Maksymalna liczba kart",
+            "label": "Maksymalna liczba kart z Google",
             "name": "limit",
             "type": "number",
-            "instructions": "Ile kart pokazać. Cztery wypełniają jeden rząd.",
+            "instructions": "Ile kart z Google pokazać. Cztery wypełniają jeden rząd. Opinie dopisane ręcznie dochodzą do nich.",
             "required": 0,
             "conditional_logic": [
                 [
                     {
                         "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "google"
+                        "operator": "!=",
+                        "value": "manual"
                     }
                 ]
             ],
@@ -307,17 +308,17 @@
         },
         {
             "key": "field_18ca6461a9480",
-            "label": "Opinie",
+            "label": "Opinie dopisane ręcznie",
             "name": "items",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Przepisz opinię z wizytówki albo wklej tę, którą klient przysłał mailem.",
             "required": 0,
             "conditional_logic": [
                 [
                     {
                         "field": "field_add7aeecce688",
-                        "operator": "==",
-                        "value": "manual"
+                        "operator": "!=",
+                        "value": "google"
                     }
                 ]
             ],

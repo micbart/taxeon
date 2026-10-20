@@ -11,9 +11,10 @@
 #}
 {% import 'components/section.twig' as section %}
 
-{% set zGoogle = (fields.source ?: 'google') == 'google' %}
+{% set zrodlo = fields.source ?: 'google' %}
+{% set zGoogle = zrodlo != 'manual' %}
 {% set profil = zGoogle ? googleReviews(fields.google_items ?: [], fields.limit ?: 8) : null %}
-{% set opinie = zGoogle ? profil.items : fields.items %}
+{% set opinie = (zGoogle ? profil.items : [])|merge(zrodlo != 'google' ? fields.items ?: [] : []) %}
 {% set wizytowka = fields.link.url ?: (profil.mapsUrl ?? '') %}
 
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="{{ section.shell(fields) }}">
