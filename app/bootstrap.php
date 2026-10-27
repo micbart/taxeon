@@ -16,7 +16,12 @@ function init(): void
 	new Services\Media();
 	new Services\LoginPage();
 	new Services\ThemeEditorLock();
-	new Services\Hardening();
+	Services\Security\LoginUrl::boot();
+	Services\Security\Hardening::boot();
+	Services\Security\Turnstile::boot();
+	Services\Security\LoginLimiter::boot();
+	Services\Security\TwoFactor::boot();
+	Services\Security\PasswordGuard::boot();
 	new Services\GoogleReviews();
 	new Services\LlmsTxt();
 	new Services\Comments();
