@@ -27,7 +27,7 @@ foreach (
 foreach (
     [
         '__', '_e', '_x', '_n', 'fn', 'function', 'get_image', 'get_post',
-        'get_posts', 'get_term', 'get_terms', 'get_user', 'getOption', 'block_index', 'googleReviews', 'linkAttrs', 'kalkulator',
+        'get_posts', 'get_term', 'get_terms', 'get_user', 'getOption', 'block_index', 'imagePicture', 'imageSrc', 'imageFirstOnPage', 'googleReviews', 'linkAttrs', 'kalkulator',
         'action', 'shortcode', 'bloginfo',
     ] as $function
 ) {

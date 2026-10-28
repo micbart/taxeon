@@ -33,7 +33,7 @@
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden bg-deep text-white">
 	{% include 'components/hero-media.twig' with {
 		url: fields.video,
-		poster: fields.poster.sizes.large ?: fields.poster.url,
+		poster: imageSrc(fields.poster.ID, 'hero'),
 		title: fields.title.text,
 		split: split,
 		center: srodek,

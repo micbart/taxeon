@@ -1,25 +1,26 @@
 {% if id %}
-	{% set image = get_image(id) %}
+	{% set pic = imagePicture(id, preset ?: 'inline', altFrom ?: '') %}
 
-	{% if image %}
-		{% set isSvg = image.post_mime_type == 'image/svg+xml' %}
-		{% set imageAlt = alt ?: (image.alt ?: (altFrom ? altFrom|striptags : '')) %}
-		{% set imageSize = size ?: 'taxeon-card' %}
+	{% if pic %}
+		{% set opis = alt is defined ? alt : pic.alt %}
+		{% set pierwszy = imageFirstOnPage() %}
+		{% set wczesnie = eager ?: pierwszy %}
 
-		<img
-			src="{{ isSvg ? image.src : image.src(imageSize) }}"
-			{% if not isSvg %}
-				srcset="{{ image.srcset(imageSize) }}"
-				sizes="{{ sizes ?: '100vw' }}"
+		<picture>
+			{% if not pic.is_svg and pic.webp %}
+				<source type="image/webp" srcset="{{ pic.webp }}" sizes="{{ sizes ?: pic.sizes }}">
 			{% endif %}
-			alt="{{ imageAlt }}"
-			{% if imageAlt is empty %}aria-hidden="true"{% endif %}
-			width="{{ image.width }}"
-			height="{{ image.height }}"
-			class="{{ class }}"
-			{% if objectPosition %}style="object-position: {{ objectPosition }}"{% endif %}
-			loading="{{ eager ? 'eager' : 'lazy' }}"
-			decoding="{{ eager ? 'sync' : 'async' }}"
-			{% if eager %}fetchpriority="high"{% endif %}>
+
+			<img src="{{ pic.src }}"
+				alt="{{ opis }}"
+				{% if opis is empty %}aria-hidden="true"{% endif %}
+				width="{{ pic.width }}"
+				height="{{ pic.height }}"
+				class="{{ class }}"
+				{% if objectPosition %}style="object-position: {{ objectPosition }}"{% endif %}
+				loading="{{ wczesnie ? 'eager' : 'lazy' }}"
+				decoding="{{ wczesnie ? 'sync' : 'async' }}"
+				{% if wczesnie %}fetchpriority="high"{% endif %}>
+		</picture>
 	{% endif %}
 {% endif %}

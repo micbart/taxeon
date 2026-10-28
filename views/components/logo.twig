@@ -1,15 +1,15 @@
 {% set wlasne = themeOptions.logo_white ?: themeOptions.logo %}
 
 {% if wlasne %}
-	<img src="{{ wlasne.url }}"
-		alt="{{ site.name }}"
-		width="{{ wlasne.width }}"
-		height="{{ wlasne.height }}"
-		class="h-6 w-auto {{ class }}">
+	{% include 'components/image.twig' with {
+		id: wlasne.ID,
+		preset: 'avatar',
+		alt: site.name,
+		eager: true,
+		class: 'h-6 w-auto ' ~ (class ?: '')
+	} only %}
 {% else %}
-	<img src="{{ site.theme.uri }}/images/logo-white.png"
-		alt="{{ site.name }}"
-		width="624"
-		height="96"
-		class="h-6 w-[156px] {{ class }}">
+	<span class="block h-6 w-[156px] text-white {{ class }}" role="img" aria-label="{{ site.name }}">
+		{{ 'logo'|svg('size-full') }}
+	</span>
 {% endif %}

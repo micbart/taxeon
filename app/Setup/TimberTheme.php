@@ -578,6 +578,56 @@ class TimberTheme extends TimberSite
 
 		$twig->addFunction(
 			new TwigFunction(
+				'imageFirstOnPage',
+				static function (): bool {
+					return \App\Services\Images\ImageRenderer::claimFirst();
+				}
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
+				'imagePicture',
+				static function (mixed $id, string $preset = 'inline', mixed $altFallback = ''): ?array {
+					if (is_array($altFallback)) {
+						$altFallback = $altFallback['text'] ?? '';
+					}
+
+					if (is_object($altFallback)) {
+						$altFallback = method_exists($altFallback, '__toString') ? (string) $altFallback : '';
+					}
+
+					return \App\Services\Images\ImageRenderer::pictureData(
+						\App\Services\Images\ImageRenderer::normalizeId($id),
+						$preset,
+						(string) $altFallback
+					);
+				}
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
+				'imageSrc',
+				static function (mixed $id, string $preset = 'inline'): string {
+					$dane = \App\Services\Images\ImageRenderer::pictureData(
+						\App\Services\Images\ImageRenderer::normalizeId($id),
+						$preset
+					);
+
+					if (!$dane) {
+						return '';
+					}
+
+					$pierwszy = (string) strtok((string) $dane['webp'], ' ');
+
+					return $pierwszy !== '' ? $pierwszy : (string) $dane['src'];
+				}
+			)
+		);
+
+		$twig->addFunction(
+			new TwigFunction(
 				'block_index',
 				function (string $blockName = 'default'): int {
 					static $counters = [];

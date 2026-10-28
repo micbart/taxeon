@@ -15,6 +15,8 @@ class AcfTimberBlocks
 	/** @var array<string, array{style: ?string, script: ?string, deps: array}> */
 	private static array $blockAssets = [];
 
+	private static int $blockPosition = 0;
+
 	public function __construct()
 	{
 		add_action('acf/init', [__CLASS__, 'timberBlockInit'], 10, 0);
@@ -271,6 +273,7 @@ class AcfTimberBlocks
 		$slug = str_replace('acf/', '', $block['name']);
 
 		$context['block'] = $block;
+		$context['blockPosition'] = ++self::$blockPosition;
 		$context['post_id'] = $post_id;
 		$context['slug'] = $slug;
 		$context['is_preview'] = $isPreview;

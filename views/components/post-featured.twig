@@ -29,7 +29,7 @@
 		{% if post.thumbnail %}
 			{% include 'components/image.twig' with {
 				id: post.thumbnail.ID,
-				size: 'large',
+				preset: 'post-featured',
 				altFrom: post.title,
 				class: 'absolute inset-0 size-full object-cover opacity-60'
 			} only %}

@@ -14,6 +14,9 @@ function init(): void
 	new Services\ThemeCache();
 	new Services\PageCacheFlush();
 	new Services\Media();
+	new Services\Images\ImageRenderer();
+	new Services\Images\ImageWarm();
+	new Services\Images\ImageContent();
 	new Services\LoginPage();
 	new Services\ThemeEditorLock();
 	Services\Security\LoginUrl::boot();
