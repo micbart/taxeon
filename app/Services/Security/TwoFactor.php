@@ -60,7 +60,7 @@ class TwoFactor
         }
 
         if (!self::isFormLogin()) {
-            return new WP_Error('taxeon_2fa_required', __('This account requires a verification code. Log in through the login form.', 'taxeon'));
+            return new WP_Error('taxeon_2fa_required', __('To konto wymaga kodu weryfikacyjnego. Zaloguj się przez formularz logowania.', 'taxeon'));
         }
 
         $token = wp_generate_password(40, false, false);
@@ -97,22 +97,22 @@ class TwoFactor
 
         if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             if (!wp_verify_nonce((string) ($_POST['_taxeon_2fa_nonce'] ?? ''), self::ACTION)) {
-                $errors->add('taxeon_2fa_nonce', __('The form has expired. Please enter the code again.', 'taxeon'));
+                $errors->add('taxeon_2fa_nonce', __('Formularz stracił ważność. Wpisz kod jeszcze raz.', 'taxeon'));
             } elseif (isset($_POST['taxeon_2fa_resend'])) {
                 if ((int) $data['sends'] >= self::MAX_SENDS) {
-                    $errors->add('taxeon_2fa_sends', __('The code limit has been reached. Log in again to get a new code.', 'taxeon'));
+                    $errors->add('taxeon_2fa_sends', __('Wyczerpał się limit kodów. Zaloguj się ponownie, żeby dostać nowy.', 'taxeon'));
                 } elseif (time() - (int) $data['sent_at'] < self::RESEND_DELAY) {
-                    $errors->add('taxeon_2fa_wait', __('Please wait a moment before requesting another code.', 'taxeon'));
+                    $errors->add('taxeon_2fa_wait', __('Odczekaj chwilę przed poproszeniem o kolejny kod.', 'taxeon'));
                 } else {
                     $data = self::issueCode($user, $data);
                     set_transient(self::key($token), $data, self::CODE_TTL * 2);
-                    $notice = __('We have sent a new code.', 'taxeon');
+                    $notice = __('Wysłaliśmy nowy kod.', 'taxeon');
                 }
             } else {
                 $code = preg_replace('/\D/', '', (string) wp_unslash($_POST['taxeon_2fa_code'] ?? ''));
 
                 if (time() > (int) $data['expires']) {
-                    $errors->add('taxeon_2fa_expired', __('The code has expired. Send a new one.', 'taxeon'));
+                    $errors->add('taxeon_2fa_expired', __('Kod stracił ważność. Wyślij nowy.', 'taxeon'));
                 } elseif ($code !== '' && hash_equals((string) $data['code'], self::hash($code))) {
                     self::complete($user, $data, $token);
                 } else {
@@ -128,7 +128,7 @@ class TwoFactor
 
                     set_transient(self::key($token), $data, self::CODE_TTL * 2);
                     $errors->add('taxeon_2fa_invalid', sprintf(
-                        _n('Incorrect code. %d attempt left.', 'Incorrect code. %d attempts left.', self::MAX_ATTEMPTS - $data['attempts'], 'taxeon'),
+                        __('Nieprawidłowy kod. Pozostało prób: %d.', 'taxeon'),
                         self::MAX_ATTEMPTS - $data['attempts']
                     ));
                 }
@@ -136,7 +136,7 @@ class TwoFactor
         }
 
         if (!empty($data['mail_failed'])) {
-            $errors->add('taxeon_2fa_mail', __('We could not send the code. Contact the site administrator.', 'taxeon'));
+            $errors->add('taxeon_2fa_mail', __('Nie udało się wysłać kodu. Skontaktuj się z administratorem strony.', 'taxeon'));
         }
 
         self::render($user, $errors, $notice);
@@ -153,8 +153,8 @@ class TwoFactor
 
         add_filter('wp_login_errors', static function ($errors) use ($state) {
             $errors->add('taxeon_2fa_' . $state, $state === 'locked'
-                ? __('Too many incorrect codes. Log in again to get a new code.', 'taxeon')
-                : __('The verification session has expired. Log in again.', 'taxeon'));
+                ? __('Zbyt wiele błędnych kodów. Zaloguj się ponownie, żeby dostać nowy.', 'taxeon')
+                : __('Sesja weryfikacji wygasła. Zaloguj się ponownie.', 'taxeon'));
 
             return $errors;
         });
@@ -238,13 +238,13 @@ class TwoFactor
     private static function mail(WP_User $user, string $code): bool
     {
         $minutes = (int) (self::CODE_TTL / MINUTE_IN_SECONDS);
-        $html = SecurityMail::paragraph(sprintf(esc_html__('Use this code to finish logging in to the %s panel:', 'taxeon'), esc_html(get_bloginfo('name'))));
+        $html = SecurityMail::paragraph(sprintf(esc_html__('Użyj tego kodu, żeby dokończyć logowanie do panelu %s:', 'taxeon'), esc_html(get_bloginfo('name'))));
         $html .= SecurityMail::code($code);
-        $html .= SecurityMail::paragraph(esc_html(sprintf(_n('The code is valid for %d minute.', 'The code is valid for %d minutes.', $minutes, 'taxeon'), $minutes)));
-        $html .= SecurityMail::paragraph(esc_html(sprintf(__('Login attempt from IP %1$s on %2$s.', 'taxeon'), RateLimiter::clientIp() ?: '—', wp_date('d.m.Y H:i'))));
-        $html .= SecurityMail::paragraph(esc_html__('If this was not you, change your password right away and let the administrator know.', 'taxeon'), '0');
+        $html .= SecurityMail::paragraph(esc_html(sprintf(__('Kod jest ważny %d min.', 'taxeon'), $minutes)));
+        $html .= SecurityMail::paragraph(esc_html(sprintf(__('Próba logowania z adresu IP %1$s, %2$s.', 'taxeon'), RateLimiter::clientIp() ?: '—', wp_date('d.m.Y H:i'))));
+        $html .= SecurityMail::paragraph(esc_html__('Jeśli to nie Ty, natychmiast zmień hasło i daj znać administratorowi.', 'taxeon'), '0');
 
-        return SecurityMail::send($user->user_email, sprintf(__('Your %s login code', 'taxeon'), get_bloginfo('name')), __('Login code', 'taxeon'), $html);
+        return SecurityMail::send($user->user_email, sprintf(__('Kod logowania do %s', 'taxeon'), get_bloginfo('name')), __('Kod logowania', 'taxeon'), $html);
     }
 
     private static function trustDevice(WP_User $user): void
@@ -262,35 +262,35 @@ class TwoFactor
     private static function render(WP_User $user, WP_Error $errors, string $notice): void
     {
         $message = '<p class="message">' . esc_html(sprintf(
-            __('We have sent a 6-digit code to %s. Enter it below to finish logging in.', 'taxeon'),
+            __('Wysłaliśmy sześciocyfrowy kod na adres %s. Wpisz go poniżej, żeby dokończyć logowanie.', 'taxeon'),
             self::maskEmail($user->user_email)
         )) . ($notice !== '' ? '<br><strong>' . esc_html($notice) . '</strong>' : '') . '</p>';
 
-        login_header(__('Verification code', 'taxeon'), $message, $errors);
+        login_header(__('Kod weryfikacyjny', 'taxeon'), $message, $errors);
 
         $action = esc_url(self::screenUrl());
         $nonce = '<input type="hidden" name="_taxeon_2fa_nonce" value="' . esc_attr(wp_create_nonce(self::ACTION)) . '">';
         ?>
         <form name="taxeon2fa" id="loginform" action="<?php echo $action; ?>" method="post">
             <p>
-                <label for="taxeon_2fa_code"><?php esc_html_e('Code from the e-mail', 'taxeon'); ?></label>
+                <label for="taxeon_2fa_code"><?php esc_html_e('Kod z e-maila', 'taxeon'); ?></label>
                 <input type="text" name="taxeon_2fa_code" id="taxeon_2fa_code" class="input" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]*" maxlength="7" required autofocus>
             </p>
             <p class="forgetmenot">
                 <input type="checkbox" name="taxeon_2fa_trust" id="taxeon_2fa_trust" value="1">
-                <label for="taxeon_2fa_trust"><?php echo esc_html(sprintf(_n('Trust this device for %d day', 'Trust this device for %d days', self::TRUST_DAYS, 'taxeon'), self::TRUST_DAYS)); ?></label>
+                <label for="taxeon_2fa_trust"><?php echo esc_html(sprintf(__('Zaufaj temu urządzeniu na %d dni', 'taxeon'), self::TRUST_DAYS)); ?></label>
             </p>
             <?php echo $nonce; ?>
             <p class="submit">
-                <input type="submit" class="button button-primary button-large" value="<?php esc_attr_e('Log in', 'taxeon'); ?>">
+                <input type="submit" class="button button-primary button-large" value="<?php esc_attr_e('Zaloguj się', 'taxeon'); ?>">
             </p>
         </form>
         <form id="taxeon-2fa-resend" action="<?php echo $action; ?>" method="post">
             <?php echo $nonce; ?>
             <p id="nav">
-                <button type="submit" name="taxeon_2fa_resend" value="1" class="button-link"><?php esc_html_e('Send the code again', 'taxeon'); ?></button>
+                <button type="submit" name="taxeon_2fa_resend" value="1" class="button-link"><?php esc_html_e('Wyślij kod jeszcze raz', 'taxeon'); ?></button>
                 &nbsp;|&nbsp;
-                <a href="<?php echo esc_url(wp_login_url()); ?>"><?php esc_html_e('Back to login', 'taxeon'); ?></a>
+                <a href="<?php echo esc_url(wp_login_url()); ?>"><?php esc_html_e('Wróć do logowania', 'taxeon'); ?></a>
             </p>
         </form>
         <?php

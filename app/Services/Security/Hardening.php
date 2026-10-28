@@ -76,7 +76,7 @@ class Hardening
             return $user;
         }
 
-        return new WP_Error('invalid_login', __('<strong>Error:</strong> Incorrect username or password.', 'taxeon'));
+        return new WP_Error('invalid_login', __('<strong>Błąd:</strong> nieprawidłowa nazwa użytkownika lub hasło.', 'taxeon'));
     }
 
     public static function hideUnknownAccount(WP_Error $errors, $userData): void
@@ -124,7 +124,7 @@ class Hardening
             return $result;
         }
 
-        return new WP_Error('rest_no_route', __('No route was found matching the URL and request method.', 'taxeon'), ['status' => 404]);
+        return new WP_Error('rest_no_route', __('Nie znaleziono trasy pasującej do adresu i metody żądania.', 'taxeon'), ['status' => 404]);
     }
 
     public static function restrictUserEndpoints(array $endpoints): array

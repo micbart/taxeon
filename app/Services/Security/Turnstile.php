@@ -123,7 +123,7 @@ class Turnstile
 
     private static function message(): string
     {
-        return __('Please confirm that you are not a robot and try again.', 'taxeon');
+        return __('Potwierdź, że nie jesteś robotem, i spróbuj ponownie.', 'taxeon');
     }
 
     private static function siteKey(): string

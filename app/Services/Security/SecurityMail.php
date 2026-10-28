@@ -26,7 +26,7 @@ class SecurityMail
 			. $content
 			. '<hr style="margin:28px 0 20px;border:0;border-top:1px solid ' . self::LINE . ';">'
 			. '<p style="margin:0 0 6px;font-size:13px;color:' . self::INK_3 . ';">'
-			. esc_html__('This is an automatic security message. Do not reply to it.', 'taxeon') . '</p>'
+			. esc_html__('To automatyczna wiadomość bezpieczeństwa. Nie odpowiadaj na nią.', 'taxeon') . '</p>'
 			. '<p style="margin:0;font-size:13px;"><a href="' . esc_url($adres) . '" style="color:' . self::ACCENT . ';">'
 			. esc_html($nazwa) . '</a></p>'
 			. '</td></tr></table></body></html>';

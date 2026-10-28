@@ -53,7 +53,7 @@ class LoginLimiter
         $minutes = (int) ceil($remaining / MINUTE_IN_SECONDS);
 
         return new WP_Error('taxeon_login_locked', sprintf(
-            _n('Too many failed login attempts. Try again in %d minute.', 'Too many failed login attempts. Try again in %d minutes.', $minutes, 'taxeon'),
+            __('Zbyt wiele nieudanych prób logowania. Spróbuj ponownie za %d min.', 'taxeon'),
             $minutes
         ));
     }
@@ -146,13 +146,13 @@ class LoginLimiter
     private static function alert(WP_User $user, string $ip, int $until): void
     {
         $html = SecurityMail::paragraph(esc_html(sprintf(
-            __('Your account has been temporarily locked after several failed login attempts from IP %1$s. The lock ends at %2$s.', 'taxeon'),
+            __('Twoje konto zostało tymczasowo zablokowane po kilku nieudanych próbach logowania z adresu IP %1$s. Blokada kończy się %2$s.', 'taxeon'),
             $ip ?: '—',
             wp_date('d.m.Y H:i', $until)
         )));
-        $html .= SecurityMail::paragraph(esc_html__('If this was not you, someone may be trying to guess your password. Consider changing it after the lock ends.', 'taxeon'), '0');
+        $html .= SecurityMail::paragraph(esc_html__('Jeśli to nie Ty, ktoś może próbować odgadnąć Twoje hasło. Rozważ jego zmianę po wygaśnięciu blokady.', 'taxeon'), '0');
 
-        SecurityMail::send($user->user_email, sprintf(__('%s — account temporarily locked', 'taxeon'), get_bloginfo('name')), __('Account locked', 'taxeon'), $html);
+        SecurityMail::send($user->user_email, sprintf(__('%s — konto tymczasowo zablokowane', 'taxeon'), get_bloginfo('name')), __('Konto zablokowane', 'taxeon'), $html);
     }
 
     private static function state(string $key): array

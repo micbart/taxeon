@@ -34,11 +34,11 @@ class PasswordGuard
         $problems = [];
 
         if (mb_strlen($password) < self::MIN_LENGTH) {
-            $problems['weak_password_length'] = sprintf(__('The password must be at least %d characters long.', 'taxeon'), self::MIN_LENGTH);
+            $problems['weak_password_length'] = sprintf(__('Hasło musi mieć co najmniej %d znaków.', 'taxeon'), self::MIN_LENGTH);
         }
 
         if (!preg_match('/\p{L}/u', $password) || !preg_match('/\d/', $password) || !preg_match('/[^\p{L}\d]/u', $password)) {
-            $problems['weak_password_format'] = __('The password must contain at least one letter, one digit and one special character.', 'taxeon');
+            $problems['weak_password_format'] = __('Hasło musi zawierać przynajmniej jedną literę, jedną cyfrę i jeden znak specjalny.', 'taxeon');
         }
 
         return $problems;
@@ -46,7 +46,7 @@ class PasswordGuard
 
     public static function hint(): string
     {
-        return sprintf(__('At least %d characters, including a letter, a digit and a special character.', 'taxeon'), self::MIN_LENGTH);
+        return sprintf(__('Co najmniej %d znaków, w tym litera, cyfra i znak specjalny.', 'taxeon'), self::MIN_LENGTH);
     }
 
     public static function limitRequests($errors, $userData = false): void
@@ -62,7 +62,7 @@ class PasswordGuard
         $accountAllowed = RateLimiter::hit('lostpw_user', self::REQUESTS_PER_ACCOUNT, HOUR_IN_SECONDS, $subject);
 
         if (!$ipAllowed || !$accountAllowed) {
-            $errors->add('taxeon_reset_limit', __('Too many password reset requests. Please try again in an hour.', 'taxeon'));
+            $errors->add('taxeon_reset_limit', __('Zbyt wiele próśb o reset hasła. Spróbuj ponownie za godzinę.', 'taxeon'));
         }
     }
 
@@ -73,7 +73,7 @@ class PasswordGuard
         }
 
         if (!RateLimiter::hit('resetpw_ip', self::RESETS_PER_IP, HOUR_IN_SECONDS)) {
-            $errors->add('taxeon_reset_limit', __('Too many attempts. Please try again in an hour.', 'taxeon'));
+            $errors->add('taxeon_reset_limit', __('Zbyt wiele prób. Spróbuj ponownie za godzinę.', 'taxeon'));
         }
     }
 
