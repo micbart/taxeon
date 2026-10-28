@@ -143,6 +143,8 @@ final class ImageRenderer
 			$fallback = self::resize($src, $fallbackWidth, self::targetHeight($fallbackWidth, $config), $config['crop']);
 		}
 
+		$webp = self::tylkoIstniejace($webp);
+
 		if ($fallback === null && $webp === []) {
 			return null;
 		}
@@ -402,6 +404,17 @@ final class ImageRenderer
 		} finally {
 			fclose($handle);
 		}
+	}
+
+
+	private static function tylkoIstniejace(array $warianty): array
+	{
+		return array_values(array_filter($warianty, static function (string $wariant): bool {
+			$url = (string) strtok($wariant, ' ');
+			$path = self::urlToPath($url);
+
+			return $path !== '' && is_file($path);
+		}));
 	}
 
 	public static function urlToPath(string $url): string
