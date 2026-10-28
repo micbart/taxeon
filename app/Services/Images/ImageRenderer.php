@@ -131,7 +131,7 @@ final class ImageRenderer
 			if ($converted !== null) {
 				$webp[] = $converted . ' ' . $width . 'w';
 
-				if (!$isFallback) {
+				if (!$isFallback && $converted !== $resized) {
 					self::discardIntermediate($resized);
 				}
 			} elseif (!$isFallback) {
