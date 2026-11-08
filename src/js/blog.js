@@ -21,13 +21,46 @@ document.addEventListener('DOMContentLoaded', () => {
 	let maxPages = Number(results.dataset.maxPages ?? 1);
 	let request = 0;
 
+	const status = results.querySelector('[data-blog-status]');
+	const MIN_LOADING_MS = 350;
+	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+	const setLoading = (active, append) => {
+		if (active) {
+			results.dataset.loading = '';
+			results.setAttribute('aria-busy', 'true');
+			if (status) {
+				status.textContent = 'Ładuję wpisy…';
+			}
+		} else {
+			delete results.dataset.loading;
+			results.setAttribute('aria-busy', 'false');
+		}
+
+		if (loadMoreButton) {
+			loadMoreButton.disabled = active && append;
+		}
+	};
+
 	const render = async (category, page, { append = false, pushState = true } = {}) => {
 		const ticket = ++request;
 
-		results.dataset.loading = '';
+		setLoading(true, append);
+
+		if (!append) {
+			if (featured && !(category === 'all' && page === 1)) {
+				featured.hidden = true;
+			}
+
+			const top = filter.getBoundingClientRect().top;
+
+			if (top < 0) {
+				filter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+		}
 
 		try {
-			const data = await apiGet('posts', { category, page, s: search });
+			const [data] = await Promise.all([apiGet('posts', { category, page, s: search }), wait(MIN_LOADING_MS)]);
 
 			if (ticket !== request || !data.success) {
 				return;
@@ -66,9 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				updateUrl(category);
 			}
 
+			if (status) {
+				status.textContent = data.found > 0 ? `Znaleziono wpisów: ${data.found}` : data.emptyMessage;
+			}
+		} catch (error) {
+			if (ticket === request && status) {
+				status.textContent = 'Nie udało się pobrać wpisów. Spróbuj ponownie.';
+			}
 		} finally {
 			if (ticket === request) {
-				delete results.dataset.loading;
+				setLoading(false, append);
 			}
 		}
 	};

@@ -14,20 +14,7 @@ class PostContext
 			'relatedPosts' => [],
 		];
 
-		$postCategories = wp_get_post_categories($post->ID, ['fields' => 'ids']);
-
-		if (!empty($postCategories)) {
-			$data['relatedPosts'] = Timber::get_posts([
-				'post_type' => 'post',
-				'posts_per_page' => 3,
-				'post__not_in' => [$post->ID],
-				'category__in' => $postCategories,
-				'orderby' => 'date',
-				'order' => 'DESC',
-				'ignore_sticky_posts' => true,
-				'no_found_rows' => true,
-			]);
-		}
+		$data['relatedPosts'] = $this->related($post);
 
 		$data['shareLinks'] = $this->shareLinks($post);
 
@@ -36,6 +23,47 @@ class PostContext
 		$data['toc'] = $toc;
 
 		return $data;
+	}
+
+	private function related(Post $post, int $count = 3): array
+	{
+		$base = [
+			'post_type' => 'post',
+			'orderby' => 'date',
+			'order' => 'DESC',
+			'ignore_sticky_posts' => true,
+			'no_found_rows' => true,
+			'fields' => 'ids',
+		];
+
+		$ids = [];
+		$categories = wp_get_post_categories($post->ID, ['fields' => 'ids']);
+
+		if ($categories) {
+			$ids = get_posts($base + [
+				'posts_per_page' => $count,
+				'post__not_in' => [$post->ID],
+				'category__in' => $categories,
+			]);
+		}
+
+		if (count($ids) < $count) {
+			$ids = array_merge($ids, get_posts($base + [
+				'posts_per_page' => $count - count($ids),
+				'post__not_in' => array_merge([$post->ID], $ids),
+			]));
+		}
+
+		if (!$ids) {
+			return [];
+		}
+
+		return iterator_to_array(Timber::get_posts([
+			'post_type' => 'post',
+			'post__in' => $ids,
+			'orderby' => 'post__in',
+			'posts_per_page' => $count,
+		]));
 	}
 
 	/** @param array<int, array{id: string, title: string}> $toc */

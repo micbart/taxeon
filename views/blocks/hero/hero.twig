@@ -1,6 +1,6 @@
 {#
 	Title: Hero
-	Description: Nagłówek strony z wideo w tle, kartami cennika albo panelem bocznym
+	Description: Nagłówek strony na kremowym albo granatowym tle, z kartami cennika albo panelem bocznym
 	Category: taxeon
 	Icon: cover-image
 	HideFieldsInSidebar: true
@@ -20,7 +20,7 @@
 } %}
 {% set odstepyOpisu = { '22': 'mt-[22px]', '24': 'mt-6', '26': 'mt-[26px]' } %}
 {% set szerokosciOpisu = { '56ch': 'max-w-[56ch]', '60ch': 'max-w-[60ch]', '62ch': 'max-w-[62ch]' } %}
-{% set barwyOpisu = { 'soft': 'text-white/76 leading-[1.6]', 'strong': 'text-white/78 leading-[1.62]' } %}
+{% set barwyOpisu = { 'soft': 'leading-[1.6]', 'strong': 'leading-[1.62]' } %}
 {% set akcent = fields.button_style == 'accent' %}
 {% set profilGoogle = googleReviews([], 1) %}
 {% set podmien = {
@@ -29,30 +29,39 @@
 } %}
 {% set odstepy = { '72': 'pb-[72px]', '76': 'pb-[76px]', '84': 'pb-[84px]', '88': 'pb-[88px]' } %}
 {% set podstrona = uklad != 'cards' %}
+{% set jasne = (fields.tone ?: 'cream') == 'cream' %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden bg-deep text-white">
-	{% include 'components/hero-media.twig' with {
-		url: fields.video,
-		poster: imageSrc(fields.poster.ID, 'hero'),
-		title: fields.title.text,
-		split: split,
-		center: srodek,
-		glow: podstrona
-	} only %}
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %}
+	class="relative overflow-hidden {{ jasne ? 'bg-cream text-ink' : 'bg-ink text-white' }}">
+	{% if jasne %}
+		{% include 'components/hero-art.twig' only %}
+	{% elseif fields.video %}
+		{% include 'components/hero-media.twig' with {
+			url: fields.video,
+			poster: imageSrc(fields.poster.ID, 'hero'),
+			title: fields.title.text|replace({ '[': '', ']': '' }),
+			split: split,
+			center: srodek,
+			glow: podstrona
+		} only %}
+	{% else %}
+		{% include 'components/hero-art-dark.twig' only %}
+	{% endif %}
 
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] max-md:pt-[132px] max-sm:px-5
 		{{ odstepy[fields.space_bottom] ?: (split ? 'pb-[84px]' : 'pb-[72px]') }}
 		{{ split ? 'grid grid-cols-[minmax(320px,1.25fr)_minmax(300px,0.75fr)] items-start gap-14 max-xl:grid-cols-1 max-xl:gap-10' }}
-		{{ srodek ? 'text-center max-lg:text-left' }}">
+		{{ srodek ? 'text-center' }}">
 
 		<div>
 			{% if fields.show_breadcrumbs %}
-				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: true } only %}
+				{% include 'components/breadcrumbs.twig' with { breadcrumbs: breadcrumbs, light: not jasne } only %}
 			{% endif %}
 
 			{% if fields.badge %}
-				<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
-					<span class="block size-1.5 rounded-full bg-sky"></span>
+				<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] uppercase
+					{{ jasne ? 'text-ink-2' : 'text-white/78' }}">
+					<span class="block size-1.5 rounded-full {{ jasne ? 'bg-gold' : 'bg-gold-light' }}"></span>
 					{{ fields.badge }}
 				</div>
 			{% endif %}
@@ -63,13 +72,16 @@
 					{{ rozmiaryTytulu[fields.title_size]
 						?: (srodek or split ? 'text-[clamp(38px,4.4vw,64px)]' : 'text-[clamp(38px,4.4vw,66px)]') }}
 					{{ fields.title_size == '62' ? 'leading-[1.03]' : 'leading-none' }}
-					{{ srodek ? 'mx-auto max-w-[20ch] max-lg:mx-0' : (split ? 'max-w-[20ch]' : 'max-w-[21ch]') }}">
-					{{ fields.title.text }}
+					{{ srodek ? 'mx-auto max-w-[20ch]' : (split ? 'max-w-[20ch]' : 'max-w-[21ch]') }}">
+					{{ fields.title.text|e|replace({
+						'[': '<span class="' ~ (jasne ? 'text-gold-dark' : 'text-gold-light') ~ '">',
+						']': '</span>'
+					})|raw }}
 				</{{ fields.title.tag ?: 'h1' }}>
 			{% endif %}
 
 			{% if fields.subtitle %}
-				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] text-sky-2
+				<p class="mt-[18px] font-display font-medium tracking-[-0.01em] {{ jasne ? 'text-gold-dark' : 'text-gold-light' }}
 					{{ podstrona
 						? (split ? 'max-w-[30ch]' : 'max-w-[32ch]') ~ ' text-[clamp(19px,1.9vw,26px)]'
 						: (fields.subtitle_size == '26'
@@ -81,8 +93,9 @@
 
 			{% if fields.text %}
 				<p class="{{ srodek ? 'text-[19px]' : 'text-[18px]' }}
-					{{ barwyOpisu[fields.text_tone] ?: (srodek or split ? 'text-white/78 leading-[1.62]' : 'text-white/76 leading-[1.6]') }}
-					{{ srodek ? 'mx-auto max-lg:mx-0' }}
+					{{ jasne ? 'text-ink-2' : 'text-white/78' }}
+					{{ barwyOpisu[fields.text_tone] ?: (srodek or split ? 'leading-[1.62]' : 'leading-[1.6]') }}
+					{{ srodek ? 'mx-auto' }}
 					{{ odstepyOpisu[fields.text_gap] ?: (srodek or split ? 'mt-6' : 'mt-[26px]') }}
 					{{ szerokosciOpisu[fields.text_width] ?: (podstrona or srodek ? 'max-w-[62ch]' : 'max-w-[56ch]') }}">
 					{{ fields.text }}
@@ -93,24 +106,35 @@
 				<div class="mt-8 flex flex-wrap gap-2.5">
 					{% for pigulka in fields.chips %}
 						<a href="{{ pigulka.link.url }}"
-							class="rounded-pill border border-white/28 px-5 py-[11px] text-[15px] font-medium
-								text-white transition hover:bg-white/12">
+							class="rounded-pill border px-5 py-[11px] text-[15px] font-medium transition
+								{{ jasne ? 'border-navy/40 text-navy hover:bg-mist' : 'border-white/28 text-white hover:bg-white/10' }}">
 							{{ pigulka.link.title }}
 						</a>
 					{% endfor %}
 				</div>
 			{% endif %}
 
+			{% if fields.checks|length and split %}
+				<div class="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[15px] {{ jasne ? (split ? 'font-semibold text-ink' : 'text-ink-3') : 'text-white/60' }}
+					{{ srodek ? 'justify-center' }}">
+					{% for pozycja in fields.checks %}
+						<span class="inline-flex items-center gap-2">
+							<span aria-hidden="true" class="{{ jasne ? 'text-gold' : 'text-gold-light' }}">✓</span>
+							{{ pozycja.text }}
+						</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+
 			{% if fields.button_primary.url or fields.button_secondary.url %}
 				<div class="flex flex-wrap gap-3.5
-					{{ srodek ? 'justify-center max-lg:justify-start mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
+					{{ srodek ? 'justify-center mt-[34px]' : (akcent ? 'mt-[34px]' : 'mt-8') }}">
 					{% if fields.button_primary.url %}
 						<a href="{{ fields.button_primary.url }}"
 							{{ linkAttrs(fields.button_primary.url, fields.button_primary.target)|raw }}
 							class="rounded-pill font-semibold transition
-								{{ srodek ? 'bg-white px-8 py-[17px] text-[16px] text-ink hover:bg-accent-tint' : (akcent
-									? 'bg-accent-cta px-9 py-5 text-[18px] text-white shadow-cta hover:bg-white hover:text-ink'
-									: 'bg-white px-[30px] py-[17px] text-[16px] text-ink hover:bg-accent-tint') }}">
+								{{ akcent ? 'px-9 py-5 text-[18px]' : (srodek ? 'px-8 py-[17px] text-[16px]' : 'px-[30px] py-[17px] text-[16px]') }}
+								{{ jasne ? 'bg-navy text-white hover:bg-navy-deep' : 'bg-white text-ink hover:bg-sand' }}">
 							{{ fields.button_primary.title }}
 						</a>
 					{% endif %}
@@ -118,42 +142,47 @@
 					{% if fields.button_secondary.url %}
 						<a href="{{ fields.button_secondary.url }}"
 							{{ linkAttrs(fields.button_secondary.url, fields.button_secondary.target)|raw }}
-							class="rounded-pill border border-white/32 px-[30px] py-[17px] text-[16px] font-semibold
-								text-white transition hover:bg-white/10">
+							class="rounded-pill border px-[30px] py-[17px] text-[16px] font-semibold transition
+								{{ jasne ? 'border-navy text-navy hover:bg-mist' : 'border-white/32 text-white hover:bg-white/10' }}">
 							{{ fields.button_secondary.title }}
 						</a>
 					{% endif %}
 				</div>
 			{% endif %}
 
-			{% if fields.checks|length %}
-				<div class="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[15px] text-white/66
-					{{ srodek ? 'justify-center max-lg:justify-start' }}">
+
+			{% set pudelko = fields.trust_style == 'box' %}
+
+			{% if fields.checks|length and not split %}
+				<div class="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[15px] {{ jasne ? (split ? 'font-semibold text-ink' : 'text-ink-3') : 'text-white/60' }}
+					{{ srodek ? 'justify-center' }}">
 					{% for pozycja in fields.checks %}
 						<span class="inline-flex items-center gap-2">
-							<span aria-hidden="true" class="text-sky">✓</span>
+							<span aria-hidden="true" class="{{ jasne ? 'text-gold' : 'text-gold-light' }}">✓</span>
 							{{ pozycja.text }}
 						</span>
 					{% endfor %}
 				</div>
 			{% endif %}
 
-			{% if fields.trust|length %}
-				<div class="mt-[30px] flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/14 pt-[26px]">
+
+			{% if fields.trust|length and not pudelko %}
+				<div class="mt-[30px] flex flex-wrap items-center gap-x-6 gap-y-3 border-t pt-[26px]
+					{{ jasne ? 'border-line' : 'border-white/14' }}">
 					{% for pozycja in fields.trust %}
 						{% set tresc %}
 							{% if pozycja.stars %}
-								<span class="text-[14px] tracking-[0.08em] text-sky">★★★★★</span>
+								<span class="text-[14px] tracking-[0.08em] {{ jasne ? 'text-gold' : 'text-gold-light' }}">★★★★★</span>
 							{% endif %}
-							<span class="font-display text-[15px] font-semibold text-white">{{ pozycja.value|replace(podmien) }}</span>
+							<span class="font-display text-[15px] font-semibold {{ jasne ? 'text-ink' : 'text-white' }}">{{ pozycja.value|replace(podmien) }}</span>
 							{% if pozycja.label %}
-								<span class="text-[14.5px] text-white/{{ pozycja.stars ? '60' : '72' }}">{{ pozycja.label|replace(podmien) }}</span>
+								<span class="text-[14.5px] {{ jasne ? (pozycja.stars ? 'text-ink-3' : 'text-ink-2') : (pozycja.stars ? 'text-white/60' : 'text-white/72') }}">{{ pozycja.label|replace(podmien) }}</span>
 							{% endif %}
 						{% endset %}
 
 						{% if pozycja.url %}
 							<a href="{{ pozycja.url }}" target="_blank" rel="noopener"
-								class="inline-flex items-center gap-[9px] whitespace-nowrap transition hover:text-sky-2">{{ tresc }}</a>
+								class="inline-flex items-center gap-[9px] whitespace-nowrap transition {{ jasne ? 'text-ink hover:text-gold-dark' : 'hover:text-gold-light' }}">{{ tresc }}</a>
 						{% else %}
 							<span class="inline-flex items-center gap-[9px] whitespace-nowrap">{{ tresc }}</span>
 						{% endif %}
@@ -168,45 +197,93 @@
 
 				<div class="mt-14 grid max-w-[1180px] gap-5 {{ siatkaKart }}">
 					{% for card in fields.cards %}
-						{% include 'blocks/hero/card.twig' with { card: card, wide: false, waska: fields.cards|length > 3 } only %}
+						{% include 'blocks/hero/card.twig' with { card: card, wide: false, waska: fields.cards|length > 3, jasne: jasne } only %}
 					{% endfor %}
 				</div>
 			{% endif %}
 
 			{% if not split and (fields.note_title or fields.note_link.url) %}
-				{% include 'blocks/hero/note.twig' with { fields: fields } only %}
+				{% include 'blocks/hero/note.twig' with { fields: fields, jasne: jasne } only %}
 			{% endif %}
 		</div>
 
 		{% if split and fields.cards|length %}
 			<div class="flex flex-col gap-5">
 				{% for card in fields.cards %}
-					{% include 'blocks/hero/card.twig' with { card: card, wide: true, waska: false } only %}
+					{% include 'blocks/hero/card.twig' with { card: card, wide: true, waska: false, jasne: jasne } only %}
+				{% endfor %}
+			</div>
+		{% endif %}
+			{% if fields.trust|length and pudelko %}
+			<div class="col-span-full mt-4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-6 gap-y-4 rounded-[18px]
+				border border-line bg-white px-7 py-5 text-ink shadow-card max-sm:px-5">
+				{% for pozycja in fields.trust %}
+					{% set tresc %}
+						{% if pozycja.icon %}
+							<span aria-hidden="true"
+								class="flex size-10 flex-none items-center justify-center rounded-xl border border-line bg-white [&_svg]:size-[22px]">
+								{{ pozycja.icon|svg }}
+							</span>
+						{% endif %}
+						<span class="flex flex-col">
+							<span class="inline-flex items-center gap-2 font-display text-[16px] font-semibold">
+								{% if pozycja.stars %}<span class="text-[13px] tracking-[0.08em] text-gold">★★★★★</span>{% endif %}
+								{{ pozycja.value|replace(podmien) }}
+							</span>
+							{% if pozycja.label %}
+								<span class="text-[13.5px] text-ink-3">{{ pozycja.label|replace(podmien) }}</span>
+							{% endif %}
+						</span>
+					{% endset %}
+
+					{% if pozycja.url %}
+						<a href="{{ pozycja.url }}" target="_blank" rel="noopener"
+							class="flex items-center gap-3 transition hover:text-gold-dark">{{ tresc }}</a>
+					{% else %}
+						<div class="flex items-center gap-3">{{ tresc }}</div>
+					{% endif %}
 				{% endfor %}
 			</div>
 		{% endif %}
 	</div>
 
 	{% if fields.stats|length %}
-		<div class="relative border-t border-white/12 bg-deep/72">
-			<div class="mx-auto grid w-full max-w-page grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5
-				px-gutter py-[22px] text-center max-md:grid-cols-2 max-sm:gap-4 max-sm:px-5">
+		{% set zIkonami = fields.stats|filter(st => st.icon)|length > 0 %}
+
+		<div class="relative border-t {{ jasne ? 'border-white/12 bg-navy text-white' : 'border-white/14 bg-ink/72' }}">
+			<div class="mx-auto grid w-full max-w-page gap-5 px-gutter py-[22px] max-md:grid-cols-2 max-sm:gap-x-3 max-sm:gap-y-4 max-sm:px-5
+				{{ zIkonami ? 'grid-cols-[repeat(auto-fit,minmax(240px,1fr))]' : 'grid-cols-[repeat(auto-fit,minmax(200px,1fr))] text-center' }}">
 				{% for stat in fields.stats %}
-					<div class="flex flex-col items-center gap-0.5">
+					{% set wartosc %}
 						{% if stat.url %}
 							<a href="{{ stat.url }}" target="_blank" rel="noopener"
-								class="font-display text-[20px] font-semibold transition hover:text-sky-2
-									{{ stat.highlight ? 'text-sky' : 'text-white' }}">
+								class="font-display text-[20px] font-semibold transition hover:text-gold-light max-sm:text-[16px] sm:whitespace-nowrap
+									{{ stat.highlight ? 'text-gold-light' : 'text-white' }}">
 								{{ stat.value|replace(podmien) }}
 							</a>
 						{% else %}
-							<span class="font-display text-[20px] font-semibold {{ stat.highlight ? 'text-sky' : '' }}">
+							<span class="font-display text-[20px] font-semibold max-sm:text-[16px] sm:whitespace-nowrap {{ stat.highlight ? 'text-gold-light' : '' }}">
 								{{ stat.value|replace(podmien) }}
 							</span>
 						{% endif %}
 
-						<span class="text-[14px] text-white/60">{{ stat.label|replace(podmien) }}</span>
-					</div>
+						<span class="text-[14px] text-white/60 max-sm:text-[12.5px] max-sm:leading-snug {{ zIkonami ? 'whitespace-nowrap max-sm:whitespace-normal' }}">{{ stat.label|replace(podmien) }}</span>
+					{% endset %}
+
+					{% if zIkonami %}
+						<div class="flex min-w-0 items-center justify-center gap-3.5 text-left max-md:justify-start max-sm:gap-2.5">
+							{% if stat.icon %}
+								<span aria-hidden="true"
+									class="flex size-11 flex-none items-center justify-center rounded-xl border border-line bg-white
+										shadow-[0_6px_14px_-8px_rgb(14_31_44/0.5)] [&_svg]:size-6 max-sm:size-9 max-sm:rounded-[10px] max-sm:[&_svg]:size-5">
+									{{ stat.icon|svg }}
+								</span>
+							{% endif %}
+							<span class="flex min-w-0 flex-col gap-0.5">{{ wartosc }}</span>
+						</div>
+					{% else %}
+						<div class="flex flex-col items-center gap-0.5">{{ wartosc }}</div>
+					{% endif %}
 				{% endfor %}
 			</div>
 		</div>

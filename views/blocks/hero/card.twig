@@ -1,26 +1,49 @@
+{% set panel = wide or waska or not jasne %}
+{% set ciemna = card.featured or panel %}
+
 <div class="flex flex-col
 	{{ wide ? 'gap-[18px] rounded-panel p-8' : (waska ? 'gap-4 rounded-[20px] p-7' : 'gap-[18px] rounded-[20px] p-7') }}
 	{{ card.featured
-		? 'border border-sky-2/55 bg-[linear-gradient(160deg,#0b63f6,#0a34a8)] shadow-[0_24px_60px_-24px_rgb(11_99_246/0.8)]'
-		: 'border border-white/16 bg-[rgb(4_13_32/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.2] transition hover:border-sky-2/55 hover:bg-[rgb(4_13_32/0.86)]' }}">
+		? 'border border-navy-deep bg-[image:var(--gradient-tile)] text-white shadow-tile'
+		: (panel
+			? 'border border-gold-light/55 bg-[#11273a] text-white shadow-tile'
+			: 'border border-line bg-white text-ink shadow-card transition hover:border-gold') }}">
 
+	{% if card.check_icon %}
+		<span aria-hidden="true"
+			class="grid size-11 place-items-center rounded-full bg-gold-light text-[20px] font-bold text-ink">✓</span>
+	{% endif %}
+
+	{% if card.label or card.badge %}
 	<div class="flex items-center justify-between gap-3">
 		<span class="text-[14px] font-semibold tracking-[0.12em] uppercase
-			{{ card.featured ? 'text-white' : 'text-sky-2' }}">
+			{{ card.featured and not wide ? 'text-white' : (panel or card.featured ? 'text-gold-light' : 'text-navy') }}">
 			{{ card.label }}
 		</span>
 
 		{% if card.badge %}
 			<span class="flex-none rounded-pill text-[12px] font-semibold tracking-[0.04em] uppercase
 				{{ card.featured
-					? 'bg-white/95 px-[11px] py-[5px] text-[#0b3fd1]'
+					? 'bg-white/95 px-[11px] py-[5px] text-navy'
 					: (card.badge_style == 'outline'
-						? 'border border-sky-2/50 px-2.5 py-1 text-sky-2'
-						: 'border border-sky/50 bg-sky/16 px-[11px] py-[5px] text-[#9be7ff]') }}">
+						? 'border border-gold-light/50 px-2.5 py-1 ' ~ (panel ? 'text-gold-light' : 'text-gold')
+						: (panel
+							? 'border border-gold-light/50 bg-gold-light/16 px-[11px] py-[5px] text-sand'
+							: 'border border-sand bg-sand px-[11px] py-[5px] text-ink')) }}">
 				{{ card.badge }}
 			</span>
 		{% endif %}
 	</div>
+	{% endif %}
+
+	{% if card.title %}
+		<div>
+			<h2 class="font-display text-[26px] leading-[1.15] font-semibold tracking-[-0.025em]">{{ card.title }}</h2>
+			{% if card.meta %}
+				<p class="mt-1.5 text-[14px] {{ ciemna ? 'text-white/60' : 'text-ink-3' }}">{{ card.meta }}</p>
+			{% endif %}
+		</div>
+	{% endif %}
 
 	{% if card.price %}
 		<div class="flex items-baseline gap-2">
@@ -30,20 +53,21 @@
 			</span>
 			{% if card.period %}
 				<span class="{{ waska ? 'text-[15px]' : 'text-[16px]' }}
-					{{ card.featured ? 'text-white/75' : 'text-white/60' }}">{{ card.period }}</span>
+					{{ card.featured ? 'text-white/75' : (panel ? 'text-white/60' : 'text-ink-2') }}">{{ card.period }}</span>
 			{% endif %}
 		</div>
 	{% endif %}
 
 	{% if card.text %}
-		<p class="text-[15px] leading-[1.55] {{ card.featured ? 'text-white/85' : 'text-white/72' }}">{{ card.text|nl2br }}</p>
+		<p class="text-[15px] leading-[1.55]
+			{{ card.featured ? 'text-white/85' : (panel ? 'text-white/78' : 'text-ink-2') }}">{{ card.text|nl2br }}</p>
 	{% endif %}
 
 	{% if card.items|length %}
 		<div class="flex flex-col gap-2.5">
 			{% for item in card.items %}
-				<span class="flex gap-2.5 text-[15px] {{ card.featured ? '' : 'text-white/92' }}">
-					<span class="{{ card.featured ? 'text-[#bee3ff]' : 'text-sky' }}">✓</span>
+				<span class="flex gap-2.5 text-[15px] {{ card.featured ? '' : (panel ? 'text-white/78' : 'text-ink') }}">
+					<span class="{{ card.featured ? 'text-sand' : (panel ? 'text-gold-light' : 'text-gold') }}">✓</span>
 					{{ item.text }}
 				</span>
 			{% endfor %}
@@ -55,10 +79,16 @@
 			{{ linkAttrs(card.link.url, card.link.target)|raw }}
 			class="mt-auto rounded-pill text-center text-[15px] font-semibold transition
 				{{ waska ? 'px-[18px] py-[13px]' : 'px-5 py-3.5' }}
-				{{ card.featured
-					? 'bg-white text-[#0b3fd1] hover:bg-accent-tint'
-					: 'border border-white/30 text-white hover:bg-white hover:text-ink' }}">
+				{{ panel and not card.featured
+					? 'border border-white/32 text-white hover:bg-white hover:text-ink'
+					: ciemna
+					? 'bg-white text-navy hover:bg-sand'
+					: 'border border-navy bg-mist text-navy hover:bg-[#dedcd4]' }}">
 			{{ card.link.title }}
 		</a>
+	{% endif %}
+
+	{% if card.note %}
+		<p class="-mt-1.5 text-center text-[13px] {{ ciemna ? 'text-white/55' : 'text-ink-3' }}">{{ card.note }}</p>
 	{% endif %}
 </div>

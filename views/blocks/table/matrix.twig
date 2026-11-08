@@ -2,7 +2,7 @@
 {% set domyslna = wyrozniona is null ? 0 : wyrozniona %}
 {% set przelacznik = kolumny|length > 2 %}
 
-<div {% if przelacznik %}data-matrix data-wybrany="{{ domyslna }}"{% endif %}>
+<div class="reveal" {% if przelacznik %}data-matrix data-wybrany="{{ domyslna }}"{% endif %}>
 	{% if przelacznik %}
 		<div class="mb-4 hidden gap-2 max-md:grid max-md:grid-cols-2" role="group"
 			aria-label="{{ __('Pakiet pokazany w tabeli', 'taxeon') }}">
@@ -10,8 +10,8 @@
 				<button type="button"
 					data-matrix-pakiet="{{ indeks }}"
 					aria-pressed="{{ indeks == domyslna ? 'true' : 'false' }}"
-					class="cursor-pointer rounded-card border border-line bg-white/90 px-3 py-2.5 text-left
-						transition aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-white">
+					class="cursor-pointer rounded-card border border-line bg-white px-3 py-2.5 text-left text-ink
+						transition aria-pressed:border-gold-light aria-pressed:bg-gold-light aria-pressed:text-ink">
 					<span class="block font-display text-[13.5px] font-semibold">{{ kolumna.label }}</span>
 					{% if kolumna.note %}
 						<span class="block text-[12.5px] opacity-70">{{ kolumna.note }}</span>
@@ -21,9 +21,10 @@
 		</div>
 	{% endif %}
 
-	<div class="overflow-hidden rounded-card border border-line bg-white/90 shadow-[0_24px_60px_-40px_rgb(6_26_80/0.35)] backdrop-blur-[8px]">
-		<div class="grid {{ siatka }} items-end border-b border-line bg-[#f4f7fc]">
-			<div class="py-[18px] font-display text-[14px] font-semibold tracking-[0.02em] text-ink
+	<div class="overflow-hidden rounded-card border
+		{{ szklo ? 'border-white/24 bg-white/11 shadow-[0_24px_60px_-40px_rgb(15_47_74/0.35)]' : 'border-line bg-white shadow-[0_30px_60px_-30px_rgb(0_0_0/0.5)]' }}">
+		<div class="grid {{ siatka }} border-b {{ szklo ? 'items-end border-white/18 bg-white/8' : 'items-start border-line bg-cream' }}">
+			<div class="py-[18px] font-display text-[14px] font-semibold tracking-[0.02em] {{ szklo ? 'text-white' : 'text-ink' }}
 				px-[22px] max-sm:px-3 max-sm:text-[13px]">
 				{{ fields.head_label }}
 			</div>
@@ -32,17 +33,19 @@
 				<div data-kolumna="{{ indeks }}"
 					class="py-3.5 text-center font-display leading-[1.35] font-semibold
 						{{ waskie ? 'px-2 text-[13px]' : 'px-2.5 text-[14px]' }}
-						max-md:px-3 max-md:text-[14px]
-						{{ kolumna.highlight ? 'bg-accent/6 text-accent' : 'text-ink' }}">
-					{{ kolumna.label }}
-					{% if kolumna.note %}<br><span class="font-normal text-ink-3">{{ kolumna.note }}</span>{% endif %}
+						max-md:px-2 max-md:text-[14px] max-sm:text-[13px] text-balance
+						{{ szklo
+							? (kolumna.highlight ? 'bg-white/10 text-gold-light' : 'text-white')
+							: 'border-l border-line text-ink' }}">
+					<div class="{{ szklo ? '' : 'min-h-[2.7em] max-md:min-h-0' }}">{{ kolumna.label }}</div>
+					{% if kolumna.note %}<span class="font-normal {{ szklo ? 'text-white/78' : 'text-ink-3' }}">{{ kolumna.note }}</span>{% endif %}
 				</div>
 			{% endfor %}
 		</div>
 
 		{% for wiersz in fields.rows %}
-			<div class="grid {{ siatka }} items-stretch border-b border-[#eef2f8] last:border-b-0">
-				<div class="flex items-center py-[15px] leading-[1.45] text-ink-2
+			<div class="grid {{ siatka }} items-stretch border-b last:border-b-0 {{ szklo ? 'border-white/14' : 'border-line-2' }}">
+				<div class="flex items-center py-[15px] leading-[1.45] {{ szklo ? 'text-white' : 'text-ink-2' }}
 					px-[22px] text-[15px] max-sm:px-3 max-sm:text-[13.5px]">
 					{{ wiersz.label }}
 				</div>
@@ -50,8 +53,12 @@
 				{% for indeks, wartosc in wiersz.values %}
 					{% set wyrozniony = kolumny[indeks].highlight %}
 					<div data-kolumna="{{ indeks }}"
-						class="flex items-center justify-center px-2.5 py-[15px] text-center text-[17px]
-							{{ wyrozniony ? 'bg-accent/[0.035] text-accent' : (wartosc.on ? 'text-[#1d2b45]' : 'text-ink-3') }}">
+						class="flex items-center justify-center px-2.5 py-[15px] text-center
+							{{ szklo
+								? 'text-[16px] ' ~ (wyrozniony ? 'bg-white/10 ' : '') ~ (wartosc.on ? 'text-gold-light' : 'text-white/45')
+								: 'border-l border-line-2 text-[17px] ' ~ (wyrozniony
+									? 'bg-navy/[0.035] ' ~ (wartosc.on ? 'text-navy' : 'text-[#b8b2a5]')
+									: 'bg-gold/6 ' ~ (wartosc.on ? 'text-ink' : 'text-[#b8b2a5]')) }}">
 						<span class="sr-only">{{ wartosc.on ? __('jest w pakiecie', 'taxeon') : __('brak w pakiecie', 'taxeon') }}</span>
 						<span aria-hidden="true">{{ wartosc.on ? '✓' : '—' }}</span>
 					</div>
@@ -60,7 +67,7 @@
 		{% endfor %}
 
 		{% if kolumny|filter(k => k.cta.url)|length %}
-			<div class="grid {{ siatka }} items-stretch border-t border-line bg-[#f7faff]">
+			<div class="grid {{ siatka }} items-stretch border-t border-line bg-cream">
 				<div class="flex items-center py-[18px] font-display font-semibold text-ink
 					px-[22px] text-[14px] max-sm:px-3 max-sm:text-[13px]">
 					{{ fields.cta_label }}
@@ -68,15 +75,14 @@
 
 				{% for indeks, kolumna in kolumny %}
 					<div data-kolumna="{{ indeks }}"
-						class="flex items-center justify-center px-1.5 py-3 max-md:px-3
-							{{ kolumna.highlight ? 'bg-accent/[0.035]' : '' }}">
+						class="flex items-center justify-center border-l border-line px-1.5 py-3 max-md:px-3">
 						{% if kolumna.cta.url %}
 							<a href="{{ kolumna.cta.url }}"
 								{{ linkAttrs(kolumna.cta.url, kolumna.cta.target)|raw }}
 								aria-label="{{ kolumna.cta.title|replace({ '→': '' })|trim }}"
-								class="block w-full rounded-pill bg-accent-cta px-3 py-2.5 text-center text-[13px]
+								class="block w-full rounded-pill bg-navy px-3 py-2.5 text-center text-[13px]
 									leading-none font-semibold whitespace-nowrap text-white transition
-									hover:bg-accent-strong">
+									hover:bg-navy-deep">
 								{{ __('Wybieram', 'taxeon') }}
 							</a>
 						{% endif %}

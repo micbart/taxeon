@@ -4,8 +4,8 @@
 {% set autor = post.author %}
 
 {% block main %}
-	<section class="relative overflow-hidden bg-deep text-white">
-		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-hero-glow)]"></div>
+	<section class="relative overflow-hidden bg-ink text-white">
+		{% include 'components/hero-art-dark.twig' only %}
 
 		<div class="relative mx-auto w-full max-w-[1160px] px-gutter pt-[156px] pb-[72px]
 			max-md:pt-[128px] max-sm:px-5">
@@ -14,7 +14,7 @@
 				<a href="{{ fn('get_permalink', fn('get_option', 'page_for_posts')) }}"
 					class="text-white/60 transition hover:text-white">{{ __('Baza wiedzy', 'taxeon') }}</a>
 				<span>/</span>
-				{% if kategoria %}<span class="text-sky">{{ kategoria.name }}</span>{% endif %}
+				{% if kategoria %}<span class="text-gold-light">{{ kategoria.name }}</span>{% endif %}
 			</div>
 
 			<h1 class="mt-5 font-display text-[clamp(34px,4vw,56px)] leading-[1.06] font-bold
@@ -39,23 +39,23 @@
 		</div>
 	</section>
 
-	<section class="relative overflow-hidden bg-[image:var(--gradient-light)] px-gutter pt-[72px] pb-24
+	<section class="relative overflow-clip bg-[image:var(--gradient-light)] px-gutter pt-[72px] pb-24
 		max-sm:px-5 max-sm:pb-16">
 		<div aria-hidden="true"
-			class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.12),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.08),transparent_72%)]"></div>
+			class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(31_85_128/0.12),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(227_178_60/0.08),transparent_72%)]"></div>
 
 		<div class="relative mx-auto grid w-full max-w-[1160px] grid-cols-[minmax(0,1fr)_280px]
 			items-start gap-14 max-xl:grid-cols-1">
 
 			<article class="rounded-panel border border-line bg-page px-[60px] py-14
-				shadow-[0_40px_90px_-70px_rgb(6_16_36/0.7)] max-sm:px-7 max-sm:py-9">
+				shadow-[0_40px_90px_-70px_rgb(14_31_44/0.7)] max-sm:px-7 max-sm:py-9">
 				<div class="prose">{{ postContent }}</div>
 
 				{% if autor %}
 					<div class="mt-11 flex flex-wrap items-center gap-[18px] border-t border-line pt-7">
 						<span aria-hidden="true"
 							class="grid size-[52px] flex-none place-items-center rounded-full bg-line-2
-								font-display text-[18px] font-semibold text-accent">
+								font-display text-[18px] font-semibold text-navy">
 							{{ autor.name|slice(0, 1) }}
 						</span>
 
@@ -70,17 +70,17 @@
 				{% endif %}
 			</article>
 
-			<aside class="sticky top-[120px] flex flex-col gap-5 max-xl:static max-xl:order-first">
+			<aside class="sticky top-[120px] flex flex-col gap-5 max-xl:static">
 				{% if toc|length > 1 %}
 					<div class="rounded-card border border-line bg-page px-6 py-[26px]">
-						<span class="font-mono text-[12px] tracking-[0.08em] text-accent uppercase">
+						<span class="font-mono text-[12px] tracking-[0.08em] text-navy uppercase">
 							{{ __('W tym artykule', 'taxeon') }}
 						</span>
 
 						<div class="mt-4 flex flex-col gap-[11px]">
 							{% for pozycja in toc %}
 								<a href="#{{ pozycja.id }}"
-									class="text-[15.5px] leading-[1.5] text-ink-2 transition hover:text-accent">
+									class="text-[15.5px] leading-[1.5] text-ink-2 transition hover:text-navy">
 									{{ pozycja.title }}
 								</a>
 							{% endfor %}
@@ -89,7 +89,7 @@
 				{% endif %}
 
 				{% if themeOptions.article_cta_title %}
-					<div class="flex flex-col gap-3 rounded-card bg-[linear-gradient(135deg,#0b4fd6,#10289b)]
+					<div class="flex flex-col gap-3 rounded-card bg-[image:var(--gradient-tile)]
 						px-6 py-7 text-white">
 						<span class="font-display text-[20px] leading-[1.25] font-semibold tracking-[-0.02em]">
 							{{ themeOptions.article_cta_title }}
@@ -103,7 +103,7 @@
 							<a href="{{ themeOptions.article_cta_link.url }}"
 								{{ linkAttrs(themeOptions.article_cta_link.url, themeOptions.article_cta_link.target)|raw }}
 								class="mt-1.5 rounded-pill bg-white px-5 py-[13px] text-center text-[15px]
-									font-semibold text-ink transition hover:bg-accent-tint">
+									font-semibold text-ink transition hover:bg-sand">
 								{{ themeOptions.article_cta_link.title }}
 							</a>
 						{% endif %}
@@ -114,7 +114,7 @@
 	</section>
 
 	{% if relatedPosts|length %}
-		<section class="bg-soft-2 px-gutter py-[88px] max-sm:px-5 max-sm:py-16">
+		<section class="bg-cream px-gutter py-[88px] max-sm:px-5 max-sm:py-16">
 			<div class="mx-auto w-full max-w-[1160px]">
 				{% include 'components/eyebrow.twig' with { title: { text: __('Czytaj dalej', 'taxeon'), tag: 'span' } } only %}
 

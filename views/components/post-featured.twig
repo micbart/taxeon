@@ -2,11 +2,11 @@
 
 <a href="{{ post.link }}"
 	class="grid grid-cols-[1.15fr_0.85fr] overflow-hidden rounded-panel border border-line bg-page
-		text-ink shadow-[0_40px_80px_-60px_rgb(6_16_36/0.6)] transition hover:border-accent
+		text-ink shadow-[0_40px_80px_-60px_rgb(14_31_44/0.6)] transition hover:border-navy
 		max-lg:grid-cols-1">
 
 	<div class="flex flex-col justify-center gap-4 px-11 pt-11 pb-10 max-sm:px-7">
-		<span class="font-mono text-[12px] tracking-[0.08em] text-accent uppercase">
+		<span class="font-mono text-[12px] tracking-[0.08em] text-navy uppercase">
 			{{ __('Wyróżnione', 'taxeon') }}{% if kategoria %} · {{ kategoria.name }}{% endif %}
 		</span>
 
@@ -25,7 +25,7 @@
 	</div>
 
 	<div class="relative flex min-h-[260px] items-end overflow-hidden
-		bg-[linear-gradient(135deg,#0a7bee_0%,#0b4fd6_40%,#10289b_100%)] p-8">
+		bg-[image:var(--gradient-tile)] p-8">
 		{% if post.thumbnail %}
 			{% include 'components/image.twig' with {
 				id: post.thumbnail.ID,

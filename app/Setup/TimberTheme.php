@@ -128,6 +128,7 @@ class TimberTheme extends TimberSite
 			? Timber::compile('components/header/menu-header.twig', [
 				'items' => $menus['headerMenuItems'],
 				'currentUrl' => $currentUrl,
+				'homeUrl' => home_url('/'),
 			])
 			: '';
 
@@ -135,6 +136,7 @@ class TimberTheme extends TimberSite
 			? Timber::compile('components/header/menu-mobile.twig', [
 				'items' => $menus['headerMenuItems'],
 				'currentUrl' => $currentUrl,
+				'homeUrl' => home_url('/'),
 				'contactLink' => $optionsFields['header_contact_link'] ?? [],
 			])
 			: '';
@@ -167,7 +169,7 @@ class TimberTheme extends TimberSite
 			$pozycje[] = [
 				'url' => (string) $item->link(),
 				'title' => (string) $item->title(),
-				'target' => (string) ($item->target ?? ''),
+				'target' => (string) $item->target(),
 			];
 		}
 

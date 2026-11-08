@@ -1,5 +1,5 @@
-<div class="mt-7 flex max-w-[1180px] flex-wrap items-center gap-5 rounded-tile border border-white/14
-	bg-deep/55 px-6 py-[18px]">
+<div class="mt-7 flex max-w-[1180px] flex-wrap items-center gap-5 rounded-tile border border-white/14 px-6 py-[18px]
+	text-white {{ jasne ? 'bg-navy/96' : 'bg-ink/55' }}">
 	<div>
 		<div class="font-display text-[17px] font-semibold">{{ fields.note_title }}</div>
 		{% if fields.note_text %}
@@ -10,7 +10,7 @@
 	{% if fields.note_link.url %}
 		<a href="{{ fields.note_link.url }}"
 			{{ linkAttrs(fields.note_link.url, fields.note_link.target)|raw }}
-			class="ml-auto border-b border-sky-2/40 pb-0.5 text-[15px] font-semibold text-sky-2
+			class="ml-auto border-b border-gold-light/40 pb-0.5 text-[15px] font-semibold text-gold-light
 				transition hover:text-white max-sm:ml-0">
 			{{ fields.note_link.title }}
 		</a>

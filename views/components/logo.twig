@@ -9,7 +9,6 @@
 		class: 'h-6 w-auto ' ~ (class ?: '')
 	} only %}
 {% else %}
-	<span class="block h-6 w-[156px] text-white {{ class }}" role="img" aria-label="{{ site.name }}">
-		{{ 'logo'|svg('size-full') }}
-	</span>
+	<img src="{{ theme.link }}/images/logo-white.png" width="156" height="24" alt="{{ site.name }}"
+		decoding="async" class="block h-6 w-auto {{ class }}">
 {% endif %}

@@ -13,13 +13,8 @@
 
 {% set wpisy = get_posts({ post_type: 'post', posts_per_page: fields.count > 0 ? fields.count : 6 }) %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
-	<div aria-hidden="true"
-		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
-
-	<div aria-hidden="true"
-		class="absolute inset-0 [mask-image:linear-gradient(180deg,transparent,#000_55%)]
-			bg-[repeating-linear-gradient(45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px),repeating-linear-gradient(-45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px)]"></div>
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
 	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
@@ -35,19 +30,19 @@
 			link: fields.link
 		} only %}
 
-		<div class="mt-11 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
+		<div class="reveal mt-11 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
 			max-xl:grid-cols-2 max-md:grid-cols-1">
 			{% for wpis in wpisy %}
 				<a href="{{ wpis.link }}"
-					class="flex min-h-[170px] flex-col gap-3.5 bg-page px-[26px] py-7 text-ink transition hover:bg-soft-2">
+					class="flex min-h-[170px] flex-col gap-3.5 bg-page px-[26px] py-7 text-ink transition hover:bg-cream">
 					{% set kategoria = wpis.terms('category')|first %}
 					{% if kategoria %}
-						<span class="font-mono text-[12px] tracking-[0.08em] text-accent uppercase">{{ kategoria.name }}</span>
+						<span class="font-mono text-[12px] tracking-[0.08em] text-navy uppercase">{{ kategoria.name }}</span>
 					{% endif %}
 
 					<span class="font-display text-[23px] leading-[1.3] font-medium tracking-[-0.02em]">{{ wpis.title }}</span>
 
-					<span class="mt-auto text-[14px] font-semibold text-accent">{{ __('Czytaj', 'taxeon') }} →</span>
+					<span class="mt-auto text-[14px] font-semibold text-navy">{{ __('Czytaj', 'taxeon') }} →</span>
 				</a>
 			{% endfor %}
 
@@ -55,8 +50,8 @@
 				<a href="{{ fields.banner_link.url }}"
 					{{ linkAttrs(fields.banner_link.url, fields.banner_link.target)|raw }}
 					class="col-span-full flex flex-wrap items-center gap-7 px-[30px] py-[34px] text-white
-						bg-[linear-gradient(120deg,#0b4fd6,#10289b)] transition
-						hover:bg-[linear-gradient(120deg,#0a45bc,#0c1f7f)]">
+						bg-[image:var(--gradient-tile)] transition
+						hover:brightness-110">
 					<span class="flex flex-col gap-2">
 						<span class="font-display text-[26px] font-semibold tracking-[-0.025em]">{{ fields.banner_title }}</span>
 						{% if fields.banner_text %}

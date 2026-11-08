@@ -1,6 +1,6 @@
 	{% set zWartoscia = fields.items|filter(i => i.value)|length > 0 %}
 
-	<div class="{{ siatka ?: 'flex flex-col' }}
+	<div class="reveal {{ siatka ?: 'flex flex-col' }}
 		{{ fields.row_style == 'check' ? 'gap-3.5' : (fields.columns == '3' or ikony ? 'gap-3.5' : 'gap-3') }}">
 		{% for item in fields.items %}
 			{% if fields.row_style == 'check' %}
@@ -8,7 +8,7 @@
 					{{ onDark
 						? 'border border-white/22 bg-white/11 text-white backdrop-blur-[14px]'
 						: 'border border-line bg-page text-ink-2' }}">
-					<span aria-hidden="true" class="flex-none {{ onDark ? 'text-sky' : 'text-accent' }}">✓</span>
+					<span aria-hidden="true" class="flex-none {{ onDark ? 'text-gold-light' : 'text-gold' }}">✓</span>
 					{{ item.label }}
 				</div>
 			{% elseif ikony %}
@@ -18,7 +18,7 @@
 						: 'border border-line bg-page px-[26px] py-6' }}">
 					<span aria-hidden="true"
 						class="grid size-10 flex-none place-items-center rounded-[12px] font-bold
-							{{ onDark ? 'bg-sky/16 text-[19px] text-sky' : 'bg-line-2 text-[18px] text-accent' }}">✓</span>
+							{{ onDark ? 'bg-gold-light/16 text-[19px] text-gold-light' : 'bg-sand text-[18px] text-gold-dark' }}">✓</span>
 
 					<div class="flex flex-col gap-[5px]">
 						<h3 class="font-display text-[18px] font-semibold tracking-[-0.02em]
@@ -34,7 +34,7 @@
 			{% elseif fields.row_style == 'numbered' %}
 				<div class="flex items-baseline gap-4 rounded-sm border px-6 py-5 {{ kartaWiersza }}">
 					<span class="flex-none font-display text-[15px] font-semibold
-						{{ onDark ? 'text-sky-2' : 'text-accent' }}">{{ item.value }}</span>
+						{{ onDark ? 'text-gold-light' : 'text-navy' }}">{{ item.value }}</span>
 					<span class="text-[16px] leading-[1.55] {{ onDark ? 'text-white/88' : 'text-ink-2' }}">{{ item.label }}</span>
 				</div>
 			{% elseif fields.row_style == 'stacked' %}
@@ -60,7 +60,7 @@
 					{% if item.value %}
 						<span class="font-display font-semibold whitespace-nowrap
 							{{ onDark ? 'text-[17px]' : 'text-[15px]' }}
-							{{ barwyWartosci[item.tone] ?: (onDark ? 'text-white' : 'text-accent') }}">
+							{{ barwyWartosci[item.tone] ?: (onDark ? 'text-gold-light' : 'text-ink') }}">
 							{{ item.value }}
 						</span>
 					{% endif %}

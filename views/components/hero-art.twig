@@ -1,0 +1,35 @@
+{% set uid = 'ha' ~ random(1000, 9999) %}
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-cream"><svg class="absolute inset-0 size-full" viewBox="0 0 1600 1100" preserveAspectRatio="xMaxYMin slice">
+    <defs>
+      <filter id="{{ uid }}-hx-glow" filterUnits="userSpaceOnUse" x="-500" y="-500" width="3500" height="2600"><feGaussianBlur stdDeviation="8"/></filter>
+      <linearGradient id="{{ uid }}-hx-band1" x1="0" y1="0" x2="1" y2="0.3"><stop offset="0" stop-color="#173F5F" stop-opacity=".16"/><stop offset=".45" stop-color="#173F5F" stop-opacity=".05"/><stop offset="1" stop-color="#173F5F" stop-opacity="0"/></linearGradient>
+      <linearGradient id="{{ uid }}-hx-band2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173F5F" stop-opacity=".14"/><stop offset="1" stop-color="#173F5F" stop-opacity=".02"/></linearGradient>
+      <linearGradient id="{{ uid }}-hx-edge" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C98E00" stop-opacity="0"/><stop offset=".35" stop-color="#C98E00"/><stop offset="1" stop-color="#E3B23C"/></linearGradient>
+    </defs><g transform="translate(-144 -160) scale(1.05)">
+    <path d="M520 1400 L640 1100 C 820 640, 1000 330, 1240 190 C 1380 115, 1500 115, 1600 140 S 1900 230, 2200 330 L2200 1400Z" fill="url(#{{ uid }}-hx-band1)"/>
+    <path d="M520 1400 L640 1100 C 820 640, 1000 330, 1240 190" fill="none" stroke="url(#{{ uid }}-hx-edge)" stroke-width="9" filter="url(#{{ uid }}-hx-glow)" class="max-lg:hidden" opacity=".38"/>
+    <path d="M520 1400 L640 1100 C 820 640, 1000 330, 1240 190" fill="none" stroke="url(#{{ uid }}-hx-edge)" stroke-width="1.8"/>
+    <path d="M1240 190 C 1380 115, 1500 115, 1600 140 S 1900 230, 2200 330" fill="none" stroke="#E3B23C" stroke-width="9" filter="url(#{{ uid }}-hx-glow)" class="max-lg:hidden" opacity=".38"/>
+    <path d="M1240 190 C 1380 115, 1500 115, 1600 140 S 1900 230, 2200 330" fill="none" stroke="#E3B23C" stroke-width="1.8"/>
+    <path d="M872 1400 L960 1100 C 1060 760, 1230 560, 1420 540 C 1510 535, 1570 560, 1600 580 S 1800 700, 2200 820 L2200 1400 L872 1400Z" fill="url(#{{ uid }}-hx-band2)"/>
+    <path d="M872 1400 L960 1100 C 1060 760, 1230 560, 1420 540 C 1510 535, 1570 560, 1600 580 S 1800 700, 2200 820" fill="none" stroke="#C98E00" stroke-width="8" filter="url(#{{ uid }}-hx-glow)" class="max-lg:hidden" opacity=".3"/>
+    <path d="M872 1400 L960 1100 C 1060 760, 1230 560, 1420 540 C 1510 535, 1570 560, 1600 580 S 1800 700, 2200 820" fill="none" stroke="#C98E00" stroke-width="1.6"/>
+    <path d="M1260 180 L 385 1400" stroke="#173F5F" stroke-width="1.2" opacity=".25"/>
+    <path d="M1300 330 L 1955 1400" stroke="#C98E00" stroke-width="1.1" opacity=".45"/>
+  </g></svg></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,#f4f1ea_0%,rgb(244_241_234/0.9)_30%,rgb(244_241_234/0)_64%)]"></div>
+    <svg aria-hidden="true" class="pointer-events-none absolute inset-0 size-full" viewBox="0 0 1600 1100" preserveAspectRatio="xMinYMin slice">
+    <defs>
+      <filter id="{{ uid }}-hl-glow" filterUnits="userSpaceOnUse" x="-300" y="-300" width="1200" height="1700"><feGaussianBlur stdDeviation="7"/></filter>
+      <linearGradient id="{{ uid }}-hl-band" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#173F5F" stop-opacity=".10"/><stop offset="1" stop-color="#173F5F" stop-opacity=".02"/></linearGradient>
+      <linearGradient id="{{ uid }}-hl-band2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173F5F" stop-opacity=".09"/><stop offset="1" stop-color="#173F5F" stop-opacity=".02"/></linearGradient>
+    </defs>
+    <path d="M-30 1100 C 30 820, 70 560, 60 330 C 55 220, 30 120, -20 20 L-30 1100Z" fill="url(#{{ uid }}-hl-band)"/>
+    <path d="M-30 1100 C 30 820, 70 560, 60 330 C 55 220, 30 120, -20 20" fill="none" stroke="#C98E00" stroke-width="6" filter="url(#{{ uid }}-hl-glow)" class="max-lg:hidden" opacity=".2"/>
+    <path d="M-30 1100 C 30 820, 70 560, 60 330 C 55 220, 30 120, -20 20" fill="none" stroke="#C98E00" stroke-width="1.2" opacity=".5"/>
+    <path d="M0 760 C 70 690, 170 690, 260 770 C 330 840, 370 960, 380 1100 L0 1100Z" fill="url(#{{ uid }}-hl-band2)"/>
+    <path d="M0 760 C 70 690, 170 690, 260 770 C 330 840, 370 960, 380 1100" fill="none" stroke="#C98E00" stroke-width="5" filter="url(#{{ uid }}-hl-glow)" class="max-lg:hidden" opacity=".16"/>
+    <path d="M0 760 C 70 690, 170 690, 260 770 C 330 840, 370 960, 380 1100" fill="none" stroke="#C98E00" stroke-width="1.1" opacity=".45"/>
+    <path d="M0 250 L 200 0" stroke="#C98E00" stroke-width="1.2" opacity=".35"/>
+    <path d="M0 980 L 160 1100" stroke="#173F5F" stroke-width="1" opacity=".2"/>
+  </svg>

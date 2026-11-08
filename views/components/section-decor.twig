@@ -1,13 +1,31 @@
-{% if background == 'light' %}
-	<div aria-hidden="true"
-		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
+{% set uid = 'sa' ~ random(1000, 9999) %}
 
+{% if background in ['light', 'soft', 'soft-2'] %}
 	<div aria-hidden="true"
-		class="absolute inset-0 [mask-image:linear-gradient(180deg,transparent,#000_55%)]
-			bg-[repeating-linear-gradient(45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px),repeating-linear-gradient(-45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px)]"></div>
-{% elseif background == 'gradient' %}
-	<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-blue-glow)]"></div>
-{% elseif background == 'navy' and glow %}
-	<div aria-hidden="true"
-		class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
+		class="pointer-events-none absolute inset-0
+			{{ background == 'light'
+				? 'bg-[radial-gradient(75%_55%_at_85%_100%,rgb(31_85_128/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(227_178_60/0.1),transparent_72%)]'
+				: 'bg-[radial-gradient(70%_90%_at_50%_115%,rgb(201_142_0/0.16),transparent_65%),radial-gradient(50%_60%_at_50%_-10%,rgb(23_63_95/0.07),transparent_70%)]' }}"></div>
+
+	<div aria-hidden="true" class="pointer-events-none absolute inset-0">
+		<svg class="absolute inset-0 size-full" viewBox="0 0 1600 1100" preserveAspectRatio="xMaxYMin slice">
+			<defs>
+				<linearGradient id="{{ uid }}-band" x1="0" y1="0" x2="1" y2="0.3">
+					<stop offset="0" stop-color="#173F5F" stop-opacity=".04"/>
+					<stop offset="1" stop-color="#173F5F" stop-opacity="0"/>
+				</linearGradient>
+			</defs>
+			<g transform="translate(-144 -160) scale(1.05)">
+				<path d="M520 1400 L640 1100 C 820 640, 1000 330, 1240 190 C 1380 115, 1500 115, 1600 140 S 1900 230, 2200 330 L2200 1400Z" fill="url(#{{ uid }}-band)"/>
+				<path d="M520 1400 L640 1100 C 820 640, 1000 330, 1240 190 C 1380 115, 1500 115, 1600 140 S 1900 230, 2200 330" fill="none" stroke="#C98E00" stroke-width="1.4" opacity=".32"/>
+				<path d="M872 1400 L960 1100 C 1060 760, 1230 560, 1420 540 C 1510 535, 1570 560, 1600 580 S 1800 700, 2200 820" fill="none" stroke="#C98E00" stroke-width="1.2" opacity=".22"/>
+				<path d="M1260 180 L 385 1400" stroke="#173F5F" stroke-width="1" opacity=".1"/>
+			</g>
+		</svg>
+		<svg class="absolute inset-0 size-full" viewBox="0 0 1600 1100" preserveAspectRatio="xMinYMin slice">
+			<path d="M-30 1100 C 30 820, 70 560, 60 330 C 55 220, 30 120, -20 20" fill="none" stroke="#C98E00" stroke-width="1.2" opacity=".25"/>
+		</svg>
+	</div>
+{% elseif background in ['gradient', 'navy-flat'] %}
+	<div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[image:var(--gradient-blue-glow)]"></div>
 {% endif %}

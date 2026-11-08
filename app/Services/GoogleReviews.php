@@ -4,6 +4,8 @@ namespace App\Services;
 
 class GoogleReviews
 {
+	public const MIN_RATING = 4;
+
 	private const ENDPOINT = 'https://places.googleapis.com/v1/places/';
 	private const STORE = 'taxeon_google_reviews';
 	private const HOOK = 'taxeon_sync_google_reviews';
@@ -98,6 +100,10 @@ class GoogleReviews
 
 		foreach ($magazyn['items'] as $id => $opinia) {
 			if ($wybrane && !in_array($id, $wybrane, true)) {
+				continue;
+			}
+
+			if (!$wybrane && (int) ($opinia['rating'] ?? 5) < self::MIN_RATING) {
 				continue;
 			}
 

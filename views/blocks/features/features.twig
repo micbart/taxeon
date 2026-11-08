@@ -40,17 +40,22 @@
 				{% for item in fields.items %}
 					{% set klikalna = item.link.url ? 'a' : 'div' %}
 					{% set ruch = item.link.url %}
+					{% set kafel = not onDark and item.highlight %}
+					{% set ciemno = onDark or kafel %}
 
 					<{{ klikalna }}
 						{% if item.link.url %}
 							href="{{ item.link.url }}"
 							{{ linkAttrs(item.link.url, item.link.target)|raw }}
 						{% endif %}
-						class="group flex flex-col max-sm:px-6
+						class="reveal group flex flex-col max-sm:px-6
 						{{ maly ? 'gap-2.5 rounded-card px-[26px] py-7' : 'rounded-panel' }}
 						{{ duze ? 'min-h-[340px] gap-4 px-[38px] py-10' : '' }}
 						{{ rozmiar == 'md' ? 'gap-3 px-8 py-[34px]' : '' }}
-						{{ onDark
+						{{ kafel
+							? 'border border-navy-deep bg-[image:var(--gradient-tile)] shadow-tile transition '
+								~ (ruch ? 'hover:-translate-y-[3px]' : '')
+							: onDark
 							? 'border border-white/24 bg-white/11 transform-gpu transition '
 								~ (ruch ? 'hover:border-white/45 hover:bg-white/17 ' : '')
 								~ (maly
@@ -61,12 +66,12 @@
 								~ (ruch ? 'hover:-translate-y-[3px] hover:shadow-mid' : '') }}">
 
 						{% if maly %}
-							<span aria-hidden="true" class="mb-2 block h-1 w-[34px] rounded-[2px] bg-sky"></span>
+							<span aria-hidden="true" class="mb-2 block h-1 w-[34px] rounded-[2px] bg-gold-light"></span>
 						{% endif %}
 
 						{% if item.kicker %}
 							<span class="font-display text-[13px] font-semibold tracking-[0.1em] uppercase
-								{{ onDark ? (item.highlight ? 'text-sky-2' : 'text-accent-tint-2') : 'text-accent' }}">
+								{{ ciemno ? (item.highlight ? 'text-gold-light' : 'text-line') : 'text-gold-dark' }}">
 								{{ item.kicker }}
 							</span>
 						{% endif %}
@@ -75,7 +80,7 @@
 							{{ maly
 								? 'text-[20px] leading-[normal] tracking-[-0.02em]'
 								: 'tracking-[-0.025em] max-sm:text-[26px] ' ~ (duze ? 'text-[34px] leading-[1.12]' : 'text-[26px] leading-[1.15]') }}
-							{{ onDark ? 'text-white' : 'text-ink' }}">
+							{{ ciemno ? 'text-white' : 'text-ink' }}">
 							{{ item.title }}
 						</h3>
 
@@ -83,7 +88,7 @@
 							<p class="{{ maly
 									? 'text-[15.5px] leading-[1.58]'
 									: 'leading-[1.62] ' ~ (duze ? 'max-w-[44ch] text-[17px]' : 'text-[16px]') }}
-								{{ onDark
+								{{ ciemno
 									? (maly or item.highlight ? 'text-white/78' : 'text-white/84')
 									: 'text-ink-3' }}">
 								{{ item.text }}
@@ -92,9 +97,9 @@
 
 						{% if item.link.url %}
 							<span class="mt-auto text-[16px] font-semibold
-								{{ onDark
-									? (item.highlight ? 'text-sky-2 group-hover:text-white' : 'text-white group-hover:text-accent-tint-2')
-									: 'text-accent group-hover:text-accent-strong' }}">
+								{{ ciemno
+									? (item.highlight ? 'text-gold-light group-hover:text-white' : 'text-white group-hover:text-line')
+									: 'text-navy group-hover:text-navy-deep' }}">
 								{{ item.link.title }}
 							</span>
 						{% endif %}

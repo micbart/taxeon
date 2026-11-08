@@ -31,7 +31,7 @@
 					title: fields.title,
 					defaultTag: 'h2',
 					titleClass: 'mt-3.5 font-display text-[clamp(28px,3.4vw,40px)] leading-[1.08] font-semibold
-						tracking-[-0.02em] text-balance text-ink'
+						tracking-[-0.02em] text-ink'
 				} only %}
 
 				{% include 'components/title-with-select-tag.twig' with {
@@ -46,7 +46,7 @@
 							<li class="flex items-start gap-3.5">
 								{% if detail.icon %}
 									<span class="grid size-[46px] flex-none place-items-center rounded-[13px]
-										bg-accent-soft text-accent [&_svg]:size-[22px]">
+										bg-cream text-navy [&_svg]:size-[22px]">
 										{{ detail.icon|svg }}
 									</span>
 								{% endif %}
@@ -54,7 +54,7 @@
 								<div>
 									<b class="block text-sm font-normal text-ink-3">{{ detail.label }}</b>
 									{% if detail.link.url %}
-										<a href="{{ detail.link.url }}" class="text-base font-semibold text-ink hover:text-accent">
+										<a href="{{ detail.link.url }}" class="text-base font-semibold text-ink hover:text-navy">
 											{{ detail.link.title ?: detail.value }}
 										</a>
 									{% else %}
@@ -137,7 +137,7 @@
 						<label class="flex items-start gap-[11px] text-sm leading-normal text-ink-2">
 							<input type="checkbox" name="{{ consentName }}" value="1"
 								{% if not fields.consent_optional %}required{% endif %}
-								class="mt-[3px] size-[18px] flex-none accent-accent">
+								class="mt-[3px] size-[18px] flex-none accent-navy">
 							<span>
 								{{ fields.consent_text ?: __('Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania.', 'taxeon') }}
 								{% if not fields.consent_optional %}<span class="text-cta">*</span>{% endif %}
@@ -148,8 +148,8 @@
 						{% if fields.consent_rodo %}
 							<label class="mt-1.5 flex items-start gap-[11px] text-sm leading-normal text-ink-2">
 								<input type="checkbox" name="consent_rodo" value="1" required
-									class="mt-[3px] size-[18px] flex-none accent-accent">
-								<span class="[&_a]:font-semibold [&_a]:text-accent [&_a]:underline">
+									class="mt-[3px] size-[18px] flex-none accent-navy">
+								<span class="[&_a]:font-semibold [&_a]:text-navy [&_a]:underline">
 									{{ fields.consent_rodo|inlineHtml }}
 									<span class="text-cta">*</span>
 								</span>
@@ -207,8 +207,8 @@
 									{% if item.icon %}
 										<span class="grid flex-none place-items-center rounded-[12px]
 											{{ onNavy
-												? 'size-11 bg-white/10 text-deep-tint [&_svg]:size-[21px]'
-												: 'size-[38px] bg-accent-soft text-accent [&_svg]:size-[18px]' }}">
+												? 'size-11 bg-white/10 text-gold-light [&_svg]:size-[21px]'
+												: 'size-[38px] bg-cream text-navy [&_svg]:size-[18px]' }}">
 											{{ item.icon|svg }}
 										</span>
 									{% endif %}
@@ -224,7 +224,7 @@
 											{%- if item.link.url -%}
 												<a href="{{ item.link.url }}"
 													{{ linkAttrs(item.link.url, item.link.target)|raw }}
-													class="hover:underline {{ onNavy ? 'text-deep-tint' : 'text-accent' }}">{{ item.link.title }}</a>
+													class="hover:underline {{ onNavy ? 'text-gold-light' : 'text-navy' }}">{{ item.link.title }}</a>
 											{%- endif -%}
 											{{- item.text -}}
 										</span>

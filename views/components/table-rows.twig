@@ -1,7 +1,7 @@
 {% for row in rows %}
 	{% set lastRow = loop.last %}
 
-	<tr class="{{ variant == 'downloads' ? 'transition-colors hover:bg-soft' }}">
+	<tr class="{{ variant == 'downloads' ? 'transition-colors hover:bg-cream' }}">
 		{% for cell in row.cells %}
 			{% set col = head[loop.index0] %}
 			{% set border = lastRow ? '' : 'border-b border-line-2' %}
@@ -13,14 +13,14 @@
 						<a href="{{ cell.link.url }}"
 							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
 							class="inline-flex items-center gap-[7px] text-sm whitespace-nowrap transition-colors [&_svg]:size-4
-								{{ cell.style == 'muted' ? 'font-normal text-ink-3 hover:text-accent' : 'font-bold text-accent' }}">
+								{{ cell.style == 'muted' ? 'font-normal text-ink-3 hover:text-navy' : 'font-bold text-navy' }}">
 							{% if cell.icon %}{{ cell.icon|svg }}{% endif %}
 							{{ cell.link.title ?: cell.text }}
 						</a>
 					{% elseif loop.first %}
 						<span class="inline-flex items-center gap-[11px] text-[15px] font-normal text-ink md:whitespace-nowrap">
 							{% if cell.icon %}
-								<span class="grid size-[34px] flex-none place-items-center rounded-[9px] bg-accent-soft text-accent [&_svg]:size-[18px]">
+								<span class="grid size-[34px] flex-none place-items-center rounded-[9px] bg-cream text-navy [&_svg]:size-[18px]">
 									{{ cell.icon|svg }}
 								</span>
 							{% endif %}
@@ -47,7 +47,7 @@
 					{% elseif cell.link.url %}
 						<a href="{{ cell.link.url }}"
 							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
-							class="group/link inline-flex items-center gap-[7px] font-bold whitespace-nowrap text-accent
+							class="group/link inline-flex items-center gap-[7px] font-bold whitespace-nowrap text-navy
 								[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1
 								max-[620px]:gap-1 max-[620px]:[&_svg]:size-[18px]">
 							{% if cell.icon %}{{ cell.icon|svg }}{% endif %}
@@ -57,7 +57,7 @@
 					{% elseif loop.first %}
 						<span class="inline-flex items-center gap-3 font-semibold max-[620px]:gap-2">
 							{% if cell.icon %}
-								<span class="grid size-9 flex-none place-items-center rounded-[10px] bg-accent-soft text-accent [&_svg]:size-[19px] max-[620px]:size-7 max-[620px]:rounded-lg max-[620px]:[&_svg]:size-[15px]">
+								<span class="grid size-9 flex-none place-items-center rounded-[10px] bg-cream text-navy [&_svg]:size-[19px] max-[620px]:size-7 max-[620px]:rounded-lg max-[620px]:[&_svg]:size-[15px]">
 									{{ cell.icon|svg }}
 								</span>
 							{% endif %}
@@ -74,14 +74,14 @@
 					{% if cell.link.url %}
 						<a href="{{ cell.link.url }}"
 							{{ linkAttrs(cell.link.url, cell.link.target)|raw }}
-							class="group/link inline-flex items-center gap-[7px] font-bold text-accent
+							class="group/link inline-flex items-center gap-[7px] font-bold text-navy
 								[&_svg]:size-[17px] [&_svg]:transition-transform group-hover/link:[&_svg]:translate-x-1">
 							{{ cell.link.title ?: cell.text }}
 							{{ 'arrow-right'|svg }}
 						</a>
 					{% else %}
 						<span class="inline-flex items-center gap-[9px] [&_svg]:size-[18px] [&_svg]:flex-none
-							{{ cell.style == 'muted' ? '[&_svg]:text-ink-3' : '[&_svg]:text-accent' }}">
+							{{ cell.style == 'muted' ? '[&_svg]:text-ink-3' : '[&_svg]:text-navy' }}">
 							{% if cell.icon %}{{ cell.icon|svg }}{% endif %}
 							{{ cell.text }}
 							{% if cell.suffix %}<small class="text-meta text-ink-3">{{ cell.suffix }}</small>{% endif %}

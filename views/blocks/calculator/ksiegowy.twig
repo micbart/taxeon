@@ -2,10 +2,10 @@
 	<div data-kalkulator="ksiegowy"
 		class="grid grid-cols-[minmax(272px,0.8fr)_minmax(0,1.7fr)] items-start gap-8 max-xl:grid-cols-1">
 
-		<form class="rounded-card border border-line bg-page p-8 shadow-[0_40px_80px_-50px_rgb(6_16_36/0.6)] max-sm:p-6"
+		<form class="rounded-card border border-line bg-page p-8 shadow-[0_40px_80px_-50px_rgb(14_31_44/0.6)] max-sm:p-6"
 			aria-label="{{ __('Dobór pakietu', 'taxeon') }}"
 			onsubmit="return false">
-			<p class="text-meta font-semibold tracking-[0.12em] text-accent uppercase">
+			<p class="text-meta font-semibold tracking-[0.12em] text-navy uppercase">
 				{{ __('twoja sytuacja', 'taxeon') }}
 			</p>
 
@@ -20,8 +20,8 @@
 						<label class="cursor-pointer rounded-[10px] px-5 py-2.5 text-center font-display text-[15px]
 							font-semibold text-ink-3 transition
 							has-checked:bg-page has-checked:text-ink
-							has-checked:shadow-[0_6px_16px_-8px_rgb(6_16_36/0.6)]
-							has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent">
+							has-checked:shadow-[0_6px_16px_-8px_rgb(14_31_44/0.6)]
+							has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-navy">
 							<input type="radio" name="kalk-obsluga" value="{{ opcja.wartosc }}" data-k-pole="obsluga"
 								{{ loop.first ? 'checked' : '' }} class="sr-only">
 							{{ opcja.etykieta }}
@@ -41,8 +41,8 @@
 						<label class="cursor-pointer rounded-[10px] px-5 py-2.5 text-center font-display text-[15px]
 							font-semibold text-ink-3 transition
 							has-checked:bg-page has-checked:text-ink
-							has-checked:shadow-[0_6px_16px_-8px_rgb(6_16_36/0.6)]
-							has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent">
+							has-checked:shadow-[0_6px_16px_-8px_rgb(14_31_44/0.6)]
+							has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-navy">
 							<input type="radio" name="kalk-forma" value="{{ opcja.wartosc }}" data-k-pole="forma"
 								{{ loop.first ? 'checked' : '' }} class="sr-only">
 							{{ opcja.etykieta }}
@@ -58,9 +58,9 @@
 			<label data-k-grupa="vat"
 				class="mt-6 flex cursor-pointer items-center gap-3 rounded-btn border-[1.5px] border-line
 					bg-white px-4 py-[13px] text-[15px] text-ink transition
-					has-checked:border-accent has-checked:bg-accent-soft">
+					has-checked:border-navy has-checked:bg-cream">
 				<input type="checkbox" data-k-pole="vat"
-					class="size-[18px] flex-none cursor-pointer accent-accent">
+					class="size-[18px] flex-none cursor-pointer accent-navy">
 				{{ __('Jestem czynnym podatnikiem VAT', 'taxeon') }}
 			</label>
 		</form>
@@ -71,17 +71,17 @@
 					<div data-k-pakiet="{{ indeks }}" data-etykieta="{{ pakiet.label }}"
 						class="flex flex-col rounded-card border bg-page p-7 transition
 							border-line shadow-soft
-							data-[wybrany]:border-accent data-[wybrany]:bg-accent-soft
-							data-[wybrany]:shadow-[0_28px_60px_-36px_rgb(11_99_246/0.65)]
+							data-[wybrany]:border-navy data-[wybrany]:bg-cream
+							data-[wybrany]:shadow-[0_28px_60px_-36px_rgb(23_63_95/0.65)]
 							max-sm:p-6">
 
 						<div class="flex min-h-[28px] items-start justify-between gap-2">
-							<span class="font-display text-[14px] font-semibold tracking-[0.12em] text-accent uppercase">
+							<span class="font-display text-[14px] font-semibold tracking-[0.12em] text-navy uppercase">
 								{{ pakiet.label }}
 							</span>
 
 							<span data-k-znacznik
-								class="hidden flex-none rounded-pill bg-accent px-[11px] py-[5px] text-[11px]
+								class="hidden flex-none rounded-pill bg-navy px-[11px] py-[5px] text-[11px]
 									font-semibold tracking-[0.04em] whitespace-nowrap text-white uppercase
 									data-[widoczny]:block">
 								{{ __('dla Ciebie', 'taxeon') }}
@@ -102,7 +102,7 @@
 						{% if pakiet.link.url %}
 							<a href="{{ pakiet.link.url }}" {{ linkAttrs(pakiet.link.url, pakiet.link.target)|raw }}
 								class="mt-6 rounded-pill px-5 py-3 text-center text-[15px] font-semibold transition
-									border border-line text-ink hover:border-accent hover:bg-accent hover:text-white">
+									border border-line text-ink hover:border-navy hover:bg-navy hover:text-white">
 								{{ pakiet.link.title }}
 							</a>
 						{% endif %}

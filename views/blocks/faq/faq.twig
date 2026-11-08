@@ -12,6 +12,7 @@
 {% import 'components/section.twig' as section %}
 
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 	{% if fields.groups|length %}
 		<div class="relative {{ section.container(fields) }}">
 			<div class="flex flex-col gap-16">
@@ -21,7 +22,7 @@
 							scroll-mt-[110px] max-xl:grid-cols-1 max-xl:gap-8">
 						<div>
 							{% if grupa.eyebrow %}
-								<span class="text-[13px] font-semibold tracking-[0.14em] text-accent uppercase">
+								<span class="text-[13px] font-semibold tracking-[0.14em] text-navy uppercase">
 									{{ grupa.eyebrow }}
 								</span>
 							{% endif %}
@@ -45,25 +46,54 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="{{ section.container(fields) }}">
+		{% set onDark = section.isDark(fields) %}
+		{% set przycisk = fields.link_style == 'button' %}
+
+		<div class="relative {{ section.container(fields) }}">
 			<div class="grid grid-cols-[minmax(260px,0.7fr)_minmax(420px,1.3fr)] items-start gap-16
 				max-xl:grid-cols-1 max-xl:gap-10">
 				<div>
 					{% include 'components/section-head.twig' with {
-			size: fields.head_size,
-			background: fields.background,
-			headWidth: fields.head_width,
-			titleWidth: fields.title_width,
-			textWidth: fields.text_width,
-			textGap: fields.text_gap,
+						size: fields.head_size,
+						background: fields.background,
+						headWidth: fields.head_width,
+						titleWidth: fields.title_width,
+						textWidth: fields.text_width,
+						textGap: fields.text_gap,
 						eyebrow: fields.eyebrow,
 						title: fields.title,
 						text: fields.text,
-						link: fields.link
+						link: przycisk ? null : fields.link
 					} only %}
+
+					{% if fields.checks|length %}
+						<ul class="mt-6 flex flex-col gap-2.5">
+							{% for punkt in fields.checks %}
+								<li class="flex gap-2.5 text-[15px] leading-[1.5] {{ onDark ? 'text-white/86' : 'text-ink-2' }}">
+									<span aria-hidden="true" class="flex-none {{ onDark ? 'text-gold-light' : 'text-gold' }}">✓</span>
+									{{ punkt.text }}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+
+					{% if przycisk and fields.link.url %}
+						<a href="{{ fields.link.url }}"
+							{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
+							class="mt-7 inline-flex rounded-pill px-7 py-4 text-[16px] font-semibold transition
+								{{ onDark ? 'bg-white text-ink hover:bg-sand' : 'bg-navy text-white hover:bg-navy-deep' }}">
+							{{ fields.link.title }}
+						</a>
+					{% endif %}
 				</div>
 
 				<div class="flex flex-col gap-3">
+					{% if fields.items_title %}
+						<h3 class="mb-2 font-display text-[20px] font-semibold tracking-[-0.02em] {{ onDark ? 'text-white' : 'text-ink' }}">
+							{{ fields.items_title }}
+						</h3>
+					{% endif %}
+
 					{% for item in fields.items %}
 						{% include 'blocks/faq/pytanie.twig' with {
 							item: item,

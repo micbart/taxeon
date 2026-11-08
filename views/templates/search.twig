@@ -25,8 +25,8 @@
 				{% include 'components/pagination.twig' with { pagination: pagination } only %}
 			{% else %}
 				<a href="{{ fn('get_permalink', fn('get_option', 'page_for_posts')) }}"
-					class="inline-flex rounded-pill bg-accent-cta px-7 py-4 text-[16px] font-semibold text-white
-						shadow-cta transition hover:bg-accent-strong">
+					class="inline-flex rounded-pill bg-navy px-7 py-4 text-[16px] font-semibold text-white
+						shadow-cta transition hover:bg-navy-deep">
 					{{ __('Przejdź do bazy wiedzy', 'taxeon') }}
 				</a>
 			{% endif %}

@@ -16,7 +16,7 @@
 		{% include 'components/section-decor.twig' with { background: 'light' } only %}
 
 		<div class="relative mx-auto w-full max-w-[1160px]">
-			<span class="text-[13px] font-semibold tracking-[0.14em] text-accent uppercase">
+			<span class="text-[13px] font-semibold tracking-[0.14em] text-navy uppercase">
 				{{ __('Najczęściej szukane', 'taxeon') }}
 			</span>
 
@@ -28,7 +28,7 @@
 				max-xl:grid-cols-2 max-sm:grid-cols-1">
 				{% for pozycja in notFoundLinks %}
 					<a href="{{ pozycja.url }}"
-						class="flex min-h-[150px] flex-col gap-3 bg-page px-7 py-[30px] text-ink transition hover:bg-soft">
+						class="flex min-h-[150px] flex-col gap-3 bg-page px-7 py-[30px] text-ink transition hover:bg-cream">
 						<span class="font-display text-[20px] leading-[1.3] font-medium tracking-[-0.02em]">
 							{{ pozycja.title }}
 						</span>

@@ -155,11 +155,11 @@ class Kalkulatory
 
 			for ($i = 0; $i < $ile; $i++) {
 				$pakiety[] = [
-					'label' => (string) ($dane["cards_{$i}_label"] ?? ''),
-					'badge' => (string) ($dane["cards_{$i}_badge"] ?? ''),
-					'price' => (string) ($dane["cards_{$i}_price"] ?? ''),
-					'period' => (string) ($dane["cards_{$i}_period"] ?? ''),
-					'text' => (string) ($dane["cards_{$i}_text"] ?? ''),
+					'label' => (string) Prices::apply((string) ($dane["cards_{$i}_label"] ?? '')),
+					'badge' => (string) Prices::apply((string) ($dane["cards_{$i}_badge"] ?? '')),
+					'price' => (string) Prices::apply((string) ($dane["cards_{$i}_price"] ?? '')),
+					'period' => (string) Prices::apply((string) ($dane["cards_{$i}_period"] ?? '')),
+					'text' => (string) Prices::apply((string) ($dane["cards_{$i}_text"] ?? '')),
 					'link' => (array) ($dane["cards_{$i}_link"] ?? []),
 				];
 			}

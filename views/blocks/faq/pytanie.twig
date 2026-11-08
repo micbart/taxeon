@@ -1,17 +1,23 @@
-<details class="group overflow-hidden rounded-sm border border-line bg-white/94 backdrop-blur-[8px]"
+<details data-faq data-expanded="{{ otwarte ? 'true' : 'false' }}"
+	class="reveal group overflow-hidden rounded-sm border border-line bg-white/94 backdrop-blur-[8px]"
 	{% if otwarte %}open{% endif %}>
-	<summary class="flex cursor-pointer list-none items-center gap-[18px] px-6 py-5
+	<summary class="group/q flex cursor-pointer list-none items-center gap-[18px] px-6 py-5
 		font-display text-[18px] font-medium tracking-[-0.015em] text-ink
-		transition hover:bg-soft [&::-webkit-details-marker]:hidden">
+		transition-colors hover:bg-cream hover:text-navy [&::-webkit-details-marker]:hidden">
 		<span class="flex-1">{{ item.question }}</span>
 
-		<span class="grid size-7 flex-none place-items-center rounded-full bg-[#eef3fb] text-[17px] text-accent">
-			<span class="group-open:hidden">+</span>
-			<span class="hidden group-open:block">−</span>
+		<span aria-hidden="true"
+			class="grid size-7 flex-none place-items-center rounded-full bg-cream text-[17px] text-navy
+				transition duration-300 group-hover/q:bg-white group-data-[expanded=true]:rotate-180">
+			<span class="group-data-[expanded=true]:hidden">+</span>
+			<span class="hidden group-data-[expanded=true]:block">−</span>
 		</span>
 	</summary>
 
-	<div class="max-w-[70ch] px-6 pb-[22px] text-[16px] leading-[1.65] text-ink-3 [&_a]:font-semibold [&_a]:text-accent">
-		{{ item.answer }}
+	<div data-faq-body class="overflow-hidden">
+		<div class="mx-6 max-w-[70ch] border-t border-line-2 pt-4 pb-[22px] text-[16px] leading-[1.65] text-ink-3
+			[&_a]:font-semibold [&_a]:text-navy">
+			{{ item.answer }}
+		</div>
 	</div>
 </details>

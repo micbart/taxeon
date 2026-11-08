@@ -224,6 +224,65 @@
             "return_format": "array"
         },
         {
+            "key": "field_9b241210ea0bf",
+            "label": "Punkty z ptaszkiem pod opisem",
+            "name": "checks",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Dodaj punkt",
+            "sub_fields": [
+                {
+                    "key": "field_c870b420a5a69",
+                    "label": "Treść",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_2ce6f0920072c",
+            "label": "Tytuł nad pytaniami",
+            "name": "items_title",
+            "type": "text",
+            "instructions": "Mały nagłówek nad akordeonem, np. „Najczęstsze pytania”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_7d62538fad2af",
             "label": "Rozwiń pierwsze pytanie",
             "name": "open_first",
@@ -609,6 +668,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_2abf34561b586",
+            "label": "Wygląd odnośnika",
+            "name": "link_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "text": "Tekstowy",
+                "button": "Przycisk"
+            },
+            "default_value": "text",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_dc8bddf2cbfa4",
             "label": "Sekcja",
             "name": "tab_section",
@@ -639,11 +723,12 @@
             },
             "choices": {
                 "page": "Białe",
-                "soft": "Jasnoszare",
-                "soft-2": "Jasnoszare chłodne",
-                "light": "Gradient jasny",
-                "navy": "Granatowe",
-                "gradient": "Gradient niebieski"
+                "soft": "Kremowe",
+                "soft-2": "Kremowe (drugie)",
+                "light": "Gradient jasny (biel → krem → piasek)",
+                "navy": "Najciemniejszy granat (zamknięcie strony)",
+                "navy-flat": "Granat płaski",
+                "gradient": "Granat z przejściem w czerń"
             },
             "default_value": "page",
             "return_format": "value",

@@ -131,6 +131,23 @@
             ]
         },
         {
+            "key": "field_5b5c46808deed",
+            "label": "Wyróżnienie w tytule",
+            "name": "title_hint",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Fragment w nawiasach kwadratowych, np. [12 zł], dostaje złoty kolor.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_ed8ac955691a0",
             "label": "Podtytuł",
             "name": "subtitle",
@@ -228,7 +245,7 @@
             "label": "Styl przycisków",
             "name": "button_style",
             "type": "select",
-            "instructions": "Akcent to duży niebieski przycisk, jasny to biała pigułka.",
+            "instructions": "Akcent to duży granatowy przycisk, zwykły to para: pełny i obrysowany.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -277,6 +294,31 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_04b73b4b1be8e",
+            "label": "Wygląd rzędu zaufania",
+            "name": "trust_style",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "row": "Rząd pod przyciskami",
+                "box": "Białe pudełko pod całym nagłówkiem"
+            },
+            "default_value": "row",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_a7a80b1c3979f",
@@ -367,6 +409,34 @@
                         "class": "",
                         "id": ""
                     }
+                },
+                {
+                    "key": "field_57fa4077affed",
+                    "label": "Ikona",
+                    "name": "icon",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "Bez ikony",
+                        "google": "Google",
+                        "proof-calendar": "Kalendarz",
+                        "proof-building": "Budynek",
+                        "youtube-red": "YouTube"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
                 }
             ]
         },
@@ -387,11 +457,36 @@
             "endpoint": 0
         },
         {
+            "key": "field_ce9439f1b2ee1",
+            "label": "Kolorystyka",
+            "name": "tone",
+            "type": "select",
+            "instructions": "Kremowe tło ze złotymi liniami albo granatowe.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cream": "Kremowe (jasne)",
+                "dark": "Granatowe (ciemne)"
+            },
+            "default_value": "cream",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_8dc095f6ed751",
             "label": "Wideo w tle",
             "name": "video",
             "type": "text",
-            "instructions": "Adres pliku MP4 albo filmu na YouTube. Puste = sam granat.",
+            "instructions": "Adres pliku MP4 albo filmu na YouTube. Tylko w kolorystyce granatowej; puste = same linie.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -613,6 +708,34 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_9ee27da8a39f3",
+                    "label": "Ikona",
+                    "name": "icon",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "Bez ikony",
+                        "google": "Google",
+                        "proof-calendar": "Kalendarz",
+                        "proof-building": "Budynek",
+                        "youtube-red": "YouTube"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_53edcdb407cb5",
@@ -868,6 +991,63 @@
                     "maxlength": ""
                 },
                 {
+                    "key": "field_1e52fd383612b",
+                    "label": "Tytuł karty",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "Zamiast ceny, np. „Spotkanie online z księgową”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_92883b919bc63",
+                    "label": "Linia informacji",
+                    "name": "meta",
+                    "type": "text",
+                    "instructions": "Drobny tekst pod tytułem, np. „30 min · wideorozmowa · po polsku”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_15987c354d56f",
+                    "label": "Złoty ptaszek nad tytułem",
+                    "name": "check_icon",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
                     "key": "field_84b6de1d22395",
                     "label": "Opis",
                     "name": "text",
@@ -925,6 +1105,25 @@
                             "maxlength": ""
                         }
                     ]
+                },
+                {
+                    "key": "field_0c6773073126f",
+                    "label": "Dopisek pod przyciskiem",
+                    "name": "note",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_e4909d1fba0bf",
@@ -1121,139 +1320,6 @@
                 "88": "88 px"
             },
             "default_value": "",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_52829fa237393",
-            "label": "Sekcja",
-            "name": "tab_section",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_a28854025fd07",
-            "label": "Tło",
-            "name": "background",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "40",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "page": "Białe",
-                "soft": "Jasnoszare",
-                "soft-2": "Jasnoszare chłodne",
-                "light": "Gradient jasny",
-                "navy": "Granatowe",
-                "gradient": "Gradient niebieski"
-            },
-            "default_value": "page",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_118bb5c8a3823",
-            "label": "Szerokość",
-            "name": "container",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "60",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "page": "Standardowa (1200)",
-                "content": "Treściowa (1160)",
-                "narrow": "Wąska (860)",
-                "wide": "Szeroka (1440)",
-                "full": "Pełna"
-            },
-            "default_value": "page",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_a2bcd469e1399",
-            "label": "Odstęp u góry",
-            "name": "padding_top",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Standardowy (112)",
-                "large": "Duży (108)",
-                "medium": "Średni (104)",
-                "medium-sm": "Średni mniejszy (100)",
-                "small-lg": "Mały większy (96)",
-                "small": "Mały (72)",
-                "none": "Brak"
-            },
-            "default_value": "default",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_a0bd5fc9d446e",
-            "label": "Odstęp u dołu",
-            "name": "padding_bottom",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Standardowy (112)",
-                "large": "Duży (108)",
-                "medium": "Średni (104)",
-                "medium-sm": "Średni mniejszy (100)",
-                "small-lg": "Mały większy (96)",
-                "small": "Mały (72)",
-                "none": "Brak"
-            },
-            "default_value": "default",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,

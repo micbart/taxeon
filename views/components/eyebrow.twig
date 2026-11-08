@@ -1,10 +1,11 @@
 {% set kolorTla = {
-	'navy': 'text-sky-2',
-	'gradient': 'text-accent-tint-2'
+	'navy': 'text-gold-light',
+	'navy-flat': 'text-gold-light',
+	'gradient': 'text-gold-light'
 } %}
 
 {% set eyebrowClass = 'text-[13px] font-semibold tracking-[0.14em] uppercase
-	' ~ (color ?: kolorTla[background] ?: (onDark ? 'text-accent-tint-2' : 'text-accent')) ~ ' ' ~ (class ?: '') %}
+	' ~ (color ?: kolorTla[background] ?: (onDark ? 'text-gold-light' : 'text-navy')) ~ ' ' ~ (class ?: '') %}
 
 {% if title is defined and title %}
 	{% include 'components/title-with-select-tag.twig' with {

@@ -17,6 +17,7 @@
 } %}
 
 {% set preset = presety[size] ?: presety.md %}
+{% set onDark = onDark ?? (background in ['navy', 'navy-flat', 'gradient']) %}
 
 {% set szerokosciTytulu = {
 	'18ch': 'max-w-[18ch]', '20ch': 'max-w-[20ch]', '22ch': 'max-w-[22ch]', '24ch': 'max-w-[24ch]'
@@ -37,14 +38,14 @@
 	~ ' ' ~ (szerokosciTekstu[textWidth] ?: '') %}
 
 {% if title.text or eyebrow.text %}
-	<div class="{{ center ? 'mx-auto text-center' }}">
+	<div class="reveal {{ center ? 'mx-auto text-center' }}">
 		<div class="{{ szerokosciGlowy[headWidth] ?: '' }}">
 			{% include 'components/eyebrow.twig' with { title: eyebrow, onDark: onDark, background: background } only %}
 
 			{% include 'components/title-with-select-tag.twig' with {
 				title: title,
 				defaultTag: titleTag ?: 'h2',
-				titleClass: 'mt-4 font-display font-bold tracking-[-0.03em] text-balance '
+				titleClass: 'mt-4 font-display font-bold tracking-[-0.03em] '
 					~ klasaTytulu ~ ' ' ~ (onDark ? 'text-white' : 'text-ink')
 			} only %}
 
@@ -52,14 +53,14 @@
 				title: text,
 				defaultTag: 'p',
 				titleClass: 'text-pretty ' ~ klasaTekstu ~ ' '
-					~ (onDark ? (background == 'navy' ? 'text-white/76' : 'text-white/82') : 'text-ink-3')
+					~ (onDark ? 'text-white/72' : 'text-ink-3')
 			} only %}
 
 			{% if link.url %}
 				<a href="{{ link.url }}"
 					{{ linkAttrs(link.url, link.target)|raw }}
 					class="mt-5 inline-flex items-center gap-[7px] text-[15px] font-semibold
-						{{ onDark ? 'text-white hover:text-accent-tint-2' : 'text-accent hover:text-accent-strong' }}">
+						{{ onDark ? 'text-gold-light hover:text-white' : 'text-navy hover:text-navy-deep' }}">
 					{{ link.title }} →
 				</a>
 			{% endif %}

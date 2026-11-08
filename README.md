@@ -1,4 +1,4 @@
-# Taxeon
+# Taxeon New Color
 
 Motyw WordPress dla TAXEON. Timber 2 (Twig) + Vite 6 + Tailwind CSS 4 + SCSS.
 Bez WooCommerce.
@@ -7,7 +7,7 @@ Autor: Michał Bartczak
 
 ## Wymagania
 
-- PHP 8.1+
+- PHP 8.2+
 - Node 20+
 - Composer 2
 - Wtyczka **ACF PRO** (bloki i Opcje motywu)
@@ -363,6 +363,23 @@ Klucze reCAPTCHA i adres powiadomień: Opcje motywu (`recaptcha_enabled`,
 `recaptcha_site_key`, `recaptcha_secret_key`, `recaptcha_threshold`,
 `contact_email`). Gdy reCAPTCHA jest wyłączona, weryfikacja przepuszcza żądania.
 
+### Formularze PIT (Contact Form 7)
+
+**Contact Form 7 zostaje na linii 6.1 (obecnie 6.1.7).** Od 6.2 wtyczka wymaga PHP 8.3 i na
+PHP 8.2 kładzie całą stronę błędem krytycznym (`platform_check.php`). Nie aktualizuj jej,
+dopóki serwer nie ma PHP 8.3.
+
+Sześć formularzy przeniesionych 1:1 ze starej strony (`bin/migrate-stare-funkcje.php`):
+PIT-28, PIT-36, PIT-36L — dla klientów i „zewnętrzne”. Maile bez zmian: do
+`pit@taxeon.pl`, temat np. „PIT-28 - formularz - [email]”, załączniki z pól `file`.
+Strony: `/pit-rozliczenie/` (wybór) i `/formularz-pit-*/`.
+
+Układ: `bin/pit-formularze-uklad.php` przepisuje kod formularza na klasy `pit-*`
+(siatki, etykiety, pigułki Tak/Nie) i przerywa, gdyby zmienił choć jeden tag pola.
+Oryginał zostaje w meta `_form_oryginal`. Style: `src/scss/components/_formularze.scss`
+— poza warstwami, bo CSS wtyczki też jest poza warstwami. `App\Services\ContactFormAssets`
+wyłącza autop CF7 i ładuje skrypty CF7 + reCAPTCHA tylko na stronach z formularzem.
+
 ## Cache
 
 `App\Services\ThemeCache` trzyma opcje ACF i HTML menu w transientach z
@@ -405,26 +422,110 @@ Zapis Opcji motywu i edycja menu w panelu robią to automatycznie.
 ### Progi menu
 
 Menu desktopowe wymaga ~960 px na samą treść, więc przełącznik na burgera
-stoi na 1080 px, nie na 920 px z layoutu — przy 920 px pozycje nie mieszczą
+stoi na 1200 px (nowa makieta), wcześniej 1080 px zamiast 920 px z layoutu — przy 920 px pozycje nie mieszczą
 się i w oryginale ratuje to ściśnięcie logo do 31 px. Link „Kontakt” wchodzi
 dopiero od 1180 px, a CTA znika poniżej 560 px, żeby burger nie wypadł poza
 ekran (w menu mobilnym CTA i tak jest).
 
 ## Logo
 
-`src/svg/logo.svg` to obrys znaku z `fill="currentColor"` — jeden plik zamiast
-dwóch kolorowych PNG-ów. Kolor nadaje otoczenie: biały nad ciemnym hero,
-granatowy po przewinięciu (`group-data-scrolled:text-ink`). Proporcje 4,278:1.
+`images/logo-white.png` to logo z paczki klienta (`projekt/assets/taxeon-logo-white.png`),
+renderowane jako `<img>` w nagłówku i stopce — oba stoją na granacie. Wcześniejszy
+`src/svg/logo.svg` był obrysem znaku RAKS-a przeniesionym razem z architekturą i został
+usunięty.
 
-Pola ACF `logo` i `logo_white` pozwalają klientowi podmienić znak na własny
-plik; wtedy renderujemy `<img>` i potrzebne są obie wersje kolorystyczne.
+Pola ACF `logo` i `logo_white` pozwalają podmienić znak na własny plik.
 
-`images/logo.png` zostaje wyłącznie dla ekranu logowania, gdzie logo jest
-tłem CSS i `currentColor` nie zadziała.
+## Ceny
+
+Kwoty abonamentów żyją w Opcjach motywu, zakładka „Ceny”. W treści bloków, w tytułach
+pozycji menu i w tytułach/opisach Rank Math wpisujemy znaczniki:
+
+| Znacznik | Domyślnie |
+|---|---|
+| `{cena_ryczalt}` | 99 |
+| `{cena_ryczalt_vat}` | 149 |
+| `{cena_kpir}` | 169 |
+| `{cena_aplikacja_start}` / `{cena_aplikacja}` | 19 / 43 |
+| `{cena_biura}` | 12 |
+| `{cena_kadry}` / `{cena_pit}` | 100 / 89 |
+
+`App\Services\Prices` podstawia je w `acf/format_value`, `the_content`, `the_title`,
+pozycjach menu i filtrach Rank Math; kalkulator kosztu księgowości przepuszcza przez nie
+ceny czytane z kart Cennika. Wartości czyta wprost z `get_option('options_cena_*')` —
+nie przez `ThemeCache::options()`, bo `get_fields('options')` sam odpala
+`acf/format_value` i zapętliłby się.
+
+## Kolorystyka
+
+Paleta z `projekt/handoff/tokens.css`: `navy` #173F5F, `navy-deep` #0F2F4A, `ink` #0E1F2C,
+`gold` #C98E00, `gold-light` #E3B23C, `gold-dark` #B07A00, `cream` #F4F1EA, `sand` #F6EBCF,
+`line` #DED7C8. Tła sekcji (`background` w ustawieniach bloku):
+
+- `light` — biel → krem → piasek ze złotymi liniami SVG (`components/section-decor.twig`),
+- `soft` — płaski krem z poświatą od dołu,
+- `gradient` — granat 135° przechodzący w `ink`,
+- `navy-flat` — granat 160° (strona główna),
+- `navy` — najciemniejszy `ink`, sekcje zamykające.
+
+Hero ma pole „Kolorystyka”: kremowe (`components/hero-art.twig`) albo granatowe
+(`components/hero-art-dark.twig`). Fragment tytułu w nawiasach kwadratowych, np. `[12 zł]`,
+dostaje złoty kolor. Wideo w tle działa tylko w wersji granatowej.
+
+Tabela porównawcza ma „Powierzchnię”: białą kartę albo szkło na granacie (Cennik).
+
+## Spotkania i konwersja
+
+Wszystkie „Wybierz termin spotkania” prowadzą do `taxeon.youcanbook.me`, a `booking.js`
+otwiera kalendarz w modalu. youcanbook przekierowuje po rezerwacji na `/dziekujemy/` —
+wewnątrz iframe'a — więc `App\Services\LeadEvent` na stronie z metą `_taxeon_lead_page`
+najpierw wychodzi z ramki (`top.location.replace`), a dopiero w głównym oknie wypycha
+`generate_lead` do `dataLayer`, raz na sesję. Tag GA4/Ads konfigurujemy w GTM, który
+wstawia Complianz — w kodzie nie ma identyfikatora Google. `/dziekujemy/` ma `noindex`.
+
+Opinie Google w trybie automatycznym pomijają oceny poniżej 4 (`GoogleReviews::MIN_RATING`);
+opinia wybrana ręcznie w bloku pokaże się zawsze.
+
+## Animacje i FAQ
+
+Klasa `reveal` (sekcje, karty, kroki, pytania) wsuwa element z dołu przy wejściu w ekran —
+`src/js/app/reveal.js` (IntersectionObserver, opóźnienie 70 ms dla kolejnych rodzeństw) i
+`src/scss/base/_animations.scss`. Ukrywanie działa tylko z klasą `js` na `<html>`, którą dokłada
+skrypt w `<head>`, więc bez JS treść jest widoczna. Animacja idzie przez `animation`, nie
+`transition`, żeby nie zabierać kartom hoverów. Nie dawaj `reveal` elementom startującym z
+`hidden` (np. panele okresów w cenniku) — nie wejdą w ekran i zostaną przezroczyste.
+
+FAQ (`src/js/app/faq.js`): w obrębie sekcji otwarte jest jedno pytanie, rozwijanie i zwijanie
+animuje wysokość przez Web Animations API. Stan ikony czyta `data-expanded`, nie `[open]`,
+bo `open` zdejmujemy dopiero po zakończeniu zwijania.
+
+## Migracja do nowej kolorystyki
+
+Baza to klon `taxeon`. Skrypty (wszystkie przez `wp eval-file`, można puszczać ponownie):
+
+1. `bin/patch-new-color.php` — tła sekcji, kolorystyka hero, teksty i listy z nowej makiety.
+2. `bin/migrate-urls-new-color.php` — strona „Branże”, `/branze/it|lekarze|prawnicy/`,
+   `/dla-biur-rachunkowych/` (stare adresy: 301 w `Redirects`). Argument `odbuduj` stawia
+   stronę „Branże” od nowa. Linki w treści podmienia się potem `wp search-replace`.
+3. `bin/seed-umow-spotkanie.php`, `bin/seed-dziekujemy.php` — nowe strony.
+4. `bin/patch-ceny-znaczniki.php` — zamienia kwoty na znaczniki `{cena_*}`.
+5. `bin/migrate-stare-funkcje.php` — formularze PIT, `/pit-rozliczenie/`, `/unsubscribe/`,
+   `/polecaj-znajomym/`; na końcu odpala `bin/pit-formularze-uklad.php`.
+6. `bin/migrate-konta.php` — konta z produkcji (`taxeon_old`) z oryginalnymi ID i hasłami,
+   strony i wpisy przypisane do S. Hynowski (#2, wyświetlana nazwa „S. Hynowski” zamiast
+   adresu e-mail), usunięcie lokalnego `admin@taxeon.local`.
+
+## Wdrożenie
+
+Paczkę na produkcję robi się Duplicatorem z tej instalacji. Szczegóły i lista kontrolna:
+`/Applications/MAMP/htdocs/taxeon-new/robocze/README.md`.
+
+W Duplicatorze wyklucz katalogi `robocze/`, `wp-content/themes/taxeon-new-color/node_modules/`
+i `wp-content/themes/taxeon-new-color/.git/`.
 
 ## Zgodność z projektem
 
-Projekt w `projekt/` to eksport z Claude Design: style w całości inline,
+Projekt w `/Applications/MAMP/htdocs/taxeon-new/robocze/projekt/` (`export/`, `handoff/`, pliki `.dc.html`) to eksport z Claude Design: style w całości inline,
 progi mobilne w `projekt/css/*.css`. Wartości przenosimy dokładnie z niego,
 dwie pułapki:
 

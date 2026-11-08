@@ -17,8 +17,8 @@
 					{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
 					class="rounded-pill font-semibold transition
 						{{ onDark
-							? 'bg-white px-8 py-[17px] text-[16px] text-ink hover:bg-accent-tint'
-							: 'bg-accent-cta px-7 py-4 text-[16px] text-white shadow-[0_16px_34px_-16px_rgb(18_104_255/0.9)] hover:bg-accent-strong' }}">
+							? 'bg-white px-8 py-[17px] text-[16px] text-ink hover:bg-sand'
+							: 'bg-gold-dark px-7 py-4 text-[16px] text-white shadow-[0_16px_34px_-16px_rgb(176_122_0/0.9)] hover:bg-navy-deep' }}">
 					{{ fields.link.title }}
 				</a>
 			</div>
@@ -30,7 +30,7 @@
 			<a href="{{ fields.link.url }}"
 				{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
 				class="mt-5 inline-block text-[15px] font-semibold
-					{{ onDark ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
+					{{ onDark ? 'text-gold-light hover:text-white' : 'text-navy hover:text-navy-deep' }}">
 				{{ fields.link.title }}
 			</a>
 		{% endif %}

@@ -17,7 +17,9 @@
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
 	{% if onDark %}
 		<div aria-hidden="true"
-			class="absolute inset-0 bg-[radial-gradient(90%_60%_at_100%_0%,rgb(11_99_246/0.35),transparent_62%)]"></div>
+			class="absolute inset-0 bg-[radial-gradient(90%_60%_at_100%_0%,rgb(23_63_95/0.35),transparent_62%)]"></div>
+	{% else %}
+		{% include 'components/section-decor.twig' with { background: fields.background } only %}
 	{% endif %}
 
 	<div class="relative {{ section.container(fields) }}">
@@ -35,17 +37,17 @@
 		} only %}
 
 		{% if fields.items|length %}
-			<div class="mt-[52px] grid grid-cols-4 gap-px overflow-hidden rounded-card border
-				max-xl:grid-cols-2 max-md:grid-cols-1
-				{{ naGradiencie ? 'border-white/22 bg-white/18' : (onDark ? 'border-white/14 bg-white/14' : 'border-line bg-line') }}">
+			<div class="mt-[52px] grid {{ fields.items|length == 3 ? 'grid-cols-3 max-xl:grid-cols-1' : 'grid-cols-4 max-xl:grid-cols-2' }}
+				max-md:grid-cols-1
+				{{ naGradiencie ? 'gap-4' : 'gap-px overflow-hidden rounded-card border ' ~ (onDark ? 'border-white/14 bg-white/14' : 'border-line bg-line') }}">
 				{% for item in fields.items %}
-					<div class="flex flex-col gap-3 px-[26px] py-8
+					<div class="reveal flex flex-col gap-3 px-[26px] py-8
 						{{ item.featured
-							? 'bg-[linear-gradient(160deg,rgb(11_99_246/0.9),rgb(10_52_168/0.9))]'
-							: (naGradiencie ? 'bg-[rgb(6_16_50/0.35)] backdrop-blur-[14px]' : (onDark ? 'bg-deep' : 'bg-page')) }}">
+							? 'bg-[image:var(--gradient-tile)]'
+							: (naGradiencie ? 'rounded-panel border border-white/24 bg-white/11' : (onDark ? 'bg-ink' : 'bg-page')) }}">
 						{% if item.number %}
 							<span class="font-display text-[40px] leading-none font-bold tracking-[-0.04em]
-								{{ item.featured ? 'text-white/50' : (naGradiencie ? 'text-accent-tint-2/55' : (onDark ? 'text-sky-2/55' : 'text-accent/45')) }}">
+								{{ item.featured ? 'text-white/50' : (onDark ? 'text-gold-light' : 'text-gold') }}">
 								{{ item.number }}
 							</span>
 						{% endif %}
@@ -68,7 +70,7 @@
 
 		{% if fields.cta_title or fields.cta_link.url %}
 			<div class="mt-8 flex flex-wrap items-center gap-6 rounded-card border px-[30px] py-[26px]
-				backdrop-blur-[12px] {{ onDark ? 'border-white/16 bg-white/6' : 'border-line bg-soft' }}">
+				backdrop-blur-[12px] {{ onDark ? 'border-white/16 bg-white/6' : 'border-line bg-cream' }}">
 				<div>
 					<div class="font-display text-[22px] font-semibold tracking-[-0.02em] {{ onDark ? 'text-white' : 'text-ink' }}">
 						{{ fields.cta_title }}
@@ -83,7 +85,7 @@
 					<a href="{{ fields.cta_link.url }}"
 						{{ linkAttrs(fields.cta_link.url, fields.cta_link.target)|raw }}
 						class="ml-auto rounded-pill px-[30px] py-4 text-[16px] font-semibold whitespace-nowrap transition
-							{{ onDark ? 'bg-white text-ink hover:bg-accent-tint' : 'bg-accent text-white hover:bg-accent-strong' }}
+							{{ onDark ? 'bg-white text-ink hover:bg-sand' : 'bg-navy text-white hover:bg-navy-deep' }}
 							max-sm:ml-0">
 						{{ fields.cta_link.title }}
 					</a>

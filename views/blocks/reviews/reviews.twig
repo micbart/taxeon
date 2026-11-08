@@ -17,8 +17,9 @@
 {% set opinie = (zGoogle ? profil.items : [])|merge(zrodlo != 'google' ? fields.items ?: [] : []) %}
 {% set wizytowka = fields.link.url ?: (profil.mapsUrl ?? '') %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="{{ section.shell(fields) }}">
-	<div class="{{ section.container(fields) }}">
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
+	<div class="relative {{ section.container(fields) }}">
 		<div class="flex flex-wrap items-end justify-between gap-8">
 			{% include 'components/section-head.twig' with {
 			size: fields.head_size,
@@ -39,9 +40,9 @@
 
 			{% if wizytowka %}
 				<a href="{{ wizytowka }}" target="_blank" rel="noopener"
-					class="inline-flex items-center gap-2.5 rounded-pill border border-[#c6d4ea] bg-page
-						px-[22px] py-[13px] text-[15px] font-semibold whitespace-nowrap text-accent
-						transition hover:border-accent hover:bg-soft">
+					class="inline-flex items-center gap-2.5 rounded-pill border border-[#ded7c8] bg-page
+						px-[22px] py-[13px] text-[15px] font-semibold whitespace-nowrap text-navy
+						transition hover:border-navy hover:bg-cream">
 					{{ fields.link.title }} →
 				</a>
 			{% endif %}
@@ -49,12 +50,13 @@
 
 		{% if opinie|length %}
 			{% if opinie|length > 4 %}
-				<div class="mt-11" data-reviews>
+				<div class="reveal mt-11" data-reviews>
 					<div data-reviews-track
 						role="group"
 						tabindex="0"
 						aria-label="{{ __('Opinie klientów — przewijana lista', 'taxeon') }}"
 						class="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-1
+							max-md:-mr-8 max-md:pr-8 max-sm:-mr-5 max-sm:pr-5 max-sm:gap-4
 							[scrollbar-width:none] motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden">
 						{% for item in opinie %}
 							{% include 'components/review-card.twig' with {
@@ -70,18 +72,18 @@
 					<div class="mt-6 flex justify-end gap-2.5" data-reviews-nav>
 						<button type="button" data-reviews-prev
 							aria-label="{{ __('Poprzednie opinie', 'taxeon') }}"
-							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#c6d4ea]
-								bg-page text-accent transition hover:border-accent hover:bg-soft
-								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#c6d4ea]
+							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#ded7c8]
+								bg-page text-navy transition hover:border-navy hover:bg-cream
+								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#ded7c8]
 								disabled:hover:bg-page [&_svg]:size-5">
 							{{ 'arrow-left'|svg }}
 						</button>
 
 						<button type="button" data-reviews-next
 							aria-label="{{ __('Następne opinie', 'taxeon') }}"
-							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#c6d4ea]
-								bg-page text-accent transition hover:border-accent hover:bg-soft
-								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#c6d4ea]
+							class="grid size-11 cursor-pointer place-items-center rounded-pill border border-[#ded7c8]
+								bg-page text-navy transition hover:border-navy hover:bg-cream
+								disabled:cursor-default disabled:opacity-40 disabled:hover:border-[#ded7c8]
 								disabled:hover:bg-page [&_svg]:size-5">
 							{{ 'arrow-right'|svg }}
 						</button>

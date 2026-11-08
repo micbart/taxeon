@@ -12,6 +12,8 @@ import { initMatrix } from './app/matrix.js';
 import { initKalkulatory } from './app/kalkulatory.js';
 import { initContactForm } from './app/contactForm.js';
 import { initVerifyBox } from './app/verifyBox.js';
+import { initReveal } from './app/reveal.js';
+import { initFaq } from './app/faq.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initMobileMenu();
@@ -25,4 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	initKalkulatory();
 	initVerifyBox();
 	initContactForm();
+	initReveal();
+	initFaq();
 });

@@ -18,22 +18,26 @@
 	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
 	<div class="relative {{ section.container(fields) }}">
-		<div class="mx-auto max-w-[60ch] text-center max-lg:mx-0 max-lg:text-left">
+		<div class="reveal mx-auto max-w-[60ch] text-center">
 			{% include 'components/section-head.twig' with {
 				size: fields.head_size,
-			background: fields.background,
+				background: fields.background,
+				headWidth: fields.head_width,
 				titleWidth: fields.title_width,
+				textWidth: fields.text_width,
+				textGap: fields.text_gap,
 				eyebrow: fields.eyebrow,
 				title: fields.title,
+				text: fields.text,
 				center: true
 			} only %}
 
 			{% if fields.checks|length %}
 				<div class="mt-[18px] flex flex-wrap justify-center gap-x-[22px] gap-y-2.5 text-[16px] text-ink-3
-					max-lg:justify-start">
+					">
 					{% for pozycja in fields.checks %}
 						<span class="inline-flex items-center gap-2">
-							<span aria-hidden="true" class="text-accent">✓</span>
+							<span aria-hidden="true" class="text-navy">✓</span>
 							{{ pozycja.text }}
 						</span>
 					{% endfor %}
@@ -43,7 +47,7 @@
 
 		<div data-tabs>
 			{% if okresy|length > 1 %}
-				<div class="mt-[34px] flex justify-center max-lg:justify-start">
+				<div class="mt-[34px] flex justify-center">
 					<div role="tablist" class="inline-flex gap-1 rounded-pill bg-line p-[5px]">
 						{% for okres in okresy %}
 							<button type="button"
@@ -53,7 +57,7 @@
 								class="cursor-pointer rounded-pill px-6 py-2.5 font-display text-[15px] font-semibold
 									text-ink-3 transition
 									data-[active=true]:bg-page data-[active=true]:text-ink
-									data-[active=true]:shadow-[0_6px_16px_-8px_rgb(6_16_36/0.6)]">
+									data-[active=true]:shadow-[0_6px_16px_-8px_rgb(14_31_44/0.6)]">
 								{{ okres.label }}
 							</button>
 						{% endfor %}
@@ -65,10 +69,10 @@
 				<div data-panel="{{ block.id }}-{{ loop.index }}"
 					{% if not loop.first %}hidden{% endif %}
 					class="mx-auto mt-8 max-w-[460px] rounded-[24px] border border-line bg-page px-10 py-11
-						text-center shadow-[0_40px_80px_-50px_rgb(6_16_36/0.6)] max-sm:px-7">
+						text-center shadow-[0_40px_80px_-50px_rgb(14_31_44/0.6)] max-sm:px-7">
 
 					{% if fields.plan_label %}
-						<div class="text-[13px] font-semibold tracking-[0.12em] text-accent uppercase">
+						<div class="text-[13px] font-semibold tracking-[0.12em] text-navy uppercase">
 							{{ fields.plan_label }}
 						</div>
 					{% endif %}
@@ -93,7 +97,7 @@
 						<div class="mb-[30px] flex flex-col gap-[13px] text-left">
 							{% for item in fields.items %}
 								<span class="flex gap-[11px] text-[15.5px] text-ink-2">
-									<span aria-hidden="true" class="flex-none text-accent">✓</span>
+									<span aria-hidden="true" class="flex-none text-navy">✓</span>
 									{{ item.text }}
 								</span>
 							{% endfor %}
@@ -103,9 +107,9 @@
 					{% if fields.link.url %}
 						<a href="{{ fields.link.url }}"
 							{{ linkAttrs(fields.link.url, fields.link.target)|raw }}
-							class="block rounded-pill bg-accent-cta p-[17px] text-[17px] font-semibold
-								text-white shadow-[0_16px_34px_-16px_rgb(18_104_255/0.9)] transition
-								hover:bg-accent-strong">
+							class="block rounded-pill bg-gold-dark p-[17px] text-[17px] font-semibold
+								text-white shadow-[0_16px_34px_-16px_rgb(176_122_0/0.9)] transition
+								hover:bg-navy-deep">
 							{{ fields.link.title }}
 						</a>
 					{% endif %}

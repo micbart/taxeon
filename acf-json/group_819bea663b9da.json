@@ -83,25 +83,6 @@
             "endpoint": 0
         },
         {
-            "key": "field_33518ec3160bb",
-            "label": "Wideo w tle nagłówka",
-            "name": "hero_video",
-            "type": "text",
-            "instructions": "Adres strumienia (HLS albo MP4). Używają go szablony bez bloku Hero — strona szkolenia i archiwum kategorii. Puste = sam gradient.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_b2755665f2cb5",
             "label": "Menu główne (mega-menu)",
             "name": "header_menu",
@@ -716,6 +697,191 @@
             "message": "",
             "new_lines": "",
             "esc_html": 0
+        },
+        {
+            "key": "field_89d7a3c5e8876",
+            "label": "Ceny",
+            "name": "tab_ceny",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_2537d3b28298f",
+            "label": "Jak działają ceny",
+            "name": "ceny_info",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "W treści stron wpisuj znacznik w nawiasach klamrowych, np. {cena_ryczalt} zł. Strona podstawi kwotę stąd — zmiana ceny w tym miejscu zmienia ją wszędzie: w menu, kartach, tabelach, FAQ i kalkulatorze.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_273589384e815",
+            "label": "Ryczałt bez VAT — znacznik {cena_ryczalt}",
+            "name": "cena_ryczalt",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "99",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_ccdbf6c1f6799",
+            "label": "Ryczałt z VAT — znacznik {cena_ryczalt_vat}",
+            "name": "cena_ryczalt_vat",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "149",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_1af535ac3fe18",
+            "label": "KPiR z VAT — znacznik {cena_kpir}",
+            "name": "cena_kpir",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "169",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6f3fae77f93a5",
+            "label": "Aplikacja — pierwsze 3 miesiące — znacznik {cena_aplikacja_start}",
+            "name": "cena_aplikacja_start",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "19",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_fa7bca6779ea4",
+            "label": "Aplikacja — potem — znacznik {cena_aplikacja}",
+            "name": "cena_aplikacja",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "43",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_07ae8eff0ad8d",
+            "label": "Dla biur — za firmę — znacznik {cena_biura}",
+            "name": "cena_biura",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "12",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_35a6a8d4d073f",
+            "label": "Kadry i płace — za osobę — znacznik {cena_kadry}",
+            "name": "cena_kadry",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
+        },
+        {
+            "key": "field_cded76ef3665f",
+            "label": "Rozliczenie roczne PIT — znacznik {cena_pit}",
+            "name": "cena_pit",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "89",
+            "placeholder": "",
+            "prepend": "",
+            "append": "zł",
+            "maxlength": ""
         },
         {
             "key": "field_4ffb993ccabfd",

@@ -12,9 +12,9 @@
 {% import 'components/section.twig' as section %}
 
 {% set onDark = section.isDark(fields) %}
-{% set kolumny = { '1': '', '2': 'grid grid-cols-2 max-md:grid-cols-1', '3': 'grid grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1' } %}
+{% set kolumny = { '1': '', '2': 'grid grid-cols-2 max-md:grid-cols-1', '3': 'grid grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1', '4': 'grid grid-cols-4 max-xl:grid-cols-2 max-md:grid-cols-1' } %}
 {% set siatka = kolumny[fields.columns ?: '1'] %}
-{% set barwyWartosci = { 'muted': 'text-accent-tint-2', 'free': 'text-[#9be7ff]' } %}
+{% set barwyWartosci = onDark ? { 'muted': 'text-white/60', 'free': 'text-gold-light' } : { 'muted': 'text-ink-3', 'free': 'text-gold-dark' } %}
 {% set kartaWiersza = onDark
 	? 'border-white/22 bg-white/10 backdrop-blur-[8px]'
 	: 'border-line bg-white/90 backdrop-blur-[8px]' %}
@@ -30,7 +30,7 @@
 {% set jasne = fields.background in ['', 'page'] %}
 
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden
-	{{ section.shell(fields, jasne ? 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]' : '') }}">
+	{{ section.shell(fields, jasne ? 'bg-[image:var(--gradient-light)]' : '') }}">
 	{% include 'components/section-decor.twig' with {
 		background: jasne ? 'light' : fields.background,
 		glow: fields.row_style == 'icon'

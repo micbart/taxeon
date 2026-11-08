@@ -1,5 +1,5 @@
 {% if pagination.pages|length > 1 %}
-	{% set item = 'grid h-[42px] min-w-[42px] place-items-center rounded-[11px] border-[1.5px] border-line px-3 text-[15px] font-bold text-ink-2 transition hover:border-accent hover:text-accent' %}
+	{% set item = 'grid h-[42px] min-w-[42px] place-items-center rounded-[11px] border-[1.5px] border-line px-3 text-[15px] font-bold text-ink-2 transition hover:border-navy hover:text-navy' %}
 
 	<nav data-blog-pagination
 		aria-label="{{ __('Paginacja wpisów', 'taxeon') }}"
@@ -14,7 +14,7 @@
 
 		{% for page in pagination.pages %}
 			{% if page.current %}
-				<span aria-current="page" class="{{ item }} pointer-events-none border-accent bg-accent text-accent-ink">{{ page.title }}</span>
+				<span aria-current="page" class="{{ item }} pointer-events-none border-navy bg-navy text-white">{{ page.title }}</span>
 			{% elseif page.link %}
 				<a href="{{ page.link }}" class="{{ item }}">{{ page.title }}</a>
 			{% else %}

@@ -29,6 +29,9 @@ function init(): void
 	new Services\LlmsTxt();
 	new Services\Comments();
 	new Services\Redirects();
+	new Services\LeadEvent();
+	new Services\Prices();
+	new Services\DisableEmoji();
 
 	new Providers\AcfSupports();
 	new Providers\BlogSupports();
@@ -36,6 +39,7 @@ function init(): void
 
 	$recaptcha = new Services\Recaptcha\RecaptchaService();
 	$recaptcha->registerFrontend();
+	new Services\ContactFormAssets($recaptcha);
 
 	$leads = new Services\Recaptcha\LeadsRepository();
 	new Services\Recaptcha\LeadsAdmin($leads);

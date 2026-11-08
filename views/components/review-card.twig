@@ -1,8 +1,8 @@
 <a href="{{ item.authorUrl ?: wizytowka ?: '#' }}" target="_blank" rel="noopener"
 	class="flex min-h-[210px] flex-col gap-3.5 rounded-card border border-line bg-page p-[26px]
-		text-ink transition hover:border-accent hover:shadow-[0_18px_40px_-26px_rgb(11_99_246/0.4)]
+		text-ink transition hover:border-navy hover:shadow-[0_18px_40px_-26px_rgb(23_63_95/0.4)]
 		{{ klasy }}">
-	<div class="flex gap-1 text-[15px] tracking-[0.1em] text-accent">
+	<div class="flex gap-1 text-[15px] tracking-[0.1em] text-navy">
 		{% for gwiazdka in 1..5 %}{{ gwiazdka <= (item.rating ?: 5) ? '★' : '☆' }}{% endfor %}
 	</div>
 
@@ -16,7 +16,7 @@
 		{% else %}
 			<span aria-hidden="true"
 				class="grid size-[34px] flex-none place-items-center rounded-full
-					bg-accent-soft font-display text-[14px] font-semibold text-accent">
+					bg-cream font-display text-[14px] font-semibold text-navy">
 				{{ item.author|slice(0, 1)|upper }}
 			</span>
 		{% endif %}

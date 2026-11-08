@@ -244,6 +244,31 @@
             "endpoint": 0
         },
         {
+            "key": "field_ed2c5f25f7388",
+            "label": "Powierzchnia tabeli",
+            "name": "surface",
+            "type": "select",
+            "instructions": "Biała karta albo półprzezroczyste szkło (tylko na granatowym tle).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "card": "Biała karta",
+                "glass": "Szkło na granacie"
+            },
+            "default_value": "card",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_53a5ca9a39572",
             "label": "Opis wiersza z przyciskami",
             "name": "cta_label",
@@ -664,11 +689,12 @@
             },
             "choices": {
                 "page": "Białe",
-                "soft": "Jasnoszare",
-                "soft-2": "Jasnoszare chłodne",
-                "light": "Gradient jasny",
-                "navy": "Granatowe",
-                "gradient": "Gradient niebieski"
+                "soft": "Kremowe",
+                "soft-2": "Kremowe (drugie)",
+                "light": "Gradient jasny (biel → krem → piasek)",
+                "navy": "Najciemniejszy granat (zamknięcie strony)",
+                "navy-flat": "Granat płaski",
+                "gradient": "Granat z przejściem w czerń"
             },
             "default_value": "page",
             "return_format": "value",

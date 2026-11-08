@@ -468,11 +468,12 @@
             },
             "choices": {
                 "page": "Białe",
-                "soft": "Jasnoszare",
-                "soft-2": "Jasnoszare chłodne",
-                "light": "Gradient jasny",
-                "navy": "Granatowe",
-                "gradient": "Gradient niebieski"
+                "soft": "Kremowe",
+                "soft-2": "Kremowe (drugie)",
+                "light": "Gradient jasny (biel → krem → piasek)",
+                "navy": "Najciemniejszy granat (zamknięcie strony)",
+                "navy-flat": "Granat płaski",
+                "gradient": "Granat z przejściem w czerń"
             },
             "default_value": "page",
             "return_format": "value",

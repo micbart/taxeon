@@ -207,39 +207,12 @@
             },
             "choices": {
                 "page": "Białe",
-                "soft": "Jasnoszare",
-                "soft-2": "Jasnoszare chłodne",
-                "light": "Gradient jasny",
-                "navy": "Granatowe",
-                "gradient": "Gradient niebieski"
-            },
-            "default_value": "page",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_099823aeb9fdf",
-            "label": "Szerokość",
-            "name": "container",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "60",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "page": "Standardowa (1200)",
-                "content": "Treściowa (1160)",
-                "narrow": "Wąska (860)",
-                "wide": "Szeroka (1440)",
-                "full": "Pełna"
+                "soft": "Kremowe",
+                "soft-2": "Kremowe (drugie)",
+                "light": "Gradient jasny (biel → krem → piasek)",
+                "navy": "Najciemniejszy granat (zamknięcie strony)",
+                "navy-flat": "Granat płaski",
+                "gradient": "Granat z przejściem w czerń"
             },
             "default_value": "page",
             "return_format": "value",

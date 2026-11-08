@@ -16,20 +16,20 @@
 
 {% set ramki = {
 	'glass': 'border border-white/24 bg-white/11 shadow-[inset_0_1px_0_rgb(255_255_255/0.22),0_24px_50px_-30px_rgb(3_8_40/0.7)] backdrop-blur-[18px] backdrop-saturate-[1.3]',
-	'muted': 'border border-white/24 bg-[rgb(6_16_50/0.42)] backdrop-blur-[18px] backdrop-saturate-[1.3]',
-	'light': 'border border-line bg-page',
-	'dark': 'bg-deep-2 text-white',
-	'positive': 'border border-[#c9e3d4] bg-white/92 backdrop-blur-[8px]',
-	'negative': 'border border-[#e7cfd4] bg-white/92 backdrop-blur-[8px]'
+	'muted': 'border border-white/24 bg-[rgb(14_31_44/0.42)] backdrop-blur-[18px] backdrop-saturate-[1.3]',
+	'light': 'border border-line bg-white shadow-card',
+	'dark': 'bg-ink text-white',
+	'positive': onDark ? 'border border-[rgb(111_214_160/0.5)] bg-white/11' : 'border border-[#c9e3d4] bg-white shadow-card',
+	'negative': onDark ? 'border border-[rgb(255_154_165/0.5)] bg-white/11' : 'border border-[#e7cfd4] bg-white shadow-card'
 } %}
 
-{% set barwyTytulu = { 'positive': 'text-[#0b7a46]', 'negative': 'text-[#a32338]' } %}
+{% set barwyTytulu = onDark
+	? { 'positive': 'text-[#6fd6a0]', 'negative': 'text-[#ff9aa5]' }
+	: { 'positive': 'text-[#0b7a46]', 'negative': 'text-[#a32338]' } %}
 {% set znaki = { 'positive': '✓', 'negative': '✗' } %}
 
 <section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
-	{% if fields.background == 'gradient' %}
-		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-blue-glow)]"></div>
-	{% endif %}
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
 
 	<div class="relative {{ section.container(fields) }}">
 		{% include 'components/section-head.twig' with {
@@ -49,29 +49,32 @@
 			{{ fields.title.text or fields.eyebrow.text ? 'mt-10' : '' }}">
 			{% for panel in fields.items %}
 				{% set wariant = panel.variant ?: (onDark ? 'glass' : 'light') %}
-				{% set jasnyTekst = wariant in ['glass', 'muted', 'dark'] %}
+				{% set wariant = not onDark and wariant in ['glass', 'muted'] ? 'light' : wariant %}
+				{% set jasnyTekst = wariant in ['glass', 'muted', 'dark'] or (onDark and wariant in ['positive', 'negative']) %}
 				{% set znakWariantu = znaki[wariant] %}
 
-				<div class="flex flex-col rounded-panel {{ ramki[wariant] }}
-					{{ onDark ? 'gap-[18px] px-9 py-10' : 'gap-4 px-[34px] py-9' }}">
+				<div class="reveal flex flex-col rounded-panel {{ ramki[wariant] }}
+					{{ znaki[wariant] ? 'gap-4 px-8 py-[34px]' : 'gap-[18px] px-9 py-10' }}">
 
 					{% if panel.eyebrow %}
 						<span class="text-[13px] font-semibold tracking-[0.14em] uppercase
-							{{ jasnyTekst ? 'text-accent-tint-2' : 'text-accent' }}">
+							{{ jasnyTekst ? 'text-line' : 'text-navy' }}">
 							{{ panel.eyebrow }}
 						</span>
 					{% endif %}
 
+					{% if panel.title %}
 					<{{ znacznikTytulu }} class="font-display font-semibold
-						{{ onDark
-							? 'text-[clamp(26px,2.6vw,36px)] leading-[1.12] tracking-[-0.03em]'
-							: (znaki[wariant] ? 'text-[22px] tracking-[-0.02em]' : 'text-[26px] tracking-[-0.025em]') }}
+						{{ znaki[wariant]
+							? 'text-[22px] tracking-[-0.02em]'
+							: 'text-[clamp(26px,2.6vw,36px)] leading-[1.12] tracking-[-0.03em]' }}
 						{{ barwyTytulu[wariant] ?: (jasnyTekst ? 'text-white' : 'text-ink') }}">
 						{% if znaki[wariant] %}{{ znaki[wariant] }} {% endif %}{{ panel.title }}
 					</{{ znacznikTytulu }}>
+					{% endif %}
 
 					{% if panel.text %}
-						<p class="text-[17px] leading-[1.62] {{ jasnyTekst ? 'text-white/84' : 'text-ink-3' }}">
+						<p class="{{ jasnyTekst ? 'text-[17px] leading-[1.62] text-white/84' : 'text-[16px] leading-[1.6] text-ink-2' }}">
 							{{ panel.text }}
 						</p>
 					{% endif %}
@@ -80,7 +83,7 @@
 						{% if panel.list_style == 'rows' %}
 							{% for punkt in panel.items %}
 								<span class="flex gap-3 border-t pt-3.5 text-[16px] leading-[1.55]
-									{{ jasnyTekst ? 'border-white/12 text-white/82' : 'border-[#eef2f8] text-ink-2' }}">
+									{{ jasnyTekst ? 'border-white/14 text-white' : 'border-line-2 text-ink-2' }}">
 									{% if znaki[wariant] %}
 										<span class="{{ barwyTytulu[wariant] }}">{{ znaki[wariant] }}</span>
 									{% endif %}
@@ -92,7 +95,7 @@
 								{% for punkt in panel.items %}
 									<span class="flex gap-3 text-[17px] leading-[1.5]
 										{{ jasnyTekst ? 'text-white' : 'text-ink-2' }}">
-										<span class="flex-none {{ jasnyTekst ? 'text-sky' : 'text-accent' }}">✓</span>
+										<span class="flex-none {{ jasnyTekst ? 'text-gold-light' : 'text-gold' }}">✓</span>
 										<span>{{ punkt.text }}</span>
 									</span>
 								{% endfor %}
@@ -105,8 +108,8 @@
 									<span class="grid grid-cols-[22px_1fr] items-start gap-x-3 text-[16px] leading-[1.55]
 										{{ jasnyTekst ? (myslnik ? 'text-white/90' : 'text-white') : 'text-ink-2' }}">
 										<span class="text-center {{ myslnik
-											? (jasnyTekst ? 'text-accent-tint-2' : 'text-ink-4')
-											: (jasnyTekst ? 'text-sky' : 'text-accent') }}">
+											? (jasnyTekst ? 'text-line' : 'text-ink-3')
+											: (jasnyTekst ? 'text-gold-light' : 'text-gold') }}">
 											{{ myslnik ? '—' : '✓' }}
 										</span>
 										<span>{{ punkt.text }}</span>
@@ -117,8 +120,8 @@
 					{% endif %}
 
 					{% if panel.note %}
-						<p class="mt-auto pt-3 text-[15px] leading-[1.6] [&_a]:underline
-							{{ jasnyTekst ? 'text-white/70' : 'text-ink-3' }}">
+						<p class="mt-auto pt-3 text-[15px] leading-[1.6]
+							{{ jasnyTekst ? 'text-white/70 [&_a]:underline' : 'text-ink-3 [&_a]:font-semibold [&_a]:text-navy' }}">
 							{{ panel.note }}
 						</p>
 					{% endif %}
@@ -131,8 +134,8 @@
 										{{ linkAttrs(pozycja.link.url, pozycja.link.target)|raw }}
 										class="rounded-pill border px-[22px] py-[13px] text-[15px] font-semibold transition
 											{{ jasnyTekst
-												? 'border-white/40 text-white hover:bg-white hover:text-[#0b3fd1]'
-												: 'border-line text-ink hover:bg-soft' }}">
+												? 'border-white/40 text-white hover:bg-white hover:text-navy'
+												: 'border-navy text-navy hover:bg-mist' }}">
 										{{ pozycja.link.title }}
 									</a>
 								{% endfor %}
@@ -141,7 +144,7 @@
 							<a href="{{ panel.links|first.link.url }}"
 								{{ linkAttrs(panel.links|first.link.url, panel.links|first.link.target)|raw }}
 								class="mt-auto pt-2.5 text-[16px] font-semibold transition
-									{{ jasnyTekst ? 'text-sky-2 hover:text-white' : 'text-accent hover:text-accent-strong' }}">
+									{{ jasnyTekst ? 'text-gold-light hover:text-white' : 'text-navy hover:text-navy-deep' }}">
 								{{ panel.links|first.link.title }}
 							</a>
 						{% endif %}

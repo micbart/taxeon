@@ -10,7 +10,7 @@
 		}
 	],
 	"require": {
-		"php": "~8.1 || ~8.2 || ~8.3 || ~8.4",
+		"php": "~8.2 || ~8.3 || ~8.4",
 		"timber/timber": "2.*"
 	},
 	"require-dev": {
@@ -18,7 +18,7 @@
 	},
 	"config": {
 		"platform": {
-			"php": "8.1"
+			"php": "8.2"
 		},
 		"allow-plugins": {
 			"composer/installers": true

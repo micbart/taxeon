@@ -1,13 +1,13 @@
 {% extends "layouts/base.twig" %}
 
 {% block main %}
-	<section class="relative overflow-hidden bg-deep text-white">
-		<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-hero-glow)]"></div>
+	<section class="relative overflow-hidden bg-ink text-white">
+		{% include 'components/hero-art-dark.twig' only %}
 
 		<div class="relative mx-auto w-full max-w-page px-gutter pt-[168px] pb-[72px] max-md:pt-[132px] max-sm:px-5">
 			{% if archiveBadge %}
 				<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
-					<span class="block size-1.5 rounded-full bg-sky"></span>
+					<span class="block size-1.5 rounded-full bg-gold-light"></span>
 					{{ archiveBadge }}
 				</div>
 			{% endif %}
@@ -32,7 +32,7 @@
 		<div class="relative mx-auto w-full max-w-page">
 			{% if filterTerms|length > 1 %}
 				{% set pigulka = 'rounded-pill px-[18px] py-2.5 font-display text-[15px] font-medium transition
-					border border-[#d7e1f0] bg-white/70 text-ink-3 hover:border-accent hover:text-ink
+					border border-line bg-white/70 text-ink-3 hover:border-navy hover:text-ink
 					data-[active=true]:border-ink data-[active=true]:bg-ink data-[active=true]:text-white' %}
 
 				<div data-blog-filter
@@ -64,10 +64,23 @@
 
 			<div data-blog-results
 				data-max-pages="{{ maxPages }}"
-				class="relative transition-opacity data-loading:pointer-events-none data-loading:opacity-45">
+				aria-busy="false"
+				class="group/results relative min-h-[240px] data-loading:pointer-events-none">
+
+				<div aria-hidden="true"
+					class="pointer-events-none absolute inset-0 z-10 hidden group-data-loading/results:block">
+					<div class="absolute top-16 left-1/2 flex -translate-x-1/2 animate-fade-up items-center gap-3 rounded-pill
+						border border-line bg-white px-5 py-3 font-display text-[15px] font-semibold whitespace-nowrap text-navy shadow-card">
+						<span class="size-5 animate-spin text-gold [&_svg]:size-full">{{ 'loader-circle'|svg }}</span>
+						{{ __('Ładuję wpisy…', 'taxeon') }}
+					</div>
+				</div>
+
+				<p data-blog-status class="sr-only" role="status" aria-live="polite"></p>
 
 				<div data-blog-grid
 					class="mt-7 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line
+						transition-opacity duration-200 group-data-loading/results:opacity-35
 						max-xl:grid-cols-2 max-sm:grid-cols-1">
 					{% for post in posts %}
 						{% include 'components/post-card.twig' with { post: post } only %}
@@ -83,8 +96,12 @@
 
 			<div data-blog-load-more hidden class="mt-8 flex justify-center">
 				<button type="button"
-					class="cursor-pointer rounded-pill border border-[#c6d4ea] bg-page px-[30px] py-[15px]
-						text-[16px] font-semibold text-ink transition hover:border-accent hover:text-accent">
+					class="group/more inline-flex cursor-pointer items-center gap-2.5 rounded-pill border border-line bg-page
+						px-[30px] py-[15px] text-[16px] font-semibold text-ink transition hover:border-navy hover:text-navy
+						disabled:cursor-wait disabled:opacity-70">
+					<span aria-hidden="true" class="hidden size-4 animate-spin text-gold group-disabled/more:block [&_svg]:size-full">
+						{{ 'loader-circle'|svg }}
+					</span>
 					{{ __('Pokaż więcej artykułów', 'taxeon') }}
 				</button>
 			</div>
@@ -94,9 +111,9 @@
 	</section>
 
 	{% if archiveCtaTitle %}
-		<section class="relative overflow-hidden bg-deep px-gutter py-24 text-white max-sm:px-5 max-sm:py-16">
+		<section class="relative overflow-hidden bg-ink px-gutter py-24 text-white max-sm:px-5 max-sm:py-16">
 			<div aria-hidden="true"
-				class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(11_99_246/0.55),transparent_65%)]"></div>
+				class="absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_110%,rgb(23_63_95/0.55),transparent_65%)]"></div>
 
 			<div class="relative mx-auto max-w-[900px] text-center">
 				<h2 class="font-display text-[clamp(30px,3.6vw,48px)] leading-[1.06] font-bold tracking-[-0.035em]">
@@ -112,7 +129,7 @@
 						<a href="{{ archiveCtaLink.url }}"
 							{{ linkAttrs(archiveCtaLink.url, archiveCtaLink.target)|raw }}
 							class="rounded-pill bg-white px-8 py-[17px] text-[16px] font-semibold text-ink
-								transition hover:bg-accent-tint">
+								transition hover:bg-sand">
 							{{ archiveCtaLink.title }}
 						</a>
 					</div>

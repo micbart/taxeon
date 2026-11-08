@@ -1,20 +1,20 @@
 {% set link = button.link ?? button %}
 
 {% if link.url %}
-	{% set base = 'inline-flex items-center justify-center gap-[9px] rounded-btn border-[1.5px]
-		text-center font-sans leading-[1.6] font-bold transition [&_svg]:size-[18px] [&_svg]:shrink-0' %}
+	{% set base = 'inline-flex items-center justify-center gap-[9px] rounded-btn border
+		text-center font-sans leading-[1.6] font-semibold transition [&_svg]:size-[18px] [&_svg]:shrink-0' %}
 
 	{% set sizes = {
-		'base': 'px-[26px] py-3.5 text-base',
-		'lg': 'px-8 py-[17px] text-lead'
+		'base': 'px-[26px] py-3.5 text-[15px]',
+		'lg': 'px-[30px] py-[17px] text-base'
 	} %}
 
 	{% set variants = {
-		'primary': 'border-transparent bg-cta text-white shadow-cta hover:-translate-y-0.5 hover:bg-cta-strong',
-		'accent': 'border-transparent bg-accent text-accent-ink shadow-[0_6px_18px_-6px_color-mix(in_srgb,var(--color-accent)_60%,transparent)] hover:-translate-y-0.5 hover:bg-accent-strong',
-		'ghost': 'border-[color-mix(in_srgb,var(--color-accent)_42%,#fff)] bg-white text-ink hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong',
-		'on-navy': 'border-transparent bg-white text-ink hover:-translate-y-0.5 hover:bg-[#eef3ff]',
-		'ghost-navy': 'border-white/28 bg-transparent text-white hover:border-white hover:bg-white/6'
+		'primary': 'border-transparent bg-navy text-white shadow-cta hover:-translate-y-0.5 hover:bg-navy-deep',
+		'accent': 'border-sand bg-gold-light text-ink shadow-glow-gold hover:-translate-y-0.5 hover:bg-gold-hover',
+		'ghost': 'border-navy bg-transparent text-navy hover:-translate-y-0.5 hover:bg-mist',
+		'on-navy': 'border-transparent bg-white text-ink hover:-translate-y-0.5 hover:bg-sand',
+		'ghost-navy': 'border-white/32 bg-transparent text-white hover:border-white hover:bg-white/6'
 	} %}
 
 	{% set pickedVariant = variant ?: (button.variant ?: 'primary') %}

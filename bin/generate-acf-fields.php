@@ -7,8 +7,8 @@ const TAGS_TEXT = ['p' => 'p', 'div' => 'div', 'span' => 'span'];
 const TAGS_EYEBROW = ['span' => 'span', 'p' => 'p', 'div' => 'div'];
 
 const BUTTON_VARIANTS = [
-    'primary' => 'Główny (pomarańczowy)',
-    'accent' => 'Akcent (granatowy)',
+    'primary' => 'Główny (granatowy)',
+    'accent' => 'Akcent (złoty)',
     'ghost' => 'Obrys na jasnym',
     'on-navy' => 'Biały na ciemnym',
     'ghost-navy' => 'Obrys na ciemnym',
@@ -129,11 +129,12 @@ function sectionSettings(string $prefix): array
         f($prefix . '.background', 'Tło', 'select', [
             'choices' => [
                 'page' => 'Białe',
-                'soft' => 'Jasnoszare',
-                'soft-2' => 'Jasnoszare chłodne',
-                'light' => 'Gradient jasny',
-                'navy' => 'Granatowe',
-                'gradient' => 'Gradient niebieski',
+                'soft' => 'Kremowe',
+                'soft-2' => 'Kremowe (drugie)',
+                'light' => 'Gradient jasny (biel → krem → piasek)',
+                'navy' => 'Najciemniejszy granat (zamknięcie strony)',
+                'navy-flat' => 'Granat płaski',
+                'gradient' => 'Granat z przejściem w czerń',
             ],
             'default_value' => 'page',
             'allow_null' => 0,
@@ -164,6 +165,21 @@ function sectionSettings(string $prefix): array
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
         ]),
     ];
+}
+
+function sectionSettingsFor(string $slug, string $prefix): array
+{
+    if ($slug === 'hero') {
+        return [];
+    }
+
+    $pola = sectionSettings($prefix);
+
+    if ($slug === 'cta') {
+        $pola = array_values(array_filter($pola, fn($pole) => $pole['name'] !== 'container'));
+    }
+
+    return $pola;
 }
 
 function headSizeFields(string $prefix): array
@@ -223,13 +239,13 @@ function headSizeFields(string $prefix): array
     ];
 }
 
-function sectionHead(string $prefix, string $titleTag = 'h2'): array
+function sectionHead(string $prefix, string $titleTag = 'h2', bool $ustawieniaNaglowka = true): array
 {
     return [
         textGroup($prefix . '.eyebrow', 'Nadkreślenie', TAGS_EYEBROW, 'span'),
         textGroup($prefix . '.title', 'Tytuł', TAGS_HEADING, $titleTag),
         textGroup($prefix . '.text', 'Opis', TAGS_TEXT, 'p', 'textarea'),
-        ...headSizeFields($prefix),
+        ...($ustawieniaNaglowka ? headSizeFields($prefix) : []),
     ];
 }
 
@@ -245,11 +261,6 @@ $groups['options'] = [
 
         f('opt.tab_header', 'Nagłówek', 'tab'),
 
-        f('opt.hero_video', 'Wideo w tle nagłówka', 'text', [
-            'default_value' => 'https://stream.mux.com/kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.m3u8',
-            'instructions' => 'Adres strumienia (HLS albo MP4). Używają go szablony bez bloku Hero — '
-                . 'strona szkolenia i archiwum kategorii. Puste = sam gradient.',
-        ]),
         f('opt.header_menu', 'Menu główne (mega-menu)', 'repeater', [
             'button_label' => 'Dodaj pozycję',
             'collapsed' => key_for('opt.header_menu.link'),
@@ -332,6 +343,16 @@ $groups['options'] = [
             'esc_html' => 0,
         ]),
 
+        f('opt.tab_ceny', 'Ceny', 'tab'),
+        f('opt.ceny_info', 'Jak działają ceny', 'message', ['message' => 'W treści stron wpisuj znacznik w nawiasach klamrowych, np. {cena_ryczalt} zł. Strona podstawi kwotę stąd — zmiana ceny w tym miejscu zmienia ją wszędzie: w menu, kartach, tabelach, FAQ i kalkulatorze.']),
+        f('opt.cena_ryczalt', 'Ryczałt bez VAT — znacznik {cena_ryczalt}', 'text', ['default_value' => '99', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_ryczalt_vat', 'Ryczałt z VAT — znacznik {cena_ryczalt_vat}', 'text', ['default_value' => '149', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_kpir', 'KPiR z VAT — znacznik {cena_kpir}', 'text', ['default_value' => '169', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_aplikacja_start', 'Aplikacja — pierwsze 3 miesiące — znacznik {cena_aplikacja_start}', 'text', ['default_value' => '19', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_aplikacja', 'Aplikacja — potem — znacznik {cena_aplikacja}', 'text', ['default_value' => '43', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_biura', 'Dla biur — za firmę — znacznik {cena_biura}', 'text', ['default_value' => '12', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_kadry', 'Kadry i płace — za osobę — znacznik {cena_kadry}', 'text', ['default_value' => '100', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
+        f('opt.cena_pit', 'Rozliczenie roczne PIT — znacznik {cena_pit}', 'text', ['default_value' => '89', 'append' => 'zł', 'wrapper' => ['width' => '25', 'class' => '', 'id' => '']]),
         f('opt.tab_kalkulatory', 'Kalkulatory', 'tab'),
         f('opt.kalk_rok', 'Rok, dla którego liczymy', 'text', [
             'default_value' => '2026',
@@ -535,6 +556,7 @@ $blocks['hero'] = [
             'instructions' => 'Krótki dopisek nad tytułem, np. „Biuro rachunkowe online · 14 lat na rynku”.',
         ]),
         textGroup('hero.title', 'Tytuł', TAGS_HEADING, 'h1', 'textarea'),
+        f('hero.title_hint', 'Wyróżnienie w tytule', 'message', ['message' => 'Fragment w nawiasach kwadratowych, np. [12 zł], dostaje złoty kolor.']),
         f('hero.subtitle', 'Podtytuł', 'text', [
             'instructions' => 'Jedno zdanie pod tytułem, większą czcionką.',
         ]),
@@ -550,13 +572,18 @@ $blocks['hero'] = [
             'sub_fields' => [f('hero.chips.link', 'Odnośnik', 'link', ['required' => 1])],
         ]),
         f('hero.button_style', 'Styl przycisków', 'select', [
-            'instructions' => 'Akcent to duży niebieski przycisk, jasny to biała pigułka.',
+            'instructions' => 'Akcent to duży granatowy przycisk, zwykły to para: pełny i obrysowany.',
             'choices' => ['light' => 'Biały z obrysowanym obok', 'accent' => 'Jeden duży w akcencie'],
             'default_value' => 'light',
             'allow_null' => 0,
         ]),
         f('hero.button_primary', 'Przycisk główny', 'link'),
         f('hero.button_secondary', 'Przycisk dodatkowy', 'link'),
+        f('hero.trust_style', 'Wygląd rzędu zaufania', 'select', [
+            'choices' => ['row' => 'Rząd pod przyciskami', 'box' => 'Białe pudełko pod całym nagłówkiem'],
+            'default_value' => 'row',
+            'allow_null' => 0,
+        ]),
         f('hero.trust', 'Rząd zaufania', 'repeater', [
             'button_label' => 'Dodaj pozycję',
             'instructions' => 'Pod przyciskami, w układzie dwukolumnowym.',
@@ -573,12 +600,29 @@ $blocks['hero'] = [
                     'wrapper' => ['width' => '20', 'class' => '', 'id' => ''],
                 ]),
                 f('hero.trust.url', 'Adres', 'url'),
+                f('hero.trust.icon', 'Ikona', 'select', [
+                    'choices' => [
+                        '' => 'Bez ikony',
+                        'google' => 'Google',
+                        'proof-calendar' => 'Kalendarz',
+                        'proof-building' => 'Budynek',
+                        'youtube-red' => 'YouTube',
+                    ],
+                    'default_value' => '',
+                    'allow_null' => 0,
+                ]),
             ],
         ]),
 
         f('hero.tab_media', 'Tło', 'tab'),
+        f('hero.tone', 'Kolorystyka', 'select', [
+            'instructions' => 'Kremowe tło ze złotymi liniami albo granatowe.',
+            'choices' => ['cream' => 'Kremowe (jasne)', 'dark' => 'Granatowe (ciemne)'],
+            'default_value' => 'cream',
+            'allow_null' => 0,
+        ]),
         f('hero.video', 'Wideo w tle', 'text', [
-            'instructions' => 'Adres pliku MP4 albo filmu na YouTube. Puste = sam granat.',
+            'instructions' => 'Adres pliku MP4 albo filmu na YouTube. Tylko w kolorystyce granatowej; puste = same linie.',
         ]),
         f('hero.poster', 'Plakat wideo', 'image', [
             'instructions' => 'Pierwsza klatka, widoczna zanim wideo się wczyta.',
@@ -609,6 +653,18 @@ $blocks['hero'] = [
                 ]),
                 f('hero.stats.label', 'Podpis', 'text', [
                     'wrapper' => ['width' => '60', 'class' => '', 'id' => ''],
+                ]),
+                f('hero.stats.icon', 'Ikona', 'select', [
+                    'choices' => [
+                        '' => 'Bez ikony',
+                        'google' => 'Google',
+                        'proof-calendar' => 'Kalendarz',
+                        'proof-building' => 'Budynek',
+                        'youtube-red' => 'YouTube',
+                    ],
+                    'default_value' => '',
+                    'allow_null' => 0,
+                    'wrapper' => ['width' => '40', 'class' => '', 'id' => ''],
                 ]),
                 f('hero.stats.url', 'Adres', 'url'),
             ],
@@ -663,11 +719,20 @@ $blocks['hero'] = [
                     'default_value' => '/ mies.',
                     'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
                 ]),
+                f('hero.cards.title', 'Tytuł karty', 'text', [
+                    'instructions' => 'Zamiast ceny, np. „Spotkanie online z księgową”.',
+                ]),
+                f('hero.cards.meta', 'Linia informacji', 'text', [
+                    'instructions' => 'Drobny tekst pod tytułem, np. „30 min · wideorozmowa · po polsku”.',
+                ]),
+                f('hero.cards.check_icon', 'Złoty ptaszek nad tytułem', 'true_false'),
                 f('hero.cards.text', 'Opis', 'textarea', ['rows' => 2]),
                 f('hero.cards.items', 'Punkty', 'repeater', [
                     'button_label' => 'Dodaj punkt',
                     'collapsed' => key_for('hero.cards.items.text'),
                     'sub_fields' => [f('hero.cards.items.text', 'Treść', 'text', ['required' => 1])],
+                ]),
+                f('hero.cards.note', 'Dopisek pod przyciskiem', 'text', [
                 ]),
                 f('hero.cards.link', 'Przycisk', 'link'),
             ],
@@ -766,7 +831,7 @@ $blocks['list'] = [
         ]),
         f('list.columns', 'Kolumny listy', 'select', [
             'instructions' => 'Na ile kolumn rozbić listę po prawej.',
-            'choices' => ['1' => 'Jedna', '2' => 'Dwie', '3' => 'Trzy'],
+            'choices' => ['1' => 'Jedna', '2' => 'Dwie', '3' => 'Trzy', '4' => 'Cztery'],
             'default_value' => '1',
             'allow_null' => 0,
             'wrapper' => ['width' => '50', 'class' => '', 'id' => ''],
@@ -1125,6 +1190,12 @@ $blocks['table'] = [
         ]),
 
         f('table.tab_table', 'Tabela', 'tab'),
+        f('table.surface', 'Powierzchnia tabeli', 'select', [
+            'instructions' => 'Biała karta albo półprzezroczyste szkło (tylko na granatowym tle).',
+            'choices' => ['card' => 'Biała karta', 'glass' => 'Szkło na granacie'],
+            'default_value' => 'card',
+            'allow_null' => 0,
+        ]),
         f('table.cta_label', 'Opis wiersza z przyciskami', 'text', [
             'instructions' => 'Tekst w pierwszej kolumnie ostatniego wiersza, np. „Wybierz pakiet”.',
         ]),
@@ -1173,7 +1244,7 @@ $blocks['table'] = [
 
 $blocks['contact'] = [
     'title' => 'Blok: Formularz kontaktowy',
-    'fields' => array_merge(sectionHead('contact'), [
+    'fields' => array_merge(sectionHead('contact', 'h2', false), [
         f('contact.layout', 'Układ', 'select', [
             'choices' => [
                 'split' => 'Tekst obok formularza',
@@ -1266,6 +1337,19 @@ $blocks['faq'] = [
         f('faq.link', 'Odnośnik pod opisem', 'link', [
             'instructions' => 'Odnośnik pod opisem, np. do pełnej listy pytań.',
         ]),
+        f('faq.link_style', 'Wygląd odnośnika', 'select', [
+            'choices' => ['text' => 'Tekstowy', 'button' => 'Przycisk'],
+            'default_value' => 'text',
+            'allow_null' => 0,
+        ]),
+        f('faq.checks', 'Punkty z ptaszkiem pod opisem', 'repeater', [
+            'layout' => 'table',
+            'button_label' => 'Dodaj punkt',
+            'sub_fields' => [f('faq.checks.text', 'Treść', 'text', ['required' => 1])],
+        ]),
+        f('faq.items_title', 'Tytuł nad pytaniami', 'text', [
+            'instructions' => 'Mały nagłówek nad akordeonem, np. „Najczęstsze pytania”.',
+        ]),
         f('faq.open_first', 'Rozwiń pierwsze pytanie', 'true_false', [
             'instructions' => 'Pierwsze pytanie otwarte od razu — tak jest w makiecie.',
         ]),
@@ -1347,7 +1431,7 @@ foreach ($blocks as $slug => $block) {
     $groups['block-' . $slug] = [
         'title' => $block['title'],
         'location' => [[['param' => 'block', 'operator' => '==', 'value' => 'acf/' . $slug]]],
-        'fields' => array_merge($tresc, $wyglad, sectionSettings($prefix)),
+        'fields' => array_merge($tresc, $wyglad, sectionSettingsFor($slug, $prefix)),
     ];
 }
 

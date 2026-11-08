@@ -1,8 +1,10 @@
 {% for item in items %}
+	{% set aktywny = currentUrl and (item.url == currentUrl or (item.url != homeUrl and currentUrl starts with item.url)) %}
 	<a href="{{ item.url }}"
 		{{ linkAttrs(item.url, item.target)|raw }}
-		{% if currentUrl and item.url == currentUrl %}aria-current="page"{% endif %}
-		class="border-b border-white/10 py-[11px] font-display text-[20px] font-medium text-white">
+		{% if aktywny %}aria-current="page"{% endif %}
+		class="flex flex-none items-center gap-2.5 border-b border-white/10 py-2.5 font-display text-[20px] leading-snug font-medium transition hover:text-gold-light max-sm:text-[18px] {{ aktywny ? 'text-gold-light' : 'text-white' }}">
+		{% if aktywny %}<span aria-hidden="true" class="size-1.5 flex-none rounded-full bg-gold-light"></span>{% endif %}
 		{{ item.title }}
 	</a>
 {% endfor %}

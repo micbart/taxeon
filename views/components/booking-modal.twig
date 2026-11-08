@@ -4,7 +4,7 @@
 		data-src="{{ themeOptions.booking_url }}"
 		aria-label="{{ themeOptions.booking_title ?: __('Umów rozmowę', 'taxeon') }}"
 		class="m-auto w-[min(920px,calc(100vw-32px))] rounded-panel border border-line bg-page p-0
-			shadow-deep backdrop:bg-deep/70 backdrop:backdrop-blur-[6px] max-sm:w-[calc(100vw-20px)]">
+			shadow-ink backdrop:bg-ink/70 backdrop:backdrop-blur-[6px] max-sm:w-[calc(100vw-20px)]">
 
 		<div class="flex items-center justify-between gap-5 border-b border-line px-7 py-5 max-sm:px-5">
 			<span class="font-display text-[19px] font-semibold tracking-[-0.02em] text-ink">
@@ -15,17 +15,17 @@
 				data-booking-close
 				aria-label="{{ __('Zamknij', 'taxeon') }}"
 				class="grid size-10 flex-none cursor-pointer place-items-center rounded-pill border border-line
-					text-ink-3 transition hover:border-accent hover:text-accent [&_svg]:size-[18px]">
+					text-ink-3 transition hover:border-navy hover:text-navy [&_svg]:size-[18px]">
 				{{ 'x'|svg }}
 			</button>
 		</div>
 
-		<div class="relative h-[min(72vh,760px)] w-full bg-soft">
+		<div class="relative h-[min(72vh,760px)] w-full bg-cream">
 			<div data-booking-loader
-				class="absolute inset-0 grid place-items-center gap-3 bg-soft transition-opacity duration-300">
+				class="absolute inset-0 grid place-items-center gap-3 bg-cream transition-opacity duration-300">
 				<span class="flex flex-col items-center gap-3 text-[15px] text-ink-3">
 					<span aria-hidden="true"
-						class="block size-9 animate-spin rounded-full border-[3px] border-line border-t-accent"></span>
+						class="block size-9 animate-spin rounded-full border-[3px] border-line border-t-navy"></span>
 					{{ __('Wczytuję kalendarz…', 'taxeon') }}
 				</span>
 			</div>

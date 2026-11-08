@@ -37,9 +37,9 @@
 				{% for item in fields.items %}
 					{% set youtube = item.url|youtubeId %}
 
-					<div class="overflow-hidden rounded-card border border-line bg-page
-						shadow-[0_18px_40px_-30px_rgb(6_16_36/0.5)]">
-						<div class="relative aspect-video w-full bg-deep" data-video>
+					<div class="reveal overflow-hidden rounded-card border border-line bg-page
+						shadow-[0_18px_40px_-30px_rgb(14_31_44/0.5)]">
+						<div class="relative aspect-video w-full bg-ink" data-video>
 							{% if youtube %}
 								<button type="button"
 									data-video-play
@@ -49,12 +49,12 @@
 									class="absolute inset-0 size-full cursor-pointer border-0 bg-cover bg-center p-0"
 									style="background-image: url('https://i.ytimg.com/vi/{{ youtube }}/hqdefault.jpg')">
 									<span aria-hidden="true"
-										class="absolute inset-0 bg-[linear-gradient(180deg,rgb(3_11_28/0.05),rgb(3_11_28/0.5))]"></span>
+										class="absolute inset-0 bg-[linear-gradient(180deg,rgb(14_31_44/0.05),rgb(14_31_44/0.5))]"></span>
 
 									<span aria-hidden="true"
 										class="absolute top-1/2 left-1/2 grid size-[68px] -translate-x-1/2 -translate-y-1/2
-											place-items-center rounded-full bg-accent transition
-											group-hover:bg-accent-strong">
+											place-items-center rounded-full bg-navy transition
+											group-hover:bg-navy-deep">
 										<span class="ml-1.5 block size-0 border-y-[12px] border-l-[20px]
 											border-y-transparent border-l-white"></span>
 									</span>

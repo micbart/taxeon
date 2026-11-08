@@ -23,10 +23,10 @@
 <div data-kalkulator="podatkowy" data-ustawienia="{{ ustawienia|json_encode|e('html_attr') }}"
 	class="grid grid-cols-[minmax(272px,0.78fr)_minmax(0,1.9fr)] items-start gap-8 max-xl:grid-cols-1">
 
-	<form class="rounded-card border border-line bg-page p-8 shadow-[0_40px_80px_-50px_rgb(6_16_36/0.6)] max-sm:p-6"
+	<form class="rounded-card border border-line bg-page p-8 shadow-[0_40px_80px_-50px_rgb(14_31_44/0.6)] max-sm:p-6"
 		aria-label="{{ __('Dane do wyliczenia', 'taxeon') }}"
 		onsubmit="return false">
-		<p class="text-meta font-semibold tracking-[0.12em] text-accent uppercase">
+		<p class="text-meta font-semibold tracking-[0.12em] text-navy uppercase">
 			{{ __('twoje dane', 'taxeon') }}
 		</p>
 
@@ -70,14 +70,14 @@
 				<div data-k-forma="{{ klucz }}"
 					class="group/karta flex flex-col rounded-card border bg-page p-7 transition
 						border-line shadow-soft
-						data-[najlepsza]:border-accent data-[najlepsza]:bg-accent-soft
-						data-[najlepsza]:shadow-[0_28px_60px_-36px_rgb(11_99_246/0.65)]
+						data-[najlepsza]:border-navy data-[najlepsza]:bg-cream
+						data-[najlepsza]:shadow-[0_28px_60px_-36px_rgb(23_63_95/0.65)]
 						max-sm:p-6"
 					{{ najlepsza ? 'data-najlepsza' : '' }}>
 
 					<div class="flex min-h-[22px] items-start">
 						<span data-k-znacznik
-							class="hidden rounded-pill bg-accent px-[11px] py-[5px] text-[11px] leading-none
+							class="hidden rounded-pill bg-navy px-[11px] py-[5px] text-[11px] leading-none
 								font-semibold tracking-[0.04em] whitespace-nowrap text-white uppercase
 								data-[widoczny]:block"
 							{{ najlepsza ? 'data-widoczny' : '' }}>
@@ -105,7 +105,7 @@
 						</p>
 					</div>
 
-					<div class="my-6 h-px bg-line group-data-[najlepsza]/karta:bg-accent/15"></div>
+					<div class="my-6 h-px bg-line group-data-[najlepsza]/karta:bg-navy/15"></div>
 
 					<dl class="grid gap-2.5 text-[13.5px]">
 						{% for pole, etykieta in {
@@ -122,7 +122,7 @@
 						{% endfor %}
 
 						<div class="mt-1 flex items-baseline justify-between gap-2.5 border-t border-line pt-3
-							group-data-[najlepsza]/karta:border-accent/15">
+							group-data-[najlepsza]/karta:border-navy/15">
 							<dt class="whitespace-nowrap font-semibold text-ink">{{ __('Razem', 'taxeon') }}</dt>
 							<dd class="font-semibold whitespace-nowrap text-ink tabular-nums">
 								<span data-k-wynik="{{ klucz }}.suma">{{ f.suma|number_format(2, ',', ' ') }}</span> zł

@@ -1,10 +1,10 @@
-<section class="relative overflow-hidden bg-deep text-white">
-	<div aria-hidden="true" class="absolute inset-0 bg-[image:var(--gradient-hero-glow)]"></div>
+<section class="relative overflow-hidden bg-ink text-white">
+	{% include 'components/hero-art-dark.twig' only %}
 
 	<div class="relative mx-auto w-full max-w-page px-gutter pt-[156px] pb-[72px] max-md:pt-[128px] max-sm:px-5">
 		{% if badge %}
 			<div class="inline-flex items-center gap-2.5 text-[13px] tracking-[0.04em] text-white/82 uppercase">
-				<span class="block size-1.5 rounded-full bg-sky"></span>
+				<span class="block size-1.5 rounded-full bg-gold-light"></span>
 				{{ badge }}
 			</div>
 		{% endif %}
@@ -24,7 +24,7 @@
 					<a href="{{ odnosnik.url }}"
 						class="rounded-pill px-8 py-[17px] text-[16px] font-semibold transition
 							{{ loop.first
-								? 'bg-white text-ink hover:bg-accent-tint'
+								? 'bg-white text-ink hover:bg-sand'
 								: 'border border-white/32 text-white hover:bg-white hover:text-ink' }}">
 						{{ odnosnik.title }}
 					</a>

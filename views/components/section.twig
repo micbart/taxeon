@@ -1,10 +1,11 @@
-{% macro shell(fields, extra) %}
+{% macro shell(fields, extra = '') %}
 	{%- set backgrounds = {
 		'page': 'bg-page',
-		'soft': 'bg-soft',
-		'soft-2': 'bg-soft-2',
+		'soft': 'bg-cream',
+		'soft-2': 'bg-cream',
 		'light': 'bg-[image:var(--gradient-light)]',
-		'navy': 'bg-deep text-white',
+		'navy': 'bg-ink text-white',
+		'navy-flat': 'bg-[image:var(--gradient-dark)] text-white',
 		'gradient': 'bg-[image:var(--gradient-blue)] text-white'
 	} -%}
 
@@ -45,5 +46,5 @@
 {% endmacro %}
 
 {% macro isDark(fields) %}
-	{{- fields.background in ['navy', 'gradient'] ? '1' : '' -}}
+	{{- fields.background in ['navy', 'navy-flat', 'gradient'] ? '1' : '' -}}
 {% endmacro %}

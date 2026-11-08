@@ -15,19 +15,15 @@
 {% set siatki = {
 	1: 'grid-cols-[minmax(0,1fr)_118px] max-sm:grid-cols-[minmax(0,1fr)_72px]',
 	2: 'grid-cols-[minmax(0,1fr)_118px_118px] max-sm:grid-cols-[minmax(0,1fr)_64px_64px]',
-	3: 'grid-cols-[minmax(0,1fr)_118px_118px_118px] max-md:grid-cols-[minmax(0,1fr)_minmax(96px,auto)]',
-	4: 'grid-cols-[minmax(0,1fr)_108px_108px_108px_108px] max-md:grid-cols-[minmax(0,1fr)_minmax(96px,auto)]'
+	3: 'grid-cols-[minmax(0,1fr)_96px_96px_96px] max-md:grid-cols-[minmax(0,1fr)_136px] max-sm:grid-cols-[minmax(0,1fr)_112px]',
+	4: 'grid-cols-[minmax(0,1fr)_108px_108px_108px_108px] max-md:grid-cols-[minmax(0,1fr)_136px] max-sm:grid-cols-[minmax(0,1fr)_112px]'
 } %}
 {% set siatka = siatki[kolumny|length] ?: siatki[2] %}
 {% set waskie = kolumny|length > 3 %}
 
-<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields, 'bg-[linear-gradient(180deg,#ffffff_0%,#f7faff_45%,#e8f0fe_100%)]') }}">
-	<div aria-hidden="true"
-		class="absolute inset-0 bg-[radial-gradient(75%_55%_at_85%_100%,rgb(18_104_255/0.16),transparent_70%),radial-gradient(60%_50%_at_0%_15%,rgb(69_208_255/0.1),transparent_72%)]"></div>
-
-	<div aria-hidden="true"
-		class="absolute inset-0 [mask-image:linear-gradient(180deg,transparent,#000_55%)]
-			bg-[repeating-linear-gradient(45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px),repeating-linear-gradient(-45deg,rgb(11_99_246/0.06)_0_1px,transparent_1px_54px)]"></div>
+<section {% if block.anchor %}id="{{ block.anchor }}"{% endif %} class="relative overflow-hidden {{ section.shell(fields) }}">
+	{% include 'components/section-decor.twig' with { background: fields.background } only %}
+	{% set onDark = section.isDark(fields) %}
 
 	<div class="relative {{ section.container(fields) }}">
 		{% if fields.head_position == 'above' %}
@@ -44,14 +40,14 @@
 			} only %}
 
 			{% if fields.note %}
-				<div class="mt-7 border-l-[3px] border-accent py-1 pl-[18px]
-					[&_p]:text-[15px] [&_p]:leading-[1.65] [&_p]:text-ink">
+				<div class="mt-7 border-l-[3px] py-1 pl-[18px] [&_p]:text-[15px] [&_p]:leading-[1.65]
+					{{ onDark ? 'border-gold-light [&_p]:text-white/86 [&_strong]:text-white' : 'border-navy [&_p]:text-ink' }}">
 					{{ fields.note }}
 				</div>
 			{% endif %}
 
 			<div class="mt-11">
-				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie } only %}
+				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie, szklo: onDark and fields.surface == 'glass' } only %}
 			</div>
 		{% else %}
 			<div class="grid grid-cols-[minmax(280px,0.85fr)_minmax(420px,1.3fr)] items-start gap-16
@@ -70,14 +66,14 @@
 					} only %}
 
 					{% if fields.note %}
-						<div class="mt-7 border-l-[3px] border-accent py-1 pl-[18px]
-							[&_p]:text-[15px] [&_p]:leading-[1.65] [&_p]:text-ink">
+						<div class="mt-7 border-l-[3px] py-1 pl-[18px] [&_p]:text-[15px] [&_p]:leading-[1.65]
+							{{ onDark ? 'border-gold-light [&_p]:text-white/86 [&_strong]:text-white' : 'border-navy [&_p]:text-ink' }}">
 							{{ fields.note }}
 						</div>
 					{% endif %}
 				</div>
 
-				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie } only %}
+				{% include 'blocks/table/matrix.twig' with { fields: fields, kolumny: kolumny, siatka: siatka, waskie: waskie, szklo: onDark and fields.surface == 'glass' } only %}
 			</div>
 		{% endif %}
 	</div>
